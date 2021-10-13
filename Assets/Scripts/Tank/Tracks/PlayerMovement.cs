@@ -49,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 
+      
+        
         m_xForce = Input.GetAxis("Vertical") * 
                    m_tracks.Data.speed * 
                    Time.deltaTime*
@@ -59,10 +61,7 @@ public class PlayerMovement : MonoBehaviour
                    m_tracks.Data.speed * Time.deltaTime * 
                    power * 
                    player.transform.up.y;
-
         
-        
- 
         player.transform.Rotate(0,0, 
             -Input.GetAxis("Horizontal") *
             m_tracks.Data.rotationSpeed * 
