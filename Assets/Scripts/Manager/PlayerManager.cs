@@ -8,13 +8,13 @@ public class PlayerManager : MonoBehaviour
 
 
     public GameObject player;
-    private PlayerController m_controller;
+    private TankController m_controller;
     
     // Start is called before the first frame update
 
     private void Awake()
     {
-        m_controller = player.GetComponent<PlayerController>();
+        m_controller = player.GetComponent<TankController>();
     }
 
     void Start()
