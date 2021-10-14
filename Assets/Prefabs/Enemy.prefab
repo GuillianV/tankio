@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 3915136592356501300}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -403,6 +403,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9ac1b50f9098e4d9a99c2170d0a061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  repathRate: 0.4
+  velocityRate: 0.4
+  towerTransform: {fileID: 6375800878556689661}
+  spawnBullet: {fileID: 6375800878330181018}
+  bullet: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
 --- !u!1 &6375800878161469553
 GameObject:
   m_ObjectHideFlags: 0
