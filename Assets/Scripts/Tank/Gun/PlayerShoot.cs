@@ -6,15 +6,14 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     
-    public GameObject Bullet;
     public GameObject SpawnBullet;
 
-    public event EventHandler<BulletEvent> BulletShooted;
     
     [HideInInspector]
     public Gun m_gun { get; private set; }
     
     private SpriteRenderer m_spriteRenderer;
+    public InstanciateProjectile instanciateProjectile;
 
     private bool isReloading = false;
 
@@ -22,6 +21,7 @@ public class PlayerShoot : MonoBehaviour
     {
         m_gun = GetComponent<Gun>();
         m_spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
     private void Start()
@@ -50,14 +50,10 @@ public class PlayerShoot : MonoBehaviour
         {
             if (!isReloading)
             {
-                GameObject rocketInstance;
-                rocketInstance = Instantiate(Bullet,SpawnBullet.transform.position,SpawnBullet.transform.rotation) as GameObject;
-                Rigidbody2D rocketRb = rocketInstance.GetComponent<Rigidbody2D>();
-                rocketRb.AddForce(new Vector2(SpawnBullet.transform.up.x *Time.deltaTime* m_gun.Data.bulletVelocity, SpawnBullet.transform.up.y*Time.deltaTime * m_gun.Data.bulletVelocity ));
+              
+                instanciateProjectile.Instanciate();
+                
                 isReloading = true;
-                
-                OnBulletShooted(rocketInstance.GetComponent<Bullet>());
-                
                 StartCoroutine(Reload());
            
                 
@@ -78,8 +74,5 @@ public class PlayerShoot : MonoBehaviour
         isReloading = false;
     }
     
-    public void OnBulletShooted(Bullet bullet)
-    {
-        BulletShooted?.Invoke(this, new BulletEvent(bullet,gameObject.tag));
-    }
+  
 }

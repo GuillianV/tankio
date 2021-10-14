@@ -736,6 +736,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8800c0b521647f4a25d3529c87d317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Projectile: {fileID: 0}
+  bulletPlayerList: []
+  bulletEnemiesList: []
 --- !u!1001 &777228635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1659,6 +1662,7 @@ GameObject:
   - component: {fileID: 2094971374}
   - component: {fileID: 2094971376}
   - component: {fileID: 2094971375}
+  - component: {fileID: 2094971377}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -1744,8 +1748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed934ed1a3cda14c81ab2ef6a57b2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
   SpawnBullet: {fileID: 1710753790}
+  instanciateProjectile: {fileID: 2094971377}
 --- !u!114 &2094971376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1759,6 +1763,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 5e588587277c45d47bcd6fd0d5a20860, type: 2}
+--- !u!114 &2094971377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094971372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c82b37678496a4b97df2f7b492b2f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnBullet: {fileID: 1710753791}
+  tankController: {fileID: 1004120725}
+  Projectile: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
+  senderTag: Player
 --- !u!1001 &1402402843691797370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1898,3 +1918,40 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: a676385d032644e22a9cf2e0daa326fb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 901632f13daae4864918903d72815bd2, type: 3}
+--- !u!1 &6375800877040306744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6375800877936983457, guid: 901632f13daae4864918903d72815bd2, type: 3}
+  m_PrefabInstance: {fileID: 6375800877040306743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6375800877040306745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375800877040306744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c82b37678496a4b97df2f7b492b2f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnBullet: {fileID: 6375800877040306746}
+  tankController: {fileID: 6375800877040306747}
+  Projectile: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
+  senderTag: Enemy
+--- !u!4 &6375800877040306746 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6375800878330181018, guid: 901632f13daae4864918903d72815bd2, type: 3}
+  m_PrefabInstance: {fileID: 6375800877040306743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6375800877040306747 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 982661019, guid: 901632f13daae4864918903d72815bd2, type: 3}
+  m_PrefabInstance: {fileID: 6375800877040306743}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375800877040306744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ad3683582e14332af84882fce280f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

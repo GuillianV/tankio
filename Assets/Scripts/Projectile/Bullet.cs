@@ -12,6 +12,8 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D m_rigidBody;
     private PolygonCollider2D m_polyCollider;
 
+  
+    
     private float bounce;
     public void LoadData(BulletData _data)
     {
@@ -68,7 +70,7 @@ public class Bullet : MonoBehaviour
     }
    
     
-
+ 
 
 
 

@@ -12,7 +12,7 @@ public class TankAI : MonoBehaviour
     private InstanciateProjectile m_InstanciateProjectile;
     private bool isReloading;
     
-    public event EventHandler<BulletEvent> BulletShooted;
+    
     
     [Range(0.1f,20f)]
     public float repathRate = 1;
@@ -58,12 +58,8 @@ public class TankAI : MonoBehaviour
             {
                 if (!isReloading)
                 {
-                    GameObject rocketInstance;
-                    rocketInstance = Instantiate(bullet,spawnBullet.transform.position,spawnBullet.transform.rotation) as GameObject;
-                    Rigidbody2D rocketRb = rocketInstance.GetComponent<Rigidbody2D>();
-                    rocketRb.AddForce(new Vector2(spawnBullet.transform.up.x *Time.deltaTime* m_tankController.gun.Data.bulletVelocity, spawnBullet.transform.up.y*Time.deltaTime * m_tankController.gun.Data.bulletVelocity ));
+                    m_InstanciateProjectile.Instanciate();
                     isReloading = true;
-                    OnBulletShooted(rocketInstance.GetComponent<Bullet>());
                     StartCoroutine(Reload());
            
                 }
@@ -79,11 +75,7 @@ public class TankAI : MonoBehaviour
         isReloading = false;
     }
     
-    public void OnBulletShooted(Bullet bullet)
-    {
-        BulletShooted?.Invoke(this, new BulletEvent(bullet,gameObject.tag));
-    }
-    
+
     
 }
 
