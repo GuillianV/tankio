@@ -9,6 +9,7 @@ public class TankAI : MonoBehaviour
     private AIPath m_aiPath;
     private AIDestinationSetter m_aiDestinationSetter;
     private TankController m_tankController;
+    private InstanciateProjectile m_InstanciateProjectile;
     private bool isReloading;
     
     [Range(0.1f,20f)]
@@ -26,6 +27,7 @@ public class TankAI : MonoBehaviour
         m_aiPath = GetComponent<AIPath>();
         m_tankController = GetComponent<TankController>();
         m_aiDestinationSetter = GetComponent<AIDestinationSetter>();
+        m_InstanciateProjectile = GetComponent<InstanciateProjectile>();
     }
 
 
