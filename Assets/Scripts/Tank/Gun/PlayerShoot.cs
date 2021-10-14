@@ -9,6 +9,8 @@ public class PlayerShoot : MonoBehaviour
     public GameObject Bullet;
     public GameObject SpawnBullet;
 
+    public event EventHandler<BulletEvent> BulletShooted;
+    
     [HideInInspector]
     public Gun m_gun { get; private set; }
     
@@ -53,8 +55,14 @@ public class PlayerShoot : MonoBehaviour
                 Rigidbody2D rocketRb = rocketInstance.GetComponent<Rigidbody2D>();
                 rocketRb.AddForce(new Vector2(SpawnBullet.transform.up.x *Time.deltaTime* m_gun.Data.bulletVelocity, SpawnBullet.transform.up.y*Time.deltaTime * m_gun.Data.bulletVelocity ));
                 isReloading = true;
+                
+                OnBulletShooted(rocketInstance.GetComponent<Bullet>());
+                
                 StartCoroutine(Reload());
            
+                
+                
+                
             }
             
             
@@ -68,5 +76,10 @@ public class PlayerShoot : MonoBehaviour
     {
         yield return new WaitForSeconds(m_gun.Data.reloadTimeSecond);
         isReloading = false;
+    }
+    
+    public void OnBulletShooted(Bullet bullet)
+    {
+        BulletShooted?.Invoke(this, new BulletEvent(bullet,gameObject.tag));
     }
 }

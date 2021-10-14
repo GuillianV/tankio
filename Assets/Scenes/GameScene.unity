@@ -1207,7 +1207,7 @@ MonoBehaviour:
       colorBlindnessType: 0
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 1
+  m_ShowToolkit: 0
   m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
@@ -1887,6 +1887,10 @@ PrefabInstance:
     - target: {fileID: 6375800877936983457, guid: 901632f13daae4864918903d72815bd2, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375800877936983457, guid: 901632f13daae4864918903d72815bd2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6375800878556689660, guid: 901632f13daae4864918903d72815bd2, type: 3}
       propertyPath: Data
