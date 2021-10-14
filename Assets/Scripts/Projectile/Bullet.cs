@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : Projectile
 {
     public BulletData Data;
 
@@ -11,7 +11,26 @@ public class Bullet : MonoBehaviour
     {
         Data = _data;
     }
+    
+    public override void Fire()
+    {
+        gameObject.SetActive(true);
+        
+    }
 
+    public override void Collided()
+    {
+        Debug.Log("bullet collided");
+        Destroy();
+    }
+
+    public override void Destroy()
+    {
+        
+        Destroy(gameObject);
+    }
+
+   
 }
 
 

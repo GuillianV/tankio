@@ -6,17 +6,23 @@ using UnityEngine;
 public class ProjectileManager : MonoBehaviour
 {
 
-    private Bullet m_bullet;
+    private Projectile m_projectile;
 
 
     private void Awake()
     {
-        m_bullet = GetComponent<Bullet>();
+        m_projectile = GetComponent<Projectile>();
     }
 
-    
+
+    private void Start()
+    {
+       m_projectile.Fire();
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Destroy(gameObject);
+        m_projectile.Collided();
+        
     }
 }

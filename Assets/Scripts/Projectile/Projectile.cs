@@ -9,4 +9,6 @@ public abstract class Projectile : MonoBehaviour
 
     public abstract void Collided();
 
+    public abstract void Fire();
+
 }
