@@ -9,7 +9,6 @@ public class TankAI : MonoBehaviour
     private AIPath m_aiPath;
     private AIDestinationSetter m_aiDestinationSetter;
     private TankController m_tankController;
-    private InstanciateProjectile m_InstanciateProjectile;
     private bool isReloading;
     
     
@@ -24,12 +23,12 @@ public class TankAI : MonoBehaviour
     public Transform spawnBullet;
     public GameObject bullet;
     
+    
     private void Awake()
     {
         m_aiPath = GetComponent<AIPath>();
         m_tankController = GetComponent<TankController>();
         m_aiDestinationSetter = GetComponent<AIDestinationSetter>();
-        m_InstanciateProjectile = GetComponent<InstanciateProjectile>();
     }
 
 
@@ -58,10 +57,15 @@ public class TankAI : MonoBehaviour
             {
                 if (!isReloading)
                 {
-                    m_InstanciateProjectile.Instanciate();
+                    
+                    
+                    GameObject ammo = Instantiate(bullet, spawnBullet.transform.position, spawnBullet.transform.rotation) as  GameObject;
+                    Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
+                    ammoProjectile.velocity = m_tankController.gun.Data.bulletVelocity;
+                    ammoProjectile.parentUp = spawnBullet.transform.up;
+                    ammoProjectile.senderTag = gameObject.tag;
                     isReloading = true;
                     StartCoroutine(Reload());
-           
                 }
             }
         }

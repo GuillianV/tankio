@@ -6,27 +6,43 @@ using UnityEngine;
 public class ProjectileManager : MonoBehaviour
 {
 
-    public InstanciateProjectile Projectile;
+    public ProjectileEventHandler ProjectileEventHandler;
 
-    public List<Bullet> bulletPlayerList = new List<Bullet>();
-    public List<Bullet> bulletEnemiesList = new List<Bullet>();
-
+    public List<GameObject> ProjectilePlayerList = new List<GameObject>();
+    public List<GameObject> ProjectileEnemiesList = new List<GameObject>();
+    
     private void Awake()
     {
-        Projectile.BulletShooted += BulletShootedHandler;
+        ProjectileEventHandler.BulletShooted += BulletShootedHandler;
+        ProjectileEventHandler.BulletDestroyed += BulletDestroyedHandler;
     }
-
-    private void BulletShootedHandler(object sender, BulletEvent e)
+    
+    private void BulletShootedHandler(object sender, ProjectileEvent e)
     {
         if (e.Tag == "Player")
         {
-            bulletPlayerList.Add(e.Bullet);
+            ProjectilePlayerList.Add(e.Projectile);
         }
-
+    
         if (e.Tag == "Enemy")
         {
-            bulletEnemiesList.Add(e.Bullet);
+            ProjectileEnemiesList.Add(e.Projectile);
         }
-
+    
+    }
+    
+    
+    private void BulletDestroyedHandler(object sender, ProjectileEvent e)
+    {
+        if (e.Tag == "Player")
+        {
+            ProjectilePlayerList.Remove(e.Projectile);
+        }
+    
+        if (e.Tag == "Enemy")
+        {
+            ProjectileEnemiesList.Remove(e.Projectile);
+        }
+    
     }
 }

@@ -7,13 +7,13 @@ public class PlayerShoot : MonoBehaviour
 {
     
     public GameObject SpawnBullet;
-
+    public GameObject projectile;
+    public string playerTag;
     
     [HideInInspector]
     public Gun m_gun { get; private set; }
     
     private SpriteRenderer m_spriteRenderer;
-    public InstanciateProjectile instanciateProjectile;
 
     private bool isReloading = false;
 
@@ -50,15 +50,14 @@ public class PlayerShoot : MonoBehaviour
         {
             if (!isReloading)
             {
-              
-                instanciateProjectile.Instanciate();
-                
+
+                GameObject ammo = Instantiate(projectile, SpawnBullet.transform.position, SpawnBullet.transform.rotation) as  GameObject;
+                Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
+                ammoProjectile.velocity = m_gun.Data.bulletVelocity;
+                ammoProjectile.parentUp = SpawnBullet.transform.up;
+                ammoProjectile.senderTag = playerTag;
                 isReloading = true;
                 StartCoroutine(Reload());
-           
-                
-                
-                
             }
             
             
