@@ -26,6 +26,11 @@ public class CameraManager : MonoBehaviour
        
     }
 
+    public void SetGameObjectToFollow(GameObject _objectToFollow)
+    {
+        objectToFollow = _objectToFollow;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {

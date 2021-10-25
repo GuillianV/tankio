@@ -5,27 +5,32 @@ using UnityEngine;
 
 public class ProjectileEventHandler : MonoBehaviour
 {
+    
+    public static ProjectileEventHandler Instance;
+
     public event EventHandler<ProjectileEvent> BulletShooted;
     public event EventHandler<ProjectileEvent> BulletDestroyed;
 
-    private string senderTag;
-    private GameObject projectile;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
 
-    public ProjectileEventHandler(GameObject _projectile,string _senderTag)
+    }
+
+    public void OnBulletShooted(GameObject projectile, string senderTag)
     {
-        this.senderTag = _senderTag;
-        this.projectile = _projectile;
+        BulletShooted?.Invoke(this, new ProjectileEvent(projectile,senderTag));
     }
     
-    
-    public void OnBulletShooted()
+    public void OnBulletDestroyed(GameObject projectile, string senderTag)
     {
-        BulletShooted?.Invoke(this, new ProjectileEvent(this.projectile,this.senderTag));
-    }
-    
-    public void OnBulletDestroyed()
-    {
-        BulletDestroyed?.Invoke(this, new ProjectileEvent(this.projectile,this.senderTag));
+        BulletDestroyed?.Invoke(this, new ProjectileEvent(projectile,senderTag));
     } 
     
 }
