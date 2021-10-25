@@ -63,20 +63,23 @@ public class EnemyManager : MonoBehaviour
             
             if (E.tracksData != null)
             {
-                tankController.tracks.LoadData(E.tracksData);
+                tankController.TracksController.tracks.LoadData(E.tracksData);
             }
             if (E.bodyData != null)
             {
-                tankController.body.LoadData(E.bodyData);
+                tankController.BodyController.body.LoadData(E.bodyData);
             }
             if (E.towerData != null)
             {
-                tankController.tower.LoadData(E.towerData);
+                tankController.TowerController.tower.LoadData(E.towerData);
             }
             if (E.gunData != null)
             {
-                tankController.gun.LoadData(E.gunData);
+                tankController.GunController.gun.LoadData(E.gunData);
             }
+            
+            tankController.BindSprite();
+            tankController.BindStats();
             
           
         });

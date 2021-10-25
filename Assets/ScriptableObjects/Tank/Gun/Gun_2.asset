@@ -15,6 +15,6 @@ MonoBehaviour:
   reloadTimeSecond: 1.05
   bulletVelocity: 10
   spriteGun: {fileID: 21300000, guid: dba2347742dc4884a9f385a783661418, type: 3}
-  TowerGunOffset: 0
-  GunSpawnOffset: 0
+  TowerGunOffset: 1
+  GunSpawnOffset: 1.2
   color: {r: 1, g: 1, b: 1, a: 1}

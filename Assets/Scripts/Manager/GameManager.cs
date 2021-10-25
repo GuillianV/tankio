@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //Crée le joueur
+        
         Player.InsatanciatePlayer();
         //Active le joueur
         Player.EnablePlayer();

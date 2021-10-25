@@ -21,37 +21,12 @@ public class PlayerManager : MonoBehaviour
     public TowerData TowerData;
     public GunData GunData;
     
-    //Controller du player
-    private TankController m_controller;
     
     //Player instancié
     [HideInInspector]
     public GameObject player;
-    private void Awake()
-    {
-        //Création du player
-        m_controller = playerPrefab.GetComponent<TankController>();
 
-     
-        if (TracksData != null)
-        {
-            m_controller.tracks.LoadData(TracksData);
-        }
-        if (BodyData != null)
-        {
-            m_controller.body.LoadData(BodyData);
-        }
-        if (TowerData != null)
-        {
-            m_controller.tower.LoadData(TowerData);
-        }
-        if (GunData != null)
-        {
-            m_controller.gun.LoadData(GunData);
-        }
-        
-    }
-
+    
     //Active le joueur
     public void EnablePlayer()
     {
@@ -68,6 +43,31 @@ public class PlayerManager : MonoBehaviour
     public void InsatanciatePlayer()
     {
         player = Instantiate(playerPrefab, new Vector3(spawnPosition.x,spawnPosition.y,0), new Quaternion(0,0,0,0),parentContainer) as GameObject;
+        //Création du player
+        TankController tankController = player.GetComponent<TankController>();
+
+     
+        if (TracksData != null)
+        {
+            tankController.TracksController.tracks.LoadData(TracksData);
+        }
+        if (BodyData != null)
+        {
+            tankController.BodyController.body.LoadData(BodyData);
+        }
         
+        
+        if (TowerData != null)
+        {
+            tankController.TowerController.tower.LoadData(TowerData);
+        }
+        if (GunData != null)
+        {
+            tankController.GunController.gun.LoadData(GunData);
+        }
+        
+        tankController.BindSprite();
+        tankController.BindStats();
+
     }
 }

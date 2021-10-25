@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public TowerData Data;
+    public TowerData Data { get; private set; }
     
         
     public void LoadData(TowerData _data)

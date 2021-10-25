@@ -6,7 +6,7 @@ using UnityEngine;
 public class Tracks : MonoBehaviour
 {
 
-    public TracksData Data;
+    public TracksData Data { get; private set; }
 
     
     public void LoadData(TracksData _data)

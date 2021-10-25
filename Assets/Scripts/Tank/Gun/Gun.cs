@@ -5,7 +5,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     
-    public GunData Data;
+    public GunData Data { get; private set; }
     
         
     public void LoadData(GunData _data)

@@ -5,36 +5,13 @@ using UnityEngine;
 
 public class PlayerBody : MonoBehaviour
 {
-    [HideInInspector]
-    public Body m_body { get; private set; }
-    
-    private SpriteRenderer m_spriteRender;
-    
-    // Start is called before the first frame update
+    private TankController m_tankController;
 
+
+  
     private void Awake()
     {
-        m_body = GetComponent<Body>();
-        m_spriteRender = GetComponent<SpriteRenderer>();
+        m_tankController = GetComponent<TankController>();
     }
-
-    void Start()
-    {
-        m_body.LoadData(m_body.Data);
-        
-        if (m_body.Data != null)
-        {
-            if (m_spriteRender != null)
-            {
-                m_spriteRender.sprite = m_body.Data.spriteTrack;
-                m_spriteRender.color = m_body.Data.color;
-            }
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
