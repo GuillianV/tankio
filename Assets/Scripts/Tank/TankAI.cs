@@ -10,8 +10,7 @@ public class TankAI : MonoBehaviour
     private AIDestinationSetter m_aiDestinationSetter;
     private TankController m_tankController;
     private bool isReloading;
-    
-    
+
     
     [Range(0.1f,20f)]
     public float repathRate = 1;

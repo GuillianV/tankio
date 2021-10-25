@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public PlayerManager Player { get; private set; }
     public CameraManager Camera { get; private set; }
     
+    public EnemyManager Enemys { get; private set; }
     private void Awake()
     {
         if (Instance == null)
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
 
         Player = GetComponent<PlayerManager>();
         Camera = GetComponent<CameraManager>();
+        Enemys = GetComponent<EnemyManager>();
     }
 
     void Start()
@@ -30,11 +32,10 @@ public class GameManager : MonoBehaviour
         Player.InsatanciatePlayer();
         Player.EnablePlayer();
         Camera.SetGameObjectToFollow(Player.player);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        Enemys.InsatanciateEnemys();
+        Enemys.EnableEnemys();
         
     }
+    
+
 }

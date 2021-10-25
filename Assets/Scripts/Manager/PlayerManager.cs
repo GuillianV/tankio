@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
 
 
     public GameObject playerPrefab;
+    public Transform parentContainer;
     private TankController m_controller;
 
     public Vector2 spawnPosition =  Vector2.zero;
@@ -32,15 +33,15 @@ public class PlayerManager : MonoBehaviour
         {
             m_controller.tracks.LoadData(TracksData);
         }
-        if (TracksData != null)
+        if (BodyData != null)
         {
             m_controller.body.LoadData(BodyData);
         }
-        if (TracksData != null)
+        if (TowerData != null)
         {
             m_controller.tower.LoadData(TowerData);
         }
-        if (TracksData != null)
+        if (GunData != null)
         {
             m_controller.gun.LoadData(GunData);
         }
@@ -59,7 +60,7 @@ public class PlayerManager : MonoBehaviour
 
     public void InsatanciatePlayer()
     {
-        player = Instantiate(playerPrefab, new Vector3(spawnPosition.x,spawnPosition.y,0), new Quaternion(0,0,0,0)) as GameObject;
+        player = Instantiate(playerPrefab, new Vector3(spawnPosition.x,spawnPosition.y,0), new Quaternion(0,0,0,0),parentContainer) as GameObject;
         
     }
 }

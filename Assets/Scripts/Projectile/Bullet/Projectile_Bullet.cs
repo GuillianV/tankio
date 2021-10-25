@@ -9,7 +9,7 @@ public class Projectile_Bullet : MonoBehaviour
 
     private Rigidbody2D m_projectileRigidbody2D;
     private Animator m_projectileAnimator;
-    private PolygonCollider2D m_projectilePolygonCollider2D;
+    private CircleCollider2D m_projectileCircleCollider2D;
     
     [HideInInspector]
     public Vector3 parentUp;
@@ -23,7 +23,7 @@ public class Projectile_Bullet : MonoBehaviour
     {
         this.m_projectileRigidbody2D = GetComponent<Rigidbody2D>();
         this.m_projectileAnimator = GetComponent<Animator>();
-        this.m_projectilePolygonCollider2D = GetComponent<PolygonCollider2D>();
+        this.m_projectileCircleCollider2D = GetComponent<CircleCollider2D>();
     }
 
     private void Start()
@@ -41,7 +41,7 @@ public class Projectile_Bullet : MonoBehaviour
     {
         m_projectileAnimator.SetTrigger("IsDead");
         Destroy(this.m_projectileRigidbody2D);
-        Destroy(this.m_projectilePolygonCollider2D);
+        Destroy(this.m_projectileCircleCollider2D);
     }
 
     public void EndDestroyAnim()
