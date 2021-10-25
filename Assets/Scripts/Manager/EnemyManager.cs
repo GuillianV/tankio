@@ -21,7 +21,7 @@ public class EnemyManager : MonoBehaviour
         public BodyData bodyData;
         public TowerData towerData;
         public GunData gunData;
-
+        [HideInInspector]
         public GameObject enemy;
     }
  

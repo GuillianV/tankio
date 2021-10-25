@@ -432,16 +432,18 @@ MonoBehaviour:
   enemyList:
   - enemyPrefab: {fileID: 6375800877936983457, guid: 901632f13daae4864918903d72815bd2, type: 3}
     enemyPosition: {x: 0, y: 14}
-    tracksData: {fileID: 0}
-    bodyData: {fileID: 0}
-    towerData: {fileID: 0}
-    gunData: {fileID: 0}
+    tracksData: {fileID: 11400000, guid: 7df5b8b3fb9f93d4ab3d7a0821c5fb29, type: 2}
+    bodyData: {fileID: 11400000, guid: 6f4c276984507604cb652f1fc35ef79f, type: 2}
+    towerData: {fileID: 11400000, guid: ae4378c3adc81d84fb799149d5ccb0c6, type: 2}
+    gunData: {fileID: 11400000, guid: bbc8960a80cf3cd4bae994b28509f2bb, type: 2}
+    enemy: {fileID: 0}
   - enemyPrefab: {fileID: 6375800877936983457, guid: 901632f13daae4864918903d72815bd2, type: 3}
     enemyPosition: {x: 3, y: -14}
-    tracksData: {fileID: 0}
-    bodyData: {fileID: 0}
-    towerData: {fileID: 0}
-    gunData: {fileID: 0}
+    tracksData: {fileID: 11400000, guid: 7b7954486fe4f4335a5eed747b46f9d7, type: 2}
+    bodyData: {fileID: 11400000, guid: 2de23a6feca28aa4386dcc82f9e8a79c, type: 2}
+    towerData: {fileID: 11400000, guid: a676385d032644e22a9cf2e0daa326fb, type: 2}
+    gunData: {fileID: 11400000, guid: 5e588587277c45d47bcd6fd0d5a20860, type: 2}
+    enemy: {fileID: 0}
 --- !u!1001 &777228635
 PrefabInstance:
   m_ObjectHideFlags: 0
