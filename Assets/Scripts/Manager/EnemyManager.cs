@@ -6,45 +6,50 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-
+    //Parent container of enemies
     public Transform parentContainer;
     
+    
+    //Structure de l'enemy
     [System.Serializable]
     public struct Enemys {
         public GameObject enemyPrefab;
         public Vector2 enemyPosition;
         
         [Header("Player Stats")]
-        public TracksData TracksData;
-        public BodyData BodyData;
-        public TowerData TowerData;
-        public GunData GunData;
+        public TracksData tracksData;
+        public BodyData bodyData;
+        public TowerData towerData;
+        public GunData gunData;
     }
  
     public List<Enemys>  enemyList;
-    // Start is called before the first frame update
-
-    private List<GameObject> enemys;
+  
+    //Liste des enemys
+    private List<GameObject> m_enemys;
     
 
+    //Active les enemies 
     public void EnableEnemys()
     {
-        enemys.ForEach(E =>
+        m_enemys.ForEach(E =>
         {
             E.SetActive(true);
         });
         
     }
     
+    //Desactive les enemies
     public void DisableEnemys()
     {
-        enemys.ForEach(E =>
+        m_enemys.ForEach(E =>
         {
             E.SetActive(false);
         });
         
     }
 
+    //Crée les enemies listés
     public void InsatanciateEnemys()
     {
        
@@ -55,23 +60,24 @@ public class EnemyManager : MonoBehaviour
             AIDestinationSetter aiDestinationSetter = enemy.GetComponent<AIDestinationSetter>();
             aiDestinationSetter.target = GameObject.FindWithTag("Player").transform;
             
-            if (E.TracksData != null)
+            if (E.tracksData != null)
             {
-                tankController.tracks.LoadData(E.TracksData);
+                tankController.tracks.LoadData(E.tracksData);
             }
-            if (E.BodyData != null)
+            if (E.bodyData != null)
             {
-                tankController.body.LoadData(E.BodyData);
+                tankController.body.LoadData(E.bodyData);
             }
-            if (E.TowerData != null)
+            if (E.towerData != null)
             {
-                tankController.tower.LoadData(E.TowerData);
+                tankController.tower.LoadData(E.towerData);
             }
-            if (E.GunData != null)
+            if (E.gunData != null)
             {
-                tankController.gun.LoadData(E.GunData);
+                tankController.gun.LoadData(E.gunData);
             }
-
+            
+            m_enemys.Add(enemy);
             
         });
         

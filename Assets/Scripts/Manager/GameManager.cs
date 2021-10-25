@@ -29,10 +29,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        //Crée le joueur
         Player.InsatanciatePlayer();
+        //Active le joueur
         Player.EnablePlayer();
+        //Permet a la camera de suivre le joueur
         Camera.SetGameObjectToFollow(Player.player);
+        //Crée les enemies
         Enemys.InsatanciateEnemys();
+        //Active les enemies
         Enemys.EnableEnemys();
         
     }
