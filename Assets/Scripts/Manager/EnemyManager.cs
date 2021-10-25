@@ -21,20 +21,20 @@ public class EnemyManager : MonoBehaviour
         public BodyData bodyData;
         public TowerData towerData;
         public GunData gunData;
+
+        public GameObject enemy;
     }
  
     public List<Enemys>  enemyList;
   
-    //Liste des enemys
-    private List<GameObject> m_enemys;
     
 
     //Active les enemies 
     public void EnableEnemys()
     {
-        m_enemys.ForEach(E =>
+        enemyList.ForEach(E =>
         {
-            E.SetActive(true);
+            E.enemy.SetActive(true);
         });
         
     }
@@ -42,11 +42,11 @@ public class EnemyManager : MonoBehaviour
     //Desactive les enemies
     public void DisableEnemys()
     {
-        m_enemys.ForEach(E =>
+        enemyList.ForEach(E =>
         {
-            E.SetActive(false);
+            E.enemy.SetActive(false);
         });
-        
+
     }
 
     //Crée les enemies listés
@@ -56,6 +56,7 @@ public class EnemyManager : MonoBehaviour
         enemyList.ForEach(E =>
         {
             GameObject enemy = Instantiate(E.enemyPrefab, new Vector3(E.enemyPosition.x,E.enemyPosition.y,0), new Quaternion(0,0,0,0),parentContainer) as GameObject;
+            E.enemy = enemy;
             TankController tankController = enemy.GetComponent<TankController>();
             AIDestinationSetter aiDestinationSetter = enemy.GetComponent<AIDestinationSetter>();
             aiDestinationSetter.target = GameObject.FindWithTag("Player").transform;
@@ -77,8 +78,7 @@ public class EnemyManager : MonoBehaviour
                 tankController.gun.LoadData(E.gunData);
             }
             
-            m_enemys.Add(enemy);
-            
+          
         });
         
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
 
     public static GameManager Instance;
-   
+
+    public static bool gameIsPaused;
+    
     public PlayerManager Player { get; private set; }
     public CameraManager Camera { get; private set; }
     
@@ -37,10 +40,32 @@ public class GameManager : MonoBehaviour
         Camera.SetGameObjectToFollow(Player.player);
         //Crée les enemies
         Enemys.InsatanciateEnemys();
-        //Active les enemies
-        Enemys.EnableEnemys();
+        
+    }
+
+    
+    private void Update()
+    {
+        //Pause game
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameIsPaused = !gameIsPaused;
+            PauseGame();
+        }
+        
         
     }
     
-
+    //Pause whole game
+    void PauseGame ()
+    {
+        if(gameIsPaused)
+        {
+            Time.timeScale = 0f;
+        }
+        else 
+        {
+            Time.timeScale = 1;
+        }
+    }
 }
