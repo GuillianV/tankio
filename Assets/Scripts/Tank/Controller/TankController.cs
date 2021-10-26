@@ -61,6 +61,8 @@ public class TankController : MonoBehaviour
     public GunController GunController;
 
     public StatsController StatsController;
+
+    public Animator m_bulletSpawn_animator;
     
     private void Awake()
     {
@@ -68,6 +70,11 @@ public class TankController : MonoBehaviour
         BodyController.body = GetComponent<Body>();
         GunController.gun = GetComponent<Gun>();
         TowerController.tower = GetComponent<Tower>();
+
+        if (m_bulletSpawn_animator == null)
+        {
+            Debug.LogWarning("SpawnBullet animator manquant dans tank controller");
+        }
     }
 
 
@@ -116,7 +123,22 @@ public class TankController : MonoBehaviour
        StatsController.reloadTimeSpeed = GunController.gun.Data.reloadTimeSecond;
        StatsController.bulletVelocity = GunController.gun.Data.bulletVelocity;
     }
-    
-    
 
+    private void FixedUpdate()
+    {
+        if (StatsController.health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Fire()
+    {
+        m_bulletSpawn_animator.SetTrigger("Fire");
+    }
+    
+    public void OnDestroy()
+    {
+        Debug.Log("Tank " + gameObject.tag +" Destroyed");
+    }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Pathfinding;
 using UnityEngine;
 
@@ -42,6 +43,12 @@ public class TankAI : MonoBehaviour
     private void FixedUpdate()
     {
 
+
+        if (m_tankController.StatsController.health <= 0)
+        {
+            Destroy(gameObject);
+        }
+
         Vector3 vectorToTarget = new Vector3(m_aiDestinationSetter.target.position.x,m_aiDestinationSetter.target.position.y,towerTransform.transform.position.z)  - towerTransform.transform.position;
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.AngleAxis(angle -90 , Vector3.forward);
@@ -77,8 +84,14 @@ public class TankAI : MonoBehaviour
         yield return new WaitForSeconds(m_tankController.StatsController.reloadTimeSpeed);
         isReloading = false;
     }
-    
 
-    
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        Projectile_Bullet bullet = col.gameObject.GetComponent<Projectile_Bullet>();
+        if (bullet != null)
+        {
+            m_tankController.StatsController.health -= 10;
+        }
+    }
 }
 

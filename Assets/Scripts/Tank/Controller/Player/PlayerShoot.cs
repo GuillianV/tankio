@@ -29,6 +29,7 @@ public class PlayerShoot : MonoBehaviour
                 ammoProjectile.velocity = m_tankController.StatsController.bulletVelocity;
                 ammoProjectile.parentUp = m_tankController.GunController.bulletSpawn.transform.up;
                 ammoProjectile.senderTag = gameObject.tag;
+                m_tankController.Fire();
                 isReloading = true;
                 StartCoroutine(Reload());
             }
