@@ -29,19 +29,19 @@ public class PlayerMovement : MonoBehaviour
       
         
         m_xForce = Input.GetAxis("Vertical") * 
-                   m_tankController.TracksController.tracks.Data.speed * 
+                   m_tankController.StatsController.tracksSpeed * 
                    Time.deltaTime*
                    power * 
                    transform.up.x; 
         
         m_yForce = Input.GetAxis("Vertical") *
-                   m_tankController.TracksController.tracks.Data.speed * Time.deltaTime * 
+                   m_tankController.StatsController.tracksSpeed * Time.deltaTime * 
                    power * 
                    transform.up.y;
         
         transform.Rotate(0,0, 
             -Input.GetAxis("Horizontal") *
-            m_tankController.TracksController.tracks.Data.rotationSpeed * 
+            m_tankController.StatsController.tracksRotationSpeed * 
             Time.deltaTime * 
             power );
         

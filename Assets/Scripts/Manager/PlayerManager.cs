@@ -21,6 +21,18 @@ public class PlayerManager : MonoBehaviour
     public TowerData TowerData;
     public GunData GunData;
     
+    [Range(100,2000)]
+    public float tracksSpeed;
+    [Range(100,2000)]
+    public float tracksRotationSpeed;
+    [Range(0,10000)]
+    public float health;
+    [Range(1,100)]
+    public float towerRotationSpeed;
+    [Range(0,100)]
+    public float bulletVelocity;
+    [Range(0,10)]
+    public float reloadTimeSpeed;
     
     //Player instancié
     [HideInInspector]
@@ -65,9 +77,44 @@ public class PlayerManager : MonoBehaviour
         {
             tankController.GunController.gun.LoadData(GunData);
         }
-        
+
+      
         tankController.BindSprite();
         tankController.BindStats();
 
+        if (tankController.StatsController != null)
+        {
+            tracksSpeed = tankController.StatsController.tracksSpeed;
+            tracksRotationSpeed = tankController.StatsController.tracksRotationSpeed;
+            health = tankController.StatsController.health;
+            towerRotationSpeed = tankController.StatsController.towerRotationSpeed;
+            bulletVelocity = tankController.StatsController.bulletVelocity;
+            reloadTimeSpeed = tankController.StatsController.reloadTimeSpeed;
+
+        }
+        
+        
+    }
+
+    private void OnValidate()
+    {
+        if (player != null)
+        {
+            TankController tankController = player.GetComponent<TankController>();
+
+            if (tankController != null)
+            {
+                tankController.StatsController.tracksSpeed = tracksSpeed ;
+                tankController.StatsController.tracksRotationSpeed = tracksRotationSpeed ;
+                tankController.StatsController.health = health ;
+                tankController.StatsController.towerRotationSpeed = towerRotationSpeed;
+                tankController.StatsController.bulletVelocity = bulletVelocity;
+                tankController.StatsController.reloadTimeSpeed = reloadTimeSpeed;
+
+            }
+        }
+       
+        
+       
     }
 }

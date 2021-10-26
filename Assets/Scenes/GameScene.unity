@@ -298,6 +298,12 @@ MonoBehaviour:
   BodyData: {fileID: 11400000, guid: 2de23a6feca28aa4386dcc82f9e8a79c, type: 2}
   TowerData: {fileID: 11400000, guid: a676385d032644e22a9cf2e0daa326fb, type: 2}
   GunData: {fileID: 11400000, guid: 5e588587277c45d47bcd6fd0d5a20860, type: 2}
+  tracksSpeed: 0
+  tracksRotationSpeed: 0
+  health: 0
+  towerRotationSpeed: 0
+  bulletVelocity: 100
+  reloadTimeSpeed: 0
   player: {fileID: 0}
 --- !u!114 &755335487
 MonoBehaviour:

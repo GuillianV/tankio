@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6375800877262558545}
   - component: {fileID: 6375800877262558559}
-  - component: {fileID: 6375800877262558544}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -84,18 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6375800877262558544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375800877262558546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da6a7c96942363c48a07718389827f98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6375800877303409624
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,17 +378,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TracksController:
-    tracks: {fileID: 6375800878436185871}
+    tracks: {fileID: 0}
     tracksSpriteLeft: {fileID: 6375800877745554250}
     tracksSpriteRight: {fileID: 6375800878161469567}
   BodyController:
-    body: {fileID: 6375800878507703532}
+    body: {fileID: 0}
     bodySprite: {fileID: 6375800878507703531}
   TowerController:
-    tower: {fileID: 6375800878556689660}
+    tower: {fileID: 0}
     towerSprite: {fileID: 6375800878556689659}
   GunController:
-    gun: {fileID: 6375800877262558544}
+    gun: {fileID: 0}
     gunSprite: {fileID: 6375800877262558559}
     gunObject: {fileID: 6375800877262558546}
     bulletSpawn: {fileID: 6375800878330181019}
@@ -598,7 +585,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6375800878436185856}
-  - component: {fileID: 6375800878436185871}
   m_Layer: 0
   m_Name: Tracks
   m_TagString: Untagged
@@ -622,18 +608,6 @@ Transform:
   m_Father: {fileID: 6375800877303409607}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6375800878436185871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375800878436185857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ad8cd55c84eba24ba70a615d8b95cb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6375800878507703534
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,7 +618,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6375800878507703533}
   - component: {fileID: 6375800878507703531}
-  - component: {fileID: 6375800878507703532}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -717,18 +690,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6375800878507703532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375800878507703534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e17bf454350bb8469e705e70080c416, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6375800878556689662
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +700,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6375800878556689661}
   - component: {fileID: 6375800878556689659}
-  - component: {fileID: 6375800878556689660}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -813,15 +773,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6375800878556689660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375800878556689662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edd86454cfcf6da4aadbc8d4f0191127, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
