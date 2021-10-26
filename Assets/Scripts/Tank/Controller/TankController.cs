@@ -60,9 +60,11 @@ public class TankController : MonoBehaviour
     public TowerController TowerController;
     public GunController GunController;
 
+    [HideInInspector]
     public StatsController StatsController;
 
-    public Animator m_bulletSpawn_animator;
+    [HideInInspector]
+    public TankAnimationController TankAnimationController;
     
     private void Awake()
     {
@@ -70,11 +72,8 @@ public class TankController : MonoBehaviour
         BodyController.body = GetComponent<Body>();
         GunController.gun = GetComponent<Gun>();
         TowerController.tower = GetComponent<Tower>();
+        TankAnimationController = GetComponent<TankAnimationController>();
 
-        if (m_bulletSpawn_animator == null)
-        {
-            Debug.LogWarning("SpawnBullet animator manquant dans tank controller");
-        }
     }
 
 
@@ -132,10 +131,7 @@ public class TankController : MonoBehaviour
         }
     }
 
-    public void Fire()
-    {
-        m_bulletSpawn_animator.SetTrigger("Fire");
-    }
+    
     
     public void OnDestroy()
     {

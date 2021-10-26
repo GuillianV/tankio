@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 1727312297046862516}
   - component: {fileID: 4066514261408208314}
   - component: {fileID: 4668192996610392866}
+  - component: {fileID: 215403821166403325}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -208,7 +209,7 @@ MonoBehaviour:
     towerRotationSpeed: 0
     bulletVelocity: 0
     reloadTimeSpeed: 0
-  m_bulletSpawn_animator: {fileID: 8527329629314391094}
+  TankAnimationController: {fileID: 0}
 --- !u!114 &552116427597002347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +310,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
+--- !u!114 &215403821166403325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6904654475131753461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03640da691a33d4694c5a50bfb936ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bulletSpawn_animator: {fileID: 8527329629314391094}
 --- !u!1 &6904654475405411911
 GameObject:
   m_ObjectHideFlags: 0

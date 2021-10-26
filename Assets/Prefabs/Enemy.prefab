@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 1123614234060831236}
   - component: {fileID: 8036116648114936851}
   - component: {fileID: -5298298025019049313}
+  - component: {fileID: 7737581100805513150}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -400,7 +401,7 @@ MonoBehaviour:
     towerRotationSpeed: 0
     bulletVelocity: 0
     reloadTimeSpeed: 0
-  m_bulletSpawn_animator: {fileID: 8533307463510442049}
+  TankAnimationController: {fileID: 0}
 --- !u!114 &3915136592356501300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,6 +486,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7737581100805513150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375800877936983457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03640da691a33d4694c5a50bfb936ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bulletSpawn_animator: {fileID: 8533307463510442049}
 --- !u!1 &6375800878161469553
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,9 +650,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -442727467
+  m_SortingLayer: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
