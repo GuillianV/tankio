@@ -100,6 +100,8 @@ public class MapGeneratorManager : MonoBehaviour
     {
         Generate();
         yield return new WaitForSeconds(0.1f);
+        GenerateChunks();
+        yield return new WaitForSeconds(0.1f);
         AstarPath.active.data.gridGraph.SetDimensions(noiseOptions.mapWidth,noiseOptions.mapHeight,1);
         AstarPath.active.Scan();
     }
@@ -110,7 +112,7 @@ public class MapGeneratorManager : MonoBehaviour
         GameObject ground = Instantiate(baseMap.groundPrefab, baseMap.parent.transform.position, baseMap.parent.transform.rotation, baseMap.parent);
         SpriteRenderer spriteGround = ground.GetComponent<SpriteRenderer>();
         spriteGround.size = new Vector2(noiseOptions.mapWidth,noiseOptions.mapHeight);
-        ground.transform.localPosition = new Vector3(noiseOptions.mapWidth / 2, noiseOptions.mapHeight / 2, 0);
+        ground.transform.localPosition = new Vector3(baseMap.parent.transform.position.x, baseMap.parent.transform.position.y, 0);
         
         GameObject wallLeft = Instantiate(baseMap.wallPrefab, baseMap.parent.transform.position, baseMap.parent.transform.rotation, baseMap.parent);
         SpriteRenderer spriteWallLeft = wallLeft.GetComponent<SpriteRenderer>();
@@ -171,7 +173,7 @@ public class MapGeneratorManager : MonoBehaviour
                     if (prefab != null)
                     {
                         Vector3 obstaclePos = new Vector3(-noiseOptions.mapWidth / 2 + x, noiseOptions.mapHeight / 2 - y, 0);
-                        GameObject obstacle = Instantiate(prefab, baseMap.parent.transform.position, baseMap.parent.transform.rotation, baseMap.parent);
+                        GameObject obstacle = Instantiate(prefab, baseMap.parent.transform.position,prefab.transform.rotation, baseMap.parent);
                         obstacle.transform.localPosition = obstaclePos;
                     }
                     
@@ -216,55 +218,117 @@ public class MapGeneratorManager : MonoBehaviour
         
         
         
-        for (int i = 0; i < 100; i++)
+     
+
+        callback();
+
+    }
+
+
+
+    public void GenerateChunks()
+    {
+           for (int i = 0; i < 1000; i++)
         {
            
             
             
-            int x = UnityEngine.Random.Range(5, noiseOptions.mapWidth-5);
-            int y = UnityEngine.Random.Range(5, noiseOptions.mapHeight-5);
+            int x = UnityEngine.Random.Range(-noiseOptions.mapWidth/2+5, noiseOptions.mapWidth/2-5);
+            int y = UnityEngine.Random.Range(-noiseOptions.mapHeight/2+5, noiseOptions.mapHeight/2-5);
             // noiseMapBool[width, height]
-            Vector3 positionAbsolute = new Vector3(this.baseMap.parent.transform.position.x - (x - noiseOptions.mapWidth / 2),
-                this.baseMap.parent.transform.position.y - (y - noiseOptions.mapWidth / 2),
-                baseMap.parent.transform.position.z);
+            // Vector3 positionAbsolute = new Vector3(this.baseMap.parent.transform.position.x - (x - noiseOptions.mapWidth / 2),
+            //     this.baseMap.parent.transform.position.y - (y - noiseOptions.mapWidth / 2),
+            //     baseMap.parent.transform.position.z);
 
-            if (!IsObstacleExist(new Vector2(positionAbsolute.x,positionAbsolute.y), 20, "Obstacle"))
-            { 
-               
+            // GameObject gm = Instantiate(testObj, new Vector3(0,0,0),baseMap.parent.transform.rotation, baseMap.parent);
+            // gm.transform.localPosition = new Vector2(x,y);
+            //
+            Collider2D hitColliders = Physics2D.OverlapCircle(new Vector2(x,y), 20);
+            
+            if (hitColliders == null || hitColliders.gameObject.layer != LayerMask.NameToLayer("Obstacle"))
+            {
+            
+                // GameObject gm = Instantiate(testObj, baseMap.parent.transform.position,baseMap.parent.transform.rotation, baseMap.parent);
+                // gm.transform.localPosition = new Vector2(x,y);
+                //
+            
+                
                 Dictionary<GameObject, int> dicoOfSpawn = new Dictionary<GameObject, int>();
                 chunkList.ForEach(C =>
                 {
                     dicoOfSpawn.Add(C.chunkPrefab,C.dropRate);
                 });
-        
+                
                 GameObject? prefab = GetObstacleToSpawn(dicoOfSpawn);
- 
+                
                 if (prefab != null)
                 {
-                    Instantiate(testObj,positionAbsolute,baseMap.parent.transform.rotation, baseMap.parent);
-                    for (int k = 0; k < 10; k++)
+                    if (m_mapUsed[x + this.noiseOptions.mapWidth/2,y + this.noiseOptions.mapHeight/2] == false)
                     {
-                        for (int j = 0; j < 10; j++)
+                        GameObject gmI =  Instantiate(prefab,baseMap.parent.transform.position,baseMap.parent.transform.rotation, baseMap.parent);
+                        gmI.transform.localPosition = new Vector3(x, y, 0);
+                        for (int k = -20; k < 20; k++)
                         {
-                            int indexX = x + k - 5;
-                            int indexY = y + k - 5;
-                            m_mapUsed[indexX,indexY] = true;
+                            for (int j = -20; j < 20; j++)
+                            {
+                                int indexX = x + k + this.noiseOptions.mapWidth/2;
+                                int indexY = y + j + this.noiseOptions.mapHeight/2;
+                                m_mapUsed[indexX,indexY] = true;
+                            }
                         }
                     }
+                    
+                   
                 }
-               
-              
+
             }
+            
+            
+            // if (!IsObstacleExist(new Vector2(x,y), 8, "Obstacle"))
+            // {
+            //     
+            //     GameObject gmI =  Instantiate(testObj,baseMap.parent.transform.position,baseMap.parent.transform.rotation, baseMap.parent);
+            //     gmI.transform.localPosition = new Vector3(x, y, 0);
+            //     for (int k = 0; k < 10; k++)
+            //     {
+            //         for (int j = 0; j < 10; j++)
+            //         {
+            //             int indexX = x + k - 5;
+            //             int indexY = y + k - 5;
+            //             m_mapUsed[indexX,indexY] = true;
+            //         }
+            //     }
+
+               
+                // Dictionary<GameObject, int> dicoOfSpawn = new Dictionary<GameObject, int>();
+                // chunkList.ForEach(C =>
+                // {
+                //     dicoOfSpawn.Add(C.chunkPrefab,C.dropRate);
+                // });
+                //
+                // GameObject? prefab = GetObstacleToSpawn(dicoOfSpawn);
+                //
+                // if (prefab != null)
+                // {
+                //     GameObject gmI =  Instantiate(testObj,baseMap.parent.transform.position,baseMap.parent.transform.rotation, baseMap.parent);
+                //     gmI.transform.localPosition = new Vector3(x, y, 0);
+                //     for (int k = 0; k < 10; k++)
+                //     {
+                //         for (int j = 0; j < 10; j++)
+                //         {
+                //             int indexX = x + k - 5;
+                //             int indexY = y + k - 5;
+                //             m_mapUsed[indexX,indexY] = true;
+                //         }
+                //     }
+                // }
+
+
+           // }
            
 
         }
-
-        callback();
-
     }
-    
- 
-
     
 
     [CanBeNull]
@@ -300,28 +364,17 @@ public class MapGeneratorManager : MonoBehaviour
     
     public bool IsObstacleExist(Vector2 center, float radius, string layerName)
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(center, radius);
+        Collider2D hitColliders = Physics2D.OverlapCircle(center, radius);
 
-        if (hitColliders != null)
+        if (hitColliders == null || hitColliders.gameObject.layer != LayerMask.NameToLayer(layerName))
         {
-            foreach (Collider2D hitCollider in hitColliders)
-            {
-                if (hitCollider.gameObject.layer == LayerMask.NameToLayer(layerName))
-                {
-                    return true;
-                }
-                
-            }
-
             return false;
-
         }
         else
         {
             return true;
         }
           
-        return true;
         
     }
     

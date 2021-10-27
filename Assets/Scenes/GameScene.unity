@@ -352,7 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAIIezeljOKSgIAAPIEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE2P2jAQ/SvI51IFFgT01gLL9sCClq72wmWIJ8TCsSPbWb7Ef+/YSUiWqqc4773xvPlIrkwom2PstFkYwZeaI/vRYf7MvnUa8gVPsNdqIy5Yaz4Ed6kXQdC8gROa8J4PszpDZ0T8U+2lF0cEFkok2mRzvsepts4SnIC0SJTRzkcrgq4ddqJHd+JDznTqj/zpQqdJ1LnRMUbl0DTSWljLSlWhYglZjtxbbsSDWj0oZYqKqRTeeKylFLZywtw5D5Vu8hQN+lK5ACosZO/Ta4pin7rq5R67ShKLrnJk4DwThvpTXsp+6bJpGdhDaesTZBHy98fBUnnp8h++2wt0YnT2UuftRT6HS0V8eINzDNa1utqGZ43xXujOEeQBdhI/UlSvemF0oTiRzhQ+tLDYnzWv99KmKcaHBi+tPoBF/v/Z+BpuofrTVIps56nvgxLYSB3aHSaPhgbzmwyHvbDVFYR6F+8W/8C+vUAV8SyMdURVVSpvb6cL46VsHnrmqyncVBuFAa5M56hAuvOarnGPI3zgWmkfmGfwn0qVvOLqL+AhJMCNPooeqLU+3odlU31cok1XhZNCYWPaE6/Up6lWqtywdk/qsE1hEohbYftC8K+rxZ74aDKJBsNoB/FTAuNurw+7YTIY7vgERkk0ZmH3hKI6Qa5Lo1V7aGqquVzRntV/kM7CQB62nRs4LsQl062WC5XoTWwQ1aq84W4cDSWhj5LPuaAGbdA5ocK82XXLpI4PyLdNwDaUOj85A1/QXHxq55Etm4Z/xpbd2O0vUEsDBBQAAAgIAAAIIeyeLzhCbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM01VFQSi9KLMgoBooYgjilmSkgdrSScYq5paWBialBUmKycVqiha6hUWKSaZqJaVKKZaJ5moGFUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAIIezeljOKSgIAAPIEAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAIIeyeLzhCbQAAAHgAAAAJACQAAAAAAAAAAAAAAJcCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAATwMAAAAA
+    dataString: UEsDBBQAAAgIAAAIIezVOqxWTQIAAPEEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE2P2jAQ/SvI51IFFgT01gLL9sCCllZ7yWWIJ8TCsSPbWT5W/PeOnYSkVD3Fnvdm5s2H88mEsgUmTpuVEXytObJvPebP7EuvBV/wDAetduKKDeddcJd5EgTOGzihyT7wblbn6IxIvquD9OSIjKUSqTb5kh9wrq2zZE5BWiTIaOe9FZk+e+xMn/7Mu1zoNJz405VOs6h3o2OCyqFpqQ2xoVWsUiUS8gK5l9ySRw17VNEUFVMzvPBESylsrYS5SxEq3RUZGvSlcgFUWMg+pGuG4pC5+nL33aSpRVcrMnBZCEP9qYKyH7pqWg72WMn6AFmG/MNpkFQFXf+D9wcBTo3OX5q8g8jncJlIjm9wScC6Tle75kUrfBC6cwJ5hL3E9wzVq14ZXSpOoDOldy0tDhft9V7aPMPk2NorqQ/Gsvj/bHwNt1D9eS5FvvfQ11Fl2Ekd2h0mj4YG85MEh72wdQiyehW/Lf6CQ3eBauBZGOsIqqtUXt5el8ZT2TL0zFdTurk2CoO5Fl2gAukuWwrjHkf4gHXSPiDP4J9KnbzGmhfw4BLMLT+KHqCtPt2HZTN9WqPNNqWTQmEr2gOv1Ke5VqrasG5PGrddaVJIOm6HUvC/V4s98clsFo3G0R6SpxSm/cEQ9uN0NN7zGUzSaMrC7glFdYLcVkLr9tDUVBtc0Z41f5DeykARtp0bOK3ENdedlguV6l1iENWminAXjoaS0KPkSy6oQTt0Tqgwb/YZM6mTI/L4HigOlS7PzkDcRolZIT6085aYzcMvI2Y3dvsDUEsDBBQAAAgIAAAIIeyeLzhCbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM01VFQSi9KLMgoBooYgjilmSkgdrSScYq5paWBialBUmKycVqiha6hUWKSaZqJaVKKZaJ5moGFUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAIIezVOqxWTQIAAPEEAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAIIeyeLzhCbQAAAHgAAAAJACQAAAAAAAAAAAAAAJoCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAUgMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -473,29 +473,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noiseOptions:
-    mapWidth: 100
-    mapHeight: 100
-    noiseScale: 3.4
+    mapWidth: 200
+    mapHeight: 200
+    noiseScale: 0.45
   baseMap:
     parent: {fileID: 350735929}
     wallPrefab: {fileID: 3734512753183616629, guid: e35a6ca353c14a442b545161db1b44a7, type: 3}
     groundPrefab: {fileID: 9151208767502791859, guid: fb7c720613a1a2946a2ceeacd5c228b4, type: 3}
-  testObj: {fileID: 1386411307857276025, guid: ba67c09f54fb346a9ae18930cfb4925d, type: 3}
+  testObj: {fileID: 902679126340614031, guid: bc66ca99bf6c042a28a9b473bfb88cce, type: 3}
   obstacleList:
-  - obstaclePrefab: {fileID: 8690381211084825402, guid: fd97b0b4550c1ee4ebc145f2408e025c, type: 3}
-    conditionOfSpawnMin: 0.72
+  - obstaclePrefab: {fileID: 6217890378523052998, guid: 93e68a52c3f35b249bf1bb5eb8b090ba, type: 3}
+    conditionOfSpawnMin: 0.809
     conditionOfSpawnMax: 1
-    dropRate: 13
-  - obstaclePrefab: {fileID: 6046287237802532836, guid: e600bcc5ae5984209be20c50d2438b36, type: 3}
-    conditionOfSpawnMin: 0.79
+    dropRate: 14
+  - obstaclePrefab: {fileID: 5592222405763435360, guid: a6eca4d4da3ad6e42a6f9a7c056e29bd, type: 3}
+    conditionOfSpawnMin: 0.815
     conditionOfSpawnMax: 1
-    dropRate: 10
+    dropRate: 20
   chunkList:
   - chunkPrefab: {fileID: 1386411307857276025, guid: ba67c09f54fb346a9ae18930cfb4925d, type: 3}
-    conditionOfSpawnMin: 0.57
+    conditionOfSpawnMin: 0
     conditionOfSpawnMax: 1
     dropRate: 100
-    radiusSpawn: 21
+    radiusSpawn: 50
 --- !u!1 &907469153
 GameObject:
   m_ObjectHideFlags: 0

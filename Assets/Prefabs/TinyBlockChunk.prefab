@@ -160,6 +160,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7990713337181844309, guid: fb7c720613a1a2946a2ceeacd5c228b4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 216e2729631e003468211108545a08f1, type: 3}
+    - target: {fileID: 7990713337181844309, guid: fb7c720613a1a2946a2ceeacd5c228b4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990713337181844309, guid: fb7c720613a1a2946a2ceeacd5c228b4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990713337181844309, guid: fb7c720613a1a2946a2ceeacd5c228b4, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 721992299
+      objectReference: {fileID: 0}
     - target: {fileID: 9151208767502791859, guid: fb7c720613a1a2946a2ceeacd5c228b4, type: 3}
       propertyPath: m_Name
       value: Ground
