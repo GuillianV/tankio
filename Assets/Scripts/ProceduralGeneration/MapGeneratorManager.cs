@@ -38,6 +38,9 @@ public class MapGeneratorManager : MonoBehaviour
         [Range(0,100)]
         public int dropRate;
 
+        public int priority;
+        public int radius;
+
     }
     
     [System.Serializable]
@@ -64,7 +67,7 @@ public class MapGeneratorManager : MonoBehaviour
     
     
     [Header("List")]
-    public List<Obstacle> obstacleList = new List<Obstacle>();
+    public List<Obstacle> obstacleListAll = new List<Obstacle>();
     public List<Chunk> chunkList = new List<Chunk>();
 
     
@@ -77,31 +80,36 @@ public class MapGeneratorManager : MonoBehaviour
  
     private void Awake()
     {
-        m_mapUsed = new Boolean[noiseOptions.mapWidth, noiseOptions.mapHeight];
+        
         noiseMap = Noise.GenerateNoiseMap(noiseOptions.mapWidth, noiseOptions.mapHeight, noiseOptions.noiseScale);
+        m_mapUsed = new Boolean[noiseMap.GetLength(0), noiseMap.GetLength(1)];
     }
 
-    IEnumerator  Start()
+    public void  Start()
     {
-        GenerateAll(() =>
-        {
-            
-        });
-        yield return new WaitForSeconds(0.1f);
+        GenerateGround();
+        GenerateWall(new Vector3(noiseOptions.mapWidth / 2, 0,0));
+        GenerateWall(new Vector3(-1*(noiseOptions.mapWidth  / 2), 0,0));
+        GenerateWall( new Vector3(0, (noiseOptions.mapHeight / 2),0));
+        GenerateWall(new Vector3(0, -1*(noiseOptions.mapHeight / 2),0));
+        GenerateListObstacles();
         GenerateChunks(5,1000,"Obstacle");
-        yield return new WaitForSeconds(0.1f);
-        AstarPath.active.data.gridGraph.SetDimensions(noiseOptions.mapWidth,noiseOptions.mapHeight,1);
-        AstarPath.active.Scan();
+       // AstarPath.active.data.gridGraph.SetDimensions(noiseOptions.mapWidth,noiseOptions.mapHeight,1);
+       // AstarPath.active.Scan();
     }
 
 
-    public void GenerateAll( Action callback)
+    public void GenerateGround()
     {
         GameObject ground = Instantiate(baseMap.groundPrefab, baseMap.parent.transform.position, baseMap.parent.transform.rotation, baseMap.parent);
         SpriteRenderer spriteGround = ground.GetComponent<SpriteRenderer>();
         spriteGround.size = new Vector2(noiseOptions.mapWidth,noiseOptions.mapHeight);
         ground.transform.localPosition = new Vector3(baseMap.parent.transform.position.x, baseMap.parent.transform.position.y, 0);
-        
+
+    }
+
+    public void GenerateWall(Vector3 position)
+    {
         GameObject wallLeft = Instantiate(baseMap.wallPrefab, baseMap.parent.transform.position, baseMap.parent.transform.rotation, baseMap.parent);
         SpriteRenderer spriteWallLeft = wallLeft.GetComponent<SpriteRenderer>();
         BoxCollider2D colliderWallLeft = wallLeft.GetComponent<BoxCollider2D>();
@@ -109,102 +117,103 @@ public class MapGeneratorManager : MonoBehaviour
         spriteWallLeft.size = new Vector2(spriteWallLeft.size.x,noiseOptions.mapHeight+margin);
         colliderWallLeft.size = new Vector2(colliderWallLeft.size.x,noiseOptions.mapHeight+margin);
         wallLeft.transform.localPosition = new Vector3(noiseOptions.mapWidth / 2, 0,0);
-        
-        GameObject wallRight = Instantiate(baseMap.wallPrefab, baseMap.parent.transform.position, baseMap.parent.transform.rotation, baseMap.parent);
-        SpriteRenderer spriteWallRight = wallRight.GetComponent<SpriteRenderer>();
-        BoxCollider2D colliderWallRight = wallRight.GetComponent<BoxCollider2D>();
-        
-        spriteWallRight.size = new Vector2(spriteWallRight.size.x,noiseOptions.mapHeight+margin);
-        colliderWallRight.size = new Vector2(colliderWallRight.size.x,noiseOptions.mapHeight+margin);
-        wallRight.transform.localPosition = new Vector3(-1*(noiseOptions.mapWidth  / 2), 0,0);
-        
-        GameObject wallTop = Instantiate(baseMap.wallPrefab, baseMap.parent.transform.position, baseMap.parent.transform.rotation,  baseMap.parent);
-        SpriteRenderer spriteWallTop = wallTop.GetComponent<SpriteRenderer>();
-        BoxCollider2D colliderWallTop = wallTop.GetComponent<BoxCollider2D>();
-        
-        spriteWallTop.size = new Vector2(noiseOptions.mapWidth+margin,spriteWallTop.size.y);
-        colliderWallTop.size = new Vector2(noiseOptions.mapWidth+margin,colliderWallTop.size.y);
-        wallTop.transform.localPosition = new Vector3(0, (noiseOptions.mapHeight / 2),0);
-        
-        GameObject wallBottom = Instantiate(baseMap.wallPrefab, baseMap.parent.transform.position, baseMap.parent.transform.rotation, baseMap.parent);
-        SpriteRenderer spriteWallBottom  = wallBottom.GetComponent<SpriteRenderer>();
-        BoxCollider2D colliderWallBottom  = wallBottom.GetComponent<BoxCollider2D>();
-        
-        spriteWallBottom.size = new Vector2(noiseOptions.mapWidth+margin,spriteWallBottom.size.y);
-        colliderWallBottom.size = new Vector2(noiseOptions.mapWidth+margin,colliderWallBottom.size.y);
-        wallBottom.transform.localPosition = new Vector3(0, -1*(noiseOptions.mapHeight / 2),0);
-
-        
-        for (int y = 0; y < noiseOptions.mapHeight; y=y+2)
-        {
-            for (int x = 0; x < noiseOptions.mapWidth; x=x+2)
-            {
-
-                Dictionary<GameObject, int> dicoOfSpawn = new Dictionary<GameObject, int>();
-   
-
-                obstacleList.ForEach(obstacleStruct =>
-                {
-                    
-                    if (noiseMap[x,y] >= obstacleStruct.conditionOfSpawnMin &&  noiseMap[x,y] <= obstacleStruct.conditionOfSpawnMax)
-                    {
-                        dicoOfSpawn.Add(obstacleStruct.obstaclePrefab,obstacleStruct.dropRate);
-                    }
-                    
-                });
-
-                if (dicoOfSpawn.Count > 0)
-                {
-                    GameObject? prefab = GetObstacleToSpawn(dicoOfSpawn );
-
-                    if (prefab != null)
-                    {
-                        Vector3 obstaclePos = new Vector3(-noiseOptions.mapWidth / 2 + x, noiseOptions.mapHeight / 2 - y, 0);
-                        GameObject obstacle = Instantiate(prefab, baseMap.parent.transform.position,prefab.transform.rotation, baseMap.parent);
-                        obstacle.transform.localPosition = obstaclePos;
-                    }
-                    
-                    
-                }
-                
-               
-             
-
- 
-                
-            }
-        }
-
-        
-        
-        
-        
-        
-     
-
-        callback();
 
     }
 
+    
+    public void GenerateListObstacles()
+    {
+        //Selection tous nous Obstacles
+        if (obstacleListAll.Count > 0)
+        {
+            List<Obstacle> listObstaclesSorted = obstacleListAll.OrderBy(o => o.priority).ToList();
+
+            
+            Dictionary<int, List<Obstacle>> listsOfListsObstacles = new Dictionary<int, List<Obstacle>>();
+
+           
+            listObstaclesSorted.ForEach(so =>
+            {
+                if (!listsOfListsObstacles.ContainsKey(so.priority))
+                {
+                    listsOfListsObstacles.Add(so.priority,new List<Obstacle>());
+                }
+                
+            });
+
+         
+        
+            int localPriority = listObstaclesSorted.First().priority;
+
+           
+            listObstaclesSorted.ForEach(oneObstacle =>
+            {
+                //Ajoute a une liste tous les objets de meme priorité
+                if (localPriority == oneObstacle.priority)
+                {
+                    listsOfListsObstacles[localPriority].Add(oneObstacle);
+                }
+                else
+                {
+                    //Si l'obstacle possede une priorité differente, la gene des obstacles de la meme priorité est lancé
+                    GenerateObstacle(listsOfListsObstacles[localPriority]);
+                    localPriority = oneObstacle.priority;
+                    listsOfListsObstacles[localPriority].Add(oneObstacle);
+                }
+                    
+            });
+        }
+
+    }
+    public void GenerateObstacle(List<Obstacle> obstacles)
+    {
+        
+       
+        for (int x = 0; x < noiseMap.GetLength(0); x++)
+        {
+            for (int y = 0; y < noiseMap.GetLength(1); y++)
+            {
+                
+                List<Obstacle> obstacleListNoise = new List<Obstacle>();
+
+                obstacles.ForEach(o =>
+                {
+                    if (noiseMap[x,y] >= o.conditionOfSpawnMin &&  noiseMap[x,y] <= o.conditionOfSpawnMax)
+                    {
+                        obstacleListNoise.Add(o);
+                    }
+                });
+
+                if (obstacleListNoise.Count > 0)
+                {
+                    Obstacle? obstacleReturned = GetObstacleToSpawn(obstacleListNoise);
+
+                    if (obstacleReturned != null )
+                    {
+                        if (!IsObstacleExist(new Vector2(x,y),obstacleReturned.Value.radius,"Obstacles"))
+                        {
+                            GameObject obstacle = Instantiate(obstacleReturned.Value.obstaclePrefab, baseMap.parent.transform.position,obstacleReturned.Value.obstaclePrefab.transform.rotation, baseMap.parent);
+                            obstacle.transform.localPosition = new Vector3(x - noiseMap.GetLength(0)/2 ,y- noiseMap.GetLength(1)/2,obstacleReturned.Value.obstaclePrefab.transform.position.z);
+                        }
+                        
+                    }
+                }
+                
+            }
+        }
+    }
+    
 
 
     public void GenerateChunks(int securityArea, int tryNumber , string layerNameToAvoid)
     {
         
 
-        //Position Min et Max x de la carte
-        int minRangWidth = - noiseOptions.mapWidth / 2 + securityArea;
-        int maxRangWidth = noiseOptions.mapWidth / 2 - securityArea;
-
-        //Position Min et Max y de la carte
-        int minRangHeight = -noiseOptions.mapHeight / 2 + securityArea;
-        int maxRangHeight = noiseOptions.mapHeight / 2 - securityArea;
-        
            for (int i = 0; i < Math.Abs(tryNumber); i++)
         {
             //Position choisi par l'ordi
-            int x = UnityEngine.Random.Range(minRangWidth,maxRangWidth);
-            int y = UnityEngine.Random.Range(minRangHeight,maxRangHeight);
+            int x = UnityEngine.Random.Range(0,noiseOptions.mapWidth);
+            int y = UnityEngine.Random.Range(0,noiseOptions.mapHeight);
   
             //Check si la position choisi ne rentre pas en conflit avec un autre gameobject
             //On lui passe le centre le centre du raycast qui va etre generé et son radius
@@ -229,12 +238,10 @@ public class MapGeneratorManager : MonoBehaviour
                     {
                         
                         //Permet de verifier si il n'y a pas d'autre chunk qui ont été generé proche de celui-ci
-                        int mapUsedCoordonateX = x + this.noiseOptions.mapWidth / 2;
-                        int mapUsedCoordonateY = y + this.noiseOptions.mapHeight / 2;
-                        if (m_mapUsed[mapUsedCoordonateX,mapUsedCoordonateY] == false)
+                        if (m_mapUsed[x,y] == false)
                         {
                             GameObject chunkInstancied =  Instantiate(chunkReturned.Value.chunkPrefab,baseMap.parent.transform.position,chunkReturned.Value.chunkPrefab.transform.rotation  , baseMap.parent);
-                            chunkInstancied.transform.localPosition = new Vector3(x, y, chunkReturned.Value.chunkPrefab.transform.position.z);
+                            chunkInstancied.transform.localPosition = new Vector3(x - noiseOptions.mapWidth/2, y - noiseOptions.mapHeight/2, chunkReturned.Value.chunkPrefab.transform.position.z);
                             chunkInstancied.transform.localRotation = Quaternion.Euler(0, 0,
                                 (chunkReturned.Value.chunkPrefab.transform.rotation.z +
                                  (float) chunkReturned.Value.chunkRotation));
@@ -246,7 +253,15 @@ public class MapGeneratorManager : MonoBehaviour
                                 {
                                     int indexX = x + k + this.noiseOptions.mapWidth/2;
                                     int indexY = y + j + this.noiseOptions.mapHeight/2;
-                                    m_mapUsed[indexX,indexY] = true;
+                                    if (m_mapUsed.GetLength(0) <= indexX || m_mapUsed.GetLength(1) >= indexY || m_mapUsed.GetLength(0) <= indexY || m_mapUsed.GetLength(1) >= indexY)
+                                    {
+                                        
+                                    }
+                                    else
+                                    {
+                                        m_mapUsed[indexX,indexY] = true;
+                                    }
+                                    
                                 }
                             }
                         }
@@ -262,34 +277,37 @@ public class MapGeneratorManager : MonoBehaviour
     }
     
 
+    //Choisi le chunk a spawner en fonction de leur drop rate, parmis la liste des chunks.
     [CanBeNull]
-    public GameObject GetObstacleToSpawn( Dictionary<GameObject,int> obstacles)
+    public Obstacle? GetObstacleToSpawn( List<Obstacle> chunks)
     {
-        GameObject? obstacleChoosen = null;
-
-        List<GameObject> gameObjectList = new List<GameObject>();
         
-        foreach (KeyValuePair<GameObject, int> kvp in obstacles)
+
+        List<Obstacle?> gameObstacles = new List<Obstacle?>();
+        
+        chunks.ForEach(obstacle =>
         {
-            for (int i = 1; i <= kvp.Value; i++)
+            for (int i = 1; i <= obstacle.dropRate; i++)
             {
-                gameObjectList.Add(kvp.Key);
+                gameObstacles.Add(obstacle);
             }
-        }
+        });
+        
+           
+        
    
-        if (gameObjectList.Count < 100)
+        if (gameObstacles.Count < 100)
         {
-            int lackingList = 100 - gameObjectList.Count;
+            int lackingList = 100 - gameObstacles.Count;
 
             for (int i = 0; i < lackingList; i++)
             {
-                gameObjectList.Add(null);
+                gameObstacles.Add(null);
             }
         }
-        int num = UnityEngine.Random.Range(0, gameObjectList.Count);
-        obstacleChoosen = gameObjectList[num]??null;
+        int num = UnityEngine.Random.Range(0, gameObstacles.Count);
+        return gameObstacles[num]??null;
         
-        return obstacleChoosen;
     }
     
     //Choisi le chunk a spawner en fonction de leur drop rate, parmis la liste des chunks.

@@ -481,15 +481,19 @@ MonoBehaviour:
     wallPrefab: {fileID: 3734512753183616629, guid: e35a6ca353c14a442b545161db1b44a7, type: 3}
     groundPrefab: {fileID: 9151208767502791859, guid: fb7c720613a1a2946a2ceeacd5c228b4, type: 3}
   testObj: {fileID: 902679126340614031, guid: bc66ca99bf6c042a28a9b473bfb88cce, type: 3}
-  obstacleList:
+  obstacleListAll:
   - obstaclePrefab: {fileID: 6217890378523052998, guid: 93e68a52c3f35b249bf1bb5eb8b090ba, type: 3}
-    conditionOfSpawnMin: 0.809
+    conditionOfSpawnMin: 0.859
     conditionOfSpawnMax: 1
-    dropRate: 8
+    dropRate: 40
+    priority: 0
+    radius: 5
   - obstaclePrefab: {fileID: 5592222405763435360, guid: a6eca4d4da3ad6e42a6f9a7c056e29bd, type: 3}
-    conditionOfSpawnMin: 0.815
+    conditionOfSpawnMin: 0.842
     conditionOfSpawnMax: 1
-    dropRate: 12
+    dropRate: 10
+    priority: 0
+    radius: 10
   chunkList:
   - chunkPrefab: {fileID: 1386411307857276025, guid: ba67c09f54fb346a9ae18930cfb4925d, type: 3}
     dropRate: 73
