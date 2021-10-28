@@ -455,7 +455,7 @@ MonoBehaviour:
   enemyList:
   - enemyPrefab: {fileID: 6375800877936983457, guid: 901632f13daae4864918903d72815bd2, type: 3}
     enemyPosition: {x: 0, y: 14}
-    tracksData: {fileID: 11400000, guid: 7b7954486fe4f4335a5eed747b46f9d7, type: 2}
+    tracksData: {fileID: 11400000, guid: 7df5b8b3fb9f93d4ab3d7a0821c5fb29, type: 2}
     bodyData: {fileID: 11400000, guid: 6f4c276984507604cb652f1fc35ef79f, type: 2}
     towerData: {fileID: 11400000, guid: ae4378c3adc81d84fb799149d5ccb0c6, type: 2}
     gunData: {fileID: 11400000, guid: 5e588587277c45d47bcd6fd0d5a20860, type: 2}
@@ -485,17 +485,20 @@ MonoBehaviour:
   - obstaclePrefab: {fileID: 6217890378523052998, guid: 93e68a52c3f35b249bf1bb5eb8b090ba, type: 3}
     conditionOfSpawnMin: 0.809
     conditionOfSpawnMax: 1
-    dropRate: 14
+    dropRate: 8
   - obstaclePrefab: {fileID: 5592222405763435360, guid: a6eca4d4da3ad6e42a6f9a7c056e29bd, type: 3}
     conditionOfSpawnMin: 0.815
     conditionOfSpawnMax: 1
-    dropRate: 20
+    dropRate: 12
   chunkList:
   - chunkPrefab: {fileID: 1386411307857276025, guid: ba67c09f54fb346a9ae18930cfb4925d, type: 3}
-    conditionOfSpawnMin: 0
-    conditionOfSpawnMax: 1
-    dropRate: 100
-    radiusSpawn: 50
+    dropRate: 31
+    radiusOfChunk: 20
+    chunkRotation: 140
+  - chunkPrefab: {fileID: 1386411307857276025, guid: ba67c09f54fb346a9ae18930cfb4925d, type: 3}
+    dropRate: 31
+    radiusOfChunk: 20
+    chunkRotation: 0
 --- !u!1 &907469153
 GameObject:
   m_ObjectHideFlags: 0
