@@ -493,11 +493,11 @@ MonoBehaviour:
   chunkList:
   - chunkPrefab: {fileID: 1386411307857276025, guid: ba67c09f54fb346a9ae18930cfb4925d, type: 3}
     dropRate: 31
-    radiusOfChunk: 20
+    radiusOfChunk: 27
     chunkRotation: 140
   - chunkPrefab: {fileID: 1386411307857276025, guid: ba67c09f54fb346a9ae18930cfb4925d, type: 3}
     dropRate: 31
-    radiusOfChunk: 20
+    radiusOfChunk: 30
     chunkRotation: 0
 --- !u!1 &907469153
 GameObject:
@@ -595,7 +595,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 503
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
