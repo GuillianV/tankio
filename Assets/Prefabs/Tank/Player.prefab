@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -442727467
   m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 63409559e2f661242b7771cf7d2728ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 4066514261408208314}
   - component: {fileID: 4668192996610392866}
   - component: {fileID: 215403821166403325}
+  - component: {fileID: 8815504762056077208}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -323,6 +324,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_bulletSpawn_animator: {fileID: 8527329629314391094}
+--- !u!210 &8815504762056077208
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6904654475131753461}
+  m_Enabled: 1
+  m_SortingLayerID: -442727467
+  m_SortingLayer: 2
+  m_SortingOrder: 1
 --- !u!1 &6904654475405411911
 GameObject:
   m_ObjectHideFlags: 0

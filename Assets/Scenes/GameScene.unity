@@ -492,12 +492,16 @@ MonoBehaviour:
     dropRate: 12
   chunkList:
   - chunkPrefab: {fileID: 1386411307857276025, guid: ba67c09f54fb346a9ae18930cfb4925d, type: 3}
-    dropRate: 31
+    dropRate: 73
     radiusOfChunk: 27
     chunkRotation: 140
   - chunkPrefab: {fileID: 1386411307857276025, guid: ba67c09f54fb346a9ae18930cfb4925d, type: 3}
-    dropRate: 71
+    dropRate: 69
     radiusOfChunk: 29
+    chunkRotation: 0
+  - chunkPrefab: {fileID: 734723436234653514, guid: ab0c6a4a61b56493a9a2930845fe58ca, type: 3}
+    dropRate: 82
+    radiusOfChunk: 16
     chunkRotation: 0
 --- !u!1 &907469153
 GameObject:
