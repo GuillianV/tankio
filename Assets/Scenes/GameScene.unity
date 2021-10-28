@@ -496,8 +496,8 @@ MonoBehaviour:
     radiusOfChunk: 27
     chunkRotation: 140
   - chunkPrefab: {fileID: 1386411307857276025, guid: ba67c09f54fb346a9ae18930cfb4925d, type: 3}
-    dropRate: 31
-    radiusOfChunk: 30
+    dropRate: 71
+    radiusOfChunk: 29
     chunkRotation: 0
 --- !u!1 &907469153
 GameObject:
