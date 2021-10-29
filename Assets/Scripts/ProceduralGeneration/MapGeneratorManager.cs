@@ -85,15 +85,20 @@ public class MapGeneratorManager : MonoBehaviour
         m_mapUsed = new Boolean[noiseMap.GetLength(0), noiseMap.GetLength(1)];
     }
 
-    public void  Start()
+    IEnumerator  Start()
     {
         GenerateGround();
-        GenerateWall(new Vector3(noiseOptions.mapWidth / 2, 0,0));
-        GenerateWall(new Vector3(-1*(noiseOptions.mapWidth  / 2), 0,0));
-        GenerateWall( new Vector3(0, (noiseOptions.mapHeight / 2),0));
-        GenerateWall(new Vector3(0, -1*(noiseOptions.mapHeight / 2),0));
+        yield return new WaitForSeconds(0.1f);
+        GenerateWall(new Vector3(noiseOptions.mapWidth / 2, 0, 0),new Vector3(0,0,0));
+        yield return new WaitForSeconds(0.1f);
+        GenerateWall(new Vector3(-1*(noiseOptions.mapWidth  / 2), 0,0),new Vector3(0,0,0));
+        yield return new WaitForSeconds(0.1f);
+        GenerateWall( new Vector3(0, (noiseOptions.mapHeight / 2),0),new Vector3(0,0,90));
+        yield return new WaitForSeconds(0.1f);
+        GenerateWall(new Vector3(0, -1*(noiseOptions.mapHeight / 2),0), new Vector3(0,0,90));
+        yield return new WaitForSeconds(0.1f);
         GenerateListObstacles();
-        GenerateChunks(5,1000,"Obstacle");
+       // GenerateChunks(5,1000,"Obstacle");
        // AstarPath.active.data.gridGraph.SetDimensions(noiseOptions.mapWidth,noiseOptions.mapHeight,1);
        // AstarPath.active.Scan();
     }
@@ -108,15 +113,16 @@ public class MapGeneratorManager : MonoBehaviour
 
     }
 
-    public void GenerateWall(Vector3 position)
+    public void GenerateWall(Vector3 position, Vector3 rotation)
     {
-        GameObject wallLeft = Instantiate(baseMap.wallPrefab, baseMap.parent.transform.position, baseMap.parent.transform.rotation, baseMap.parent);
-        SpriteRenderer spriteWallLeft = wallLeft.GetComponent<SpriteRenderer>();
-        BoxCollider2D colliderWallLeft = wallLeft.GetComponent<BoxCollider2D>();
+        GameObject wall = Instantiate(baseMap.wallPrefab, baseMap.parent.transform.position, baseMap.parent.transform.rotation, baseMap.parent);
+        SpriteRenderer spriteWallLeft = wall.GetComponent<SpriteRenderer>();
+        BoxCollider2D colliderWallLeft = wall.GetComponent<BoxCollider2D>();
 
         spriteWallLeft.size = new Vector2(spriteWallLeft.size.x,noiseOptions.mapHeight+margin);
         colliderWallLeft.size = new Vector2(colliderWallLeft.size.x,noiseOptions.mapHeight+margin);
-        wallLeft.transform.localPosition = new Vector3(noiseOptions.mapWidth / 2, 0,0);
+        wall.transform.localPosition = position;
+        wall.transform.localRotation = Quaternion.Euler(rotation);
 
     }
 
@@ -145,13 +151,20 @@ public class MapGeneratorManager : MonoBehaviour
         
             int localPriority = listObstaclesSorted.First().priority;
 
-           
+            int iterate = 1;
             listObstaclesSorted.ForEach(oneObstacle =>
             {
+                
                 //Ajoute a une liste tous les objets de meme priorité
                 if (localPriority == oneObstacle.priority)
                 {
                     listsOfListsObstacles[localPriority].Add(oneObstacle);
+                    if (listObstaclesSorted.Count <= iterate)
+                    {
+                        GenerateObstacle(listsOfListsObstacles[localPriority]);
+                        iterate = 1;
+                    }
+                    
                 }
                 else
                 {
@@ -159,8 +172,10 @@ public class MapGeneratorManager : MonoBehaviour
                     GenerateObstacle(listsOfListsObstacles[localPriority]);
                     localPriority = oneObstacle.priority;
                     listsOfListsObstacles[localPriority].Add(oneObstacle);
+                    iterate = 1;
                 }
-                    
+
+                iterate++;
             });
         }
 
@@ -168,7 +183,6 @@ public class MapGeneratorManager : MonoBehaviour
     public void GenerateObstacle(List<Obstacle> obstacles)
     {
         
-       
         for (int x = 0; x < noiseMap.GetLength(0); x++)
         {
             for (int y = 0; y < noiseMap.GetLength(1); y++)
@@ -190,11 +204,31 @@ public class MapGeneratorManager : MonoBehaviour
 
                     if (obstacleReturned != null )
                     {
-                        if (!IsObstacleExist(new Vector2(x,y),obstacleReturned.Value.radius,"Obstacles"))
+                        for (int k = -obstacleReturned.Value.radius; k < obstacleReturned.Value.radius; k++)
                         {
-                            GameObject obstacle = Instantiate(obstacleReturned.Value.obstaclePrefab, baseMap.parent.transform.position,obstacleReturned.Value.obstaclePrefab.transform.rotation, baseMap.parent);
-                            obstacle.transform.localPosition = new Vector3(x - noiseMap.GetLength(0)/2 ,y- noiseMap.GetLength(1)/2,obstacleReturned.Value.obstaclePrefab.transform.position.z);
+                            for (int j = -obstacleReturned.Value.radius; j < obstacleReturned.Value.radius; j++)
+                            {
+                                int indexX = x + k + this.noiseOptions.mapWidth/2;
+                                int indexY = y + j + this.noiseOptions.mapHeight/2;
+                                if (m_mapUsed.GetLength(0) <= 0 || m_mapUsed.GetLength(0) >= indexX || m_mapUsed.GetLength(1) <= 0 || m_mapUsed.GetLength(1) >= indexY)
+                                {
+                                    
+                                    
+                                    if (!IsObstacleExist(new Vector2(x,y),obstacleReturned.Value.radius,"Obstacles"))
+                                    {
+                                        GameObject obstacle = Instantiate(obstacleReturned.Value.obstaclePrefab, baseMap.parent.transform.position,obstacleReturned.Value.obstaclePrefab.transform.rotation, baseMap.parent);
+                                        obstacle.transform.localPosition = new Vector3(x - noiseMap.GetLength(0)/2 ,y- noiseMap.GetLength(1)/2,obstacleReturned.Value.obstaclePrefab.transform.position.z);
+                                    }
+                                }
+                                else
+                                {
+                                    m_mapUsed[indexX,indexY] = true;
+                                }
+                                    
+                            }
                         }
+                        
+                       
                         
                     }
                 }
@@ -253,7 +287,7 @@ public class MapGeneratorManager : MonoBehaviour
                                 {
                                     int indexX = x + k + this.noiseOptions.mapWidth/2;
                                     int indexY = y + j + this.noiseOptions.mapHeight/2;
-                                    if (m_mapUsed.GetLength(0) <= indexX || m_mapUsed.GetLength(1) >= indexY || m_mapUsed.GetLength(0) <= indexY || m_mapUsed.GetLength(1) >= indexY)
+                                    if (m_mapUsed.GetLength(0) <= 0 || m_mapUsed.GetLength(0) >= indexX || m_mapUsed.GetLength(1) <= 0 || m_mapUsed.GetLength(1) >= indexY)
                                     {
                                         
                                     }

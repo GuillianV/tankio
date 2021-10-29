@@ -483,15 +483,15 @@ MonoBehaviour:
   testObj: {fileID: 902679126340614031, guid: bc66ca99bf6c042a28a9b473bfb88cce, type: 3}
   obstacleListAll:
   - obstaclePrefab: {fileID: 6217890378523052998, guid: 93e68a52c3f35b249bf1bb5eb8b090ba, type: 3}
-    conditionOfSpawnMin: 0.859
+    conditionOfSpawnMin: 0.754
     conditionOfSpawnMax: 1
-    dropRate: 40
+    dropRate: 75
     priority: 0
     radius: 5
   - obstaclePrefab: {fileID: 5592222405763435360, guid: a6eca4d4da3ad6e42a6f9a7c056e29bd, type: 3}
-    conditionOfSpawnMin: 0.842
+    conditionOfSpawnMin: 0.807
     conditionOfSpawnMax: 1
-    dropRate: 10
+    dropRate: 69
     priority: 0
     radius: 10
   chunkList:
