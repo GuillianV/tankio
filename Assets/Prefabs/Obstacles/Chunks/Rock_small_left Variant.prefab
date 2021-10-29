@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5592222405763435360, guid: a6eca4d4da3ad6e42a6f9a7c056e29bd, type: 3}
       propertyPath: m_Name
-      value: Rock_small_left
+      value: Rock_small_left Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592222405763435360, guid: a6eca4d4da3ad6e42a6f9a7c056e29bd, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9001140218904384692, guid: a6eca4d4da3ad6e42a6f9a7c056e29bd, type: 3}
       propertyPath: m_RootOrder
