@@ -93,7 +93,7 @@ public class MapGeneratorManager : MonoBehaviour
         GenerateWall( new Vector3(0, (noiseOptions.mapHeight / 2),0));
         GenerateWall(new Vector3(0, -1*(noiseOptions.mapHeight / 2),0));
         GenerateListObstacles();
-        GenerateChunks(5,1000,"Obstacle");
+        //GenerateChunks(5,1000,"Obstacle");
        // AstarPath.active.data.gridGraph.SetDimensions(noiseOptions.mapWidth,noiseOptions.mapHeight,1);
        // AstarPath.active.Scan();
     }
