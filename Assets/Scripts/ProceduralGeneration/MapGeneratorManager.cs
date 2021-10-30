@@ -33,6 +33,7 @@ public class SpawnOptions
     public int radius;
 
     public Transform parentContainer;
+    public GameObject spawnerPrefab;
     public string tag;
     public int numberSpawners;
 }
@@ -329,11 +330,14 @@ public class MapGeneratorManager : MonoBehaviour
 
                     spawnerRestants--;
 
-                    GameObject spawnerInstancied = Instantiate(new GameObject(), baseMap.parent.transform.position, new Quaternion(0,0,0,0), spawnOptions.parentContainer);
-                    spawnerInstancied.gameObject.tag = spawnOptions.tag;
+
+                    GameObject spawnerInstancied = Instantiate(spawnOptions.spawnerPrefab,
+                        baseMap.parent.transform.position, baseMap.parent.transform.rotation,
+                        spawnOptions.parentContainer);
                     
+                    spawnerInstancied.tag = spawnOptions.tag;
                     spawnerInstancied.transform.localPosition =  new Vector3(posX, poxY, baseMap.parent.transform.position.z);
-                    spawnerInstancied.name = "Spawner " + spawnerRestants;
+                   
 
                     for (int k = -spawnOptions.radius; k < spawnOptions.radius; k++)
                     {

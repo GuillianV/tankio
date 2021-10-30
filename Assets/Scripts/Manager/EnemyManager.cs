@@ -49,6 +49,8 @@ public class EnemyManager : MonoBehaviour
 
     }
 
+
+
     //Crée les enemies listés
     public void InsatanciateEnemys()
     {
@@ -83,7 +85,51 @@ public class EnemyManager : MonoBehaviour
             
           
         });
-        
+
+        StartCoroutine(SpawnWave());
+
+    }
+
+
+    IEnumerator SpawnWave()
+    {
+        yield return new WaitForSeconds(5f);
+
+        GameObject[] listSpawners = GameObject.FindGameObjectsWithTag("Spawners");
+        foreach (GameObject spawner in listSpawners)
+        {
+            enemyList.ForEach(E =>
+            {
+                GameObject enemy = Instantiate(E.enemyPrefab, spawner.transform.position, new Quaternion(0,0,0,0),spawner.transform) as GameObject;
+                E.enemy = enemy;
+                TankController tankController = enemy.GetComponent<TankController>();
+                AIDestinationSetter aiDestinationSetter = enemy.GetComponent<AIDestinationSetter>();
+                aiDestinationSetter.target = GameObject.FindWithTag("Player").transform;
+            
+                if (E.tracksData != null)
+                {
+                    tankController.TracksController.tracks.LoadData(E.tracksData);
+                }
+                if (E.bodyData != null)
+                {
+                    tankController.BodyController.body.LoadData(E.bodyData);
+                }
+                if (E.towerData != null)
+                {
+                    tankController.TowerController.tower.LoadData(E.towerData);
+                }
+                if (E.gunData != null)
+                {
+                    tankController.GunController.gun.LoadData(E.gunData);
+                }
+            
+                tankController.BindSprite();
+                tankController.BindStats();
+            
+          
+            });
+        }
+
     }
 
 }

@@ -420,8 +420,9 @@ MonoBehaviour:
   spawnOptions:
     radius: 5
     parentContainer: {fileID: 726811725}
+    spawnerPrefab: {fileID: 92090636529140435, guid: 6953b615eb6f7594492a9e6fac8ed590, type: 3}
     tag: Spawners
-    numberSpawners: 12
+    numberSpawners: 8
   layerToAvoid: Obstacle
   iterateOfSpawn: 1000
   obstacleListAll:
