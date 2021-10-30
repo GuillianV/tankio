@@ -105,7 +105,7 @@ public class MapGeneratorManager : MonoBehaviour
         //Genere les chunks
         GenerateChunks();
         yield return new WaitForSeconds(0.2f);
-        GenerateSpawners();
+        GenerateSpawners(spawnOptions.numberSpawners);
         AstarPath.active.data.gridGraph.SetDimensions(noiseOptions.mapWidth, noiseOptions.mapHeight, 1);
         AstarPath.active.Scan();
     }
@@ -300,10 +300,12 @@ public class MapGeneratorManager : MonoBehaviour
     }
 
 
-    public void GenerateSpawners()
+    
+    
+     public void GenerateSpawners(int nbOfSpawners)
     {
 
-        int spawnerRestants = spawnOptions.numberSpawners;
+        int spawnerRestants = nbOfSpawners;
 
         while (spawnerRestants > 0)
         {
@@ -359,6 +361,8 @@ public class MapGeneratorManager : MonoBehaviour
             }
         } 
     }
+
+    
 
     //Choisi le chunk a spawner en fonction de leur drop rate, parmis la liste des obstacles.
     [CanBeNull]

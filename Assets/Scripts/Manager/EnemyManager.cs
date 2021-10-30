@@ -10,9 +10,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    //Parent container of enemies
-    public Transform parentContainer;
-
+ 
 
 
 

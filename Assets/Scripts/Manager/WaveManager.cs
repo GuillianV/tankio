@@ -13,12 +13,22 @@ class SpawnWave : Editor {
         DrawDefaultInspector();
 
         
+        GameManager m_game = GameManager.Instance;
+        WaveManager waveManager = (WaveManager) target;
         
-        WaveManager enemyManager = (WaveManager) target;
-        
-        if (GUILayout.Button("Spawn Wave"))
+        if (GUILayout.Button("Spawn Next Wave"))
         {
-            enemyManager.SpawnWave(enemyManager.waveDifficulty);
+            waveManager.NextWave();
+        }
+        
+        if (GUILayout.Button("Add Spawner"))
+        {
+            m_game.Map.GenerateSpawners(1);
+        }
+        
+        if (GUILayout.Button("Clear Enemies"))
+        {
+            waveManager.ClearEnemies();
         }
             
     }
@@ -29,16 +39,70 @@ class SpawnWave : Editor {
 public class WaveManager : MonoBehaviour
 {
     
-    
+    //Parent container of enemies
+    public Transform parentContainer;
+
+    [Range(1,300)]
+    public int timeBetweenWaves = 30;
     [Range(1,20)]
     public int waveDifficulty = 1;
 
     private GameManager m_game;
+    private bool isSpawned = false;
+    private bool isNextWave = false;
 
     private void Awake()
     {
         m_game = GameManager.Instance;
     }
+
+
+    private void Update()
+    {
+        
+        if (!isSpawned)
+        {
+            isNextWave = false;
+            isSpawned = true;
+            SpawnWave(waveDifficulty);
+            StartCoroutine(TimerWave());
+
+        }
+
+        if (isNextWave)
+        {
+           
+            isNextWave = false;
+            isSpawned = true;
+            StopCoroutine(TimerWave());
+            SpawnWave(waveDifficulty);
+        }
+   
+    }
+
+    public void NextWave()
+    {
+        isNextWave = true;
+
+    }
+
+    IEnumerator TimerWave()
+    {
+        
+        yield return new WaitForSeconds(timeBetweenWaves);
+        isSpawned = false;
+
+    }
+
+
+    public void ClearEnemies()
+    {
+        foreach (Transform child in parentContainer.transform)
+            Destroy(child.gameObject);
+
+    }
+    
+    
 
     public void SpawnWave(int difficultyLevel)
     {
@@ -58,7 +122,7 @@ public class WaveManager : MonoBehaviour
                     int index = random.Next(enemys.Count);
                     Enemy E = enemys[index];
 
-                    GameObject enemy = Instantiate(E.enemyPrefab, spawner.transform.position, new Quaternion(0, 0, 0, 0), spawner.transform) as GameObject;
+                    GameObject enemy = Instantiate(E.enemyPrefab, spawner.transform.position, new Quaternion(0, 0, 0, 0), parentContainer.transform) as GameObject;
                     E.enemy = enemy;
                     TankController tankController = enemy.GetComponent<TankController>();
                     AIDestinationSetter aiDestinationSetter = enemy.GetComponent<AIDestinationSetter>();

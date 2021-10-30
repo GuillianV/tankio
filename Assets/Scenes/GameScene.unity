@@ -389,7 +389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 454739a24a77d498388478418ac5d6e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentContainer: {fileID: 907469154}
   enemyList:
   - enemyPrefab: {fileID: 6375800877936983457, guid: 901632f13daae4864918903d72815bd2, type: 3}
     difficultyLevel: 1
@@ -423,7 +422,7 @@ MonoBehaviour:
     parentContainer: {fileID: 726811725}
     spawnerPrefab: {fileID: 92090636529140435, guid: 6953b615eb6f7594492a9e6fac8ed590, type: 3}
     tag: Spawners
-    numberSpawners: 8
+    numberSpawners: 1
   layerToAvoid: Obstacle
   iterateOfSpawn: 1000
   obstacleListAll:
@@ -460,6 +459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9bcc06c50fa604288f7ff4b6413664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentContainer: {fileID: 907469154}
+  timeBetweenWaves: 30
   waveDifficulty: 1
 --- !u!1 &907469153
 GameObject:
