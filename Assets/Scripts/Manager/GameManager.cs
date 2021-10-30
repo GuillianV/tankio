@@ -13,8 +13,11 @@ public class GameManager : MonoBehaviour
     
     public PlayerManager Player { get; private set; }
     public CameraManager Camera { get; private set; }
-    
     public EnemyManager Enemys { get; private set; }
+    
+    public WaveManager Waves { get; private set; }
+    public MapGeneratorManager Map { get; private set; }
+    
     private void Awake()
     {
         if (Instance == null)
@@ -28,6 +31,8 @@ public class GameManager : MonoBehaviour
         Player = GetComponent<PlayerManager>();
         Camera = GetComponent<CameraManager>();
         Enemys = GetComponent<EnemyManager>();
+        Waves = GetComponent<WaveManager>();
+        Map = GetComponent<MapGeneratorManager>();
     }
 
     void Start()
@@ -38,8 +43,7 @@ public class GameManager : MonoBehaviour
         Player.EnablePlayer();
         //Permet a la camera de suivre le joueur
         Camera.SetGameObjectToFollow(Player.player);
-        //Crée les enemies
-        Enemys.InsatanciateEnemys();
+        
         
     }
 
