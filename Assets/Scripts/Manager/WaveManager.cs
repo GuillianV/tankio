@@ -39,8 +39,6 @@ class SpawnWave : Editor {
 public class WaveManager : MonoBehaviour
 {
     
-    //Parent container of enemies
-    public Transform parentContainer;
 
     [Range(1,300)]
     public int timeBetweenWaves = 30;
@@ -51,9 +49,7 @@ public class WaveManager : MonoBehaviour
     private bool isSpawned = false;
     private bool isNextWave = false;
 
-    public event EventHandler<TankEvent> TankDestroyed;
-
-    public int golds;
+   
 
     private void Awake()
     {
@@ -101,25 +97,13 @@ public class WaveManager : MonoBehaviour
 
     public void ClearEnemies()
     {
-        foreach (Transform child in parentContainer.transform)
+        foreach (Transform child in m_game.Enemys.parentContainer.transform)
             Destroy(child.gameObject);
 
     }
 
 
-    public void Destroy(object sender, EventArgs args)
-    {
-        Debug.Log("TankDestroyed");
-        TankDestroyed tankDestroyed = sender as TankDestroyed;
-        TankController tankController = tankDestroyed.GetComponent<TankController>();
-        golds += tankController.StatsController.gold;
-        OnTankDestroyed(tankController);
-    }
 
-    public void OnTankDestroyed(TankController tankController)
-    {
-        TankDestroyed?.Invoke(this,new TankEvent(tankController));
-    }
     
 
     public void SpawnWave(int difficultyLevel)
@@ -140,40 +124,9 @@ public class WaveManager : MonoBehaviour
                     int index = random.Next(enemys.Count);
                     Enemy E = enemys[index];
 
-                    GameObject enemy = Instantiate(E.enemyPrefab, spawner.transform.position, new Quaternion(0, 0, 0, 0), parentContainer.transform) as GameObject;
-                    E.enemy = enemy;
-                    TankController tankController = enemy.GetComponent<TankController>();
-                    AIDestinationSetter aiDestinationSetter = enemy.GetComponent<AIDestinationSetter>();
-                    TankDestroyed tankDestroyed = enemy.GetComponent<TankDestroyed>();
+                    m_game.Enemys.InstanciateEnemy(E, spawner.transform.position);
 
-                    tankDestroyed.Destroyed += Destroy;
-                    
-                    aiDestinationSetter.target = GameObject.FindWithTag("Player").transform;
 
-                    if (E.tracksData != null)
-                    {
-                        tankController.TracksController.tracks.LoadData(E.tracksData);
-                    }
-
-                    if (E.bodyData != null)
-                    {
-                        tankController.BodyController.body.LoadData(E.bodyData);
-                    }
-
-                    if (E.towerData != null)
-                    {
-                        tankController.TowerController.tower.LoadData(E.towerData);
-                    }
-
-                    if (E.gunData != null)
-                    {
-                        tankController.GunController.gun.LoadData(E.gunData);
-                    }
-
-                    tankController.BindSprite();
-                    tankController.BindStats();
-                    
-                    
                 }  else
                 {
                     Debug.LogWarning("Aucun Enemy de la difficulté : "+difficultyLevel+" trouvé !");
