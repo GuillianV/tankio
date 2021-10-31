@@ -47,6 +47,7 @@ public class StatsController
     public float towerRotationSpeed;
     public float bulletVelocity;
     public float reloadTimeSpeed;
+    public int gold;
 }
 
 
@@ -118,9 +119,11 @@ public class TankController : MonoBehaviour
        StatsController.tracksSpeed =  TracksController.tracks.Data.speed;
        StatsController.tracksRotationSpeed = TracksController.tracks.Data.rotationSpeed;
        StatsController.health = BodyController.body.Data.life;
+       StatsController.gold = BodyController.body.Data.golds;
        StatsController.towerRotationSpeed = TowerController.tower.Data.rotationSpeed;
        StatsController.reloadTimeSpeed = GunController.gun.Data.reloadTimeSecond;
        StatsController.bulletVelocity = GunController.gun.Data.bulletVelocity;
+       
     }
 
     private void FixedUpdate()

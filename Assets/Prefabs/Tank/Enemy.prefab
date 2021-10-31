@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: -5298298025019049313}
   - component: {fileID: 7737581100805513150}
   - component: {fileID: 92746348492913147}
+  - component: {fileID: 5775621088903631846}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -511,6 +512,18 @@ SortingGroup:
   m_SortingLayerID: -442727467
   m_SortingLayer: 2
   m_SortingOrder: 1
+--- !u!114 &5775621088903631846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375800877936983457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c5b89bd21185847bc9e9427ad1afc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6375800878161469553
 GameObject:
   m_ObjectHideFlags: 0

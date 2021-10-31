@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Body_2
   m_EditorClassIdentifier: 
   life: 100
-  rotationSpeed: 100
-  spriteTrack: {fileID: 21300000, guid: 8c06fc87eec18e646ad87ef59d8ee962, type: 3}
+  golds: 20
+  sprite: {fileID: 21300000, guid: 8c06fc87eec18e646ad87ef59d8ee962, type: 3}
   color: {r: 0.8490566, g: 0.7008722, b: 0.7008722, a: 1}

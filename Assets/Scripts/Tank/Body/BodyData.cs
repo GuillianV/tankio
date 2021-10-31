@@ -5,6 +5,7 @@ using UnityEngine;
 public class BodyData : ScriptableObject
 {
     public float life;
+    public int golds;
     public Sprite sprite;
     public Color color;
 }

@@ -51,6 +51,10 @@ public class WaveManager : MonoBehaviour
     private bool isSpawned = false;
     private bool isNextWave = false;
 
+    public event EventHandler<TankEvent> TankDestroyed;
+
+    public int golds;
+
     private void Awake()
     {
         m_game = GameManager.Instance;
@@ -101,7 +105,21 @@ public class WaveManager : MonoBehaviour
             Destroy(child.gameObject);
 
     }
-    
+
+
+    public void Destroy(object sender, EventArgs args)
+    {
+        Debug.Log("TankDestroyed");
+        TankDestroyed tankDestroyed = sender as TankDestroyed;
+        TankController tankController = tankDestroyed.GetComponent<TankController>();
+        golds += tankController.StatsController.gold;
+        OnTankDestroyed(tankController);
+    }
+
+    public void OnTankDestroyed(TankController tankController)
+    {
+        TankDestroyed?.Invoke(this,new TankEvent(tankController));
+    }
     
 
     public void SpawnWave(int difficultyLevel)
@@ -126,6 +144,10 @@ public class WaveManager : MonoBehaviour
                     E.enemy = enemy;
                     TankController tankController = enemy.GetComponent<TankController>();
                     AIDestinationSetter aiDestinationSetter = enemy.GetComponent<AIDestinationSetter>();
+                    TankDestroyed tankDestroyed = enemy.GetComponent<TankDestroyed>();
+
+                    tankDestroyed.Destroyed += Destroy;
+                    
                     aiDestinationSetter.target = GameObject.FindWithTag("Player").transform;
 
                     if (E.tracksData != null)
@@ -150,6 +172,8 @@ public class WaveManager : MonoBehaviour
 
                     tankController.BindSprite();
                     tankController.BindStats();
+                    
+                    
                 }  else
                 {
                     Debug.LogWarning("Aucun Enemy de la difficulté : "+difficultyLevel+" trouvé !");
