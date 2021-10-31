@@ -19,6 +19,7 @@ public class EnemyManager : MonoBehaviour
 
     public List<Enemy> enemyList;
 
+  
 
     public List<StatsController> enemiesInGame = new List<StatsController>();
     

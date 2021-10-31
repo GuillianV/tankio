@@ -34,14 +34,21 @@ public class TankAI : MonoBehaviour
 
     private void Start()
     {
+        UpdateAstar();
+
+    }
+
+    public void UpdateAstar()
+    {
         m_aiPath.maxSpeed = m_tankController.StatsController.tracksSpeed * Time.deltaTime * velocityRate;
         m_aiPath.maxAcceleration = m_tankController.StatsController.tracksSpeed * Time.deltaTime * velocityRate;
         m_aiPath.rotationSpeed = m_tankController.StatsController.tracksRotationSpeed * Time.deltaTime * 100 * velocityRate;
         m_aiPath.repathRate = repathRate;
     }
-
+    
     private void FixedUpdate()
     {
+        UpdateAstar();
 
 
         if (m_tankController.StatsController.health <= 0)

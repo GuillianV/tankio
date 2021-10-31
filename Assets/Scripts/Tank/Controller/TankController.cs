@@ -39,7 +39,7 @@ public class GunController
 }
 
 [System.Serializable]
-public class StatsController
+public class StatsController 
 {
     public float tracksSpeed;
     public float tracksRotationSpeed;
@@ -48,6 +48,8 @@ public class StatsController
     public float bulletVelocity;
     public float reloadTimeSpeed;
     public int gold;
+
+
 }
 
 
