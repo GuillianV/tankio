@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20eac5432872b45ca857410672a2eab4, type: 3}
-  m_Name: bullet_basic
+  m_Script: {fileID: 11500000, guid: 150a027a36e0982459804069bb3b7661, type: 3}
+  m_Name: Tracks_Lv5
   m_EditorClassIdentifier: 
-  damage: 50
-  maxBounce: 5
+  speed: 1000
+  rotationSpeed: 300
+  spriteTrack: {fileID: 21300000, guid: 5d095de063c482c4a8b4d113bb0c38a0, type: 3}
+  color: {r: 0.3915094, g: 1, b: 0.44088963, a: 1}

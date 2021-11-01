@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 150a027a36e0982459804069bb3b7661, type: 3}
-  m_Name: Tracks_Player
+  m_Name: Tracks_Lv2-2
   m_EditorClassIdentifier: 
-  speed: 100
-  rotationSpeed: 100
-  spriteTrack: {fileID: 21300000, guid: dbb6e3fbaab305d43b5605af51a8052a, type: 3}
-  color: {r: 1, g: 1, b: 1, a: 1}
+  speed: 450
+  rotationSpeed: 50
+  spriteTrack: {fileID: 21300000, guid: 6e3675dd33e7b404b86496d5a7c4f3f9, type: 3}
+  color: {r: 0.9531878, g: 1, b: 0.504717, a: 1}

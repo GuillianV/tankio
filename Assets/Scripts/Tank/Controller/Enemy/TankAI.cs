@@ -75,7 +75,7 @@ public class TankAI : MonoBehaviour
                     GameObject ammo = Instantiate(bullet, spawnBullet.transform.position, spawnBullet.transform.rotation) as  GameObject;
                     m_tankController.TankAnimationController.FireProjectile();
                     Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
-                    ammoProjectile.velocity = m_tankController.StatsController.bulletVelocity;
+                    ammoProjectile.BulletStats.velocity = m_tankController.StatsController.bulletVelocity;
                     ammoProjectile.parentUp = spawnBullet.transform.up;
                     ammoProjectile.senderTag = gameObject.tag;
                     isReloading = true;
@@ -98,7 +98,7 @@ public class TankAI : MonoBehaviour
         Projectile_Bullet bullet = col.gameObject.GetComponent<Projectile_Bullet>();
         if (bullet != null)
         {
-            m_tankController.StatsController.health -= 10;
+            m_tankController.StatsController.health -= bullet.BulletStats.damages;
         }
     }
 }
