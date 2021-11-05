@@ -252,7 +252,7 @@ MonoBehaviour:
   TracksData: {fileID: 11400000, guid: ddb3743dba783a34b8a9bce55308fb41, type: 2}
   BodyData: {fileID: 11400000, guid: 2de23a6feca28aa4386dcc82f9e8a79c, type: 2}
   TowerData: {fileID: 11400000, guid: a676385d032644e22a9cf2e0daa326fb, type: 2}
-  GunData: {fileID: 11400000, guid: 5e588587277c45d47bcd6fd0d5a20860, type: 2}
+  GunData: {fileID: 11400000, guid: ee42614b20dc16e479c4920832aa70f1, type: 2}
   tracksSpeed: 0
   tracksRotationSpeed: 0
   health: 0

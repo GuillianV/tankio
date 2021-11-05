@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 280ab4806a9c2e14694f58701e30dc9c, type: 3}
-  m_Name: Gun_2
+  m_Name: Gun_Lv3
   m_EditorClassIdentifier: 
-  reloadTimeSecond: 1.05
-  bulletVelocity: 10
-  spriteGun: {fileID: 21300000, guid: dba2347742dc4884a9f385a783661418, type: 3}
+  reloadTimeSecond: 2.5
+  bulletVelocity: 4
+  spriteGun: {fileID: 21300000, guid: 64b0356f87144f346aee6f16541b3baf, type: 3}
   TowerGunOffset: 1
-  GunSpawnOffset: 1.2
+  GunSpawnOffset: 1
   color: {r: 1, g: 1, b: 1, a: 1}

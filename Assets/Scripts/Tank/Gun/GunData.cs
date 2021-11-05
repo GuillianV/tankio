@@ -8,7 +8,7 @@ public class GunData : ScriptableObject
     
     [Range(0,10)]
     public float reloadTimeSecond = 1;
-    [Range(0,10)]
+    [Range(0,100)]
     public float bulletVelocity = 1;
     public Sprite spriteGun;
     [Range(-10,10)]

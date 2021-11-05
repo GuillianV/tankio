@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0530fd51013bc749be0b0dbd99f66d1, type: 3}
-  m_Name: Tower_2
+  m_Script: {fileID: 11500000, guid: 280ab4806a9c2e14694f58701e30dc9c, type: 3}
+  m_Name: Gun_Lv1-2
   m_EditorClassIdentifier: 
-  rotationSpeed: 10
-  spriteTower: {fileID: 21300000, guid: 63409559e2f661242b7771cf7d2728ac, type: 3}
+  reloadTimeSecond: 3
+  bulletVelocity: 2
+  spriteGun: {fileID: 21300000, guid: c6e5d078bcdd07746ace23393ca0db59, type: 3}
+  TowerGunOffset: 1
+  GunSpawnOffset: 0.9
   color: {r: 1, g: 1, b: 1, a: 1}
