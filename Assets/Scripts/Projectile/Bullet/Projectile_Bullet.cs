@@ -24,7 +24,7 @@ public class Projectile_Bullet : MonoBehaviour
     private Rigidbody2D m_projectileRigidbody2D;
     private Animator m_projectileAnimator;
     private CircleCollider2D m_projectileCircleCollider2D;
-
+    private SpriteRenderer m_spriteRenderer;
     
     public BulletStats BulletStats;
 
@@ -42,18 +42,27 @@ public class Projectile_Bullet : MonoBehaviour
         this.m_projectileRigidbody2D = GetComponent<Rigidbody2D>();
         this.m_projectileAnimator = GetComponent<Animator>();
         this.m_projectileCircleCollider2D = GetComponent<CircleCollider2D>();
+        this.m_spriteRenderer = GetComponent<SpriteRenderer>();
         this.bullet = GetComponent<Bullet>();
-        bullet.LoadData(bulletData);
         
-        BindBulletData();
+        LoadData(bulletData);
+        
 
 
     }
 
+    public void LoadData(BulletData _data)
+    {
+        bullet.LoadData(_data);
+        BindBulletData();
+    }
+
     private void BindBulletData()
     {
+        m_spriteRenderer.color = bullet.Data.color;
         BulletStats.bounces = bullet.Data.maxBounce;
         BulletStats.damages = bullet.Data.damage;
+        
 
     }
     

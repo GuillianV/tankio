@@ -7,5 +7,5 @@ public class BulletData : ScriptableObject
 {
     public int damage;
     public int maxBounce;
-    
+    public Color color;
 }
