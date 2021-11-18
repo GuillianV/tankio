@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public WaveManager Waves { get; private set; }
     public MapGeneratorManager Map { get; private set; }
     
+    public UIManager Ui { get; private set; }
+    
+    public ShopManager Shop { get; private set; }
     private void Awake()
     {
         if (Instance == null)
@@ -33,6 +36,8 @@ public class GameManager : MonoBehaviour
         Enemys = GetComponent<EnemyManager>();
         Waves = GetComponent<WaveManager>();
         Map = GetComponent<MapGeneratorManager>();
+        Ui = GetComponent<UIManager>();
+        Shop = GetComponent<ShopManager>();
     }
 
     void Start()

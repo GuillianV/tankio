@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
 
     //Prefab du Player
     public GameObject playerPrefab;
+
     //Conteneur du parent
     public Transform parentContainer;
    

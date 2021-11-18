@@ -43,6 +43,7 @@ public class StatsController
 {
     public float tracksSpeed;
     public float tracksRotationSpeed;
+    public float maxHealth;
     public float health;
     public float towerRotationSpeed;
     public float bulletVelocity;
@@ -120,6 +121,7 @@ public class TankController : MonoBehaviour
     {
        StatsController.tracksSpeed =  TracksController.tracks.Data.speed;
        StatsController.tracksRotationSpeed = TracksController.tracks.Data.rotationSpeed;
+       StatsController.maxHealth = BodyController.body.Data.life;
        StatsController.health = BodyController.body.Data.life;
        StatsController.gold = BodyController.body.Data.golds;
        StatsController.towerRotationSpeed = TowerController.tower.Data.rotationSpeed;

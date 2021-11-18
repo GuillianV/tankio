@@ -22,12 +22,20 @@ public class EnemyManager : MonoBehaviour
   
 
     public List<StatsController> enemiesInGame = new List<StatsController>();
-    
+
+    private GameManager m_Game;
+
+    public void Awake()
+    {
+        m_Game = GameManager.Instance;
+    }
+
     public void Destroy(object sender, EventArgs args)
     {
         Debug.Log("TankDestroyed");
         TankDestroyed tankDestroyed = sender as TankDestroyed;
         TankController tankController = tankDestroyed.GetComponent<TankController>();
+        m_Game.Shop.AddGolds(tankController.StatsController.gold);
         enemiesInGame.Remove(tankController.StatsController);
         OnTankDestroyed(tankController);
     }
@@ -37,7 +45,6 @@ public class EnemyManager : MonoBehaviour
         Debug.Log("TankCreated");
         TankCreate tankCreate = sender as TankCreate;
         TankController tankController = tankCreate.GetComponent<TankController>();
-        
         enemiesInGame.Add(tankController.StatsController);
         OnTankCreated(tankController);
     }

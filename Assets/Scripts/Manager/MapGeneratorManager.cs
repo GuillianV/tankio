@@ -82,7 +82,7 @@ public class MapGeneratorManager : MonoBehaviour
     private void Awake()
     {
         //Genere la noismap
-        noiseMap = Noise.GenerateNoiseMap(noiseOptions.mapWidth, noiseOptions.mapHeight, noiseOptions.noiseScale);
+        noiseMap =  Noise.GenerateNoiseMap(noiseOptions.mapWidth, noiseOptions.mapHeight, noiseOptions.noiseScale);
         //Genere la map used
         m_mapUsed = new Boolean[noiseMap.GetLength(0), noiseMap.GetLength(1)];
     }

@@ -10,42 +10,37 @@ public class PlayerShoot : MonoBehaviour
     public GameObject projectile;
 
     private bool isReloading = false;
-
+    private bool isFireing = false;
+    
 
     private void Awake()
     {
         m_tankController = GetComponent<TankController>();
     }
 
-    private void FixedUpdate()
-    {
-        if (Input.GetButton("Fire1"))
-        {
-            if (!isReloading)
-            {
-
-                GameObject ammo = Instantiate(projectile, m_tankController.GunController.bulletSpawn.transform.position, m_tankController.GunController.bulletSpawn.transform.rotation) as  GameObject;
-                Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
-                ammoProjectile.BulletStats.velocity = m_tankController.StatsController.bulletVelocity;
-                ammoProjectile.parentUp = m_tankController.GunController.bulletSpawn.transform.up;
-                ammoProjectile.senderTag = gameObject.tag;
-                m_tankController.TankAnimationController.FireProjectile();
-                isReloading = true;
-                StartCoroutine(Reload());
-            }
-            
-            
-       
-            
-
-        }
-    }
+ 
 
     IEnumerator Reload()
     {
         yield return new WaitForSeconds(m_tankController.StatsController.reloadTimeSpeed);
         isReloading = false;
     }
-    
+
+    public void OnFire()
+    {
+        if (!isReloading)
+        {
+
+            GameObject ammo = Instantiate(projectile, m_tankController.GunController.bulletSpawn.transform.position, m_tankController.GunController.bulletSpawn.transform.rotation) as  GameObject;
+            Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
+            ammoProjectile.BulletStats.velocity = m_tankController.StatsController.bulletVelocity;
+            ammoProjectile.parentUp = m_tankController.GunController.bulletSpawn.transform.up;
+            ammoProjectile.senderTag = gameObject.tag;
+            m_tankController.TankAnimationController.FireProjectile();
+            isReloading = true;
+            StartCoroutine(Reload());
+        }
+
+    }
   
 }
