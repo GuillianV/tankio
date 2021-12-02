@@ -133,6 +133,7 @@ public class WaveManager : MonoBehaviour
         actualWave = 0;
         waveDifficulty = 1;
         timeBetweenWaves = 30;
+        m_game.Ui.SetWaveUI(actualWave);
     }
 
     

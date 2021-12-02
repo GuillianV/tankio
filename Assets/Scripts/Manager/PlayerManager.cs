@@ -1,7 +1,30 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+
+
+
+[CustomEditor(typeof(PlayerManager))]
+class PlayerButtons : Editor {
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        
+        GameManager m_game = GameManager.Instance;
+        PlayerManager playerManager = (PlayerManager) target;
+        
+        if (GUILayout.Button("Reset All"))
+        {
+            playerManager.ResetPlayerManager();
+        }
+  
+            
+    }
+}
+
 
 public class PlayerManager : MonoBehaviour
 {
@@ -11,10 +34,8 @@ public class PlayerManager : MonoBehaviour
 
     //Conteneur du parent
     public Transform parentContainer;
-   
-    //Point de position du player
-    public Vector2 spawnPosition =  Vector2.zero;
-    
+
+
     //Scriptable objects pour les tanks
     [Header("Player Stats")]
     public TracksData TracksData;
@@ -39,7 +60,14 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public GameObject player;
 
-    
+    private GameManager m_Game;
+
+    private void Awake()
+    {
+        m_Game = GameManager.Instance;
+        
+    }
+
     //Active le joueur
     public void EnablePlayer()
     {
@@ -55,7 +83,7 @@ public class PlayerManager : MonoBehaviour
     //Instancie le joueur
     public void InsatanciatePlayer()
     {
-        player = Instantiate(playerPrefab, new Vector3(spawnPosition.x,spawnPosition.y,0), new Quaternion(0,0,0,0),parentContainer) as GameObject;
+        player = Instantiate(playerPrefab, new Vector3(parentContainer.transform.position.x,parentContainer.transform.position.y,0), new Quaternion(0,0,0,0),parentContainer) as GameObject;
         //Création du player
         TankController tankController = player.GetComponent<TankController>();
 
@@ -115,7 +143,39 @@ public class PlayerManager : MonoBehaviour
             }
         }
        
-        
-       
     }
+
+
+    public void DestroyPlayer()
+    {
+        foreach (Transform child in parentContainer)
+            Destroy(child.gameObject);
+    }
+    
+    public void CreatePlayer()
+    {
+        InsatanciatePlayer();
+    }
+    
+    public void SetCameraFollowPlayer()
+    {
+        m_Game.Camera.SetGameObjectToFollow(player);
+    }
+    
+    public void SetUiLifeOfPlayer()
+    {
+        TankController tankController = player.GetComponent<TankController>();
+        m_Game.Ui.SetLifeUI(tankController.StatsController.maxHealth,tankController.StatsController.maxHealth );
+
+    }
+
+
+    public void ResetPlayerManager()
+    {
+       DestroyPlayer();
+       CreatePlayer();
+       SetCameraFollowPlayer();
+       SetUiLifeOfPlayer();
+    }
+    
 }

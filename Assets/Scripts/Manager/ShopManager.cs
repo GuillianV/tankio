@@ -1,6 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+
+
+[CustomEditor(typeof(ShopManager))]
+class ShopButtons : Editor {
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        
+        GameManager m_game = GameManager.Instance;
+        ShopManager shopManager = (ShopManager) target;
+        
+        if (GUILayout.Button("Reset All"))
+        {
+            shopManager.ResetShopManager();
+        }
+  
+            
+    }
+}
 
 public class ShopManager : MonoBehaviour
 {
@@ -15,6 +36,16 @@ public class ShopManager : MonoBehaviour
     {
         this.golds += golds;
         m_Game.Ui.SetGoldUI(this.golds);
+    }
+
+    public void ResetGolds()
+    {
+        golds = 0;
+    }
+    
+    public void ResetShopManager()
+    {
+        ResetGolds();
     }
     
     // Update is called once per frame
