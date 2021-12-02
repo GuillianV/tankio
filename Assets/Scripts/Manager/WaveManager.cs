@@ -48,7 +48,7 @@ public class WaveManager : MonoBehaviour
     private GameManager m_game;
     private bool isSpawned = false;
     private bool isNextWave = false;
-
+    private int actualWave = 1;
    
 
     private void Awake()
@@ -56,6 +56,10 @@ public class WaveManager : MonoBehaviour
         m_game = GameManager.Instance;
     }
 
+    private void Start()
+    {
+        SpawnWave(waveDifficulty);
+    }
 
     private void Update()
     {
@@ -108,7 +112,19 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnWave(int difficultyLevel)
     {
+        if (actualWave % 5 == 0)
+        {
+            waveDifficulty++;
+            timeBetweenWaves--;
+        }
+        
+        if (actualWave % 10 == 0)
+        {
+            m_game.Map.GenerateSpawners(1);
+        }
 
+      
+        
         List<Enemy> enemys = m_game.Enemys.GetEnemies(difficultyLevel);
         
         GameObject[] listSpawners = GameObject.FindGameObjectsWithTag("Spawners");
@@ -129,6 +145,7 @@ public class WaveManager : MonoBehaviour
 
                 }  else
                 {
+                 
                     Debug.LogWarning("Aucun Enemy de la difficulté : "+difficultyLevel+" trouvé !");
                 }
                 
@@ -137,9 +154,12 @@ public class WaveManager : MonoBehaviour
         }
         else
         {
+            m_game.Map.GenerateSpawners(1);
+            SpawnWave(waveDifficulty);
             Debug.LogWarning("Aucun Spawner trouvé");
         }
-      
+
+        actualWave++;
     }
     
 }
