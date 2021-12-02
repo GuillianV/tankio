@@ -35,8 +35,9 @@ public class Projectile_Bullet : MonoBehaviour
     public Vector3 parentUp;
     
     public Bullet bullet { get; private set; }
-    
 
+    
+    private Vector2 direction;
     private void Awake()
     {
         this.m_projectileRigidbody2D = GetComponent<Rigidbody2D>();
@@ -69,7 +70,22 @@ public class Projectile_Bullet : MonoBehaviour
 
     private void Start()
     {
-        this.m_projectileRigidbody2D.AddForce(new Vector2(this.parentUp.x *Time.deltaTime* this.BulletStats.velocity, this.parentUp.y *Time.deltaTime * this.BulletStats.velocity ));
+        direction = parentUp;
+
+            
+
+       
+    }
+
+    private void FixedUpdate()
+    {
+        if (this.m_projectileRigidbody2D != null)
+        {
+            this.m_projectileRigidbody2D.velocity = new Vector2(this.direction.x * Time.deltaTime * this.BulletStats.velocity * 100,
+                this.direction.y * Time.deltaTime * this.BulletStats.velocity * 100);
+
+        }
+       
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -80,10 +96,18 @@ public class Projectile_Bullet : MonoBehaviour
         }
         else
         {
+            Bounce(other.contacts[0].normal);
             BulletStats.bounces--;
         }
         
         
+    }
+    
+    private void Bounce(Vector3 collisionNormal)
+    {
+        
+        direction = Vector2.Reflect(direction.normalized, collisionNormal);
+
     }
 
     
