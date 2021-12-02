@@ -56,33 +56,38 @@ public class TankAI : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Vector3 vectorToTarget = new Vector3(m_aiDestinationSetter.target.position.x,m_aiDestinationSetter.target.position.y,towerTransform.transform.position.z)  - towerTransform.transform.position;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-        Quaternion q = Quaternion.AngleAxis(angle -90 , Vector3.forward);
-        towerTransform.transform.rotation = Quaternion.Slerp(towerTransform.transform.rotation, q, Time.deltaTime * m_tankController.StatsController.towerRotationSpeed);
+        if (m_aiDestinationSetter.target != null)
+        {
+            Vector3 vectorToTarget = new Vector3(m_aiDestinationSetter.target.position.x,m_aiDestinationSetter.target.position.y,towerTransform.transform.position.z)  - towerTransform.transform.position;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+            Quaternion q = Quaternion.AngleAxis(angle -90 , Vector3.forward);
+            towerTransform.transform.rotation = Quaternion.Slerp(towerTransform.transform.rotation, q, Time.deltaTime * m_tankController.StatsController.towerRotationSpeed);
 
         
         
-        RaycastHit2D hit = Physics2D.Raycast( new Vector2(spawnBullet.position.x,spawnBullet.position.y), new Vector2(spawnBullet.transform.up.x,spawnBullet.transform.up.y));
-        if (hit != false)
-        {
-            if (hit.collider.gameObject.tag == "Player")
+            RaycastHit2D hit = Physics2D.Raycast( new Vector2(spawnBullet.position.x,spawnBullet.position.y), new Vector2(spawnBullet.transform.up.x,spawnBullet.transform.up.y));
+            if (hit != false)
             {
-                if (!isReloading)
+                if (hit.collider.gameObject.tag == "Player")
                 {
+                    if (!isReloading)
+                    {
                     
                     
-                    GameObject ammo = Instantiate(bullet, spawnBullet.transform.position, spawnBullet.transform.rotation) as  GameObject;
-                    m_tankController.TankAnimationController.FireProjectile();
-                    Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
-                    ammoProjectile.BulletStats.velocity = m_tankController.StatsController.bulletVelocity;
-                    ammoProjectile.parentUp = spawnBullet.transform.up;
-                    ammoProjectile.senderTag = gameObject.tag;
-                    isReloading = true;
-                    StartCoroutine(Reload());
+                        GameObject ammo = Instantiate(bullet, spawnBullet.transform.position, spawnBullet.transform.rotation) as  GameObject;
+                        m_tankController.TankAnimationController.FireProjectile();
+                        Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
+                        ammoProjectile.BulletStats.velocity = m_tankController.StatsController.bulletVelocity;
+                        ammoProjectile.parentUp = spawnBullet.transform.up;
+                        ammoProjectile.senderTag = gameObject.tag;
+                        isReloading = true;
+                        StartCoroutine(Reload());
+                    }
                 }
             }
         }
+        
+       
       
     }
     

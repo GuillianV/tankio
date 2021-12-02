@@ -7,7 +7,8 @@ public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI lifeUI;
     public TextMeshProUGUI goldsUI;
-
+    public TextMeshProUGUI waveUI;
+    
     private GameManager m_Game;
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Missing Life component");
+            Debug.LogWarning("Missing Life component");
         }
     }
     
@@ -42,7 +43,19 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Missing Gold component");
+            Debug.LogWarning("Missing Gold component");
+        }
+    }
+    
+    public void SetWaveUI(int wave)
+    {
+        if (waveUI != null)
+        {
+            waveUI.text = "WAVE : "+ wave;
+        }
+        else
+        {
+            Debug.LogWarning("Missing wave component");
         }
     }
 }

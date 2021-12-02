@@ -30,6 +30,16 @@ class SpawnWave : Editor {
         {
             waveManager.ClearEnemies();
         }
+        
+        if (GUILayout.Button("Clear Spawners"))
+        {
+            waveManager.ClearSpawners();
+        }
+        
+        if (GUILayout.Button("Reset All"))
+        {
+            waveManager.ResetWaveManager();
+        }
             
     }
 }
@@ -45,10 +55,12 @@ public class WaveManager : MonoBehaviour
     [Range(1,20)]
     public int waveDifficulty = 1;
 
+    public bool toggleSpawn;
+    
     private GameManager m_game;
     private bool isSpawned = false;
     private bool isNextWave = false;
-    private int actualWave = 1;
+    private int actualWave = 0;
    
 
     private void Awake()
@@ -58,7 +70,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnWave(waveDifficulty);
+       // SpawnWave(waveDifficulty);
     }
 
     private void Update()
@@ -106,19 +118,38 @@ public class WaveManager : MonoBehaviour
 
     }
 
+    public void ClearSpawners()
+    {
+        foreach (Transform child in m_game.Map.spawnOptions.parentContainer.transform)
+            Destroy(child.gameObject);
+    }
 
+
+    public void ResetWaveManager()
+    {
+        StopCoroutine(TimerWave());
+        ClearSpawners();
+        ClearEnemies();
+        actualWave = 0;
+        waveDifficulty = 1;
+        timeBetweenWaves = 30;
+    }
 
     
 
     public void SpawnWave(int difficultyLevel)
     {
-        if (actualWave % 5 == 0)
+
+        if (toggleSpawn)
+            return;
+        
+        if (actualWave + 1 % 5 == 0)
         {
             waveDifficulty++;
             timeBetweenWaves--;
         }
         
-        if (actualWave % 10 == 0)
+        if (actualWave + 1  % 10 == 0)
         {
             m_game.Map.GenerateSpawners(1);
         }
@@ -151,6 +182,9 @@ public class WaveManager : MonoBehaviour
                 
                 
             };
+            
+            actualWave++;
+            m_game.Ui.SetWaveUI(actualWave);
         }
         else
         {
@@ -159,7 +193,7 @@ public class WaveManager : MonoBehaviour
             Debug.LogWarning("Aucun Spawner trouvé");
         }
 
-        actualWave++;
+     
     }
     
 }
