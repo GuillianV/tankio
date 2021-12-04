@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         
         
     }
-
+ 
     
     private void Update()
     {
@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
         {
             gameIsPaused = !gameIsPaused;
             PauseGame();
+            
         }
         
         
@@ -68,6 +69,8 @@ public class GameManager : MonoBehaviour
     //Pause whole game
     void PauseGame ()
     {
+        
+         
         if(gameIsPaused)
         {
             Time.timeScale = 0f;
@@ -76,5 +79,9 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+        
+        Ui.ToggleInGameMenu();        
+        Ui.TogglePausedMenu();
+        
     }
 }
