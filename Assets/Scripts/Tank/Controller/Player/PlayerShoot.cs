@@ -31,14 +31,20 @@ public class PlayerShoot : MonoBehaviour
         if (!isReloading)
         {
 
-            GameObject ammo = Instantiate(projectile, m_tankController.GunController.bulletSpawn.transform.position, m_tankController.GunController.bulletSpawn.transform.rotation) as  GameObject;
-            Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
-            ammoProjectile.BulletStats.velocity = m_tankController.StatsController.bulletVelocity;
-            ammoProjectile.parentUp = m_tankController.GunController.bulletSpawn.transform.up;
-            ammoProjectile.senderTag = gameObject.tag;
-            m_tankController.TankAnimationController.FireProjectile();
-            isReloading = true;
-            StartCoroutine(Reload());
+            if (Time.timeScale > 0)
+            {
+                
+                GameObject ammo = Instantiate(projectile, m_tankController.GunController.bulletSpawn.transform.position, m_tankController.GunController.bulletSpawn.transform.rotation) as  GameObject;
+                Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
+                ammoProjectile.BulletStats.velocity = m_tankController.StatsController.bulletVelocity;
+                ammoProjectile.parentUp = m_tankController.GunController.bulletSpawn.transform.up;
+                ammoProjectile.senderTag = gameObject.tag;
+                m_tankController.TankAnimationController.FireProjectile();
+                isReloading = true;
+                StartCoroutine(Reload());
+            }
+            
+
         }
 
     }

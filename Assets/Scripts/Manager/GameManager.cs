@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public static bool gameIsPaused;
+    public static bool shopIsOpen;
     
     public PlayerManager Player { get; private set; }
     public CameraManager Camera { get; private set; }
@@ -63,25 +64,70 @@ public class GameManager : MonoBehaviour
             
         }
         
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            shopIsOpen = !shopIsOpen;
+            OpenShop();
+            
+        }
+        
+        
         
     }
     
     //Pause whole game
     void PauseGame ()
     {
-        
-         
+
         if(gameIsPaused)
         {
-            Time.timeScale = 0f;
+
+            Ui.ShowPausedMenu();
+            Ui.HideShopMenu();
+            Time.timeScale = 0;
+            shopIsOpen = false;
+            gameIsPaused = true;
+
         }
         else 
         {
+            
+            
+            Ui.HidePausedMenu();
+            Ui.HideShopMenu();
             Time.timeScale = 1;
+            shopIsOpen = false;
+            gameIsPaused = false;
         }
         
-        Ui.ToggleInGameMenu();        
-        Ui.TogglePausedMenu();
-        
     }
+    
+    void OpenShop()
+    {
+        
+         
+        if(shopIsOpen)
+        {
+
+            
+            Ui.HidePausedMenu();
+            Ui.ShowShopMenu();
+            Time.timeScale = 0;
+            shopIsOpen = true;
+            gameIsPaused = false;
+         
+        }
+        else 
+        {
+            
+            Ui.HideShopMenu();
+            Ui.HidePausedMenu();
+            Time.timeScale = 1;
+            shopIsOpen = false;
+            gameIsPaused = false;
+        }
+        
+    
+    }
+    
 }

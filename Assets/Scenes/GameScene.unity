@@ -600,11 +600,17 @@ MonoBehaviour:
   TowerData: {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
   GunData: {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
   tracksSpeed: 0
+  coeffTracksSpeedUpgrade: 0.1
   tracksRotationSpeed: 627
+  coeffRotationSpeedUpgrade: 0.1
   health: 4125
+  coeffHealthUpgrade: 0.1
   towerRotationSpeed: 45.9
+  coeffTowerRotationSpeedUpgrade: 0.1
   bulletVelocity: 100
+  coeffBulletVelocityUpgrade: 0.1
   reloadTimeSpeed: 0
+  coeffReloadTimeSpeedUpgrade: 0.1
   player: {fileID: 0}
 --- !u!114 &755335487
 MonoBehaviour:
@@ -892,9 +898,8 @@ MonoBehaviour:
   pausedParent: {fileID: 84640457}
   shopParent: {fileID: 826207190}
   shopWrapperParent: {fileID: 530209878}
-  slideSpeed: 350
+  slideSpeed: 530
   shopItemParentRow: {fileID: 1234971161}
-  m_shopItemParentRowRectTransform: {fileID: 0}
   shopItemParent: {fileID: 1054563788}
   shopItemTitle: {fileID: 142246473}
   shopItemLevel: {fileID: 2001911416}
@@ -933,6 +938,36 @@ MonoBehaviour:
     shopItemTitleGameObject: {fileID: 0}
     shopItemUpgradeGameObject: {fileID: 0}
     shopItemParentGameObject: {fileID: 0}
+  - identifier: 3
+    name: TOWER
+    imageSprite: {fileID: 21300000, guid: 78696e24cbcb7d0468b6482fb15339e5, type: 3}
+    imageColor: {r: 1, g: 1, b: 1, a: 1}
+    shopItemCostUI: {fileID: 0}
+    shopItemLevelUI: {fileID: 0}
+    shopItemTitleUI: {fileID: 0}
+    shopItemUpgradeUI: {fileID: 0}
+    shopItemImageUI: {fileID: 0}
+    shopItemCostGameObject: {fileID: 0}
+    shopItemLevelGameObject: {fileID: 0}
+    shopItemImageGameObject: {fileID: 0}
+    shopItemTitleGameObject: {fileID: 0}
+    shopItemUpgradeGameObject: {fileID: 0}
+    shopItemParentGameObject: {fileID: 0}
+  - identifier: 4
+    name: GUN
+    imageSprite: {fileID: 21300000, guid: 64b0356f87144f346aee6f16541b3baf, type: 3}
+    imageColor: {r: 1, g: 1, b: 1, a: 1}
+    shopItemCostUI: {fileID: 0}
+    shopItemLevelUI: {fileID: 0}
+    shopItemTitleUI: {fileID: 0}
+    shopItemUpgradeUI: {fileID: 0}
+    shopItemImageUI: {fileID: 0}
+    shopItemCostGameObject: {fileID: 0}
+    shopItemLevelGameObject: {fileID: 0}
+    shopItemImageGameObject: {fileID: 0}
+    shopItemTitleGameObject: {fileID: 0}
+    shopItemUpgradeGameObject: {fileID: 0}
+    shopItemParentGameObject: {fileID: 0}
 --- !u!114 &755335494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,7 +981,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   golds: 0
-  test: {fileID: 0}
   listOfShopItems:
   - identifier: 1
     itemBaseCost: 25
@@ -960,6 +994,18 @@ MonoBehaviour:
     itemCostMultiplyer: 1.38
     itemLvl: 0
     objectScript: {fileID: 11500000, guid: 0e17bf454350bb8469e705e70080c416, type: 3}
+  - identifier: 3
+    itemBaseCost: 15
+    itemActualCost: 0
+    itemCostMultiplyer: 1.63
+    itemLvl: 0
+    objectScript: {fileID: 11500000, guid: edd86454cfcf6da4aadbc8d4f0191127, type: 3}
+  - identifier: 4
+    itemBaseCost: 40
+    itemActualCost: 0
+    itemCostMultiplyer: 1.56
+    itemLvl: 0
+    objectScript: {fileID: 11500000, guid: da6a7c96942363c48a07718389827f98, type: 3}
 --- !u!1 &768820295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,7 +1221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &826207191
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1471,7 +1517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &970533370
 RectTransform:
   m_ObjectHideFlags: 0
