@@ -721,7 +721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8800c0b521647f4a25d3529c87d317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityContainer: {fileID: 907469153}
+  entityContainer: {fileID: 1532648736}
   entityList: []
 --- !u!114 &755335490
 MonoBehaviour:
@@ -891,15 +891,17 @@ MonoBehaviour:
   inGameParent: {fileID: 970533369}
   pausedParent: {fileID: 84640457}
   shopParent: {fileID: 826207190}
-  itemRotationSpeed: 45
   shopWrapperParent: {fileID: 530209878}
+  slideSpeed: 350
   shopItemParentRow: {fileID: 1234971161}
+  m_shopItemParentRowRectTransform: {fileID: 0}
   shopItemParent: {fileID: 1054563788}
   shopItemTitle: {fileID: 142246473}
   shopItemLevel: {fileID: 2001911416}
   shopItemCost: {fileID: 2054532660}
   shopItemUpgrade: {fileID: 1948518162}
   shopItemImage: {fileID: 1046767192}
+  itemRotationSpeed: 45
   listOfShopItemUI:
   - identifier: 1
     name: TRACKS
@@ -944,17 +946,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   golds: 0
+  test: {fileID: 0}
   listOfShopItems:
   - identifier: 1
     itemBaseCost: 25
     itemActualCost: 0
     itemCostMultiplyer: 1.57
     itemLvl: 0
+    objectScript: {fileID: 11500000, guid: 1ad8cd55c84eba24ba70a615d8b95cb3, type: 3}
   - identifier: 2
     itemBaseCost: 35
     itemActualCost: 0
     itemCostMultiplyer: 1.38
     itemLvl: 0
+    objectScript: {fileID: 11500000, guid: 0e17bf454350bb8469e705e70080c416, type: 3}
 --- !u!1 &768820295
 GameObject:
   m_ObjectHideFlags: 0

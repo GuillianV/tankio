@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 
 [CustomEditor(typeof(ShopManager))]
@@ -35,7 +36,8 @@ public class ShopItem
     public float itemCostMultiplyer;
     [HideInInspector]
     public int itemLvl;
-        
+  //  public IUpgradable ItemToUpgrade;
+    public MonoScript objectScript;
 }
 
 
@@ -95,26 +97,57 @@ public class ShopManager : MonoBehaviour
 
     #region Shop
 
+    //Upgrade an item
     public void UpgradeShopItem(int uniqueIdentifier)
     {
 
         ShopItem shopItem = listOfShopItems.FirstOrDefault(I => I.identifier == uniqueIdentifier);
 
         
-            if (golds > shopItem.itemActualCost)
+        var iupgradable = shopItem.objectScript.GetClass().GetInterface("IUpgradable");
+        
+        if (iupgradable != null && iupgradable.FullName == "IUpgradable")
+        {
+
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player== null || shopItem.objectScript == null)
             {
-                shopItem.itemLvl++;
-                golds -= shopItem.itemActualCost;
-                shopItem.itemActualCost = Mathf.RoundToInt(shopItem.itemActualCost * shopItem.itemCostMultiplyer); 
-                m_Game.Ui.SetShopItemCost(shopItem.identifier, shopItem.itemActualCost);
-                m_Game.Ui.SetShopItemLevel(shopItem.identifier, shopItem.itemLvl);
+                return;
+            }
+
+            foreach(IUpgradable component in player.GetComponents<IUpgradable>() )
+            {
+                if (shopItem.objectScript.GetClass() == component.GetType())
+                {
+                   
+                    if (golds > shopItem.itemActualCost)
+                    {
+                        component.Upgrade();
+                        shopItem.itemLvl++;
+                        golds -= shopItem.itemActualCost;
+                        shopItem.itemActualCost = Mathf.RoundToInt(shopItem.itemActualCost * shopItem.itemCostMultiplyer); 
+                        m_Game.Ui.SetShopItemCost(shopItem.identifier, shopItem.itemActualCost);
+                        m_Game.Ui.SetShopItemLevel(shopItem.identifier, shopItem.itemLvl);
             
+                    }
+                    else
+                    {
+                        Debug.LogWarning("lack gold");
+                    }
+                    
+                    
+                }
+                
             }
-            else
-            {
-                Debug.LogWarning("lack gold");
-            }
-    
+            
+        }
+        else
+        {
+            Debug.LogWarning(shopItem.objectScript.ToString()+ "is not IUpgradable");
+        }
+        
+          
         
        
     }

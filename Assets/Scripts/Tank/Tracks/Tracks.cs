@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tracks : MonoBehaviour
+public class Tracks : MonoBehaviour , IUpgradable
 {
 
     public TracksData Data { get; private set; }
@@ -13,6 +13,11 @@ public class Tracks : MonoBehaviour
     {
         Data = _data;
 
+    }
+
+    void IUpgradable.Upgrade()
+    {
+        Debug.Log("Tracks Upgraded");
     }
     
 }
