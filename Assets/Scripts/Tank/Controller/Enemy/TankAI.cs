@@ -11,7 +11,8 @@ public class TankAI : MonoBehaviour
     private AIDestinationSetter m_aiDestinationSetter;
     private TankController m_tankController;
     private bool isReloading;
-
+    public event EventHandler<ProjectileEvent> BulletDestroyed;
+    public event EventHandler<ProjectileEvent> BulletCreated;
     
     [Range(0.1f,20f)]
     public float repathRate = 1;
@@ -46,6 +47,32 @@ public class TankAI : MonoBehaviour
         m_aiPath.repathRate = repathRate;
     }
     
+        
+    public void OnBulletDestroyed(object sender, EventArgs args)
+    {
+    
+        BulletDestroyed bulletDestroyed = sender as BulletDestroyed;
+        BulletDestroyedHandler(bulletDestroyed.gameObject,bulletDestroyed.tag);
+    }
+    
+    public void OnBulletCreated(object sender, EventArgs args)
+    {
+        BulletCreated bulletCreated = sender as BulletCreated;
+        BulletCreatedHandler(bulletCreated.gameObject,bulletCreated.tag);
+    }
+    
+    public void BulletDestroyedHandler(GameObject bullet, string tag)
+    {
+        BulletDestroyed?.Invoke(this,new ProjectileEvent(bullet,tag));
+    }
+    
+    public void BulletCreatedHandler(GameObject bullet, string tag)
+    {
+        BulletCreated?.Invoke(this,new ProjectileEvent(bullet,tag));
+    }
+
+    
+    
     private void FixedUpdate()
     {
         UpdateAstar();
@@ -75,6 +102,10 @@ public class TankAI : MonoBehaviour
                     
                     
                         GameObject ammo = Instantiate(bullet, spawnBullet.transform.position, spawnBullet.transform.rotation) as  GameObject;
+                        BulletDestroyed bulletDestroyed = ammo.GetComponent<BulletDestroyed>();
+                        BulletCreated bulletCreated = ammo.GetComponent<BulletCreated>();
+                        bulletDestroyed.Destroyed += OnBulletDestroyed;
+                        bulletCreated.Created += OnBulletCreated; 
                         m_tankController.TankAnimationController.FireProjectile();
                         Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
                         ammoProjectile.BulletStats.velocity = m_tankController.StatsController.bulletVelocity;

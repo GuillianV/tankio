@@ -5,7 +5,7 @@ using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
 
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(PlayerManager))]
 class PlayerButtons : Editor
 {
@@ -28,7 +28,7 @@ class PlayerButtons : Editor
         }
     }
 }
-
+#endif
 
 public class PlayerManager : MonoBehaviour
 {
@@ -62,6 +62,8 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public GameObject player;
 
     private GameManager m_Game;
+    public event EventHandler<TankEvent> OnPlayerDestroyed;
+    public event EventHandler<TankEvent> OnPlayerCreated;
 
     private void Awake()
     {
@@ -103,6 +105,34 @@ public class PlayerManager : MonoBehaviour
         player.SetActive(false);
     }
 
+    
+    public void PlayerDestroy(object sender, EventArgs args)
+    {
+        TankDestroyed tankDestroyed = sender as TankDestroyed;
+        TankController tankController = tankDestroyed.GetComponent<TankController>();
+        OnTankDestroyed(tankController);
+        m_Game.Ui.ShowDeadMenu();
+    }
+    
+    public void PlayerCreated(object sender, EventArgs args)
+    {
+        TankCreate tankCreate = sender as TankCreate;
+        TankController tankController = tankCreate.GetComponent<TankController>();
+        OnTankCreated(tankController);
+    }
+    
+    public void OnTankDestroyed(TankController tankController)
+    {
+        OnPlayerDestroyed?.Invoke(this,new TankEvent(tankController));
+    }
+    
+    public void OnTankCreated(TankController tankController)
+    {
+        OnPlayerCreated?.Invoke(this,new TankEvent(tankController));
+    }
+
+    
+    
     //Instancie le joueur
     public void InsatanciatePlayer()
     {
@@ -110,9 +140,18 @@ public class PlayerManager : MonoBehaviour
             new Vector3(parentContainer.transform.position.x, parentContainer.transform.position.y, 0),
             new Quaternion(0, 0, 0, 0), parentContainer) as GameObject;
         //Création du player
+        TankDestroyed tankDestroyed = player.GetComponent<TankDestroyed>();
+        TankCreate tankCreate = player.GetComponent<TankCreate>();
+
+        tankDestroyed.Destroyed += PlayerDestroy;
+        tankCreate.Created += PlayerCreated;   
+        m_Game.Projectile.LoadPlayerShooter();
         ResetStats();
     }
 
+    
+    
+    
     //Reset all bonus stats and upgrade of tanks
     public void ResetStats()
     {
@@ -255,9 +294,10 @@ public class PlayerManager : MonoBehaviour
     {
         DestroyPlayer();
         CreatePlayer();
-        SetCameraFollowPlayer();
-        SetUiLifeOfPlayer();
         m_Game.Shop.ResetShopManager();
         m_Game.Ui.ResetShopUIManager();
+        SetCameraFollowPlayer();
+        SetUiLifeOfPlayer();
+        m_Game.Ui.HideDeadMenu();
     }
 }

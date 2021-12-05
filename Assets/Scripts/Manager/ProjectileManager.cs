@@ -9,25 +9,79 @@ public class ProjectileManager : MonoBehaviour
     public GameObject entityContainer;
 
     public List<GameObject> entityList = new List<GameObject>();
+
+    private GameManager m_Game;
+    private bool isRestarting = false;
+
+    private void Awake()
+    {
+        m_Game = GameManager.Instance;
+      
+    }
+
     private void Start()
     {
-        foreach (Transform child in entityContainer.transform)
-        {
-            TankAI tankComponent = child.gameObject.GetComponent<TankAI>();
-            if (tankComponent!=null)
-            {
-             
-            }
-        }
+        // foreach (Transform child in entityContainer.transform)
+        // {
+        //     TankAI tankComponent = child.gameObject.GetComponent<TankAI>();
+        //     if (tankComponent!=null)
+        //     {
+        //      
+        //     }
+        // }
+      
     }
 
-    public void BulletShootedHandler(object _projectile,ProjectileEvent _projectileEvent)
+    public void LoadPlayerShooter()
+    {
+        PlayerShoot playerShoot = m_Game.Player.player.GetComponent<PlayerShoot>();
+        playerShoot.BulletCreated += BulletCreatedHandler;
+        playerShoot.BulletDestroyed += BulletDestroyedHandler;
+    }
+
+    public void LoadEnemiesShooter(GameObject gameObject)
+    {
+     
+            TankAI enemyShoot = gameObject.GetComponent<TankAI>();
+            enemyShoot.BulletCreated += BulletCreatedHandler;
+            enemyShoot.BulletDestroyed += BulletDestroyedHandler;
+     
+    }
+
+    
+    public void BulletCreatedHandler(object _projectile,ProjectileEvent _projectileEvent)
+    {
+        if(!isRestarting)
+            entityList.Add(_projectileEvent.Projectile);
+    }
+    
+    public void BulletDestroyedHandler(object _projectile,ProjectileEvent _projectileEvent)
+    {
+        if (!isRestarting)
+            entityList.Remove(_projectileEvent.Projectile);
+
+        
+       
+    }
+
+    public void ResetProjectileManager()
     {
         
-        entityList.Add(_projectileEvent.Projectile);
+        isRestarting = true;
+        entityList.ForEach(P =>
+        {
+            if (P != null)
+            { 
+               
+                Destroy(P);
+              
+                
+            }
+            
+           
+        });
+        isRestarting = false;
     }
-
-  
     
     
 

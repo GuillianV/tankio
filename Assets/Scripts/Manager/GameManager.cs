@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public PlayerManager Player { get; private set; }
     public CameraManager Camera { get; private set; }
     public EnemyManager Enemys { get; private set; }
-    
+    public ProjectileManager Projectile { get; private set; }
     public WaveManager Waves { get; private set; }
     public MapGeneratorManager Map { get; private set; }
     
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
         Player = GetComponent<PlayerManager>();
         Camera = GetComponent<CameraManager>();
         Enemys = GetComponent<EnemyManager>();
+        Projectile = GetComponent<ProjectileManager>();
         Waves = GetComponent<WaveManager>();
         Map = GetComponent<MapGeneratorManager>();
         Ui = GetComponent<UIManager>();
@@ -128,6 +129,13 @@ public class GameManager : MonoBehaviour
         }
         
     
+    }
+
+    public void RestartGame()
+    {
+        Projectile.ResetProjectileManager();
+        Waves.ResetWaveManager();
+        Player.ResetPlayerManager();
     }
     
 }

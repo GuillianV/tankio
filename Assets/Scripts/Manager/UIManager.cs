@@ -476,6 +476,8 @@ public class UIManager : MonoBehaviour
             SetShopItemCost(shopItem.identifier, shopItem.itemActualCost);
             SetShopItemLevel(shopItem.identifier, shopItem.itemLvl);
         });
+        
+        
     }
 
     #endregion
@@ -506,6 +508,8 @@ public class UIManager : MonoBehaviour
         if (deadParent != null)
         {
             deadParent.SetActive(false);
+            deadTimeLerp = 0;
+            isDead = false;
         }
         else
         {

@@ -5,7 +5,7 @@ using Pathfinding;
 using UnityEditor;
 using UnityEngine;
 
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(WaveManager))]
 class SpawnWave : Editor {
     public override void OnInspectorGUI()
@@ -43,7 +43,7 @@ class SpawnWave : Editor {
             
     }
 }
-
+#endif
 
 [RequireComponent(typeof(EnemyManager))]
 public class WaveManager : MonoBehaviour

@@ -22,7 +22,7 @@ public class EnemyManager : MonoBehaviour
   
 
     public List<StatsController> enemiesInGame = new List<StatsController>();
-
+    public List<GameObject> enemiesInGameGO = new List<GameObject>();
     private GameManager m_Game;
 
     public void Awake()
@@ -37,6 +37,7 @@ public class EnemyManager : MonoBehaviour
         TankController tankController = tankDestroyed.GetComponent<TankController>();
         m_Game.Shop.AddGolds(tankController.StatsController.gold);
         enemiesInGame.Remove(tankController.StatsController);
+        enemiesInGameGO.Remove(tankDestroyed.gameObject);
         OnTankDestroyed(tankController);
     }
     
@@ -46,6 +47,9 @@ public class EnemyManager : MonoBehaviour
         TankCreate tankCreate = sender as TankCreate;
         TankController tankController = tankCreate.GetComponent<TankController>();
         enemiesInGame.Add(tankController.StatsController);
+        enemiesInGameGO.Add(tankCreate.gameObject);
+        
+        m_Game.Projectile.LoadEnemiesShooter(tankCreate.gameObject);
         OnTankCreated(tankController);
     }
 
@@ -75,10 +79,15 @@ public class EnemyManager : MonoBehaviour
         TankCreate tankCreate = enemy.GetComponent<TankCreate>();
         
         tankDestroyed.Destroyed += Destroy;
-        tankCreate.Created += Created;       
-        
-        aiDestinationSetter.target = GameObject.FindWithTag("Player").transform;
+        tankCreate.Created += Created;
 
+        if (GameObject.FindWithTag("Player") != null)
+        {
+            aiDestinationSetter.target = GameObject.FindWithTag("Player").transform;
+
+        }
+        
+       
         if (enemyPatern.tracksData != null)
         {
             tankController.TracksController.tracks.LoadData(enemyPatern.tracksData);

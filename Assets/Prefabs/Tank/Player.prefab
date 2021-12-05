@@ -106,6 +106,8 @@ GameObject:
   - component: {fileID: 215403821166403325}
   - component: {fileID: 8815504762056077208}
   - component: {fileID: 3789456768123338414}
+  - component: {fileID: 6491795171630890608}
+  - component: {fileID: 6502682650733985314}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -207,6 +209,7 @@ MonoBehaviour:
   StatsController:
     tracksSpeed: 0
     tracksRotationSpeed: 0
+    maxHealth: 0
     health: 0
     towerRotationSpeed: 0
     bulletVelocity: 0
@@ -387,6 +390,30 @@ MonoBehaviour:
   m_DefaultActionMap: Tank
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &6491795171630890608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6904654475131753461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46241d278fa325a41999baa9b9ed9990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6502682650733985314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6904654475131753461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c5b89bd21185847bc9e9427ad1afc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6904654475405411911
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(ShopManager))]
 class ShopButtons : Editor
 {
@@ -24,7 +24,7 @@ class ShopButtons : Editor
         }
     }
 }
-
+#endif
 [System.Serializable]
 public class ShopItem
 {
@@ -36,7 +36,9 @@ public class ShopItem
     public int itemActualCost;
     [Range(1, 3)] public float itemCostMultiplyer;
     [HideInInspector] public int itemLvl;
-    public MonoScript objectScript;
+
+    public TextAsset objectScript;
+
 }
 
 
@@ -77,6 +79,7 @@ public class ShopManager : MonoBehaviour
     public void ResetGolds()
     {
         golds = 0;
+        m_Game.Ui.SetGoldUI(golds);
     }
 
     #endregion
@@ -93,23 +96,27 @@ public class ShopManager : MonoBehaviour
         //Check if we have more golds than the next upgrade cost of item found
         if (golds > shopItem.itemActualCost)
         {
-            //Search for IUpgradable Interface in script given
-            var iupgradable = shopItem.objectScript.GetClass().GetInterface("IUpgradable");
+            
+            //Look for player gameobject
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player == null || shopItem.objectScript == null)
+            {
+                return;
+            }
+
+            var iupgradable = player.GetComponent(shopItem.objectScript.name).GetType().GetInterface("IUpgradable");
+         
 
             if (iupgradable != null && iupgradable.FullName == "IUpgradable")
             {
-                //Look for player gameobject
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-                if (player == null || shopItem.objectScript == null)
-                {
-                    return;
-                }
+                
 
                 //Bind Item class clicked to player stats
                 foreach (IUpgradable component in player.GetComponents<IUpgradable>())
                 {
-                    if (shopItem.objectScript.GetClass() == component.GetType())
+                  
+                    if (shopItem.objectScript.name == component.GetType().FullName)
                     {
                         component.Upgrade();
                         shopItem.itemLvl++;
