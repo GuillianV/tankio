@@ -38,7 +38,15 @@ public class UIManager : MonoBehaviour
 
     [Header("Paused Menu")] public GameObject pausedParent;
 
-
+    [Header("Dead Menu")]
+    public GameObject deadParent;
+    public Image deadBackgroundImage;
+    public TextMeshProUGUI deadButton;
+    public TextMeshProUGUI deadTitle;
+    private float deadTimeLerp = 0;
+    private float fadeSpeed = 0.25f;
+    private bool isDead = false;
+    
     [Header("Shop Menu")] public GameObject shopParent;
 
 
@@ -84,6 +92,8 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         HideParentPatern();
+
+
     }
 
     void Update()
@@ -93,8 +103,19 @@ public class UIManager : MonoBehaviour
             RotateShopImage();
             Slide();
         }
+
+
+        if (isDead)
+        {
+            SetBackgroundOpacityToBlack();
+            SetDeadItemOpacityToWhite();
+        }
+        
+       
+
     }
 
+  
 
     #region Pause Menu
 
@@ -458,4 +479,110 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
+
+    #region Dead Menu
+
+    public void ToggleDeadMenu()
+    {
+        if (deadParent != null)
+        {
+            if (deadParent.activeSelf)
+            {
+                deadParent.SetActive(false);
+            }
+            else
+            {
+                deadParent.SetActive(true);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("missing dead parent");
+        }
+    }
+    
+    public void HideDeadMenu()
+    {
+        if (deadParent != null)
+        {
+            deadParent.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("missing dead parent");
+        }
+    }
+    
+    public void ShowDeadMenu()
+    {
+        if (deadParent != null)
+        {
+            deadParent.SetActive(true);
+            isDead = true;
+        }
+        else
+        {
+            Debug.LogWarning("missing dead parent");
+        }
+    }
+
+    public void SetBackgroundOpacityToBlack()
+    {
+        deadTimeLerp += fadeSpeed * Time.deltaTime;
+        
+        var color = deadBackgroundImage.color;
+        var newColor = new Color(color.r, color.g, color.b,  Mathf.Lerp(0, 1, deadTimeLerp));
+        deadBackgroundImage.color = newColor;
+       
+        if (deadTimeLerp > 1.0f)
+        {
+            deadTimeLerp = 1;
+        }
+        
+
+    }
+    
+    public void SetBackgroundOpacityToWhite()
+    {
+        deadTimeLerp += fadeSpeed * Time.deltaTime;
+        
+        var color = deadBackgroundImage.color;
+        var newColor = new Color(color.r, color.g, color.b,  Mathf.Lerp(1, 0, deadTimeLerp));
+        deadBackgroundImage.color = newColor;
+       
+        if (deadTimeLerp > 1.0f)
+        {
+            deadTimeLerp = 1;
+        }
+        
+
+    }
+
+    public void SetDeadItemOpacityToWhite()
+    {
+        deadTimeLerp += fadeSpeed * Time.deltaTime;
+
+        
+        
+        var colorButton =deadButton.color;
+        var newColorButton = new Color(colorButton.r, colorButton.g, colorButton.b,  Mathf.Lerp(0, 1, deadTimeLerp));
+        deadButton.color = newColorButton;
+       
+        var colorTitle =deadTitle.color;
+        var newColorTitle = new Color(colorTitle.r, colorTitle.g, colorTitle.b,  Mathf.Lerp(0, 1, deadTimeLerp));
+        deadTitle.color = newColorTitle;
+
+        
+        if (deadTimeLerp > 1.0f)
+        {
+            deadTimeLerp = 1;
+        }
+        
+
+    }
+
+
+
+    #endregion
+    
 }
