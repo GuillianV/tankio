@@ -69,6 +69,8 @@ public class ShopManager : MonoBehaviour
             
     }
 
+    #region Golds
+
     public void AddGolds(int golds)
     {
         this.golds += golds;
@@ -79,19 +81,19 @@ public class ShopManager : MonoBehaviour
     {
         golds = 0;
     }
+
+    #endregion
+    
+
     
     public void ResetShopManager()
     {
         ResetGolds();
+        ResetShopItems();
     }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
 
-    #region TracksShop
+    #region Shop
 
     public void UpgradeShopItem(int uniqueIdentifier)
     {
@@ -115,6 +117,19 @@ public class ShopManager : MonoBehaviour
     
         
        
+    }
+
+
+    public void ResetShopItems()
+    {
+        listOfShopItems.ForEach(shopItem =>
+        {
+            shopItem.itemLvl = 0;
+            shopItem.itemActualCost = shopItem.itemBaseCost; 
+            m_Game.Ui.SetShopItemCost(shopItem.identifier, shopItem.itemActualCost);
+            m_Game.Ui.SetShopItemLevel(shopItem.identifier, shopItem.itemLvl);
+
+        });
     }
 
     #endregion
