@@ -38,6 +38,7 @@ public class EnemyManager : MonoBehaviour
         m_Game.Shop.AddGolds(tankController.StatsController.gold);
         enemiesInGame.Remove(tankController.StatsController);
         enemiesInGameGO.Remove(tankDestroyed.gameObject);
+        m_Game.Audio.Play("tank-death-1");
         OnTankDestroyed(tankController);
     }
     

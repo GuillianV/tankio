@@ -10,7 +10,8 @@ public class CameraManager : MonoBehaviour
 {
 
     public Camera mainCamera;
-    
+    public Camera subCamera;
+
     [HideInInspector]
     public bool followObject;
     
@@ -37,15 +38,23 @@ public class CameraManager : MonoBehaviour
         if (followObject && objectToFollow != null)
         {
 
-            LerpCameraTo(objectToFollow.transform.position, speed);
-        }            
+            LerpCameraTo(objectToFollow.transform.position, speed, mainCamera);
+        }      
+        
+        if (followObject && objectToFollow != null && subCamera != null)
+        {
+
+            LerpCameraTo(objectToFollow.transform.position, speed,subCamera);
+        } 
+        
+        
 
     }
 
 
-    public void LerpCameraTo(Vector3 _objectToFollowPos, float _speed)
+    public void LerpCameraTo(Vector3 _objectToFollowPos, float _speed, Camera camera)
     {
-        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position,new Vector3(_objectToFollowPos.x,_objectToFollowPos.y,mainCamera.transform.position.z),_speed*Time.deltaTime);
+        camera.transform.position = Vector3.Lerp(camera.transform.position,new Vector3(_objectToFollowPos.x,_objectToFollowPos.y,camera.transform.position.z),_speed*Time.deltaTime);
     }
     
     

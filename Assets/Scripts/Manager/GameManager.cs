@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public UIManager Ui { get; private set; }
     
     public ShopManager Shop { get; private set; }
+    
+    public AudioManager Audio { get; private set; }
     private void Awake()
     {
         if (Instance == null)
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
         Map = GetComponent<MapGeneratorManager>();
         Ui = GetComponent<UIManager>();
         Shop = GetComponent<ShopManager>();
+        Audio = GetComponent<AudioManager>();
     }
 
     void Start()
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour
         //Permet a la camera de suivre le joueur
         Camera.SetGameObjectToFollow(Player.player);
         
-        
+        Audio.Play("BackgroundMusic");
     }
  
     

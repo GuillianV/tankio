@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = Unity.Mathematics.Random;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -10,13 +11,14 @@ public class PlayerShoot : MonoBehaviour
     public GameObject projectile;
     private bool isReloading = false;
     private bool isFireing = false;
-    
+    private GameManager m_Game;
     public event EventHandler<ProjectileEvent> BulletDestroyed;
     public event EventHandler<ProjectileEvent> BulletCreated;
 
     private void Awake()
     {
         m_tankController = GetComponent<TankController>();
+        m_Game = GameManager.Instance;
     }
 
  
@@ -72,6 +74,10 @@ public class PlayerShoot : MonoBehaviour
                 ammoProjectile.senderTag = gameObject.tag;
                 m_tankController.TankAnimationController.FireProjectile();
                 isReloading = true;
+
+               
+                m_Game.Audio.Play("tank-shoot-"+ UnityEngine.Random.Range(1, 3));
+                
                 StartCoroutine(Reload());
             }
             
