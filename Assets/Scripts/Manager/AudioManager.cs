@@ -25,6 +25,14 @@ public class AudioManager : MonoBehaviour
     public void Play(string name)
     {
        Sound sound =  sounds.FirstOrDefault(sound => sound.name == name);
-       sound.source.Play();
+       if (sound.source != null)
+       {
+           sound.source.Play();
+       }
+       else
+       {
+           Debug.LogWarning("Sound : "+sound.name+" not found");
+       }
+      
     }
 }

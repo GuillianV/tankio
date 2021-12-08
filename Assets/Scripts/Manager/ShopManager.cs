@@ -121,6 +121,7 @@ public class ShopManager : MonoBehaviour
                         component.Upgrade();
                         shopItem.itemLvl++;
                         golds -= shopItem.itemActualCost;
+                        m_Game.Ui.SetGoldUI(golds);
                         shopItem.itemActualCost =
                             Mathf.RoundToInt(shopItem.itemActualCost * shopItem.itemCostMultiplyer);
                         m_Game.Ui.SetShopItemCost(shopItem.identifier, shopItem.itemActualCost);

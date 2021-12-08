@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
 
 
     [Header("Shop Wrapper ")] public GameObject shopWrapperParent;
-    [Range(100, 1000)] public int slideSpeed = 350;
+    [Range(1, 1000)] public int slideSpeed = 350;
     private RectTransform m_wrapperRectTransform;
 
     [Header("Shop Patern Slide")] public GameObject shopItemParentRow;
@@ -79,6 +79,20 @@ public class UIManager : MonoBehaviour
     private Vector3 rotationEuler;
     // Start is called before the first frame update
 
+    
+    public float updateInterval = 0.5F;
+    private double lastInterval;
+    private int frames;
+    private float fps;
+ 
+
+    void OnGUI()
+    {
+        GUILayout.Label("" + fps.ToString("f2"));
+    }
+
+ 
+    
     private void Awake()
     {
         m_Game = GameManager.Instance;
@@ -92,12 +106,23 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         HideParentPatern();
-
+        lastInterval = Time.realtimeSinceStartup;
+        frames = 0;
 
     }
 
     void Update()
     {
+        
+        ++frames;
+        float timeNow = Time.realtimeSinceStartup;
+        if (timeNow > lastInterval + updateInterval)
+        {
+            fps = (float)(frames / (timeNow - lastInterval));
+            frames = 0;
+            lastInterval = timeNow;
+        }
+        
         if (shopParent.activeSelf)
         {
             RotateShopImage();
@@ -192,7 +217,7 @@ public class UIManager : MonoBehaviour
     {
         if (lifeUI != null)
         {
-            lifeUI.text = "LIFE : " + (life / maxLife * 100f).ToString("F2") + "%";
+            lifeUI.text = "LIFE : " + (life / maxLife * 100f).ToString("F0") + "%";
         }
         else
         {
@@ -445,7 +470,7 @@ public class UIManager : MonoBehaviour
         if (m_wrapperRectTransform.localPosition.x > valueToReach && isNexting == true)
         {
             m_wrapperRectTransform.localPosition =
-                new Vector3(m_wrapperRectTransform.localPosition.x - slideSpeed * 0.01f, 0, 0);
+                new Vector3(m_wrapperRectTransform.localPosition.x - slideSpeed * fps * 0.01f, 0, 0);
 
             if (m_wrapperRectTransform.localPosition.x <= valueToReach)
             {
@@ -457,7 +482,7 @@ public class UIManager : MonoBehaviour
         else if (m_wrapperRectTransform.localPosition.x < valueToReach && isPreviousing == true)
         {
             m_wrapperRectTransform.localPosition =
-                new Vector3(m_wrapperRectTransform.localPosition.x + slideSpeed * 0.01f, 0, 0);
+                new Vector3(m_wrapperRectTransform.localPosition.x + slideSpeed * fps  * 0.01f, 0, 0);
 
             if (m_wrapperRectTransform.localPosition.x >= valueToReach)
             {
