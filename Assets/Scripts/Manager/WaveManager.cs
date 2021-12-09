@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Pathfinding;
 using UnityEditor;
 using UnityEngine;
@@ -51,10 +52,15 @@ public class WaveManager : MonoBehaviour
     
 
     [Range(1,300)]
-    public int timeBetweenWaves = 30;
+    public int timeBetweenWaves;
+
+    private int initialTimeBetweenWaves;
     [Range(1,20)]
     public int waveDifficulty = 1;
 
+    private int maxWaveDifficulty;
+    
+    public float timeBeforeNextWave =0;
     public bool toggleSpawn;
     
     private GameManager m_game;
@@ -66,12 +72,11 @@ public class WaveManager : MonoBehaviour
     private void Awake()
     {
         m_game = GameManager.Instance;
+        initialTimeBetweenWaves = timeBetweenWaves;
+        maxWaveDifficulty = m_game.Enemys.enemyList.OrderByDescending(e=>e.difficultyLevel).FirstOrDefault().difficultyLevel;
     }
 
-    private void Start()
-    {
-       // SpawnWave(waveDifficulty);
-    }
+  
 
     private void Update()
     {
@@ -81,8 +86,8 @@ public class WaveManager : MonoBehaviour
             isNextWave = false;
             isSpawned = true;
             SpawnWave(waveDifficulty);
-            StartCoroutine(TimerWave());
-
+            StartCoroutine(TimerWave(timeBetweenWaves));
+            
         }
 
         if (isNextWave)
@@ -90,7 +95,6 @@ public class WaveManager : MonoBehaviour
            
             isNextWave = false;
             isSpawned = true;
-            StopCoroutine(TimerWave());
             SpawnWave(waveDifficulty);
         }
    
@@ -102,12 +106,33 @@ public class WaveManager : MonoBehaviour
 
     }
 
-    IEnumerator TimerWave()
+    IEnumerator TimerWave(float timeStanding)
     {
         
-        yield return new WaitForSeconds(timeBetweenWaves);
-        isSpawned = false;
+        yield return new WaitForSeconds(1);
+      
+        if (timeStanding <= 0)
+        {
+            isSpawned = false;
+        }
+        else
+        {
 
+            if ( m_game.TimeManager.timeScale > 0)
+            {
+                float valueToRemove = timeStanding - m_game.TimeManager.timeScale;
+                
+                
+                StartCoroutine(TimerWave(valueToRemove));
+            }
+            else
+            {
+                StartCoroutine(TimerWave(timeStanding));
+            }
+            
+        }
+
+        timeBeforeNextWave = timeStanding;
     }
 
 
@@ -127,12 +152,13 @@ public class WaveManager : MonoBehaviour
 
     public void ResetWaveManager()
     {
-        StopCoroutine(TimerWave());
+        StopAllCoroutines();
         ClearSpawners();
         ClearEnemies();
         actualWave = 0;
         waveDifficulty = 1;
-        timeBetweenWaves = 30;
+        timeBetweenWaves = initialTimeBetweenWaves;
+        StartCoroutine(TimerWave(timeBetweenWaves));
         m_game.Ui.SetWaveUI(actualWave);
     }
 
@@ -144,13 +170,23 @@ public class WaveManager : MonoBehaviour
         if (toggleSpawn)
             return;
         
-        if (actualWave + 1 % 5 == 0)
+        if ((actualWave + 1) % 5 == 0)
         {
-            waveDifficulty++;
-            timeBetweenWaves--;
+
+            if (waveDifficulty < maxWaveDifficulty)
+            {
+                waveDifficulty++;
+            }
+
+            if (timeBetweenWaves > 15)
+            {
+                timeBetweenWaves--;
+            }
+            
+            
         }
         
-        if (actualWave + 1  % 10 == 0)
+        if ((actualWave + 1)  % 10 == 0)
         {
             m_game.Map.GenerateSpawners(1);
         }
@@ -189,7 +225,7 @@ public class WaveManager : MonoBehaviour
         }
         else
         {
-            m_game.Map.GenerateSpawners(1);
+            m_game.Map.GenerateSpawners(3);
             SpawnWave(waveDifficulty);
             Debug.LogWarning("Aucun Spawner trouvé");
         }

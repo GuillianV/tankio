@@ -530,8 +530,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.05882353}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.05882353}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.11764706}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.05882353}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
@@ -796,6 +796,7 @@ GameObject:
   - component: {fileID: 755335493}
   - component: {fileID: 755335494}
   - component: {fileID: 755335495}
+  - component: {fileID: 755335496}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1128,6 +1129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenWaves: 20
   waveDifficulty: 1
+  timeBeforeNextWave: 0
   toggleSpawn: 0
 --- !u!114 &755335493
 MonoBehaviour:
@@ -1152,7 +1154,7 @@ MonoBehaviour:
   deadTitle: {fileID: 1902268282}
   shopParent: {fileID: 826207190}
   shopWrapperParent: {fileID: 530209878}
-  slideSpeed: 20
+  slideSpeed: 280000
   shopItemParentRow: {fileID: 1234971161}
   shopItemParent: {fileID: 1054563788}
   shopItemTitle: {fileID: 142246473}
@@ -1222,6 +1224,7 @@ MonoBehaviour:
     shopItemTitleGameObject: {fileID: 0}
     shopItemUpgradeGameObject: {fileID: 0}
     shopItemParentGameObject: {fileID: 0}
+  updateInterval: 0.5
 --- !u!114 &755335494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1277,26 +1280,43 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 722c048c2af6e1949bc1bab85b8fa8e5, type: 3}
     volume: 0.4
     pitch: 1
+    objectSource: {fileID: 1124947877}
     loop: 1
     source: {fileID: 0}
   - name: tank-shoot-1
     clip: {fileID: 8300000, guid: eb2043efcd15f8f4fbf3d1a4dd166565, type: 3}
     volume: 0.6
     pitch: 1
+    objectSource: {fileID: 1124947877}
     loop: 0
     source: {fileID: 0}
   - name: tank-shoot-2
     clip: {fileID: 8300000, guid: 8a268ca0b87a4984c9155786df02a605, type: 3}
     volume: 0.6
     pitch: 1
+    objectSource: {fileID: 1124947877}
     loop: 0
     source: {fileID: 0}
   - name: tank-death-1
     clip: {fileID: 8300000, guid: 1a0c07fbbd69ba548b7c694a888b5515, type: 3}
     volume: 0.6
     pitch: 1
+    objectSource: {fileID: 1124947877}
     loop: 0
     source: {fileID: 0}
+--- !u!114 &755335496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755335483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdda46f974da8ce47a877ad1dee2866a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeScale: 0
 --- !u!1 &768820295
 GameObject:
   m_ObjectHideFlags: 0
@@ -3732,7 +3752,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.11764706}
     m_HighlightedColor: {r: 1, g: 0.654902, b: 0.654902, a: 0.39215687}
     m_PressedColor: {r: 1, g: 0.3160377, b: 0.3160377, a: 0.39215687}
     m_SelectedColor: {r: 1, g: 0.6556604, b: 0.6556604, a: 0.19607843}

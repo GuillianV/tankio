@@ -20,11 +20,13 @@ public class CameraManager : MonoBehaviour
     
     [HideInInspector]
     public float speed;
+
+    private GameManager m_Game; 
     
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-       
+        m_Game = GameManager.Instance;
     }
 
     public void SetGameObjectToFollow(GameObject _objectToFollow)
@@ -54,7 +56,7 @@ public class CameraManager : MonoBehaviour
 
     public void LerpCameraTo(Vector3 _objectToFollowPos, float _speed, Camera camera)
     {
-        camera.transform.position = Vector3.Lerp(camera.transform.position,new Vector3(_objectToFollowPos.x,_objectToFollowPos.y,camera.transform.position.z),_speed*Time.deltaTime);
+        camera.transform.position = Vector3.Lerp(camera.transform.position,new Vector3(_objectToFollowPos.x,_objectToFollowPos.y,camera.transform.position.z),_speed*Time.deltaTime * m_Game.TimeManager.timeScale);
     }
     
     

@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Random = Unity.Mathematics.Random;
 
 public class PlayerShoot : MonoBehaviour
@@ -21,7 +23,14 @@ public class PlayerShoot : MonoBehaviour
         m_Game = GameManager.Instance;
     }
 
- 
+
+    public void Update()
+    {
+        if (isFireing)
+        {
+            Fire();
+        }
+    }
 
     IEnumerator Reload()
     {
@@ -54,12 +63,13 @@ public class PlayerShoot : MonoBehaviour
     }
 
     
-    public void OnFire()
+    public void Fire()
     {
+        Debug.Log("fire");
         if (!isReloading)
         {
-
-            if (Time.timeScale > 0)
+    
+            if (m_Game.TimeManager.timeScale > 0)
             {
                 
                 GameObject ammo = Instantiate(projectile, m_tankController.GunController.bulletSpawn.transform.position, m_tankController.GunController.bulletSpawn.transform.rotation) as  GameObject;
@@ -74,15 +84,22 @@ public class PlayerShoot : MonoBehaviour
                 ammoProjectile.senderTag = gameObject.tag;
                 m_tankController.TankAnimationController.FireProjectile();
                 isReloading = true;
-
+    
                
                 m_Game.Audio.Play("tank-shoot-"+ UnityEngine.Random.Range(1, 3));
                 
                 StartCoroutine(Reload());
             }
             
-
+    
         }
+    
+    }
+    
+    public void OnFire(InputValue input)
+    {
+        isFireing = input.isPressed;
+
 
     }
   

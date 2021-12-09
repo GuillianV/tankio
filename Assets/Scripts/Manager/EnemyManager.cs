@@ -30,16 +30,28 @@ public class EnemyManager : MonoBehaviour
         m_Game = GameManager.Instance;
     }
 
-    public void Destroy(object sender, EventArgs args)
+    public void Destroy(object sender, TagEvent args)
     {
+
         Debug.Log("TankDestroyed");
         TankDestroyed tankDestroyed = sender as TankDestroyed;
-        TankController tankController = tankDestroyed.GetComponent<TankController>();
-        m_Game.Shop.AddGolds(tankController.StatsController.gold);
-        enemiesInGame.Remove(tankController.StatsController);
-        enemiesInGameGO.Remove(tankDestroyed.gameObject);
-        m_Game.Audio.Play("tank-death-1");
-        OnTankDestroyed(tankController);
+
+        if (tankDestroyed.gameObject)
+        {
+            TankController tankController = tankDestroyed.GetComponent<TankController>();
+            if (!String.IsNullOrEmpty(args.Tag))
+            {
+                m_Game.Shop.AddGolds(tankController.StatsController.gold);
+                m_Game.Audio.Play("tank-death-1");
+            }
+            enemiesInGame.Remove(tankController.StatsController);
+            enemiesInGameGO.Remove(tankDestroyed.gameObject);
+            OnTankDestroyed(tankController);
+        }
+        
+     
+       
+        
     }
     
     public void Created(object sender, EventArgs args)

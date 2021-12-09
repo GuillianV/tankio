@@ -11,7 +11,7 @@ public class Sound
    public float volume;
    [Range(0,2)]
    public float pitch;
-
+   public GameObject objectSource;
    public bool loop;
    [HideInInspector]
    public AudioSource source;

@@ -94,7 +94,7 @@ public class ShopManager : MonoBehaviour
         ShopItem shopItem = listOfShopItems.FirstOrDefault(I => I.identifier == uniqueIdentifier);
 
         //Check if we have more golds than the next upgrade cost of item found
-        if (golds > shopItem.itemActualCost)
+        if (golds >= shopItem.itemActualCost)
         {
             
             //Look for player gameobject

@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public ShopManager Shop { get; private set; }
     
     public AudioManager Audio { get; private set; }
+    
+    public TimeManager TimeManager { get; private set; }
     private void Awake()
     {
         if (Instance == null)
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
         Ui = GetComponent<UIManager>();
         Shop = GetComponent<ShopManager>();
         Audio = GetComponent<AudioManager>();
+        TimeManager = GetComponent<TimeManager>();
     }
 
     void Start()
@@ -88,7 +91,7 @@ public class GameManager : MonoBehaviour
 
             Ui.ShowPausedMenu();
             Ui.HideShopMenu();
-            Time.timeScale = 0;
+            TimeManager.timeScale = 0;
             shopIsOpen = false;
             gameIsPaused = true;
 
@@ -99,7 +102,7 @@ public class GameManager : MonoBehaviour
             
             Ui.HidePausedMenu();
             Ui.HideShopMenu();
-            Time.timeScale = 1;
+            TimeManager.timeScale = 1;
             shopIsOpen = false;
             gameIsPaused = false;
         }
@@ -116,7 +119,7 @@ public class GameManager : MonoBehaviour
             
             Ui.HidePausedMenu();
             Ui.ShowShopMenu();
-            Time.timeScale = 0;
+            TimeManager.timeScale = 0;
             shopIsOpen = true;
             gameIsPaused = false;
          
@@ -126,7 +129,7 @@ public class GameManager : MonoBehaviour
             
             Ui.HideShopMenu();
             Ui.HidePausedMenu();
-            Time.timeScale = 1;
+            TimeManager.timeScale = 1;
             shopIsOpen = false;
             gameIsPaused = false;
         }

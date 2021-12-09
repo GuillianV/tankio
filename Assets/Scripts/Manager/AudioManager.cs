@@ -14,7 +14,16 @@ public class AudioManager : MonoBehaviour
     {
         sounds.ForEach(sound =>
         {
-           sound.source =  gameObject.AddComponent<AudioSource>();
+
+            if (sound.objectSource)
+            {
+                sound.source =   sound.objectSource.AddComponent<AudioSource>();
+            }
+            else
+            {
+                sound.source =  gameObject.AddComponent<AudioSource>();
+            }
+            
            sound.source.clip = sound.clip;
            sound.source.volume = sound.volume;
            sound.source.pitch = sound.pitch;

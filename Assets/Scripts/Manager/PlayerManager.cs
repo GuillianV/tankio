@@ -106,12 +106,17 @@ public class PlayerManager : MonoBehaviour
     }
 
     
-    public void PlayerDestroy(object sender, EventArgs args)
+    public void PlayerDestroy(object sender, TagEvent args)
     {
+
         TankDestroyed tankDestroyed = sender as TankDestroyed;
-        TankController tankController = tankDestroyed.GetComponent<TankController>();
-        OnTankDestroyed(tankController);
-        m_Game.Ui.ShowDeadMenu();
+        if (tankDestroyed.gameObject)
+        {
+            TankController tankController = tankDestroyed.GetComponent<TankController>();
+            OnTankDestroyed(tankController);
+            m_Game.Ui.ShowDeadMenu();
+        }
+      
     }
     
     public void PlayerCreated(object sender, EventArgs args)

@@ -10,7 +10,9 @@ public class TankAI : MonoBehaviour
     private AIPath m_aiPath;
     private AIDestinationSetter m_aiDestinationSetter;
     private TankController m_tankController;
+    private TankDestroyed m_tankDestroyed;
     private bool isReloading;
+    private GameManager m_Game;
     public event EventHandler<ProjectileEvent> BulletDestroyed;
     public event EventHandler<ProjectileEvent> BulletCreated;
     
@@ -27,9 +29,11 @@ public class TankAI : MonoBehaviour
     
     private void Awake()
     {
+        m_Game = GameManager.Instance;
         m_aiPath = GetComponent<AIPath>();
         m_tankController = GetComponent<TankController>();
         m_aiDestinationSetter = GetComponent<AIDestinationSetter>();
+        m_tankDestroyed = GetComponent<TankDestroyed>();
     }
 
 
@@ -41,9 +45,9 @@ public class TankAI : MonoBehaviour
 
     public void UpdateAstar()
     {
-        m_aiPath.maxSpeed = m_tankController.StatsController.tracksSpeed * Time.deltaTime * velocityRate;
-        m_aiPath.maxAcceleration = m_tankController.StatsController.tracksSpeed * Time.deltaTime * velocityRate;
-        m_aiPath.rotationSpeed = m_tankController.StatsController.tracksRotationSpeed * Time.deltaTime * 100 * velocityRate;
+        m_aiPath.maxSpeed = m_tankController.StatsController.tracksSpeed * Time.deltaTime * m_Game.TimeManager.timeScale * velocityRate;
+        m_aiPath.maxAcceleration = m_tankController.StatsController.tracksSpeed * Time.deltaTime * m_Game.TimeManager.timeScale  * velocityRate;
+        m_aiPath.rotationSpeed = m_tankController.StatsController.tracksRotationSpeed * Time.deltaTime * m_Game.TimeManager.timeScale  * 100 * velocityRate;
         m_aiPath.repathRate = repathRate;
     }
     
@@ -88,7 +92,7 @@ public class TankAI : MonoBehaviour
             Vector3 vectorToTarget = new Vector3(m_aiDestinationSetter.target.position.x,m_aiDestinationSetter.target.position.y,towerTransform.transform.position.z)  - towerTransform.transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle -90 , Vector3.forward);
-            towerTransform.transform.rotation = Quaternion.Slerp(towerTransform.transform.rotation, q, Time.deltaTime * m_tankController.StatsController.towerRotationSpeed);
+            towerTransform.transform.rotation = Quaternion.Slerp(towerTransform.transform.rotation, q, Time.deltaTime  * m_Game.TimeManager.timeScale  * m_tankController.StatsController.towerRotationSpeed);
 
         
         
@@ -135,6 +139,11 @@ public class TankAI : MonoBehaviour
         if (bullet != null)
         {
             m_tankController.StatsController.health -= bullet.BulletStats.damages;
+
+            if (m_tankController.StatsController.health <= 0)
+            {
+                m_tankDestroyed.OnDestroyed(bullet.senderTag);
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody2D m_playerRigidbody;
     private TankController m_tankController;
+    private GameManager m_Game;
     
     [Range(0,5)]
     public float power = 1;
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Awake()
     {
+        m_Game = GameManager.Instance;
         m_playerRigidbody = GetComponent<Rigidbody2D>();
         m_tankController = GetComponent<TankController>();
     }
@@ -34,17 +36,19 @@ public class PlayerMovement : MonoBehaviour
                    m_tankController.StatsController.tracksSpeed * 
                    Time.deltaTime*
                    power * 
+                   m_Game.TimeManager.timeScale  * 
                    transform.up.x; 
         
         m_yForce = movement.y *
-                   m_tankController.StatsController.tracksSpeed * Time.deltaTime * 
+                   m_tankController.StatsController.tracksSpeed
+                   * Time.deltaTime *  m_Game.TimeManager.timeScale*
                    power * 
                    transform.up.y;
         
         transform.Rotate(0,0, 
             -movement.x *
             m_tankController.StatsController.tracksRotationSpeed * 
-            Time.deltaTime * 
+            Time.deltaTime *  m_Game.TimeManager.timeScale *
             power );
             
         

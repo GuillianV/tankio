@@ -6,15 +6,17 @@ using UnityEngine;
 public class TankDestroyed : MonoBehaviour
 {
 
-    public event EventHandler<EventArgs> Destroyed;
+    public event EventHandler<TagEvent> Destroyed;
 
     private void OnDestroy()
     {
-        OnDestroyed();
+        OnDestroyed("");
     }
 
-    private void OnDestroyed()
+    public void OnDestroyed(string tag)
     {
-        Destroyed?.Invoke(this, EventArgs.Empty);
+        Destroyed?.Invoke(this, new TagEvent(tag));
     }
+    
+    
 }

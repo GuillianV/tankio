@@ -14,10 +14,10 @@ public class PlayerAimer : MonoBehaviour
     public Transform towerTransform;
 
     private Vector3 mousePosition;
-
+    private GameManager m_Game;
     private void Awake()
     {
-
+        m_Game = GameManager.Instance;
         m_tankController = GetComponent<TankController>();
     }
 
@@ -30,7 +30,7 @@ public class PlayerAimer : MonoBehaviour
             Vector3 vectorToTarget = new Vector3(pz.x,pz.y,towerTransform.position.z)  - towerTransform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle -90, Vector3.forward);
-            towerTransform.rotation = Quaternion.Slerp(towerTransform.rotation, q, Time.deltaTime * m_tankController.StatsController.towerRotationSpeed);
+            towerTransform.rotation = Quaternion.Slerp(towerTransform.rotation, q, Time.deltaTime  * m_Game.TimeManager.timeScale* m_tankController.StatsController.towerRotationSpeed);
           
     }
 

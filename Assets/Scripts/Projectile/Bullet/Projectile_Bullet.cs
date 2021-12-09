@@ -25,7 +25,7 @@ public class Projectile_Bullet : MonoBehaviour
     private Animator m_projectileAnimator;
     private CircleCollider2D m_projectileCircleCollider2D;
     private SpriteRenderer m_spriteRenderer;
-    
+    private GameManager m_Game;
     public BulletStats BulletStats;
 
     public BulletData bulletData;
@@ -40,6 +40,7 @@ public class Projectile_Bullet : MonoBehaviour
     private Vector2 direction;
     private void Awake()
     {
+        m_Game = GameManager.Instance;
         this.m_projectileRigidbody2D = GetComponent<Rigidbody2D>();
         this.m_projectileAnimator = GetComponent<Animator>();
         this.m_projectileCircleCollider2D = GetComponent<CircleCollider2D>();
@@ -81,8 +82,8 @@ public class Projectile_Bullet : MonoBehaviour
     {
         if (this.m_projectileRigidbody2D != null)
         {
-            this.m_projectileRigidbody2D.velocity = new Vector2(this.direction.x * Time.deltaTime * this.BulletStats.velocity * 100,
-                this.direction.y * Time.deltaTime * this.BulletStats.velocity * 100);
+            this.m_projectileRigidbody2D.velocity = new Vector2(this.direction.x * Time.deltaTime * m_Game.TimeManager.timeScale * this.BulletStats.velocity * 100,
+                this.direction.y * Time.deltaTime  * m_Game.TimeManager.timeScale * this.BulletStats.velocity * 100);
 
         }
        
