@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 92746348492913147}
   - component: {fileID: 5775621088903631846}
   - component: {fileID: 6491005568243321693}
+  - component: {fileID: 2993799763479950762}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -400,6 +401,7 @@ MonoBehaviour:
   StatsController:
     tracksSpeed: 0
     tracksRotationSpeed: 0
+    maxHealth: 0
     health: 0
     towerRotationSpeed: 0
     bulletVelocity: 0
@@ -538,6 +540,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46241d278fa325a41999baa9b9ed9990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2993799763479950762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375800877936983457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04441a9eb2e004c46abc3208ff42e8a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrowPrefab: {fileID: 9030039417795229542, guid: aefc1496620b0264088372059e50d529, type: 3}
 --- !u!1 &6375800878161469553
 GameObject:
   m_ObjectHideFlags: 0

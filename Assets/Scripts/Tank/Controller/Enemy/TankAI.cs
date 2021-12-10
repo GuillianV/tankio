@@ -34,6 +34,7 @@ public class TankAI : MonoBehaviour
         m_tankController = GetComponent<TankController>();
         m_aiDestinationSetter = GetComponent<AIDestinationSetter>();
         m_tankDestroyed = GetComponent<TankDestroyed>();
+      
     }
 
 
