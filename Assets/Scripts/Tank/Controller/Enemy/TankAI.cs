@@ -100,7 +100,7 @@ public class TankAI : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast( new Vector2(spawnBullet.position.x,spawnBullet.position.y), new Vector2(spawnBullet.transform.up.x,spawnBullet.transform.up.y));
             if (hit != false)
             {
-                if (hit.collider.gameObject.tag == "Player")
+                if (hit.collider.gameObject.CompareTag("Player"))
                 {
                     if (!isReloading)
                     {

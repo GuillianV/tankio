@@ -8,6 +8,7 @@ TagManager:
   - Spawners
   - UIEnemyArrow
   - UIEnemyArrowParent
+  - Canva
   layers:
   - Default
   - TransparentFX
