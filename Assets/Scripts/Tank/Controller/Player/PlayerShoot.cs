@@ -28,7 +28,7 @@ public class PlayerShoot : MonoBehaviour
     {
         if (isFireing)
         {
-            Fire();
+            // Fire();
         }
     }
 
@@ -65,7 +65,6 @@ public class PlayerShoot : MonoBehaviour
     
     public void Fire()
     {
-        Debug.Log("fire");
         if (!isReloading)
         {
     

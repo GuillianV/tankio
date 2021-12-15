@@ -11,7 +11,8 @@
                     "id": "084daaa5-2c35-4250-aeb2-d83301ee7b33",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Fire",
@@ -19,7 +20,8 @@
                     "id": "3f193075-7b2c-45c7-b6d1-7fbaf70f3ec9",
                     "expectedControlType": "Touch",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "MouseMove",
@@ -27,7 +29,8 @@
                     "id": "f179d1e8-3822-44b8-9ed3-3bcac4ba6852",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -98,6 +101,17 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "",
+                    "id": "4958c32e-38de-4c21-9936-c46b6a7d4c75",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MobileScheme",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "2D Vector",
                     "id": "5b2b379e-ab24-4cb3-8bf4-95e90d3d974a",
                     "path": "2DVector(mode=2)",
@@ -134,6 +148,17 @@
                 },
                 {
                     "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "MobileScheme",
+            "bindingGroup": "MobileScheme",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
                     "isOptional": false,
                     "isOR": false
                 }
