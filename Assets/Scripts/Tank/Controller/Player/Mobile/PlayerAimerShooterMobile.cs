@@ -3,23 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using Random = Unity.Mathematics.Random;
 
-
-#if (!UNITY_ANDROID || UNITY_EDITOR)
-public class PlayerShoot : MonoBehaviour
+#if (UNITY_ANDROID)
+public class PlayerAimerShooterMobile : MonoBehaviour
 {
+    
 
     private TankController m_tankController;
+    public Transform towerTransform;
     public GameObject projectile;
+    
+    
+    private GameManager m_Game;
+    private Vector2 vectorToTarget = new Vector2(0,0);
     private bool isReloading = false;
     private bool isFireing = false;
-    private GameManager m_Game;
     public InputTank inputTank;
     public event EventHandler<ProjectileEvent> BulletDestroyed;
     public event EventHandler<ProjectileEvent> BulletCreated;
 
+  
     private void Awake()
     {
         inputTank = new InputTank();
@@ -30,13 +33,25 @@ public class PlayerShoot : MonoBehaviour
     }
 
 
+
+    void FixedUpdate()
+    {
+
+            
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+        Quaternion q = Quaternion.AngleAxis(angle -90, Vector3.forward);
+        towerTransform.rotation = Quaternion.Slerp(towerTransform.rotation, q, Time.deltaTime  * m_Game.TimeManager.timeScale* m_tankController.StatsController.towerRotationSpeed);
+          
+    }
+
+
     public void Update()
     {
         if (isFireing)
         {
              Fire();
         }
-    } 
+    }
 
     protected void Cancelled()
     {
@@ -106,26 +121,27 @@ public class PlayerShoot : MonoBehaviour
         }
     
     }
-    
-    public void OnFire(InputValue input)
-    {
-        isFireing = input.isPressed;
 
-
-    }
     
     public void OnFireGameStick(InputValue input)
     {
         
          
         Vector2 inputVec = input.Get<Vector2>();
+        if (inputVec.magnitude > 0)
+        {
+
+            vectorToTarget = inputVec;
+        }
+        
         if (inputVec.magnitude > 1)
         {
 
             isFireing = true;
         }
     }
+
+
     
-  
 }
 #endif

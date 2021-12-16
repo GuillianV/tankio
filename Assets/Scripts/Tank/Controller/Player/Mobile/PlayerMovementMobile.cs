@@ -1,15 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-#if (!UNITY_ANDROID || UNITY_EDITOR)
-public class PlayerMovement : MonoBehaviour
+#if (UNITY_ANDROID)
+public class PlayerMovementMobile : MonoBehaviour
 {
-    
-   
+     
 
     
     [HideInInspector]
@@ -23,9 +20,9 @@ public class PlayerMovement : MonoBehaviour
     public InputTank inputTank;
     
     private Vector2 movement = new Vector2();
+    private Vector2 rotation = new Vector2();
     private float m_xForce;
     private float m_yForce;
-
 
     public void Awake()
     {
@@ -38,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+
     protected void Cancelled()
     {
         movement = Vector2.zero;
@@ -45,26 +43,25 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        
+        float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        Quaternion q = Quaternion.AngleAxis(angle -90, Vector3.forward);
+        this.transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime  * m_Game.TimeManager.timeScale* m_tankController.StatsController.towerRotationSpeed);
 
-            m_xForce = movement.y * 
-                       m_tankController.StatsController.tracksSpeed * 
-                       Time.deltaTime*
-                       power * 
-                       m_Game.TimeManager.timeScale  * 
-                       transform.up.x; 
-                
-            m_yForce = movement.y *
-                       m_tankController.StatsController.tracksSpeed
-                       * Time.deltaTime *  m_Game.TimeManager.timeScale*
-                       power * 
-                       transform.up.y;
-                
-            transform.Rotate(0,0, 
-                -movement.x *
-                m_tankController.StatsController.tracksRotationSpeed * 
-                Time.deltaTime *  m_Game.TimeManager.timeScale *
-                power );
-       
+        
+        m_xForce = m_tankController.StatsController.tracksSpeed * 
+                   Time.deltaTime*
+                   power * 
+                   m_Game.TimeManager.timeScale  * 
+                   transform.up.x
+                   * movement.magnitude; 
+        
+        m_yForce = m_tankController.StatsController.tracksSpeed
+                   * Time.deltaTime *  m_Game.TimeManager.timeScale*
+                   power * 
+                   transform.up.y
+                   * movement.magnitude; 
+        
    
         m_playerRigidbody.velocity = new Vector2(m_xForce,m_yForce);
     }
@@ -79,12 +76,12 @@ public class PlayerMovement : MonoBehaviour
         {
 
             movement = inputVec;
+            rotation = inputVec;
         }
         
         
     }
     
    
-
 }
 #endif

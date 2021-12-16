@@ -34,7 +34,11 @@ public class ProjectileManager : MonoBehaviour
 
     public void LoadPlayerShooter()
     {
+        #if (UNITY_ANDROID)
+        PlayerAimerShooterMobile playerShoot = m_Game.Player.player.GetComponent<PlayerAimerShooterMobile>();
+        #else
         PlayerShoot playerShoot = m_Game.Player.player.GetComponent<PlayerShoot>();
+        #endif
         playerShoot.BulletCreated += BulletCreatedHandler;
         playerShoot.BulletDestroyed += BulletDestroyedHandler;
     }

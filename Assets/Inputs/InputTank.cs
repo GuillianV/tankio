@@ -53,6 +53,15 @@ public partial class @InputTank : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""FireGameStick"",
+                    ""type"": ""Value"",
+                    ""id"": ""e639a998-636f-4170-82dc-889aca9f36e3"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -154,6 +163,17 @@ public partial class @InputTank : IInputActionCollection2, IDisposable
                     ""action"": ""MouseMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ad7d3ae-6eb6-406d-a833-9ea80372fb85"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MobileScheme"",
+                    ""action"": ""FireGameStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -193,6 +213,7 @@ public partial class @InputTank : IInputActionCollection2, IDisposable
         m_Tank_Move = m_Tank.FindAction("Move", throwIfNotFound: true);
         m_Tank_Fire = m_Tank.FindAction("Fire", throwIfNotFound: true);
         m_Tank_MouseMove = m_Tank.FindAction("MouseMove", throwIfNotFound: true);
+        m_Tank_FireGameStick = m_Tank.FindAction("FireGameStick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -255,6 +276,7 @@ public partial class @InputTank : IInputActionCollection2, IDisposable
     private readonly InputAction m_Tank_Move;
     private readonly InputAction m_Tank_Fire;
     private readonly InputAction m_Tank_MouseMove;
+    private readonly InputAction m_Tank_FireGameStick;
     public struct TankActions
     {
         private @InputTank m_Wrapper;
@@ -262,6 +284,7 @@ public partial class @InputTank : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Tank_Move;
         public InputAction @Fire => m_Wrapper.m_Tank_Fire;
         public InputAction @MouseMove => m_Wrapper.m_Tank_MouseMove;
+        public InputAction @FireGameStick => m_Wrapper.m_Tank_FireGameStick;
         public InputActionMap Get() { return m_Wrapper.m_Tank; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -280,6 +303,9 @@ public partial class @InputTank : IInputActionCollection2, IDisposable
                 @MouseMove.started -= m_Wrapper.m_TankActionsCallbackInterface.OnMouseMove;
                 @MouseMove.performed -= m_Wrapper.m_TankActionsCallbackInterface.OnMouseMove;
                 @MouseMove.canceled -= m_Wrapper.m_TankActionsCallbackInterface.OnMouseMove;
+                @FireGameStick.started -= m_Wrapper.m_TankActionsCallbackInterface.OnFireGameStick;
+                @FireGameStick.performed -= m_Wrapper.m_TankActionsCallbackInterface.OnFireGameStick;
+                @FireGameStick.canceled -= m_Wrapper.m_TankActionsCallbackInterface.OnFireGameStick;
             }
             m_Wrapper.m_TankActionsCallbackInterface = instance;
             if (instance != null)
@@ -293,6 +319,9 @@ public partial class @InputTank : IInputActionCollection2, IDisposable
                 @MouseMove.started += instance.OnMouseMove;
                 @MouseMove.performed += instance.OnMouseMove;
                 @MouseMove.canceled += instance.OnMouseMove;
+                @FireGameStick.started += instance.OnFireGameStick;
+                @FireGameStick.performed += instance.OnFireGameStick;
+                @FireGameStick.canceled += instance.OnFireGameStick;
             }
         }
     }
@@ -320,5 +349,6 @@ public partial class @InputTank : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnMouseMove(InputAction.CallbackContext context);
+        void OnFireGameStick(InputAction.CallbackContext context);
     }
 }

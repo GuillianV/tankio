@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "FireGameStick",
+                    "type": "Value",
+                    "id": "e639a998-636f-4170-82dc-889aca9f36e3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -130,6 +139,17 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "MouseMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ad7d3ae-6eb6-406d-a833-9ea80372fb85",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MobileScheme",
+                    "action": "FireGameStick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
