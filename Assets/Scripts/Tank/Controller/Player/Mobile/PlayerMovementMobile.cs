@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-#if (UNITY_ANDROID)
+#if UNITY_ANDROID
 public class PlayerMovementMobile : MonoBehaviour
 {
      

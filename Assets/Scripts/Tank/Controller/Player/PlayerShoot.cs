@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using Random = Unity.Mathematics.Random;
 
 
-#if (!UNITY_ANDROID || UNITY_EDITOR)
+#if !UNITY_ANDROID
 public class PlayerShoot : MonoBehaviour
 {
 

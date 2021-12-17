@@ -66,14 +66,14 @@ public class GameManager : MonoBehaviour
         //Pause game
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gameIsPaused = !gameIsPaused;
+            
             PauseGame();
             
         }
         
         if (Input.GetKeyDown(KeyCode.I))
         {
-            shopIsOpen = !shopIsOpen;
+            
             OpenShop();
             
         }
@@ -83,8 +83,9 @@ public class GameManager : MonoBehaviour
     }
     
     //Pause whole game
-    void PauseGame ()
+    public void PauseGame ()
     {
+        gameIsPaused = !gameIsPaused;
 
         if(gameIsPaused)
         {
@@ -109,9 +110,9 @@ public class GameManager : MonoBehaviour
         
     }
     
-    void OpenShop()
+    public void OpenShop()
     {
-        
+        shopIsOpen = !shopIsOpen;
          
         if(shopIsOpen)
         {

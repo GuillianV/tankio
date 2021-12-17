@@ -52,8 +52,11 @@ public class UIManager : MonoBehaviour
 
     [Header("Shop Wrapper ")] public GameObject shopWrapperParent;
     [Range(1, 1000000)] public int slideSpeed = 350;
+    private RectTransform m_shopRectTransform;
+    private RectTransform m_containerRectTransform;
     private RectTransform m_wrapperRectTransform;
-
+    
+    
     [Header("Shop Patern Slide")] public GameObject shopItemParentRow;
     private RectTransform m_shopItemParentRowRectTransform;
     public GameObject shopItemParent;
@@ -91,17 +94,26 @@ public class UIManager : MonoBehaviour
     {
         m_Game = GameManager.Instance;
         m_wrapperRectTransform = shopWrapperParent.GetComponent<RectTransform>();
+        m_containerRectTransform = m_wrapperRectTransform.GetComponentInParent<RectTransform>();
+        m_shopRectTransform = shopParent.GetComponent<RectTransform>();
         m_shopItemParentRowRectTransform = shopItemParentRow.GetComponent<RectTransform>();
         maxItem = listOfShopItemUI.OrderByDescending(S => S.identifier).FirstOrDefault().identifier;
 
-        listOfShopItemUI.ForEach(shopItemUIGet => { GenerateShopItemUI(shopItemUIGet); });
+       
     }
 
     void Start()
     {
+       
+        listOfShopItemUI.ForEach(shopItemUIGet => { GenerateShopItemUI(shopItemUIGet); });
+        shopParent.SetActive(false);
         HideParentPatern();
+        
         lastInterval = Time.realtimeSinceStartup;
         frames = 0;
+        
+        
+        
 
     }
 
@@ -293,7 +305,7 @@ public class UIManager : MonoBehaviour
             shopItemUIGet.shopItemParentGameObject = Instantiate(shopItemParentRow.gameObject,
                 shopItemParentRow.transform.position, shopItemParentRow.transform.rotation,
                 shopWrapperParent.transform) as GameObject;
-
+            
             //Create Title of slide and add name
             shopItemUIGet.shopItemTitleGameObject = Instantiate(shopItemTitle.gameObject,
                 shopItemTitle.transform.position, shopItemTitle.transform.rotation,
@@ -332,7 +344,9 @@ public class UIManager : MonoBehaviour
             RectTransform rectTransform = shopItemUIGet.shopItemParentGameObject.GetComponent<RectTransform>();
             rectTransform.localPosition =
                 new Vector3(
-                    rectTransform.localPosition.x + (rectTransform.sizeDelta.x * (shopItemUIGet.identifier - 1)), 0, 0);
+                    rectTransform.localPosition.x + ( m_shopRectTransform.rect.width  * (shopItemUIGet.identifier - 1)), 0, 0);
+             rectTransform.sizeDelta = new Vector2(rectTransform.rect.width,m_containerRectTransform.rect.height );
+           
         }
     }
 
@@ -428,7 +442,7 @@ public class UIManager : MonoBehaviour
             if (elementDisplayed < maxItem)
             {
                 value = m_wrapperRectTransform.localPosition.x;
-                valueToReach = m_wrapperRectTransform.localPosition.x - m_shopItemParentRowRectTransform.sizeDelta.x;
+                valueToReach = m_wrapperRectTransform.localPosition.x - m_shopRectTransform.rect.width;
                 isNexting = true;
                 elementDisplayed++;
             }
@@ -443,7 +457,7 @@ public class UIManager : MonoBehaviour
             if (elementDisplayed > 1)
             {
                 value = m_wrapperRectTransform.localPosition.x;
-                valueToReach = m_wrapperRectTransform.localPosition.x + m_shopItemParentRowRectTransform.sizeDelta.x;
+                valueToReach = m_wrapperRectTransform.localPosition.x +  m_shopRectTransform.rect.width;
                 isPreviousing = true;
                 elementDisplayed--;
             }

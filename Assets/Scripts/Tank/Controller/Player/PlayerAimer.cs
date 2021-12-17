@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
-#if (!UNITY_ANDROID || UNITY_EDITOR)
+#if !UNITY_ANDROID 
 
 public class PlayerAimer : MonoBehaviour
 {
