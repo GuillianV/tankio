@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 
 
-#if !UNITY_ANDROID
+#if !UNITY_ANDROID 
 public class PlayerMovement : MonoBehaviour
 {
     
