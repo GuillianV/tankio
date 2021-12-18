@@ -9,6 +9,7 @@ TagManager:
   - UIEnemyArrow
   - UIEnemyArrowParent
   - Canva
+  - UIMobile
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Ground
   - GroundInDoor
   - Destructible
-  - 
+  - UI/Mobile
   - 
   - 
   - 

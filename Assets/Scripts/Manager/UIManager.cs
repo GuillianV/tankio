@@ -192,6 +192,30 @@ public class UIManager : MonoBehaviour
 
     #region InGame Menu
 
+    public void HideInGameMenu()
+    {
+        if (inGameParent != null)
+        {
+            inGameParent.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("missing in game parent");
+        }
+    }
+    
+    public void ShowInGameMenu()
+    {
+        if (inGameParent != null)
+        {
+            inGameParent.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("missing in game parent");
+        }
+    }
+    
     public void ToggleInGameMenu()
     {
         if (inGameParent != null)
@@ -280,7 +304,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("missing in game parent");
+            Debug.LogWarning("missing shop parent");
         }
     }
     
@@ -292,7 +316,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("missing in game parent");
+            Debug.LogWarning("missing shop parent");
         }
     }
 

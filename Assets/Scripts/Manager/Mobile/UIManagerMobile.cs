@@ -7,20 +7,44 @@ using UnityEngine;
 [RequireComponent(typeof(UIManager))]
 public class UIManagerMobile : MonoBehaviour
 {
-
-    public GameObject UIMobile;
+    public List<GameObject> uIMobiles;
     private UIManager m_uiManager;
+    private GameManager m_Game; 
 
     private void Awake()
     {
-        m_uiManager = GetComponent<UIManager>();
+        m_Game = GameManager.Instance;
+    
     }
 
     void Start()
     {
-        UIMobile.SetActive(true);
+        uIMobiles.ForEach(g=>g.SetActive(true));
+        
     }
 
+
+    public void Shop()
+    {
+        m_Game.ShopMobile();
+    }
+    
+    public void Pause()
+    {
+        m_Game.PauseMobile();
+    }
+    
+    public void Close()
+    {
+        m_Game.CloseMobile();
+    }
+    
+      
+   
+    
+   
+
+    
     
 }
 

@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using System.Linq;
 using System.Security.Cryptography;
 using JetBrains.Annotations;
+using Debug = UnityEngine.Debug;
 
 [System.Serializable]
-public class BaseMap
+public struct BaseMap
 {
     [Header("Base map Options")] public Transform parent;
     public GameObject wallPrefab;
@@ -15,7 +17,7 @@ public class BaseMap
 }
 
 [System.Serializable]
-public class NoiseOptions
+public struct NoiseOptions
 {
     [Header("Noise Map options")] 
     [Range(20,400)]
@@ -27,7 +29,7 @@ public class NoiseOptions
 }
 
 [System.Serializable]
-public class SpawnOptions
+public struct SpawnOptions
 {
     [Header("Spawn enemies option")] [Range(0, 50)]
     public int radius;
@@ -78,13 +80,17 @@ public class MapGeneratorManager : MonoBehaviour
     private bool[,] m_mapUsed;
     private float[,] noiseMap;
 
-
+    private Stopwatch st = new Stopwatch();
+    
     private void Awake()
     {
+        
+        st.Start();
         //Genere la noismap
         noiseMap =  Noise.GenerateNoiseMap(noiseOptions.mapWidth, noiseOptions.mapHeight, noiseOptions.noiseScale);
         //Genere la map used
         m_mapUsed = new Boolean[noiseMap.GetLength(0), noiseMap.GetLength(1)];
+        st.Stop();
     }
 
     void Start()
@@ -94,6 +100,7 @@ public class MapGeneratorManager : MonoBehaviour
 
     IEnumerator GenerateMap()
     {
+        st.Start();
         //Genere le sol et les murs
         GenerateGround();
         GenerateWall(new Vector3(noiseOptions.mapWidth / 2, 0, 0), new Vector3(0, 0, 0));
@@ -108,6 +115,8 @@ public class MapGeneratorManager : MonoBehaviour
         GenerateSpawners(spawnOptions.numberSpawners);
         AstarPath.active.data.gridGraph.SetDimensions(noiseOptions.mapWidth, noiseOptions.mapHeight, 1);
         AstarPath.active.Scan();
+        st.Stop();
+        Debug.Log(( (float) st.ElapsedMilliseconds / (float)1000) +" <color='green'> Secondes écoulés pour la géneration de la map</color>");
     }
 
 
