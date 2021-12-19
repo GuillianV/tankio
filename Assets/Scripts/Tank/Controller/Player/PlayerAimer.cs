@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
-#if !UNITY_ANDROID 
+
 
 public class PlayerAimer : MonoBehaviour
 {
-    
+#if !UNITY_ANDROID 
   
 
     private TankController m_tankController;
@@ -44,7 +44,6 @@ public class PlayerAimer : MonoBehaviour
             0);
 
     }
- 
+#endif
     
 }
-#endif

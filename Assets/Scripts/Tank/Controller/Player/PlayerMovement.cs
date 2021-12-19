@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 
 
 
-#if !UNITY_ANDROID 
+
 public class PlayerMovement : MonoBehaviour
 {
     
-   
+#if !UNITY_ANDROID 
 
     
     [HideInInspector]
@@ -85,7 +85,6 @@ public class PlayerMovement : MonoBehaviour
         
     }
     
-   
+#endif
 
 }
-#endif

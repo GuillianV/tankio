@@ -7,10 +7,10 @@ using UnityEngine.UI;
 using Random = Unity.Mathematics.Random;
 
 
-#if !UNITY_ANDROID 
+
 public class PlayerShoot : MonoBehaviour
 {
-
+#if !UNITY_ANDROID 
     private TankController m_tankController;
     public GameObject projectile;
     private bool isReloading = false;
@@ -126,6 +126,5 @@ public class PlayerShoot : MonoBehaviour
         }
     }
     
-  
-}
 #endif
+}

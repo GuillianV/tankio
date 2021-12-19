@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 5
+  m_CurrentQuality: 2
   m_QualitySettings:
   - serializedVersion: 2
     name: Very Low
@@ -41,7 +41,9 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     customRenderPipeline: {fileID: 0}
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Android
+    - Standalone
   - serializedVersion: 2
     name: Low
     pixelLightCount: 2
@@ -93,7 +95,7 @@ QualitySettings:
     skinWeights: 2
     textureQuality: 0
     anisotropicTextures: 1
-    antiAliasing: 0
+    antiAliasing: 2
     softParticles: 0
     softVegetation: 0
     realtimeReflectionProbes: 0
@@ -112,7 +114,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 512a352ad15263142aff57744f5dc810, type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: High
@@ -185,7 +187,9 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     customRenderPipeline: {fileID: 0}
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - Standalone
+    - Android
   - serializedVersion: 2
     name: Ultra
     pixelLightCount: 4
@@ -201,7 +205,7 @@ QualitySettings:
     skinWeights: 255
     textureQuality: 0
     anisotropicTextures: 2
-    antiAliasing: 2
+    antiAliasing: 0
     softParticles: 1
     softVegetation: 1
     realtimeReflectionProbes: 1
@@ -220,8 +224,10 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: 58767b257bb5d7243bd4a7a17d387ca1, type: 2}
-    excludedTargetPlatforms: []
+    customRenderPipeline: {fileID: 11400000, guid: fa4ae6664dfd52c4294bfb5eb4d5df37, type: 2}
+    excludedTargetPlatforms:
+    - Standalone
+    - Android
   m_PerPlatformDefaultQuality:
     Android: 2
     Lumin: 5
