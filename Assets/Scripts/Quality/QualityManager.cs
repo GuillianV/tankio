@@ -7,59 +7,40 @@ using UnityEngine.Rendering.Universal;
 
 public class QualityManager : MonoBehaviour
 {
-    #if UNITY_EDITOR
-    
+    // #if UNITY_EDITOR
+
     public List<UniversalRenderPipelineAsset> URPQuality = new List<UniversalRenderPipelineAsset>();
 
     public int deviceWidth;
     public int deviceHeight;
     public int deviceHertz;
-
-    
+    public int deviceFullScreen;
+    public int deviceQuality;
     public void Awake()
     {
-        deviceWidth = Screen.currentResolution.width;
-        deviceHeight = Screen.currentResolution.height;
-        deviceHertz = Screen.currentResolution.refreshRate;
+        deviceWidth = PlayerPrefs.GetInt("Screen_pref_width", Screen.currentResolution.width);
+        deviceHeight = PlayerPrefs.GetInt("Screen_pref_height", Screen.currentResolution.height);
+        deviceHertz = PlayerPrefs.GetInt("Screen_pref_hz", Screen.currentResolution.refreshRate);
+        deviceFullScreen = PlayerPrefs.GetInt("Screen_pref_full", 1);
+        deviceQuality = PlayerPrefs.GetInt("Screen_pref_quality", 2);
+        QualitySettings.vSyncCount = 0;
+        Screen.SetResolution(deviceWidth, deviceHeight, Convert.ToBoolean(deviceFullScreen), deviceHertz);
+        Application.targetFrameRate = deviceHertz;
+        QualitySettings.SetQualityLevel(deviceQuality, false);
+        QualitySettings.renderPipeline = URPQuality[deviceQuality];
     }
-    
-    // void OnGUI()
-    // {
-    //     string[] names = QualitySettings.names;
-    //     GUILayout.BeginVertical();
-    //     for (int i = 0; i < names.Length; i++)
-    //     {
-    //         if (GUILayout.Button(names[i]))
-    //         {
-    //             
-    //             QualitySettings.SetQualityLevel(i, false);
-    //             QualitySettings.renderPipeline = URPQuality[i];
-    //             
-    //
-    //             switch (i)
-    //             {
-    //                 case 0:
-    //                     Screen.SetResolution(640, 480, true, 30);
-    //                     break;
-    //                 case 1:
-    //                     Screen.SetResolution(1280, 720, true, 60);
-    //                     break;
-    //                 case 2:
-    //                     Screen.SetResolution(deviceWidth, deviceHeight, true, deviceHertz);
-    //                     break;
-    //                 default:
-    //                     Screen.SetResolution(640, 480, true, 60);
-    //                     break;
-    //             }
-    //             
-    //             
-    //         }
-    //     }
-    //     GUILayout.EndVertical();
-    // }
-    
-  
-    
-    #endif
-    
+
+
+    void OnGUI()
+    {
+
+        GUILayout.BeginVertical();
+        GUILayout.TextField(((int)(1.0f / Time.smoothDeltaTime)).ToString());
+        GUILayout.EndVertical();
+    }
+
+
+
+    // #endif
+
 }

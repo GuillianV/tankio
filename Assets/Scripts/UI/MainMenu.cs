@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
 
     public GameObject optionsMenu;
+    public GameObject mainMenu;
     
       public void PlayGame()
       {
@@ -21,7 +22,7 @@ public class MainMenu : MonoBehaviour
       public void Options()
       {
           optionsMenu.SetActive(true);
-          gameObject.SetActive(false);
+          mainMenu.SetActive(false);
       }
 
 

@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class OptionMenu : MonoBehaviour
 {
     public GameObject mainMenu;
+    public GameObject optionsMenu;
 
     //Quality
     [System.Serializable]
@@ -28,77 +29,68 @@ public class OptionMenu : MonoBehaviour
     public List<Resolution> resolutions = new List<Resolution>();
     private List<string> resolutionString = new List<string>();
 
-    public Scrollbar scrollbar;
-    
-    
+    public Scrollbar scrollbarFullScreen;
+
+    public Scrollbar scrollbarHertz;
+    public TextMeshProUGUI heartzText;
+    private int maxHeartz = 240;
 
     private int deviceWidth;
     private int deviceHeight;
     private int deviceHertz;
     private bool deviceFullScreen;
-    
-    Resolution[] resolutionss;
+    private int deviceQuality;
+
+
     void Start()
     {
-        
-        SetupFullScreenDropDown();
+        deviceWidth = PlayerPrefs.GetInt("Screen_pref_width", Screen.currentResolution.width);
+        deviceHeight = PlayerPrefs.GetInt("Screen_pref_height", Screen.currentResolution.height);
+        deviceHertz = PlayerPrefs.GetInt("Screen_pref_hz", Screen.currentResolution.refreshRate);
+        deviceFullScreen = Convert.ToBoolean(PlayerPrefs.GetInt("Screen_pref_full", 1));
+        deviceQuality = PlayerPrefs.GetInt("Screen_pref_quality", 2);
+
+        SetupFullScreenScrollBar();
+        SetHeratzScrollBar();
         SetupResolutionDropDown();
         SetupQualityDropDown();
         
     }
 
-    void OnGUI()
+
+    private void SetupFullScreenScrollBar()
     {
-       
-        GUILayout.BeginVertical();
-
-        if (resolutionss.Length == 0)
-        {
-            if (GUILayout.Button(Screen.currentResolution.width +"x"+Screen.currentResolution.height))
-            {
-                Screen.SetResolution(Screen.currentResolution.width,Screen.currentResolution.height, true, Screen.currentResolution.refreshRate);
-             
-                
-                
-            }
-        }
-        
-        for (int i = 0; i < resolutionss.Length; i++)
-        {
-            if (GUILayout.Button(resolutions[i].width +"x"+resolutions[i].height))
-            {
-                Screen.SetResolution(resolutions[i].width, resolutions[i].height, true, resolutions[i].refreshRate);
-             
-                
-                
-            }
-        }
-        GUILayout.EndVertical();
-    }
-
-    private void Update()
-    {
-        resolutionss = Screen.resolutions;
-        
-    }
-
-
-    private void SetupFullScreenDropDown()
-    {
-        scrollbar.onValueChanged.AddListener(delegate {
-            SetFullScreen(scrollbar.value);
+     
+        scrollbarFullScreen.SetValueWithoutNotify(Convert.ToSingle(deviceFullScreen));
+        Screen.fullScreen = deviceFullScreen;
+        scrollbarFullScreen.onValueChanged.AddListener(delegate {
+            SetFullScreen(scrollbarFullScreen.value);
         });
     }
-    
+
+    private void SetHeratzScrollBar()
+    {
+
+        scrollbarHertz.SetValueWithoutNotify((float)deviceHertz/ (float)maxHeartz);
+        heartzText.text = deviceHertz.ToString();
+        scrollbarHertz.onValueChanged.AddListener(delegate {
+            SetHeartz(scrollbarHertz.value);
+        });
+    }
+
     private void SetupQualityDropDown()
     {
         dropdownQuality.ClearOptions();
+        
         urpList.ForEach(urp =>
         {
             URPQualityString.Add(urp.name);
             
         });
         dropdownQuality.AddOptions(URPQualityString);
+        
+        dropdownQuality.SetValueWithoutNotify(deviceQuality);
+        QualitySettings.renderPipeline = urpList[deviceQuality].urpScriptable;
         dropdownQuality.onValueChanged.AddListener(delegate {
             DropDownQualitySelectedValue(dropdownQuality.value);
         });
@@ -108,17 +100,38 @@ public class OptionMenu : MonoBehaviour
     {
         dropdownResolution.ClearOptions();
         resolutions = Screen.resolutions.ToList();
-        Resolution res = new Resolution();
-        res.width = 500;
-        res.height = 300;
-        res.refreshRate = 15;
-        resolutions.Add(res);
+
+
+        if(resolutions.Count == 0)
+        {
+            
+            for(int i = 8; i > 1; i--)
+            {
+                Resolution newRes = new Resolution();
+                newRes.width = Display.main.systemWidth/i;
+                newRes.height = Display.main.systemHeight/i;
+                newRes.refreshRate = Screen.currentResolution.refreshRate;
+                resolutions.Add(newRes);
+            }
+
+            Resolution native = new Resolution();
+            native.width = Display.main.systemWidth;
+            native.height = Display.main.systemHeight;
+            native.refreshRate = Screen.currentResolution.refreshRate;
+            resolutions.Add(native);
+
+
+        }
+
+
         resolutions.ForEach(res =>
         {
             resolutionString.Add(res.width +"x"+res.height);
             
         });
         dropdownResolution.AddOptions(resolutionString);
+        dropdownResolution.SetValueWithoutNotify(resolutions.FindIndex(res=>res.width == deviceWidth && res.height == deviceHeight));
+        Screen.SetResolution(deviceWidth, deviceHeight, deviceFullScreen, deviceHertz);
         dropdownResolution.onValueChanged.AddListener(delegate {
             DropDownResolutionSelectedValue(dropdownResolution.value);
         });
@@ -129,7 +142,7 @@ public class OptionMenu : MonoBehaviour
     public void Back()
     {
         mainMenu.SetActive(true);
-        gameObject.SetActive(false);
+        optionsMenu.SetActive(false);
     }
 
     public void SetFullScreen(float value)
@@ -138,12 +151,25 @@ public class OptionMenu : MonoBehaviour
         {
             Screen.fullScreen = true;
             deviceFullScreen = true;
+            PlayerPrefs.SetInt("Screen_pref_full",1);
         }
         if (value == 0)
         {
             Screen.fullScreen = false;
             deviceFullScreen = false;
+            PlayerPrefs.SetInt("Screen_pref_full",0);
         }
+        
+        PlayerPrefs.Save();
+    
+    }
+
+    public void SetHeartz(float value)
+    {
+        deviceHertz = Convert.ToInt32((float) maxHeartz * value);
+        heartzText.text = deviceHertz + " hz";
+        PlayerPrefs.SetInt("Screen_pref_hz", deviceHertz);
+        PlayerPrefs.Save();
     }
 
     public void DropDownQualitySelectedValue(Int32 value)
@@ -151,7 +177,8 @@ public class OptionMenu : MonoBehaviour
       
       QualitySettings.SetQualityLevel(value, false);
       QualitySettings.renderPipeline = urpList[value].urpScriptable;
-
+      PlayerPrefs.SetInt("Screen_pref_quality",value);
+      PlayerPrefs.Save();
     }
     
     
@@ -159,11 +186,11 @@ public class OptionMenu : MonoBehaviour
     {
         deviceWidth = resolutions[value].width;
         deviceHeight = resolutions[value].height;
-        Resolution res = new Resolution();
-        res.width = 500;
-        res.height = 300;
-        res.refreshRate = 15;
-        Screen.SetResolution(res.width, res.height, deviceFullScreen, res.refreshRate);
+        
+        Screen.SetResolution(deviceWidth,deviceHeight, deviceFullScreen, deviceHertz);
+        PlayerPrefs.SetInt("Screen_pref_width", deviceWidth);
+        PlayerPrefs.SetInt("Screen_pref_height", deviceHeight);
+        PlayerPrefs.Save();
 
     }
     
