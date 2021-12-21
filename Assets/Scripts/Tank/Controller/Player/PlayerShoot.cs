@@ -10,9 +10,11 @@ using Random = Unity.Mathematics.Random;
 
 public class PlayerShoot : MonoBehaviour
 {
-#if !UNITY_ANDROID 
-    private TankController m_tankController;
     public GameObject projectile;
+
+#if UNITY_STANDALONE
+    private TankController m_tankController;
+   
     private bool isReloading = false;
     private bool isFireing = false;
     private GameManager m_Game;

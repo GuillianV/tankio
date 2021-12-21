@@ -9,10 +9,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
-#if !UNITY_ANDROID 
 
-    
+#if UNITY_STANDALONE
+
+
     [HideInInspector]
 
     public Rigidbody2D m_playerRigidbody;

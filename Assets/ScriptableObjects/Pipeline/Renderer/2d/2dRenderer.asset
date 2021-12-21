@@ -20,7 +20,7 @@ MonoBehaviour:
   m_LightBlendStyles:
   - name: Blend Style 0
     maskTextureChannel: 0
-    renderTextureScale: 0.5
+    renderTextureScale: 0.41
     blendMode: 1
     customBlendFactors:
       multiplicative: 0

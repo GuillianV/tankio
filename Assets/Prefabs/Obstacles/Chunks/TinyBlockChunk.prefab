@@ -91,6 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1386411307857276026}
+  - component: {fileID: 5488680195984699976}
   m_Layer: 0
   m_Name: TinyBlockChunk
   m_TagString: Untagged
@@ -119,6 +120,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5488680195984699976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386411307857276025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 000000006bba082bd5839ce51500df45
+  m_ShapePath:
+  - {x: -2.0046542, y: 5.1149287, z: 0}
+  - {x: 5.9750357, y: 4.970427, z: 0}
+  - {x: 5.9750357, y: -4.8281746, z: 0}
+  - {x: -5.9521017, y: -4.9749703, z: 0}
+  - {x: -6.062198, y: 7.025565, z: 0}
+  - {x: -7.9338417, y: 7.0255647, z: 0}
+  - {x: -7.9338417, y: -6.9567094, z: 0}
+  - {x: 8.059971, y: -6.9957027, z: 0}
+  - {x: 7.949874, y: 7.105799, z: 0}
+  - {x: -1.9679554, y: 7.105799, z: 0}
+  m_ShapePathHash: -1456634859
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -316670
 --- !u!1 &6105545199210052045
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +407,7 @@ PrefabInstance:
     - target: {fileID: 7990713337181844309, guid: fb7c720613a1a2946a2ceeacd5c228b4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 83b368e45f90ebd448d1787af4916e48, type: 2}
+      objectReference: {fileID: 2100000, guid: 0049f0f1a5a732047a184cf0823f8c3e, type: 2}
     - target: {fileID: 9151208767502791859, guid: fb7c720613a1a2946a2ceeacd5c228b4, type: 3}
       propertyPath: m_Name
       value: Ground

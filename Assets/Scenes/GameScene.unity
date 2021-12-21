@@ -350,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &119942331
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2087,9 +2087,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIMobiles:
-  - {fileID: 1398206772}
-  - {fileID: 780707161}
   - {fileID: 119942330}
+  - {fileID: 780707161}
+  - {fileID: 1398206772}
 --- !u!114 &755335498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2103,12 +2103,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   URPQuality:
+  - {fileID: 11400000, guid: 51e831f0e6ed54a4995232410d355de4, type: 2}
   - {fileID: 11400000, guid: fa4ae6664dfd52c4294bfb5eb4d5df37, type: 2}
   - {fileID: 11400000, guid: b219312381de3bd45900b4ce4ea0462f, type: 2}
   - {fileID: 11400000, guid: 512a352ad15263142aff57744f5dc810, type: 2}
+  - {fileID: 11400000, guid: fc9afaa145522284d802f0c6236196b8, type: 2}
+  - {fileID: 11400000, guid: 0753359ab18570a4997be0f28dd6e912, type: 2}
+  - {fileID: 11400000, guid: 5268efac383e539449a94b591ff277dd, type: 2}
   deviceWidth: 0
   deviceHeight: 0
   deviceHertz: 0
+  deviceFullScreen: 0
+  deviceQuality: 0
 --- !u!1 &768820295
 GameObject:
   m_ObjectHideFlags: 0
@@ -2190,7 +2196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &780707162
 RectTransform:
   m_ObjectHideFlags: 0

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-#if UNITY_ANDROID
 public class PlayerMovementMobile : MonoBehaviour
 {
-     
 
+
+#if UNITY_ANDROID
     
     [HideInInspector]
 
@@ -82,6 +82,5 @@ public class PlayerMovementMobile : MonoBehaviour
         
     }
     
-   
-}
 #endif
+}

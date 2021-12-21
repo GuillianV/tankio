@@ -22,11 +22,10 @@ public class QualityManager : MonoBehaviour
         deviceHeight = PlayerPrefs.GetInt("Screen_pref_height", Screen.currentResolution.height);
         deviceHertz = PlayerPrefs.GetInt("Screen_pref_hz", Screen.currentResolution.refreshRate);
         deviceFullScreen = PlayerPrefs.GetInt("Screen_pref_full", 1);
-        deviceQuality = PlayerPrefs.GetInt("Screen_pref_quality", 2);
+        deviceQuality = PlayerPrefs.GetInt("Screen_pref_quality", 3);
         QualitySettings.vSyncCount = 0;
         Screen.SetResolution(deviceWidth, deviceHeight, Convert.ToBoolean(deviceFullScreen), deviceHertz);
         Application.targetFrameRate = deviceHertz;
-        QualitySettings.SetQualityLevel(deviceQuality, false);
         QualitySettings.renderPipeline = URPQuality[deviceQuality];
     }
 

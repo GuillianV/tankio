@@ -48,7 +48,7 @@ public class OptionMenu : MonoBehaviour
         deviceHeight = PlayerPrefs.GetInt("Screen_pref_height", Screen.currentResolution.height);
         deviceHertz = PlayerPrefs.GetInt("Screen_pref_hz", Screen.currentResolution.refreshRate);
         deviceFullScreen = Convert.ToBoolean(PlayerPrefs.GetInt("Screen_pref_full", 1));
-        deviceQuality = PlayerPrefs.GetInt("Screen_pref_quality", 2);
+        deviceQuality = PlayerPrefs.GetInt("Screen_pref_quality", 3);
 
         SetupFullScreenScrollBar();
         SetHeratzScrollBar();
@@ -72,7 +72,7 @@ public class OptionMenu : MonoBehaviour
     {
 
         scrollbarHertz.SetValueWithoutNotify((float)deviceHertz/ (float)maxHeartz);
-        heartzText.text = deviceHertz.ToString();
+        heartzText.text = deviceHertz.ToString() + " hz";
         scrollbarHertz.onValueChanged.AddListener(delegate {
             SetHeartz(scrollbarHertz.value);
         });

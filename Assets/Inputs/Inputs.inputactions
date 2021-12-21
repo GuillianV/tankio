@@ -121,17 +121,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "5b2b379e-ab24-4cb3-8bf4-95e90d3d974a",
-                    "path": "2DVector(mode=2)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MouseMove",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "",
                     "id": "08842d46-d51b-4dde-b0a8-b04675a980b8",
                     "path": "<Mouse>/position",

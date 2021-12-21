@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-#if UNITY_ANDROID
+
 public class PlayerAimerShooterMobile : MonoBehaviour
 {
-    
-
-    private TankController m_tankController;
     public Transform towerTransform;
     public GameObject projectile;
-    
+
+#if UNITY_ANDROID
+
+    private TankController m_tankController;
+
     
     private GameManager m_Game;
     private Vector2 vectorToTarget = new Vector2(0,0);
@@ -141,7 +142,6 @@ public class PlayerAimerShooterMobile : MonoBehaviour
         }
     }
 
-
-    
-}
 #endif
+
+}

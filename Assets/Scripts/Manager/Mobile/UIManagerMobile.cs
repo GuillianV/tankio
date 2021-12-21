@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#if UNITY_ANDROID
+
 [RequireComponent(typeof(UIManager))]
 public class UIManagerMobile : MonoBehaviour
 {
     public List<GameObject> uIMobiles;
+
+#if UNITY_ANDROID
     private UIManager m_uiManager;
     private GameManager m_Game; 
 
@@ -38,14 +40,13 @@ public class UIManagerMobile : MonoBehaviour
     {
         m_Game.CloseMobile();
     }
-    
-      
-   
-    
-   
 
-    
-    
-}
+
 
 #endif
+
+
+
+
+
+}
