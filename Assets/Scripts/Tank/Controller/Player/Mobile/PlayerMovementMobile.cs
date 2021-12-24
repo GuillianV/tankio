@@ -31,8 +31,10 @@ public class PlayerMovementMobile : MonoBehaviour
         m_Game = GameManager.Instance;
         m_playerRigidbody = GetComponent<Rigidbody2D>();
         m_tankController = GetComponent<TankController>();
-        inputTank.Tank.Move.canceled += ctx => Cancelled();
 
+
+
+        inputTank.Tank.Move.canceled += ctx => Cancelled();
     }
 
 
@@ -68,8 +70,7 @@ public class PlayerMovementMobile : MonoBehaviour
 
     public void OnMove(InputValue input)
     {
- 
-       
+
         Vector2 inputVec = input.Get<Vector2>();
 
         if (inputVec.magnitude > 0)

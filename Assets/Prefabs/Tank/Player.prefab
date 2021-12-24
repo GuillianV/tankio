@@ -418,8 +418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c42e4219d3e401418e4678fa410509e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerRigidbody: {fileID: 0}
-  power: 1
 --- !u!114 &1727312297046862516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +503,19 @@ MonoBehaviour:
       m_Calls: []
   m_ControlsChangedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
@@ -531,6 +541,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f179d1e8-3822-44b8-9ed3-3bcac4ba6852
     m_ActionName: Tank/MouseMove[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e639a998-636f-4170-82dc-889aca9f36e3
+    m_ActionName: Tank/FireGameStick
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Tank
@@ -574,6 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerTransform: {fileID: 6904654474953778846}
   projectile: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
+  fireGameStick: {fileID: -335402131826799987, guid: 3f0dbd499027e4695920aef280ec577c, type: 3}
 --- !u!114 &5340772204750690864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,6 +601,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4cccee6c0c22b24a814914e06f1c286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerRigidbody: {fileID: 0}
+  power: 1
+  move: {fileID: -8939689706802685063, guid: 3f0dbd499027e4695920aef280ec577c, type: 3}
 --- !u!1 &6904654475405411911
 GameObject:
   m_ObjectHideFlags: 0

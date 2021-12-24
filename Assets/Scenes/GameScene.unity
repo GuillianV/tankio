@@ -350,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &119942331
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1425,7 +1425,7 @@ GameObject:
   - component: {fileID: 665618258}
   m_Layer: 5
   m_Name: ButtonIn
-  m_TagString: Untagged
+  m_TagString: FireUIMobile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1439,7 +1439,7 @@ RectTransform:
   m_GameObject: {fileID: 665618254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1.2}
   m_Children: []
   m_Father: {fileID: 347474816}
   m_RootOrder: 0
@@ -1469,7 +1469,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4ad8a1291b1099c43b8c26ac582d7a7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c803389563374c47b4ecddbaa391d97, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1478,7 +1478,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 4.51
 --- !u!222 &665618257
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1496,7 +1496,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 665618254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d677f1681015749b15c436eec6d880, type: 3}
+  m_Script: {fileID: 11500000, guid: f2e42f0ed49d55e48b868b06d354ac81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_MovementRange: 50
@@ -2149,9 +2149,9 @@ MonoBehaviour:
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
   m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_InputActionsPerSecond: 20
+  m_RepeatDelay: 0.1
+  m_ForceModuleActive: 1
 --- !u!114 &768820297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3438,7 +3438,7 @@ RectTransform:
   m_GameObject: {fileID: 1247377641}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 1568556900}
   m_RootOrder: 0
@@ -3468,7 +3468,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4ad8a1291b1099c43b8c26ac582d7a7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d1e66f0e6578f3479e4235593c6002e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

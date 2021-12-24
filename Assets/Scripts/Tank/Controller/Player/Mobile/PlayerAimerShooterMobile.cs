@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
+using UnityEngine.InputSystem.OnScreen;
 
-
-public class PlayerAimerShooterMobile : MonoBehaviour
+public class PlayerAimerShooterMobile : MonoBehaviour 
 {
     public Transform towerTransform;
     public GameObject projectile;
@@ -22,15 +23,18 @@ public class PlayerAimerShooterMobile : MonoBehaviour
     public InputTank inputTank;
     public event EventHandler<ProjectileEvent> BulletDestroyed;
     public event EventHandler<ProjectileEvent> BulletCreated;
+    private OnScreenStickHandler onScreenStickHandler;
 
-  
+
     private void Awake()
     {
+        onScreenStickHandler = GameObject.FindGameObjectWithTag("FireUIMobile").GetComponent<OnScreenStickHandler>();
         inputTank = new InputTank();
         inputTank.Enable();
         m_tankController = GetComponent<TankController>();
         m_Game = GameManager.Instance;
         inputTank.Tank.FireGameStick.canceled += ctx => Cancelled();
+        onScreenStickHandler.OnTap += Taped;
     }
 
 
@@ -52,6 +56,11 @@ public class PlayerAimerShooterMobile : MonoBehaviour
         {
              Fire();
         }
+    }
+
+    protected void Taped(object sender, EventArgs eventArgs)
+    {
+        Fire();
     }
 
     protected void Cancelled()
@@ -126,9 +135,8 @@ public class PlayerAimerShooterMobile : MonoBehaviour
     
     public void OnFireGameStick(InputValue input)
     {
-        
-         
         Vector2 inputVec = input.Get<Vector2>();
+
         if (inputVec.magnitude > 0)
         {
 
