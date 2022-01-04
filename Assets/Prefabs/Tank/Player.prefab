@@ -588,7 +588,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerTransform: {fileID: 6904654474953778846}
   projectile: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
-  fireGameStick: {fileID: -335402131826799987, guid: 3f0dbd499027e4695920aef280ec577c, type: 3}
 --- !u!114 &5340772204750690864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,7 +602,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerRigidbody: {fileID: 0}
   power: 1
-  move: {fileID: -8939689706802685063, guid: 3f0dbd499027e4695920aef280ec577c, type: 3}
 --- !u!1 &6904654475405411911
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ public class ShopItemUI
 public class UIManager : MonoBehaviour
 {
     [Header("In Game Menu")] public TextMeshProUGUI lifeUI;
-    public TextMeshProUGUI goldsUI;
+    public List<TextMeshProUGUI> goldsUI;
     public TextMeshProUGUI waveUI;
     public GameObject inGameParent;
 
@@ -251,7 +251,11 @@ public class UIManager : MonoBehaviour
     {
         if (goldsUI != null)
         {
-            goldsUI.text = "GOLDS : " + golds;
+            goldsUI.ForEach(ui =>
+            {
+                ui.text = "GOLDS : " + golds;
+            });
+            
         }
         else
         {
@@ -559,6 +563,7 @@ public class UIManager : MonoBehaviour
             deadParent.SetActive(false);
             deadTimeLerp = 0;
             isDead = false;
+            m_Game.isDead = false;
         }
         else
         {
@@ -572,6 +577,7 @@ public class UIManager : MonoBehaviour
         {
             deadParent.SetActive(true);
             isDead = true;
+            m_Game.isDead = true;
         }
         else
         {

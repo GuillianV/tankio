@@ -28,23 +28,26 @@ public class PlayerAimerShooterMobile : MonoBehaviour
 
     private void Awake()
     {
-        onScreenStickHandler = GameObject.FindGameObjectWithTag("FireUIMobile").GetComponent<OnScreenStickHandler>();
         inputTank = new InputTank();
         inputTank.Enable();
         m_tankController = GetComponent<TankController>();
         m_Game = GameManager.Instance;
         inputTank.Tank.FireGameStick.canceled += ctx => Cancelled();
-        onScreenStickHandler.OnTap += Taped;
+      
     }
 
+    private void Start()
+    {
+        onScreenStickHandler = GameObject.FindGameObjectWithTag("FireUIMobile").GetComponent<OnScreenStickHandler>();
+        onScreenStickHandler.OnTap += Taped;
+    }
 
 
     void FixedUpdate()
     {
 
-            
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-        Quaternion q = Quaternion.AngleAxis(angle -90, Vector3.forward);
+
+        Quaternion q = TMath.GetAngleFromVector2D(vectorToTarget, -90);
         towerTransform.rotation = Quaternion.Slerp(towerTransform.rotation, q, Time.deltaTime  * m_Game.TimeManager.timeScale* m_tankController.StatsController.towerRotationSpeed);
           
     }

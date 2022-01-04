@@ -78,7 +78,7 @@ PrefabInstance:
     - target: {fileID: 7530378361973122268, guid: fd97b0b4550c1ee4ebc145f2408e025c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 77e4c515cd913ad4caa141fb83a43995, type: 2}
+      objectReference: {fileID: 2100000, guid: 99b8d45c1f7e7864e858ad6ae579ee14, type: 2}
     - target: {fileID: 8690381211084825402, guid: fd97b0b4550c1ee4ebc145f2408e025c, type: 3}
       propertyPath: m_Name
       value: Ground_Metal 1 Variant

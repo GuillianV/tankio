@@ -123,8 +123,8 @@ public class UIEnemyArrow : MonoBehaviour
     protected void GetArrowRotation()
     {
         Vector3 vectorToTarget = m_container.transform.position - transform.position;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-        finalArrowRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+       
+        finalArrowRotation = TMath.GetAngleFromVector2D(vectorToTarget, 0);
     }
 
 

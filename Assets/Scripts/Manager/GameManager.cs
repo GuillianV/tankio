@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    public static bool gameIsPaused;
-    public static bool shopIsOpen;
+    public bool gameIsPaused;
+    public bool shopIsOpen;
+    public bool isDead;
 
     public PlayerManager Player { get; private set; }
     public CameraManager Camera { get; private set; }
@@ -69,10 +70,6 @@ public class GameManager : MonoBehaviour
         Audio.Play("BackgroundMusic");
 
 
-#if UNITY_ANDROID
-        StartMobile();
-
-#endif
     }
 
 
@@ -98,6 +95,9 @@ public class GameManager : MonoBehaviour
     //Pause whole game
     public void PauseGame()
     {
+        if (isDead)
+            return;
+
         gameIsPaused = !gameIsPaused;
 
         if (gameIsPaused)
@@ -121,6 +121,9 @@ public class GameManager : MonoBehaviour
 
     public void OpenShop()
     {
+        if (isDead)
+            return;
+
         shopIsOpen = !shopIsOpen;
 
         if (shopIsOpen)
@@ -143,6 +146,8 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+
+
         Projectile.ResetProjectileManager();
         Waves.ResetWaveManager();
         Player.ResetPlayerManager();
@@ -153,14 +158,11 @@ public class GameManager : MonoBehaviour
 #if UNITY_ANDROID
 
 
-    public void StartMobile()
-    {
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 60;
-    }
-
     public void ShopMobile()
     {
+        if (isDead)
+            return;
+
         shopIsOpen = true;
         gameIsPaused = false;
         TimeManager.timeScale = 0;
@@ -171,6 +173,9 @@ public class GameManager : MonoBehaviour
 
     public void PauseMobile()
     {
+        if (isDead)
+            return;
+
         shopIsOpen = false;
         gameIsPaused = true;
         TimeManager.timeScale = 0;
@@ -181,6 +186,9 @@ public class GameManager : MonoBehaviour
 
     public void CloseMobile()
     {
+        if (isDead)
+            return;
+
         shopIsOpen = false;
         gameIsPaused = false;
         TimeManager.timeScale = 1;

@@ -108,7 +108,7 @@ public class Projectile_Bullet : MonoBehaviour
     {
         
         direction = Vector2.Reflect(direction.normalized, collisionNormal);
-
+        gameObject.transform.rotation = TMath.GetAngleFromVector2D(collisionNormal,-90);
     }
 
     

@@ -45,9 +45,8 @@ public class PlayerMovementMobile : MonoBehaviour
 
     void FixedUpdate()
     {
-        
-        float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        Quaternion q = Quaternion.AngleAxis(angle -90, Vector3.forward);
+
+        Quaternion q = TMath.GetAngleFromVector2D(rotation, -90);
         this.transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime  * m_Game.TimeManager.timeScale* m_tankController.StatsController.towerRotationSpeed);
 
         
