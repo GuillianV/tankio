@@ -1904,7 +1904,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeUI: {fileID: 1307097586}
-  goldsUI: []
+  goldsUI:
+  - {fileID: 1185017405}
+  - {fileID: 1431755995}
   waveUI: {fileID: 814641197}
   inGameParent: {fileID: 970533369}
   pausedParent: {fileID: 84640457}

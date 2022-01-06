@@ -8,13 +8,15 @@ public class MainMenu : MonoBehaviour
 
     public GameObject optionsMenu;
     public GameObject mainMenu;
-    
-      public void PlayGame()
-      {
-          SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-      }
-  
-      public void QuitGame()
+    public GameObject playMenu;
+
+    public void Play()
+    {
+        playMenu.SetActive(true);
+        mainMenu.SetActive(false);
+    }
+
+    public void QuitGame()
       {
           Application.Quit();
       }
