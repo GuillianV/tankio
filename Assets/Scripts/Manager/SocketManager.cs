@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,8 +7,22 @@ using WebSocketSharp;
 
 public class SocketManager : MonoBehaviour
 {
+    public string socketID;
+    public string token;
+    public string roomID;
+    public bool isConnectedToRoom;
+
+    [Header("Join")]
+    public string roomConnect;
+
     public static SocketManager Instance;
     public System.Diagnostics.Stopwatch st = new System.Diagnostics.Stopwatch();
+    public readonly Queue<Action> ExecuteOnMainThread = new Queue<Action>();
+
+    public event EventHandler<S_Connexion.S_ConnexionDataEvent> OnConnexion;
+    public event EventHandler<S_Creation.S_CreationDataEvent> OnCreation;
+    public event EventHandler<S_Room.S_RoomDataEvent> OnRoom;
+
     private void Awake()
     {
         if (Instance == null)
@@ -37,7 +52,8 @@ public class SocketManager : MonoBehaviour
     {
         while (true)
         {
-          
+            yield return new WaitForSeconds(5);
+
             if (ws.IsAlive == true)
             {
                
@@ -50,7 +66,7 @@ public class SocketManager : MonoBehaviour
 
             }
 
-            yield return new WaitForSeconds(5);
+           
         }
     }
 
@@ -63,17 +79,13 @@ public class SocketManager : MonoBehaviour
     void Connect()
     {
 
-        ws = new WebSocket("ws://192.168.1.14:8888");
+        ws = new WebSocket("ws://localhost:8888");
 
         ws.OnOpen += (sender, e) => {
             Debug.Log("WebSocket Open");
         };
         ws.EmitOnPing = true;
-        ws.OnMessage += (sender, e) => {
-
-            Debug.Log(e.Data);
-
-        };
+        ws.OnMessage += MessageHandler;
 
         ws.OnError += (sender, e) => {
             Debug.Log("WebSocket Error Message:" + e.Message);
@@ -103,6 +115,70 @@ public class SocketManager : MonoBehaviour
     public void Send(string message)
     {
         ws.Send(message);
+    }
+
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+           Send(S_Creation.ToJson(socketID));
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Send(S_Room.ToJson(socketID,roomConnect));
+        }
+
+        while (ExecuteOnMainThread.Count > 0)
+        {
+            ExecuteOnMainThread.Dequeue().Invoke();
+        }
+
+    }
+
+    public void MessageHandler(object sender, MessageEventArgs e)
+    {
+
+
+        
+
+        if (S_Connexion.TypeMatch(e.Data))
+        {
+            S_Connexion.S_ConnexionData connexionData = S_Connexion.FromJson(e.Data);
+            ExecuteOnMainThread.Enqueue(() =>
+            {
+                socketID = connexionData.socketID;
+                token = connexionData.token;
+
+                OnConnexion?.Invoke(this, new S_Connexion.S_ConnexionDataEvent(connexionData));
+            });
+
+        }
+
+        if (S_Creation.TypeMatch(e.Data))
+        {
+            S_Creation.S_CreationData creationData = S_Creation.FromJson(e.Data);
+
+            roomID = creationData.roomID;
+
+            ExecuteOnMainThread.Enqueue(() => { OnCreation?.Invoke(this, new S_Creation.S_CreationDataEvent(creationData)); });
+
+        }
+
+        if (S_Room.TypeMatch(e.Data))
+        {
+            S_Room.S_RoomData roomData = S_Room.FromJson(e.Data);
+
+            if (roomData.isValid)
+            {
+                isConnectedToRoom = true;
+                roomID = roomData.roomID;
+            }
+
+            ExecuteOnMainThread.Enqueue(() => { OnRoom?.Invoke(this, new S_Room.S_RoomDataEvent(roomData)); });
+
+        }
     }
 
 
