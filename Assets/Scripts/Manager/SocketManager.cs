@@ -41,12 +41,17 @@ public class SocketManager : MonoBehaviour
     private IEnumerator checkConnectionAlive;
 
 
-    void Start()
+    public void ConnectServer()
     {
         checkConnectionAlive = CheckConnectionAlive();
         Connect();
     }
 
+    public void DisconectServer()
+    {
+        Disconnect();
+        StopAllCoroutines();
+    }
 
     IEnumerator CheckConnectionAlive()
     {
@@ -72,8 +77,7 @@ public class SocketManager : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        Disconnect();
-        StopCoroutine(checkConnectionAlive);
+        DisconectServer();
     }
 
     void Connect()
