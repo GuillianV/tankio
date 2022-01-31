@@ -17,7 +17,11 @@ public class Tower : MonoBehaviour, IUpgradable
     {
         Data = _data;
     }
-    
+    public ScriptableObject GetBaseData()
+    {
+        return Data;
+    }
+
     //Upgrade Tower Stats when IUpgradable is trigered
     void IUpgradable.Upgrade()
     {

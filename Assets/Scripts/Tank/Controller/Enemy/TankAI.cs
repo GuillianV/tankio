@@ -10,6 +10,10 @@ public class TankAI : MonoBehaviour
     private AIPath m_aiPath;
     private AIDestinationSetter m_aiDestinationSetter;
     private TankController m_tankController;
+    private TracksController TracksController;
+    private GunController GunController;
+    private TowerController TowerController;
+    private BodyController BodyController;
     private TankDestroyed m_tankDestroyed;
     private bool isReloading;
     private GameManager m_Game;
@@ -32,6 +36,10 @@ public class TankAI : MonoBehaviour
         m_Game = GameManager.Instance;
         m_aiPath = GetComponent<AIPath>();
         m_tankController = GetComponent<TankController>();
+        GunController = GetComponent<GunController>();
+        BodyController = GetComponent<BodyController>();
+        TowerController = GetComponent<TowerController>();
+        TracksController = GetComponent<TracksController>();
         m_aiDestinationSetter = GetComponent<AIDestinationSetter>();
         m_tankDestroyed = GetComponent<TankDestroyed>();
 
@@ -46,9 +54,9 @@ public class TankAI : MonoBehaviour
 
     public void UpdateAstar()
     {
-        m_aiPath.maxSpeed = m_tankController.StatsController.tracksSpeed * Time.deltaTime * m_Game.TimeManager.timeScale * velocityRate;
-        m_aiPath.maxAcceleration = m_tankController.StatsController.tracksSpeed * Time.deltaTime * m_Game.TimeManager.timeScale * velocityRate;
-        m_aiPath.rotationSpeed = m_tankController.StatsController.tracksRotationSpeed * Time.deltaTime * m_Game.TimeManager.timeScale * 100 * velocityRate;
+        m_aiPath.maxSpeed = TracksController.GetTrackSpeed() * Time.deltaTime * m_Game.TimeManager.timeScale * velocityRate;
+        m_aiPath.maxAcceleration = TracksController.GetTrackSpeed() * Time.deltaTime * m_Game.TimeManager.timeScale * velocityRate;
+        m_aiPath.rotationSpeed = TracksController.GetTrackRotationSpeed() * Time.deltaTime * m_Game.TimeManager.timeScale * 100 * velocityRate;
         m_aiPath.repathRate = repathRate;
     }
 
@@ -87,7 +95,7 @@ public class TankAI : MonoBehaviour
        
 
 
-            if (m_tankController.StatsController.health <= 0)
+            if (BodyController.GetHealt() <= 0)
             {
                 Destroy(gameObject);
             }
@@ -96,7 +104,7 @@ public class TankAI : MonoBehaviour
             {
                 Vector3 vectorToTarget = new Vector3(m_aiDestinationSetter.target.position.x, m_aiDestinationSetter.target.position.y, towerTransform.transform.position.z) - towerTransform.transform.position;
                 Quaternion q = TMath.GetAngleFromVector2D(vectorToTarget, -90);
-                towerTransform.transform.rotation = Quaternion.Slerp(towerTransform.transform.rotation, q, Time.deltaTime * m_Game.TimeManager.timeScale * m_tankController.StatsController.towerRotationSpeed);
+                towerTransform.transform.rotation = Quaternion.Slerp(towerTransform.transform.rotation, q, Time.deltaTime * m_Game.TimeManager.timeScale * TowerController.GetTowerRotationSpeed());
 
 
 
@@ -116,7 +124,7 @@ public class TankAI : MonoBehaviour
                             bulletCreated.Created += OnBulletCreated;
                             m_tankController.TankAnimationController.FireProjectile();
                             Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
-                            ammoProjectile.BulletStats.velocity = m_tankController.StatsController.bulletVelocity;
+                            ammoProjectile.BulletStats.velocity = GunController.GetBulletVelocity();
                             ammoProjectile.parentUp = spawnBullet.transform.up;
                             ammoProjectile.senderTag = gameObject.tag;
                             isReloading = true;
@@ -133,7 +141,7 @@ public class TankAI : MonoBehaviour
 
     IEnumerator Reload()
     {
-        yield return new WaitForSeconds(m_tankController.StatsController.reloadTimeSpeed);
+        yield return new WaitForSeconds(GunController.GetReloadTimeSpeed());
         isReloading = false;
     }
 
@@ -142,9 +150,9 @@ public class TankAI : MonoBehaviour
         Projectile_Bullet bullet = col.gameObject.GetComponent<Projectile_Bullet>();
         if (bullet != null)
         {
-            m_tankController.StatsController.health -= bullet.BulletStats.damages;
+            BodyController.SetHealt( BodyController.GetHealt() - bullet.BulletStats.damages);
 
-            if (m_tankController.StatsController.health <= 0)
+            if (BodyController.GetHealt() <= 0)
             {
                 m_tankDestroyed.OnDestroyed(bullet.senderTag);
             }

@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody2D m_playerRigidbody;
     private TankController m_tankController;
+    private TracksController TracksController;
     private GameManager m_Game;
    
     [Range(0,5)]
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         m_Game = GameManager.Instance;
         m_playerRigidbody = GetComponent<Rigidbody2D>();
         m_tankController = GetComponent<TankController>();
+        TracksController = GetComponent<TracksController>();
         inputTank.Tank.Move.canceled += ctx => Cancelled();
 
     }
@@ -48,21 +50,21 @@ public class PlayerMovement : MonoBehaviour
     {
 
             m_xForce = movement.y * 
-                       m_tankController.StatsController.tracksSpeed * 
+                      TracksController.GetTrackSpeed() * 
                        Time.deltaTime*
                        power * 
                        m_Game.TimeManager.timeScale  * 
                        transform.up.x; 
                 
             m_yForce = movement.y *
-                       m_tankController.StatsController.tracksSpeed
+                      TracksController.GetTrackSpeed()
                        * Time.deltaTime *  m_Game.TimeManager.timeScale*
                        power * 
                        transform.up.y;
                 
             transform.Rotate(0,0, 
                 -movement.x *
-                m_tankController.StatsController.tracksRotationSpeed * 
+                TracksController.GetTrackRotationSpeed() * 
                 Time.deltaTime *  m_Game.TimeManager.timeScale *
                 power );
        

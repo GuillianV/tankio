@@ -33,7 +33,7 @@ public class PlayerAimer : MonoBehaviour
             Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 vectorToTarget = new Vector3(pz.x,pz.y,towerTransform.position.z)  - towerTransform.position;     
             Quaternion q = TMath.GetAngleFromVector2D(vectorToTarget, -90);
-            towerTransform.rotation =  Quaternion.Slerp(towerTransform.rotation, q, Time.deltaTime  * m_Game.TimeManager.timeScale* m_tankController.StatsController.towerRotationSpeed);
+            towerTransform.rotation =  Quaternion.Slerp(towerTransform.rotation, q, Time.deltaTime  * m_Game.TimeManager.timeScale* m_tankController.TowerController.GetTowerRotationSpeed());
           
     }
 

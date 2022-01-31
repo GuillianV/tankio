@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
@@ -62,6 +63,12 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public GameObject player;
 
     private GameManager m_Game;
+    private TankController tankController;
+    private TracksController TracksController;
+    private BodyController BodyController;
+    private TowerController TowerController;
+    private GunController GunController;
+
     public event EventHandler<TankEvent> OnPlayerDestroyed;
     public event EventHandler<TankEvent> OnPlayerCreated;
 
@@ -76,16 +83,21 @@ public class PlayerManager : MonoBehaviour
     {
         if (player != null)
         {
-            TankController tankController = player.GetComponent<TankController>();
+            tankController = player.GetComponent<TankController>();
 
             if (tankController != null)
             {
-                tankController.StatsController.tracksSpeed = tracksSpeed;
-                tankController.StatsController.tracksRotationSpeed = tracksRotationSpeed;
-                tankController.StatsController.health = health;
-                tankController.StatsController.towerRotationSpeed = towerRotationSpeed;
-                tankController.StatsController.bulletVelocity = bulletVelocity;
-                tankController.StatsController.reloadTimeSpeed = reloadTimeSpeed;
+                TracksController = player.GetComponent<TracksController>();
+                BodyController = player.GetComponent<BodyController>();
+                TowerController = player.GetComponent<TowerController>();
+                GunController = player.GetComponent<GunController>();
+
+                TracksController.SetTrackSpeed(tracksSpeed);
+                TracksController.SetTrackRotationSpeed(tracksRotationSpeed);
+                BodyController.SetHealt(health);
+                TowerController.SetTowerRotationSpeed(towerRotationSpeed);
+                GunController.SetBulletVelocity(bulletVelocity);
+                GunController.SetReloadTimeSpeed(reloadTimeSpeed);
             }
         }
     }
@@ -112,8 +124,8 @@ public class PlayerManager : MonoBehaviour
         TankDestroyed tankDestroyed = sender as TankDestroyed;
         if (tankDestroyed.gameObject)
         {
-            TankController tankController = tankDestroyed.GetComponent<TankController>();
-            OnTankDestroyed(tankController);
+            TankController currentTankController = tankDestroyed.GetComponent<TankController>();
+            OnTankDestroyed(currentTankController);
             m_Game.Ui.ShowDeadMenu();
         }
       
@@ -122,18 +134,18 @@ public class PlayerManager : MonoBehaviour
     public void PlayerCreated(object sender, EventArgs args)
     {
         TankCreate tankCreate = sender as TankCreate;
-        TankController tankController = tankCreate.GetComponent<TankController>();
-        OnTankCreated(tankController);
+        TankController currentTankController = tankCreate.GetComponent<TankController>();
+        OnTankCreated(currentTankController);
     }
     
-    public void OnTankDestroyed(TankController tankController)
+    public void OnTankDestroyed(TankController currentTankController)
     {
-        OnPlayerDestroyed?.Invoke(this,new TankEvent(tankController));
+        OnPlayerDestroyed?.Invoke(this,new TankEvent(currentTankController));
     }
     
-    public void OnTankCreated(TankController tankController)
+    public void OnTankCreated(TankController currentTankController)
     {
-        OnPlayerCreated?.Invoke(this,new TankEvent(tankController));
+        OnPlayerCreated?.Invoke(this,new TankEvent(currentTankController));
     }
 
     
@@ -162,42 +174,60 @@ public class PlayerManager : MonoBehaviour
     {
         if (player != null)
         {
-            TankController tankController = player.GetComponent<TankController>();
+            tankController = player.GetComponent<TankController>();
+            TracksController = player.GetComponent<TracksController>();
+            BodyController = player.GetComponent<BodyController>();
+            TowerController = player.GetComponent<TowerController>();
+            GunController = player.GetComponent<GunController>();
 
+            List<ITankComponent> tankComponentsList = tankController.GetComponents<ITankComponent>().ToList();
 
             if (TracksData != null)
             {
-                tankController.TracksController.tracks.LoadData(TracksData);
+              
+
+                ITankComponent tracksComponent = tankComponentsList.FirstOrDefault(component => component.ToString().Contains("TracksController"));
+                tracksComponent.BindData(TracksData);
+                tracksComponent.BindStats();
             }
 
             if (BodyData != null)
             {
-                tankController.BodyController.body.LoadData(BodyData);
+              
+
+                ITankComponent bodyComponent = tankComponentsList.FirstOrDefault(component => component.ToString().Contains("BodyController"));
+                bodyComponent.BindData(BodyData);
+                bodyComponent.BindStats();
             }
 
 
             if (TowerData != null)
             {
-                tankController.TowerController.tower.LoadData(TowerData);
+                ITankComponent towerComponent = tankComponentsList.FirstOrDefault(component => component.ToString().Contains("TowerController"));
+                towerComponent.BindData(TowerData);
+                towerComponent.BindStats();
             }
 
             if (GunData != null)
             {
-                tankController.GunController.gun.LoadData(GunData);
+                ITankComponent gunComponent = tankComponentsList.FirstOrDefault(component => component.ToString().Contains("GunController"));
+                gunComponent.BindData(GunData);
+                gunComponent.BindStats();
             }
+
 
 
             tankController.BindSprite();
             tankController.BindStats();
 
-            if (tankController.StatsController != null)
+            if (tankController != null)
             {
-                tracksSpeed = tankController.StatsController.tracksSpeed;
-                tracksRotationSpeed = tankController.StatsController.tracksRotationSpeed;
-                health = tankController.StatsController.health;
-                towerRotationSpeed = tankController.StatsController.towerRotationSpeed;
-                bulletVelocity = tankController.StatsController.bulletVelocity;
-                reloadTimeSpeed = tankController.StatsController.reloadTimeSpeed;
+                tracksSpeed = TracksController.GetTrackSpeed();
+                tracksRotationSpeed = TracksController.GetTrackRotationSpeed();
+                health = BodyController.GetHealt();
+                towerRotationSpeed = TowerController.GetTowerRotationSpeed();
+                bulletVelocity = GunController.GetBulletVelocity();
+                reloadTimeSpeed = GunController.GetReloadTimeSpeed();
             }
         }
         else
@@ -228,8 +258,8 @@ public class PlayerManager : MonoBehaviour
     //Set life of player
     public void SetUiLifeOfPlayer()
     {
-        TankController tankController = player.GetComponent<TankController>();
-        m_Game.Ui.SetLifeUI(tankController.StatsController.maxHealth, tankController.StatsController.maxHealth);
+        if(tankController)
+             m_Game.Ui.SetLifeUI(BodyController.GetMaxHealt(), BodyController.GetMaxHealt());
     }
 
     #endregion
@@ -238,58 +268,69 @@ public class PlayerManager : MonoBehaviour
 
     public void UpgradeTracks()
     {
-        TankController tankController = player.GetComponent<TankController>();
 
-        tankController.StatsController.tracksSpeed = tankController.StatsController.tracksSpeed +
-                                                     (coeffTracksSpeedUpgrade * tankController.TracksController.tracks
-                                                         .Data.speed);
-        tracksSpeed = tankController.StatsController.tracksSpeed;
+        TracksData initialTracksData = TracksController.GetBaseData();
 
-        tankController.StatsController.tracksRotationSpeed = tankController.StatsController.tracksRotationSpeed +
-                                                             (coeffRotationSpeedUpgrade * tankController
-                                                                 .TracksController.tracks.Data.rotationSpeed);
-        tracksRotationSpeed = tankController.StatsController.tracksRotationSpeed;
+        TracksController.SetTrackSpeed( TracksController.GetTrackSpeed() +
+                                                     (coeffTracksSpeedUpgrade * initialTracksData.speed));
+
+        tracksSpeed = TracksController.GetTrackSpeed();
+
+
+
+        TracksController.SetTrackRotationSpeed(TracksController.GetTrackRotationSpeed() +
+                                                             (coeffRotationSpeedUpgrade * initialTracksData.rotationSpeed));
+
+        tracksRotationSpeed = TracksController.GetTrackRotationSpeed();
     }
 
     public void UpgradeBody()
     {
-        TankController tankController = player.GetComponent<TankController>();
 
-        tankController.StatsController.maxHealth = tankController.StatsController.maxHealth +
-                                                   (coeffHealthUpgrade * tankController.BodyController.body.Data.life);
-
-        tankController.StatsController.health = tankController.StatsController.health +
-                                                (coeffHealthUpgrade * tankController.BodyController.body.Data.life);
-        health = tankController.StatsController.health;
+        BodyData initialBodyData = BodyController.GetBaseData();
 
 
-        m_Game.Ui.SetLifeUI(tankController.StatsController.maxHealth, tankController.StatsController.health);
+        BodyController.SetMaxHealt(BodyController.GetMaxHealt() +
+                                                   (coeffHealthUpgrade * initialBodyData.life));
+
+        BodyController.SetHealt(BodyController.GetHealt() +
+                                                (coeffHealthUpgrade * initialBodyData.life));
+        
+        health = BodyController.GetHealt();
+
+
+        m_Game.Ui.SetLifeUI(BodyController.GetMaxHealt(), BodyController.GetHealt());
     }
 
     public void UpgradeTower()
     {
-        TankController tankController = player.GetComponent<TankController>();
+        TowerData initialTowerData = TowerController.GetBaseData();
 
-        tankController.StatsController.towerRotationSpeed = tankController.StatsController.towerRotationSpeed +
+
+
+        TowerController.SetTowerRotationSpeed(TowerController.GetTowerRotationSpeed() +
                                                             (coeffTowerRotationSpeedUpgrade *
-                                                             tankController.TowerController.tower.Data.rotationSpeed);
-        towerRotationSpeed = tankController.StatsController.towerRotationSpeed;
+                                                             initialTowerData.rotationSpeed));
+       
+        towerRotationSpeed = TowerController.GetTowerRotationSpeed();
     }
 
 
     public void UpgradeGun()
     {
-        TankController tankController = player.GetComponent<TankController>();
 
-        tankController.StatsController.bulletVelocity = tankController.StatsController.bulletVelocity +
-                                                        (coeffBulletVelocityUpgrade * tankController.GunController.gun
-                                                            .Data.bulletVelocity);
-        bulletVelocity = tankController.StatsController.bulletVelocity;
+        GunData initialGunData = GunController.GetBaseData();
 
-        tankController.StatsController.reloadTimeSpeed = tankController.StatsController.reloadTimeSpeed -
-                                                         (reloadTimeSpeed * tankController.GunController.gun.Data
-                                                             .reloadTimeSecond);
-        reloadTimeSpeed = tankController.StatsController.reloadTimeSpeed;
+        GunController.SetBulletVelocity(GunController.GetBulletVelocity() +
+                                                        (coeffBulletVelocityUpgrade * initialGunData.bulletVelocity));
+       
+        bulletVelocity = GunController.GetBulletVelocity();
+
+        GunController.SetReloadTimeSpeed(GunController.GetReloadTimeSpeed() -
+                                                         (reloadTimeSpeed * initialGunData.reloadTimeSecond));
+
+
+        reloadTimeSpeed = GunController.GetReloadTimeSpeed();
     }
 
     #endregion

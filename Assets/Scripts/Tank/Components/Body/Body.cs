@@ -20,7 +20,12 @@ public class Body : MonoBehaviour ,IUpgradable
         Data = _data;
 
     }
-    
+
+    public ScriptableObject GetBaseData()
+    {
+        return Data;
+    }
+
     //Upgrade Body Stats when IUpgradable is trigered
     void IUpgradable.Upgrade()
     {

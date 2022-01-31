@@ -18,7 +18,12 @@ public class Gun : MonoBehaviour, IUpgradable
     {
         Data = _data;
     }
-    
+
+    public ScriptableObject GetBaseData()
+    {
+        return Data;
+    }
+
     //Upgrade Gun Stats when IUpgradable is trigered
     void IUpgradable.Upgrade()
     {

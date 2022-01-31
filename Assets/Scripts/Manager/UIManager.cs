@@ -239,7 +239,7 @@ public class UIManager : MonoBehaviour
     {
         if (lifeUI != null)
         {
-            lifeUI.text = "LIFE : " + (life / maxLife * 100f).ToString("F0") + "%";
+            lifeUI.text = "LIFE   " + (life / maxLife * 100f).ToString("F0") ;
         }
         else
         {
@@ -253,7 +253,7 @@ public class UIManager : MonoBehaviour
         {
             goldsUI.ForEach(ui =>
             {
-                ui.text = "GOLDS : " + golds;
+                ui.text = "GOLDS   " + golds;
             });
             
         }
@@ -267,7 +267,7 @@ public class UIManager : MonoBehaviour
     {
         if (waveUI != null)
         {
-            waveUI.text = "WAVE : " + wave;
+            waveUI.text = "WAVE   " + wave;
         }
         else
         {
@@ -431,7 +431,7 @@ public class UIManager : MonoBehaviour
 
         if (shopItemUI.shopItemCostUI != null)
         {
-            shopItemUI.shopItemCostUI.text = "COST : " + cost + " GOLDS";
+            shopItemUI.shopItemCostUI.text = "COST   " + cost + " GOLDS";
         }
         else
         {
@@ -447,7 +447,7 @@ public class UIManager : MonoBehaviour
 
         if (shopItemUI.shopItemLevelUI != null)
         {
-            shopItemUI.shopItemLevelUI.text = "Lv : " + lvl;
+            shopItemUI.shopItemLevelUI.text = "Lv   " + lvl;
         }
         else
         {

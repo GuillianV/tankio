@@ -20,8 +20,8 @@ public class PlayerBody : MonoBehaviour
         Projectile_Bullet bullet = collision.gameObject.GetComponent<Projectile_Bullet>();
         if (bullet != null)
         {
-            m_tankController.StatsController.health -= bullet.BulletStats.damages;
-            m_Game.Ui.SetLifeUI(m_tankController.StatsController.maxHealth,m_tankController.StatsController.health);
+            m_tankController.BodyController.SetHealt(m_tankController.BodyController.GetHealt() - bullet.BulletStats.damages);
+            m_Game.Ui.SetLifeUI(m_tankController.BodyController.GetMaxHealt(),m_tankController.BodyController.GetHealt());
         }
     }
 }

@@ -48,7 +48,7 @@ public class PlayerShoot : MonoBehaviour
     
     IEnumerator Reload()
     {
-        yield return new WaitForSeconds(m_tankController.StatsController.reloadTimeSpeed);
+        yield return new WaitForSeconds(m_tankController.GunController.GetReloadTimeSpeed());
         isReloading = false;
     }
 
@@ -92,7 +92,7 @@ public class PlayerShoot : MonoBehaviour
                 bulletCreated.Created += OnBulletCreated;  
                 
                 Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
-                ammoProjectile.BulletStats.velocity = m_tankController.StatsController.bulletVelocity;
+                ammoProjectile.BulletStats.velocity = m_tankController.GunController.GetBulletVelocity();
                 ammoProjectile.parentUp = m_tankController.GunController.bulletSpawn.transform.up;
                 ammoProjectile.senderTag = gameObject.tag;
                 m_tankController.TankAnimationController.FireProjectile();

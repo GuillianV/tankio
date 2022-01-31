@@ -21,7 +21,7 @@ public class EnemyManager : MonoBehaviour
 
   
 
-    public List<StatsController> enemiesInGame = new List<StatsController>();
+    public List<TankController> enemiesInGame = new List<TankController>();
     public List<GameObject> enemiesInGameGO = new List<GameObject>();
     private GameManager m_Game;
 
@@ -41,10 +41,10 @@ public class EnemyManager : MonoBehaviour
             TankController tankController = tankDestroyed.GetComponent<TankController>();
             if (!String.IsNullOrEmpty(args.Tag))
             {
-                m_Game.Shop.AddGolds(tankController.StatsController.gold);
+                m_Game.Shop.AddGolds(tankController.BodyController.GetGold());
                 m_Game.Audio.Play("tank-death-1");
             }
-            enemiesInGame.Remove(tankController.StatsController);
+            enemiesInGame.Remove(tankController);
             enemiesInGameGO.Remove(tankDestroyed.gameObject);
             OnTankDestroyed(tankController);
         }
@@ -59,7 +59,7 @@ public class EnemyManager : MonoBehaviour
         Debug.Log("TankCreated");
         TankCreate tankCreate = sender as TankCreate;
         TankController tankController = tankCreate.GetComponent<TankController>();
-        enemiesInGame.Add(tankController.StatsController);
+        enemiesInGame.Add(tankController);
         enemiesInGameGO.Add(tankCreate.gameObject);
         
         m_Game.Projectile.LoadEnemiesShooter(tankCreate.gameObject);
@@ -99,26 +99,39 @@ public class EnemyManager : MonoBehaviour
             aiDestinationSetter.target = GameObject.FindWithTag("Player").transform;
 
         }
-        
-       
+
+        List<ITankComponent> tankComponentsList = tankController.GetComponents<ITankComponent>().ToList();
+
+
+
         if (enemyPatern.tracksData != null)
         {
-            tankController.TracksController.tracks.LoadData(enemyPatern.tracksData);
+        
+            ITankComponent tracksComponent = tankComponentsList.FirstOrDefault(component => component.ToString().Contains("TracksController"));
+            tracksComponent.BindData(enemyPatern.tracksData);
+            tracksComponent.BindStats();
         }
 
         if (enemyPatern.bodyData != null)
         {
-            tankController.BodyController.body.LoadData(enemyPatern.bodyData);
+            ITankComponent bodyComponent = tankComponentsList.FirstOrDefault(component => component.ToString().Contains("BodyController"));
+            bodyComponent.BindData(enemyPatern.bodyData);
+            bodyComponent.BindStats();
         }
 
         if (enemyPatern.towerData != null)
         {
-            tankController.TowerController.tower.LoadData(enemyPatern.towerData);
+            ITankComponent towerComponent = tankComponentsList.FirstOrDefault(component => component.ToString().Contains("TowerController"));
+            towerComponent.BindData(enemyPatern.towerData);
+            towerComponent.BindStats();
         }
 
         if (enemyPatern.gunData != null)
         {
-            tankController.GunController.gun.LoadData(enemyPatern.gunData);
+            ITankComponent gunComponent = tankComponentsList.FirstOrDefault(component => component.ToString().Contains("GunController"));
+            gunComponent.BindData(enemyPatern.gunData);
+            gunComponent.BindStats();
+
         }
 
         tankController.BindSprite();
