@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(TankController))]
-public class Tracks : MonoBehaviour , IUpgradable
+public class Tracks : MonoBehaviour 
 {
     
     
@@ -27,11 +27,6 @@ public class Tracks : MonoBehaviour , IUpgradable
         return Data;
     }
 
-    //Upgrade Tracks Stats when IUpgradable is trigered
-    void IUpgradable.Upgrade()
-    {
-        Debug.Log("Tracks Upgraded");
-        m_Game.Player.UpgradeTracks();
-    }
+
     
 }

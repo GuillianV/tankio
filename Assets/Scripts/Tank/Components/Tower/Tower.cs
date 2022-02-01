@@ -1,12 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour, IUpgradable
+public class Tower : MonoBehaviour
 {
     public TowerData Data { get; private set; }
     private GameManager m_Game;
-    
+
+
     private void Awake()
     {
         m_Game = GameManager.Instance;
@@ -22,10 +24,5 @@ public class Tower : MonoBehaviour, IUpgradable
         return Data;
     }
 
-    //Upgrade Tower Stats when IUpgradable is trigered
-    void IUpgradable.Upgrade()
-    {
-        Debug.Log("Tower Upgraded");
-        m_Game.Player.UpgradeTower();
-    }
+  
 }

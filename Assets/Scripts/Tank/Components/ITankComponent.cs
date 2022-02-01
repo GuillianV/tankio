@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface ITankComponent 
 {
+
     void BindData(ScriptableObject obj);
 
     void BindComponent();

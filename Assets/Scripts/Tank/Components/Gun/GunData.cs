@@ -5,9 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Tank/Gun")]
 public class GunData : ScriptableObject
 {
-    
+
+    [Range(0.01f, 1f)]
+    public float coefReloadTimeSecond = 0.1f;
     [Range(0,10)]
     public float reloadTimeSecond = 1;
+    [Range(0.01f, 1f)]
+    public float coefBulletVelocity = 0.1f;
     [Range(0,100)]
     public float bulletVelocity = 1;
     public Sprite spriteGun;

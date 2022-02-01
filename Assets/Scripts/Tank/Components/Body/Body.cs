@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(TankController))]
-public class Body : MonoBehaviour ,IUpgradable
+public class Body : MonoBehaviour 
 {
     public BodyData Data { get; private set; }
     private GameManager m_Game;
@@ -26,10 +26,5 @@ public class Body : MonoBehaviour ,IUpgradable
         return Data;
     }
 
-    //Upgrade Body Stats when IUpgradable is trigered
-    void IUpgradable.Upgrade()
-    {
-        Debug.Log("Body Upgraded");
-        m_Game.Player.UpgradeBody();
-    }
+
 }

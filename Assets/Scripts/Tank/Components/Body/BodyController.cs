@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BodyController : MonoBehaviour, ITankComponent
+public class BodyController : MonoBehaviour, ITankComponent, IUpgradable
 {
 
 
@@ -13,9 +13,12 @@ public class BodyController : MonoBehaviour, ITankComponent
     private float health;
     private int gold;
 
+    private GameManager m_Game;
+
 
     private void Awake()
     {
+        m_Game = GameManager.Instance;
         body = gameObject.AddComponent<Body>();
     }
 
@@ -64,6 +67,24 @@ public class BodyController : MonoBehaviour, ITankComponent
             maxHealth = body.Data.life;
             health = body.Data.life;
             gold = body.Data.golds;
+        }
+        else
+        {
+            Debug.LogError("BodyController cannot load Data in Body");
+        }
+    }
+
+    void IUpgradable.Upgrade()
+    {
+        if (body.Data != null)
+        {
+
+
+            SetMaxHealt(GetMaxHealt() +(body.Data.coefLife * body.Data.life));
+
+            SetHealt(GetHealt() +(body.Data.coefLife * body.Data.life));
+
+            m_Game.Ui.SetLifeUI(GetMaxHealt(), GetHealt());
         }
         else
         {

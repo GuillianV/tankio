@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TracksController : MonoBehaviour, ITankComponent
+public class TracksController : MonoBehaviour, ITankComponent, IUpgradable
 {
 
 
@@ -14,9 +14,11 @@ public class TracksController : MonoBehaviour, ITankComponent
     private float tracksSpeed;
     private float tracksRotationSpeed;
 
+
     private void Awake()
     {
         tracks = gameObject.AddComponent<Tracks>();
+        
     }
 
     void ITankComponent.BindData(ScriptableObject obj)
@@ -26,7 +28,6 @@ public class TracksController : MonoBehaviour, ITankComponent
         {
             TracksData tracksData = (TracksData)obj;
             tracks.LoadData(tracksData);
-
         }
         else
         {
@@ -69,6 +70,27 @@ public class TracksController : MonoBehaviour, ITankComponent
         {
             Debug.LogError("tracksController cannot load Data in tracks");
         }
+    }
+
+
+    void IUpgradable.Upgrade()
+    {
+        if (tracks.Data != null)
+        {
+
+            SetTrackSpeed(GetTrackSpeed() + (tracks.Data.coefSpeed * tracks.Data.speed));
+
+
+            SetTrackRotationSpeed(GetTrackRotationSpeed() +  (tracks.Data.coefRotationSpeed * tracks.Data.rotationSpeed));
+
+        }
+        else
+        {
+            Debug.LogError("tracksController cannot load Data in tracks");
+        }
+
+   
+
     }
 
     public void SetTrackRotationSpeed(float newValue)

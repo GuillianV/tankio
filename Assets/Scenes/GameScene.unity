@@ -1604,22 +1604,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 6904654475131753461, guid: 8e72d40f430734a82aaea096826ecd81, type: 3}
   parentContainer: {fileID: 1354766825}
-  TracksData: {fileID: 11400000, guid: c9693e90d0727d349a5151f9a5917882, type: 2}
-  BodyData: {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}
-  TowerData: {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
-  GunData: {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
-  tracksSpeed: 0
-  coeffTracksSpeedUpgrade: 0.115
-  tracksRotationSpeed: 627
-  coeffRotationSpeedUpgrade: 0.028
-  health: 4125
-  coeffHealthUpgrade: 0.5
-  towerRotationSpeed: 45.9
-  coeffTowerRotationSpeedUpgrade: 0.15
-  bulletVelocity: 100
-  coeffBulletVelocityUpgrade: 0.15
-  reloadTimeSpeed: 0
-  coeffReloadTimeSpeedUpgrade: 0.034
+  dataList:
+  - {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
+  - {fileID: 11400000, guid: c9693e90d0727d349a5151f9a5917882, type: 2}
+  - {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}
+  - {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
   player: {fileID: 0}
 --- !u!114 &755335487
 MonoBehaviour:
@@ -2006,25 +1995,25 @@ MonoBehaviour:
     itemActualCost: 0
     itemCostMultiplyer: 1.96
     itemLvl: 0
-    objectScript: {fileID: 11500000, guid: 1ad8cd55c84eba24ba70a615d8b95cb3, type: 3}
+    objectScript: {fileID: 11500000, guid: 9586ea8248b5b3748b5e8f18fb3dc990, type: 3}
   - identifier: 2
     itemBaseCost: 35
     itemActualCost: 0
     itemCostMultiplyer: 1.38
     itemLvl: 0
-    objectScript: {fileID: 11500000, guid: 0e17bf454350bb8469e705e70080c416, type: 3}
+    objectScript: {fileID: 11500000, guid: 9ce635ed4ed368445b56fdd30f74754a, type: 3}
   - identifier: 3
     itemBaseCost: 15
     itemActualCost: 0
     itemCostMultiplyer: 1.63
     itemLvl: 0
-    objectScript: {fileID: 11500000, guid: edd86454cfcf6da4aadbc8d4f0191127, type: 3}
+    objectScript: {fileID: 11500000, guid: 4ca855a1d05f863488aeecc56ea488f0, type: 3}
   - identifier: 4
     itemBaseCost: 40
     itemActualCost: 0
     itemCostMultiplyer: 1.56
     itemLvl: 0
-    objectScript: {fileID: 11500000, guid: da6a7c96942363c48a07718389827f98, type: 3}
+    objectScript: {fileID: 11500000, guid: cddd63db2dc07584d872cf5d580a1486, type: 3}
 --- !u!114 &755335495
 MonoBehaviour:
   m_ObjectHideFlags: 0

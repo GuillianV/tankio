@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunController : MonoBehaviour, ITankComponent
+public class GunController : MonoBehaviour, ITankComponent, IUpgradable
 {
 
 
@@ -74,6 +74,25 @@ public class GunController : MonoBehaviour, ITankComponent
         {
             Debug.LogError("GunController cannot load Data in Gun");
         }
+    }
+
+    void IUpgradable.Upgrade()
+    {
+
+        if (gun.Data != null)
+        {
+
+            SetBulletVelocity(GetBulletVelocity() +   (gun.Data.coefBulletVelocity * gun.Data.bulletVelocity));
+
+            SetReloadTimeSpeed(GetReloadTimeSpeed() - (gun.Data.coefReloadTimeSecond * gun.Data.reloadTimeSecond));
+
+
+        }
+        else
+        {
+            Debug.LogError("GunController cannot load Data in Gun");
+        }
+
     }
     public void SetBulletVelocity(float newValue)
     {

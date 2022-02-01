@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TowerController : MonoBehaviour, ITankComponent
+public class TowerController : MonoBehaviour, ITankComponent, IUpgradable
 {
     public SpriteRenderer towerSprite;
 
@@ -64,6 +64,25 @@ public class TowerController : MonoBehaviour, ITankComponent
             Debug.LogError("TowerController cannot load Data in Tower");
         }
     }
+
+
+
+    void IUpgradable.Upgrade()
+    {
+        if (tower.Data != null)
+        {
+
+            SetTowerRotationSpeed(GetTowerRotationSpeed() +   (tower.Data.coefRotationSpeed *  tower.Data.rotationSpeed));
+
+        }
+        else
+        {
+            Debug.LogError("TowerController cannot load Data in Tower");
+        }
+    }
+
+
+
 
     public void SetTowerRotationSpeed(float newValue)
     {

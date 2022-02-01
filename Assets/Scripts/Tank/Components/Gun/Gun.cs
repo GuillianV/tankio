@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour, IUpgradable
+public class Gun : MonoBehaviour
 {
     
     public GunData Data { get; private set; }
@@ -24,12 +24,6 @@ public class Gun : MonoBehaviour, IUpgradable
         return Data;
     }
 
-    //Upgrade Gun Stats when IUpgradable is trigered
-    void IUpgradable.Upgrade()
-    {
-        Debug.Log("Gun Upgraded");
-        m_Game.Player.UpgradeGun();
-    }
-        
+   
    
 }
