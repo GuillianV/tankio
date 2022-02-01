@@ -15,6 +15,7 @@ public class PlayerBody : MonoBehaviour
         m_Game = GameManager.Instance;
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Projectile_Bullet bullet = collision.gameObject.GetComponent<Projectile_Bullet>();

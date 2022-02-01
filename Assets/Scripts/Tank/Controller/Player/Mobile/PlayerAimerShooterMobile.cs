@@ -48,7 +48,7 @@ public class PlayerAimerShooterMobile : MonoBehaviour
 
 
         Quaternion q = TMath.GetAngleFromVector2D(vectorToTarget, -90);
-        towerTransform.rotation = Quaternion.Slerp(towerTransform.rotation, q, Time.deltaTime  * m_Game.TimeManager.timeScale* m_tankController.StatsController.towerRotationSpeed);
+        towerTransform.rotation = Quaternion.Slerp(towerTransform.rotation, q, Time.deltaTime  * m_Game.TimeManager.timeScale* m_tankController.TowerController.GetTowerRotationSpeed());
           
     }
 
@@ -74,7 +74,7 @@ public class PlayerAimerShooterMobile : MonoBehaviour
     
     IEnumerator Reload()
     {
-        yield return new WaitForSeconds(m_tankController.StatsController.reloadTimeSpeed);
+        yield return new WaitForSeconds(m_tankController.GunController.GetReloadTimeSpeed());
         isReloading = false;
     }
 
@@ -118,7 +118,7 @@ public class PlayerAimerShooterMobile : MonoBehaviour
                 bulletCreated.Created += OnBulletCreated;  
                 
                 Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
-                ammoProjectile.BulletStats.velocity = m_tankController.StatsController.bulletVelocity;
+                ammoProjectile.BulletStats.velocity = m_tankController.GunController.GetBulletVelocity();
                 ammoProjectile.parentUp = m_tankController.GunController.bulletSpawn.transform.up;
                 ammoProjectile.senderTag = gameObject.tag;
                 m_tankController.TankAnimationController.FireProjectile();

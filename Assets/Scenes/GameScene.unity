@@ -1996,24 +1996,48 @@ MonoBehaviour:
     itemCostMultiplyer: 1.96
     itemLvl: 0
     objectScript: {fileID: 11500000, guid: 9586ea8248b5b3748b5e8f18fb3dc990, type: 3}
+    calledWhenComponentUpgraded:
+      m_PersistentCalls:
+        m_Calls: []
   - identifier: 2
     itemBaseCost: 35
     itemActualCost: 0
     itemCostMultiplyer: 1.38
     itemLvl: 0
     objectScript: {fileID: 11500000, guid: 9ce635ed4ed368445b56fdd30f74754a, type: 3}
+    calledWhenComponentUpgraded:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 755335486}
+          m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+          m_MethodName: SetUiLifeOfPlayer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - identifier: 3
     itemBaseCost: 15
     itemActualCost: 0
     itemCostMultiplyer: 1.63
     itemLvl: 0
     objectScript: {fileID: 11500000, guid: 4ca855a1d05f863488aeecc56ea488f0, type: 3}
+    calledWhenComponentUpgraded:
+      m_PersistentCalls:
+        m_Calls: []
   - identifier: 4
     itemBaseCost: 40
     itemActualCost: 0
     itemCostMultiplyer: 1.56
     itemLvl: 0
     objectScript: {fileID: 11500000, guid: cddd63db2dc07584d872cf5d580a1486, type: 3}
+    calledWhenComponentUpgraded:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &755335495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2084,6 +2108,7 @@ MonoBehaviour:
   - {fileID: 119942330}
   - {fileID: 780707161}
   - {fileID: 1398206772}
+  - {fileID: 1431755993}
 --- !u!114 &755335498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3672,7 +3697,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'LIFE : 100%'
+  m_text: LIFE   100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 77a158efc1daa94479e4813139287533, type: 2}
   m_sharedMaterial: {fileID: -92651057828862114, guid: 77a158efc1daa94479e4813139287533, type: 2}

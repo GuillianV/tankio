@@ -13,12 +13,10 @@ public class BodyController : MonoBehaviour, ITankComponent, IUpgradable
     private float health;
     private int gold;
 
-    private GameManager m_Game;
 
 
     private void Awake()
     {
-        m_Game = GameManager.Instance;
         body = gameObject.AddComponent<Body>();
     }
 
@@ -84,7 +82,6 @@ public class BodyController : MonoBehaviour, ITankComponent, IUpgradable
 
             SetHealt(GetHealt() +(body.Data.coefLife * body.Data.life));
 
-            m_Game.Ui.SetLifeUI(GetMaxHealt(), GetHealt());
         }
         else
         {

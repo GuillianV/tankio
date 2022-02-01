@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering.PostProcessing;
 
 #if UNITY_EDITOR
@@ -38,6 +39,8 @@ public class ShopItem
     [HideInInspector] public int itemLvl;
 
     public TextAsset objectScript;
+
+    public UnityEvent calledWhenComponentUpgraded;
 
 }
 
@@ -126,6 +129,7 @@ public class ShopManager : MonoBehaviour
                             Mathf.RoundToInt(shopItem.itemActualCost * shopItem.itemCostMultiplyer);
                         m_Game.Ui.SetShopItemCost(shopItem.identifier, shopItem.itemActualCost);
                         m_Game.Ui.SetShopItemLevel(shopItem.identifier, shopItem.itemLvl);
+                        shopItem.calledWhenComponentUpgraded.Invoke();
                     }
                 }
             }

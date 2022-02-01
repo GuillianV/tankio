@@ -177,11 +177,18 @@ public class PlayerManager : MonoBehaviour
     }
 
     //Set life of player
-    public void SetUiLifeOfPlayer()
+    public void ResetSetUiLifeOfPlayer()
     {
         if(tankController)
              m_Game.Ui.SetLifeUI(tankController.BodyController.GetMaxHealt(), tankController.BodyController.GetMaxHealt());
     }
+
+    public void SetUiLifeOfPlayer()
+    {
+        if (tankController)
+            m_Game.Ui.SetLifeUI(tankController.BodyController.GetMaxHealt(), tankController.BodyController.GetHealt());
+    }
+
 
     #endregion
 
