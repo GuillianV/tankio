@@ -17,7 +17,9 @@ public class TankController : MonoBehaviour
   
     public List<ITankComponent> iTankComponentList { get ; private set;}  
     public List<IUpgradable> iUpgradabletList { get ; private set;}  
-    [HideInInspector] public TankAnimationController TankAnimationController;
+    
+    public List<ITankAnimator> ITankAnimatorsList { get ; private set;}  
+
 
     private GameManager m_Game;
 
@@ -37,14 +39,32 @@ public class TankController : MonoBehaviour
             iUpgradabletList.Add(component);
         }
 
+        ITankAnimatorsList = new List<ITankAnimator>();
+        foreach(ITankAnimator component in GetComponents<ITankAnimator>())
+        {
+            ITankAnimatorsList.Add(component);
+        }
         
-        TankAnimationController = GetComponent<TankAnimationController>();
     }
 
 
     public T GetTankComponent<T>() where T : ITankComponent  
     {
         T component =(T) iTankComponentList.FirstOrDefault(component => component.GetType() == typeof(T));
+        if (component != null)
+        {
+            return component;
+        }
+        else
+        {
+            return default(T);
+        }
+        
+    }
+    
+    public T GetTankAnimator<T>() where T : ITankAnimator  
+    {
+        T component =(T) ITankAnimatorsList.FirstOrDefault(component => component.GetType() == typeof(T));
         if (component != null)
         {
             return component;

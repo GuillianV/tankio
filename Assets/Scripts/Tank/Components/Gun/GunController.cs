@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class GunController : MonoBehaviour, ITankComponent, IUpgradable
 {
 
@@ -10,6 +11,7 @@ public class GunController : MonoBehaviour, ITankComponent, IUpgradable
     public GameObject gunObject;
     public GameObject bulletSpawn;
 
+    
     private Gun gun;
     private float bulletVelocity;
     private float reloadTimeSpeed;
@@ -19,6 +21,7 @@ public class GunController : MonoBehaviour, ITankComponent, IUpgradable
     {
         gun = gameObject.AddComponent<Gun>();
     }
+
 
     void ITankComponent.BindData(ScriptableObject obj)
     {

@@ -15,6 +15,7 @@ public class PlayerShoot : MonoBehaviour
 #if UNITY_STANDALONE
     private TankController m_tankController;
     private GunController m_gunController;
+    private GunAnimator m_gunAnimator;
    
     private bool isReloading = false;
     private bool isFireing = false;
@@ -34,6 +35,11 @@ public class PlayerShoot : MonoBehaviour
         m_gunController = m_tankController.GetTankComponent<GunController>();
         if (!m_gunController)
             Debug.LogError("Player Shoot missing GunController");
+        
+        m_gunAnimator = m_tankController.GetTankAnimator<GunAnimator>();
+        if (!m_gunAnimator)
+            Debug.LogError("Player Shoot missing GunAnimator");
+
     }
 
 
@@ -108,7 +114,7 @@ public class PlayerShoot : MonoBehaviour
                     ammoProjectile.BulletStats.velocity = m_gunController.GetBulletVelocity();
                     ammoProjectile.parentUp = m_gunController.bulletSpawn.transform.up;
                     ammoProjectile.senderTag = gameObject.tag;
-                    m_tankController.TankAnimationController.FireProjectile();
+                    m_gunAnimator.CallGunAnimator("BulletSpawn").SetTrigger("Fire");   
                     isReloading = true;
 
 

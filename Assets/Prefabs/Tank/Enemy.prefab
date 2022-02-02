@@ -215,7 +215,6 @@ GameObject:
   - component: {fileID: 982661019}
   - component: {fileID: 3915136592356501300}
   - component: {fileID: -5298298025019049313}
-  - component: {fileID: 7737581100805513150}
   - component: {fileID: 92746348492913147}
   - component: {fileID: 5775621088903631846}
   - component: {fileID: 6491005568243321693}
@@ -225,6 +224,7 @@ GameObject:
   - component: {fileID: 248512807545599025}
   - component: {fileID: 6936577870733787158}
   - component: {fileID: 7674596745458993920}
+  - component: {fileID: 2751336505434964185}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -384,10 +384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ad3683582e14332af84882fce280f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TracksController: {fileID: 0}
-  BodyController: {fileID: 0}
-  TowerController: {fileID: 0}
-  GunController: {fileID: 0}
   TankAnimationController: {fileID: 0}
 --- !u!114 &3915136592356501300
 MonoBehaviour:
@@ -425,19 +421,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7737581100805513150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375800877936983457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c03640da691a33d4694c5a50bfb936ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_bulletSpawn_animator: {fileID: 8533307463510442049}
 --- !u!210 &92746348492913147
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -594,6 +577,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tracksSpriteLeft: {fileID: 6375800877745554250}
   tracksSpriteRight: {fileID: 6375800878161469567}
+--- !u!114 &2751336505434964185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375800877936983457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 184a4b2e74ca1ea4995a8915b4a5e20a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GunAnimationsList:
+  - _name: BulletSpawn
+    _animator: {fileID: 8533307463510442049}
+    _SpriteRenderer: {fileID: 3624001438789907401}
 --- !u!1 &6375800878161469553
 GameObject:
   m_ObjectHideFlags: 0

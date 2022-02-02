@@ -14,6 +14,9 @@ public class TankAI : MonoBehaviour
     private GunController GunController;
     private TowerController TowerController;
     private BodyController BodyController;
+
+    private GunAnimator m_gunAnimator;
+    
     private TankDestroyed m_tankDestroyed;
     private bool isReloading;
     private GameManager m_Game;
@@ -42,6 +45,8 @@ public class TankAI : MonoBehaviour
         TracksController = GetComponent<TracksController>();
         m_aiDestinationSetter = GetComponent<AIDestinationSetter>();
         m_tankDestroyed = GetComponent<TankDestroyed>();
+
+        m_gunAnimator = m_tankController.GetTankAnimator<GunAnimator>();
 
     }
 
@@ -122,7 +127,7 @@ public class TankAI : MonoBehaviour
                             BulletCreated bulletCreated = ammo.GetComponent<BulletCreated>();
                             bulletDestroyed.Destroyed += OnBulletDestroyed;
                             bulletCreated.Created += OnBulletCreated;
-                            m_tankController.TankAnimationController.FireProjectile();
+                            m_gunAnimator.CallGunAnimator("BulletSpawn").SetTrigger("Fire");   
                             Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
                             ammoProjectile.BulletStats.velocity = GunController.GetBulletVelocity();
                             ammoProjectile.parentUp = spawnBullet.transform.up;
