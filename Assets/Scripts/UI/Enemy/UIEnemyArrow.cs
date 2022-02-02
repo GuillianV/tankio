@@ -76,19 +76,26 @@ public class UIEnemyArrow : MonoBehaviour
 
     private void OnBecameVisible()
     {
-        isVisible = true;
-        m_arrowCloned.SetActive(false);
+        if (m_arrowCloned)
+        {
+            isVisible = true;
+            m_arrowCloned.SetActive(false);
+        }
+        
         
     }
 
     private void OnBecameInvisible()
     {
-        isVisible = false;
-        m_arrowCloned.SetActive(true);
-        GetArrowRotation();
-        GetNewArrowPos();
-        GetArrowPosClamped();
-        MoveArrowUI();
+        if (m_arrowCloned)
+        {
+            isVisible = false;
+            m_arrowCloned.SetActive(true);
+            GetArrowRotation();
+            GetNewArrowPos();
+            GetArrowPosClamped();
+            MoveArrowUI();
+        }
         
     }
 

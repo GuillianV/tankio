@@ -11,10 +11,11 @@ public class PlayerAimerShooterMobile : MonoBehaviour
     public Transform towerTransform;
     public GameObject projectile;
 
-#if UNITY_ANDROID
+ #if UNITY_ANDROID
 
     private TankController m_tankController;
-
+    private TowerController m_towerController;
+    private GunController m_gunController;
     
     private GameManager m_Game;
     private Vector2 vectorToTarget = new Vector2(0,0);
@@ -31,6 +32,15 @@ public class PlayerAimerShooterMobile : MonoBehaviour
         inputTank = new InputTank();
         inputTank.Enable();
         m_tankController = GetComponent<TankController>();
+        
+        m_gunController = m_tankController.GetTankComponent<GunController>();
+        if (!m_gunController)
+            Debug.LogError("Player Aimer Shooter Mobile missing GunController");
+        
+        m_towerController = m_tankController.GetTankComponent<TowerController>();
+        if (!m_towerController)
+            Debug.LogError("Player Aimer Shooter Mobile missing TowerController");
+
         m_Game = GameManager.Instance;
         inputTank.Tank.FireGameStick.canceled += ctx => Cancelled();
       
@@ -46,10 +56,10 @@ public class PlayerAimerShooterMobile : MonoBehaviour
     void FixedUpdate()
     {
 
+       
+            Quaternion q = TMath.GetAngleFromVector2D(vectorToTarget, -90);
+            towerTransform.rotation = Quaternion.Slerp(towerTransform.rotation, q, Time.deltaTime  * m_Game.TimeManager.timeScale* m_towerController.GetTowerRotationSpeed());
 
-        Quaternion q = TMath.GetAngleFromVector2D(vectorToTarget, -90);
-        towerTransform.rotation = Quaternion.Slerp(towerTransform.rotation, q, Time.deltaTime  * m_Game.TimeManager.timeScale* m_tankController.TowerController.GetTowerRotationSpeed());
-          
     }
 
 
@@ -74,8 +84,13 @@ public class PlayerAimerShooterMobile : MonoBehaviour
     
     IEnumerator Reload()
     {
-        yield return new WaitForSeconds(m_tankController.GunController.GetReloadTimeSpeed());
-        isReloading = false;
+        
+       
+            yield return new WaitForSeconds(m_gunController.GetReloadTimeSpeed());
+            isReloading = false;
+        
+        
+    
     }
 
     
@@ -105,34 +120,37 @@ public class PlayerAimerShooterMobile : MonoBehaviour
     
     public void Fire()
     {
-        if (!isReloading)
-        {
-    
-            if (m_Game.TimeManager.timeScale > 0)
+        
+            if (!isReloading)
             {
+    
+                if (m_Game.TimeManager.timeScale > 0)
+                {
                 
-                GameObject ammo = Instantiate(projectile, m_tankController.GunController.bulletSpawn.transform.position, m_tankController.GunController.bulletSpawn.transform.rotation) as  GameObject;
-                BulletDestroyed bulletDestroyed = ammo.GetComponent<BulletDestroyed>();
-                BulletCreated bulletCreated = ammo.GetComponent<BulletCreated>();
-                bulletDestroyed.Destroyed += OnBulletDestroyed;
-                bulletCreated.Created += OnBulletCreated;  
+                    GameObject ammo = Instantiate(projectile, m_gunController.bulletSpawn.transform.position, m_gunController.bulletSpawn.transform.rotation) as  GameObject;
+                    BulletDestroyed bulletDestroyed = ammo.GetComponent<BulletDestroyed>();
+                    BulletCreated bulletCreated = ammo.GetComponent<BulletCreated>();
+                    bulletDestroyed.Destroyed += OnBulletDestroyed;
+                    bulletCreated.Created += OnBulletCreated;  
                 
-                Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
-                ammoProjectile.BulletStats.velocity = m_tankController.GunController.GetBulletVelocity();
-                ammoProjectile.parentUp = m_tankController.GunController.bulletSpawn.transform.up;
-                ammoProjectile.senderTag = gameObject.tag;
-                m_tankController.TankAnimationController.FireProjectile();
-                isReloading = true;
+                    Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
+                    ammoProjectile.BulletStats.velocity = m_gunController.GetBulletVelocity();
+                    ammoProjectile.parentUp = m_gunController.bulletSpawn.transform.up;
+                    ammoProjectile.senderTag = gameObject.tag;
+                    m_tankController.TankAnimationController.FireProjectile();
+                    isReloading = true;
     
                
-                m_Game.Audio.Play("tank-shoot-"+ UnityEngine.Random.Range(1, 3));
+                    m_Game.Audio.Play("tank-shoot-"+ UnityEngine.Random.Range(1, 3));
                 
-                StartCoroutine(Reload());
-            }
+                    StartCoroutine(Reload());
+                }
             
     
-        }
-    
+            }
+            
+        
+       
     }
 
     

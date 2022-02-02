@@ -92,6 +92,7 @@ public class BodyController : MonoBehaviour, ITankComponent, IUpgradable
     public void SetMaxHealt(float newValue)
     {
         maxHealth = newValue;
+
     }
 
     public float GetMaxHealt()
@@ -102,6 +103,12 @@ public class BodyController : MonoBehaviour, ITankComponent, IUpgradable
     public void SetHealt(float newValue)
     {
         health = newValue;
+        
+        if (GetHealt() <= 0)
+        {
+            Destroy(gameObject);
+        }
+        
     }
 
     public float GetHealt()

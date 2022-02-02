@@ -14,6 +14,7 @@ public class PlayerShoot : MonoBehaviour
 
 #if UNITY_STANDALONE
     private TankController m_tankController;
+    private GunController m_gunController;
    
     private bool isReloading = false;
     private bool isFireing = false;
@@ -29,6 +30,10 @@ public class PlayerShoot : MonoBehaviour
         m_tankController = GetComponent<TankController>();
         m_Game = GameManager.Instance;
         inputTank.Tank.FireGameStick.canceled += ctx => Cancelled();
+        
+        m_gunController = m_tankController.GetTankComponent<GunController>();
+        if (!m_gunController)
+            Debug.LogError("Player Shoot missing GunController");
     }
 
 
@@ -48,8 +53,12 @@ public class PlayerShoot : MonoBehaviour
     
     IEnumerator Reload()
     {
-        yield return new WaitForSeconds(m_tankController.GunController.GetReloadTimeSpeed());
-        isReloading = false;
+     
+            yield return new WaitForSeconds(m_gunController.GetReloadTimeSpeed());
+            isReloading = false;
+     
+        
+      
     }
 
     
@@ -84,24 +93,35 @@ public class PlayerShoot : MonoBehaviour
     
             if (m_Game.TimeManager.timeScale > 0)
             {
-                
-                GameObject ammo = Instantiate(projectile, m_tankController.GunController.bulletSpawn.transform.position, m_tankController.GunController.bulletSpawn.transform.rotation) as  GameObject;
-                BulletDestroyed bulletDestroyed = ammo.GetComponent<BulletDestroyed>();
-                BulletCreated bulletCreated = ammo.GetComponent<BulletCreated>();
-                bulletDestroyed.Destroyed += OnBulletDestroyed;
-                bulletCreated.Created += OnBulletCreated;  
-                
-                Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
-                ammoProjectile.BulletStats.velocity = m_tankController.GunController.GetBulletVelocity();
-                ammoProjectile.parentUp = m_tankController.GunController.bulletSpawn.transform.up;
-                ammoProjectile.senderTag = gameObject.tag;
-                m_tankController.TankAnimationController.FireProjectile();
-                isReloading = true;
-    
-               
-                m_Game.Audio.Play("tank-shoot-"+ UnityEngine.Random.Range(1, 3));
-                
-                StartCoroutine(Reload());
+                if (m_gunController)
+                {
+
+                    GameObject ammo = Instantiate(projectile,
+                        m_gunController.bulletSpawn.transform.position,
+                        m_gunController.bulletSpawn.transform.rotation) as GameObject;
+                    BulletDestroyed bulletDestroyed = ammo.GetComponent<BulletDestroyed>();
+                    BulletCreated bulletCreated = ammo.GetComponent<BulletCreated>();
+                    bulletDestroyed.Destroyed += OnBulletDestroyed;
+                    bulletCreated.Created += OnBulletCreated;
+
+                    Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
+                    ammoProjectile.BulletStats.velocity = m_gunController.GetBulletVelocity();
+                    ammoProjectile.parentUp = m_gunController.bulletSpawn.transform.up;
+                    ammoProjectile.senderTag = gameObject.tag;
+                    m_tankController.TankAnimationController.FireProjectile();
+                    isReloading = true;
+
+
+                    m_Game.Audio.Play("tank-shoot-" + UnityEngine.Random.Range(1, 3));
+
+                    StartCoroutine(Reload());
+
+                }
+                else
+                {
+            
+                    Debug.LogError("Player Shoot missing GunController");
+                }
             }
             
     

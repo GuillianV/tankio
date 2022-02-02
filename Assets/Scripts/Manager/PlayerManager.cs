@@ -51,7 +51,8 @@ public class PlayerManager : MonoBehaviour
 
     private GameManager m_Game;
     private TankController tankController;
-
+    private BodyController m_bodyController;
+    
     public event EventHandler<TankEvent> OnPlayerDestroyed;
     public event EventHandler<TankEvent> OnPlayerCreated;
 
@@ -134,21 +135,8 @@ public class PlayerManager : MonoBehaviour
         if (player != null)
         {
             tankController = player.GetComponent<TankController>();
-            List<ITankComponent> tankComponentsList = tankController.GetComponents<ITankComponent>().ToList();
-
-            tankComponentsList.ForEach(component =>
-            {
-                string componentName = component.GetType().FullName.Replace("Controller", String.Empty);
-                ScriptableObject dataFound = dataList.FirstOrDefault(data => data.name.Contains(componentName));
-                if (dataFound)
-                {
-                    component.BindData(dataFound);
-                    component.BindComponent();
-                    component.BindStats();
-                    
-                }
-                    
-            });
+            tankController.BindTank(dataList);
+            m_bodyController = tankController.GetTankComponent<BodyController>();
 
         }
         else
@@ -179,14 +167,37 @@ public class PlayerManager : MonoBehaviour
     //Set life of player
     public void ResetSetUiLifeOfPlayer()
     {
-        if(tankController)
-             m_Game.Ui.SetLifeUI(tankController.BodyController.GetMaxHealt(), tankController.BodyController.GetMaxHealt());
+        if (tankController)
+        {
+            if (m_bodyController)
+            {
+                m_Game.Ui.SetLifeUI(m_bodyController.GetMaxHealt(), m_bodyController.GetMaxHealt());
+            }else
+            {
+            
+                Debug.LogError("Player Manager missing BodyController");
+            }
+        }
+          
     }
 
     public void SetUiLifeOfPlayer()
     {
+        
         if (tankController)
-            m_Game.Ui.SetLifeUI(tankController.BodyController.GetMaxHealt(), tankController.BodyController.GetHealt());
+        {
+            if (m_bodyController)
+            {
+                m_Game.Ui.SetLifeUI(m_bodyController.GetMaxHealt(), m_bodyController.GetHealt());
+            }
+            else
+            {
+            
+                Debug.LogError("Player Manager missing BodyController");
+            }
+        }
+        
+          
     }
 
 

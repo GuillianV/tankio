@@ -1,6 +1,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -13,13 +14,9 @@ using UnityEngine;
 
 public class TankController : MonoBehaviour
 {
-    [Header("Parameters")]
-    public TracksController TracksController;
-    public BodyController BodyController;
-    public TowerController TowerController;
-    public GunController GunController;
-
-    private List<ITankComponent> iTankComponentList = new List<ITankComponent>();
+  
+    public List<ITankComponent> iTankComponentList { get ; private set;}  
+    public List<IUpgradable> iUpgradabletList { get ; private set;}  
     [HideInInspector] public TankAnimationController TankAnimationController;
 
     private GameManager m_Game;
@@ -28,48 +25,79 @@ public class TankController : MonoBehaviour
     {
         m_Game = GameManager.Instance;
 
-        TracksController = GetComponent<TracksController>();
-
-        BodyController = GetComponent<BodyController>();
-
-        GunController = GetComponent<GunController>();
-
-        TowerController = GetComponent<TowerController>();
-
+        iTankComponentList = new List<ITankComponent>();
         foreach(ITankComponent component in GetComponents<ITankComponent>())
         {
             iTankComponentList.Add(component);
         }
 
+        iUpgradabletList = new List<IUpgradable>();
+        foreach(IUpgradable component in GetComponents<IUpgradable>())
+        {
+            iUpgradabletList.Add(component);
+        }
+
+        
         TankAnimationController = GetComponent<TankAnimationController>();
     }
 
 
-    public void BindSprite()
+    public T GetTankComponent<T>() where T : ITankComponent  
     {
-
-        iTankComponentList.ForEach(component => component.BindComponent());
-
-    }
-
-    public void BindStats()
-    {
-        iTankComponentList.ForEach(component => component.BindStats());
-
-    }
-
-
-    private void FixedUpdate()
-    {
-        if (BodyController.GetHealt() <= 0)
+        T component =(T) iTankComponentList.FirstOrDefault(component => component.GetType() == typeof(T));
+        if (component != null)
         {
-            Destroy(gameObject);
+            return component;
         }
+        else
+        {
+            return default(T);
+        }
+        
     }
+    
 
-
-    public void OnDestroy()
+    //Bind tank data to their components (TowerData to TowerController stats and assets)
+    public void BindTank(List<ScriptableObject> tankDatas)
     {
-        Debug.Log("Tank " + gameObject.tag + " Destroyed");
+
+        if (tankDatas != null && tankDatas.Count > 0)
+        {
+            if (iTankComponentList.Count > 0)
+            {
+                iTankComponentList.ForEach(component =>
+                {
+                    string componentName = component.GetType().FullName.Replace("Controller", String.Empty);
+                    ScriptableObject dataFound = tankDatas.FirstOrDefault(data => data.name.Contains(componentName));
+                    
+                    
+                    if (dataFound)
+                    {
+                        component.BindData(dataFound);
+                        component.BindComponent();
+                        component.BindStats();
+                    }
+                    else
+                    {
+                        Debug.LogError("Tank Controller missing "+componentName+"Data in TankController");
+                    }
+                    
+                });
+            }
+            else
+            {
+                Debug.LogError("Tank Controller missing components");
+            }
+        }
+        else
+        {
+            Debug.LogError("Tank Controller missing tankDatas");
+        }
+        
+    
+        
+     
     }
+    
+
 }
