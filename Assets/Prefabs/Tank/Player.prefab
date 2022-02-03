@@ -236,10 +236,6 @@ GameObject:
   - component: {fileID: 8815504762056077208}
   - component: {fileID: 3789456768123338414}
   - component: {fileID: 6904654475131753459}
-  - component: {fileID: 7778098974002578233}
-  - component: {fileID: 1727312297046862516}
-  - component: {fileID: 4066514261408208314}
-  - component: {fileID: 4668192996610392866}
   - component: {fileID: 6491795171630890608}
   - component: {fileID: 6502682650733985314}
   - component: {fileID: 6191811243265921237}
@@ -370,7 +366,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7778098974002578233}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
@@ -413,58 +409,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ad3683582e14332af84882fce280f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7778098974002578233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6904654475131753461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c42e4219d3e401418e4678fa410509e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_playerRigidbody: {fileID: 0}
-  power: 1
---- !u!114 &1727312297046862516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6904654475131753461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbe525e0781895842aa00cb504d93339, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4066514261408208314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6904654475131753461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19c8a57c8af43c3499506507fea0cd64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerTransform: {fileID: 6904654474953778846}
---- !u!114 &4668192996610392866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6904654475131753461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed934ed1a3cda14c81ab2ef6a57b2d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
 --- !u!114 &6491795171630890608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,8 +473,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunAsset:
     assetsList:
-    - _name: Tower
-      _gameObject: {fileID: 6904654474953778833}
+    - _name: Projectile
+      _gameObject: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
   gunAnimator:
     AnimationsList:
     - _name: BulletSpawn
@@ -590,7 +534,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerAsset:
-    assetsList: []
+    assetsList:
+    - _name: Tower
+      _gameObject: {fileID: 6904654474953778833}
   towerAnimator:
     AnimationsList: []
   towerController:

@@ -14,7 +14,9 @@ public class PlayerAimer : PlayerController
     
     private TowerManager m_towerManager;
     private TowerController m_towerController;
-    public Transform towerTransform;
+    private TankBaseAsset m_towerAsset;
+    
+    private Transform towerTransform;
 
 
 #if UNITY_STANDALONE
@@ -30,12 +32,19 @@ public class PlayerAimer : PlayerController
         
         m_towerManager = m_tankController.GetTankManager<TowerManager>();
         m_towerController = m_towerManager.towerController;
+        m_towerAsset = m_towerManager.towerAsset;
+
         
         if(m_towerController == null)
             Debug.LogError("Player Aimer missing TowerController");
 
     }
 
+    private void Start()
+    {
+        towerTransform = m_towerAsset.CallAsset("Tower").transform;
+
+    }
 
     void FixedUpdate()
     {   

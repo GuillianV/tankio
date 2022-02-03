@@ -15,7 +15,7 @@ public class PlayerMovement : PlayerController
 
     [HideInInspector]
 
-    public Rigidbody2D m_playerRigidbody;
+    private Rigidbody2D m_playerRigidbody;
     private TracksController TracksController;
     private GameManager m_Game;
    

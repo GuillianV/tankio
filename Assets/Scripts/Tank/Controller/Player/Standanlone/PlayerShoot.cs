@@ -10,12 +10,15 @@ using Random = Unity.Mathematics.Random;
 
 public class PlayerShoot : PlayerController
 {
-    public GameObject projectile;
+   
 
 #if UNITY_STANDALONE
     
+    
+    private GameObject projectile  = new GameObject();
     private GunManager m_gunManager;
     private GunController m_gunController;
+    private TankBaseAsset m_gunAsset;
     private TankBaseAnimator m_gunAnimator;
    
     private bool isReloading = false;
@@ -43,8 +46,17 @@ public class PlayerShoot : PlayerController
         if ( m_gunAnimator == null)
             Debug.LogError("Player Shoot missing GunAnimator");
 
+        m_gunAsset = m_gunManager.gunAsset;
+        if ( m_gunAsset == null)
+            Debug.LogError("Player Shoot missing GunAsset");
+
+      
     }
 
+    private void Start()
+    {
+        projectile = m_gunAsset.CallAsset("Projectile");
+    }
 
     public void Update()
     {

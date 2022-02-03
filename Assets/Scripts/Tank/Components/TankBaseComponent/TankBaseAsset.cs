@@ -26,7 +26,7 @@ public class TankBaseAsset
     }
     
 
-    public GameObject CallGunAnimator(string assetName)
+    public GameObject CallAsset(string assetName)
     {
         return assetsDico[assetName]._gameObject;
     }

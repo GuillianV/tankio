@@ -1609,7 +1609,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c9693e90d0727d349a5151f9a5917882, type: 2}
   - {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}
   - {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
-  controllerList: []
+  controllerList:
+  - {fileID: 11500000, guid: 19c8a57c8af43c3499506507fea0cd64, type: 3}
+  - {fileID: 11500000, guid: fbe525e0781895842aa00cb504d93339, type: 3}
+  - {fileID: 11500000, guid: 7ed934ed1a3cda14c81ab2ef6a57b2d2, type: 3}
+  - {fileID: 11500000, guid: 6c42e4219d3e401418e4678fa410509e, type: 3}
   player: {fileID: 0}
 --- !u!114 &755335487
 MonoBehaviour:
