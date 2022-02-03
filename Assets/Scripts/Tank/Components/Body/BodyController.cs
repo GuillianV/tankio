@@ -2,31 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BodyController : MonoBehaviour, ITankComponent, IUpgradable
+[System.Serializable]
+public class BodyController :  IUpgradable
 {
 
 
     public SpriteRenderer bodySprite;
 
-    private Body body;
+    private Body m_body = new Body();
     private float maxHealth;
     private float health;
     private int gold;
 
 
-
-    private void Awake()
+    public void BindController(ScriptableObject data)
     {
-        body = gameObject.AddComponent<Body>();
+        BindData(data);
+        BindComponent();
+        BindStats();
     }
 
-    void ITankComponent.BindData(ScriptableObject obj)
+    void BindData(ScriptableObject obj)
     {
 
         if (obj.GetType() == typeof(BodyData))
         {
             BodyData bodyData = (BodyData)obj;
-            body.LoadData(bodyData);
+            m_body.LoadData(bodyData);
 
         }
         else
@@ -38,16 +40,16 @@ public class BodyController : MonoBehaviour, ITankComponent, IUpgradable
     }
 
 
-    void ITankComponent.BindComponent()
+    void BindComponent()
     {
-        if (body.Data != null)
+        if (m_body.Data != null)
         {
 
 
-            if (bodySprite != null && body != null)
+            if (bodySprite != null && m_body != null)
             {
-                bodySprite.color = body.Data.color;
-                bodySprite.sprite = body.Data.sprite;
+                bodySprite.color = m_body.Data.color;
+                bodySprite.sprite = m_body.Data.sprite;
             }
         }
         else
@@ -56,15 +58,15 @@ public class BodyController : MonoBehaviour, ITankComponent, IUpgradable
         }
     }
 
-    void ITankComponent.BindStats()
+    void BindStats()
     {
-        if (body.Data != null)
+        if (m_body.Data != null)
         {
 
 
-            maxHealth = body.Data.life;
-            health = body.Data.life;
-            gold = body.Data.golds;
+            maxHealth = m_body.Data.life;
+            health = m_body.Data.life;
+            gold = m_body.Data.golds;
         }
         else
         {
@@ -74,13 +76,13 @@ public class BodyController : MonoBehaviour, ITankComponent, IUpgradable
 
     void IUpgradable.Upgrade()
     {
-        if (body.Data != null)
+        if (m_body.Data != null)
         {
 
 
-            SetMaxHealt(GetMaxHealt() +(body.Data.coefLife * body.Data.life));
+            SetMaxHealt(GetMaxHealt() +(m_body.Data.coefLife * m_body.Data.life));
 
-            SetHealt(GetHealt() +(body.Data.coefLife * body.Data.life));
+            SetHealt(GetHealt() +(m_body.Data.coefLife * m_body.Data.life));
 
         }
         else
@@ -106,7 +108,7 @@ public class BodyController : MonoBehaviour, ITankComponent, IUpgradable
         
         if (GetHealt() <= 0)
         {
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
         
     }
@@ -129,7 +131,7 @@ public class BodyController : MonoBehaviour, ITankComponent, IUpgradable
 
     public BodyData GetBaseData()
     {
-        return (BodyData)body.GetBaseData();
+        return (BodyData)m_body.GetBaseData();
     }
 
 }

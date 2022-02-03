@@ -35,7 +35,7 @@ public class PlayerMovement : PlayerController
         inputTank.Enable();
         m_Game = GameManager.Instance;
         m_playerRigidbody = GetComponent<Rigidbody2D>();
-        TracksController = GetComponent<TracksController>();
+        TracksController = m_tankController.GetTankManager<TracksManager>().tracksController;
         inputTank.Tank.Move.canceled += ctx => Cancelled();
 
     }

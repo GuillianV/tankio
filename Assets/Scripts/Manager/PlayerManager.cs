@@ -43,13 +43,15 @@ public class PlayerManager : MonoBehaviour
     [Header("Player Stats")]
     public List<ScriptableObject> dataList = new List<ScriptableObject>();
 
-
+    public List<TextAsset> controllerList = new List<TextAsset>();
 
     //Player instancié
     [HideInInspector] public GameObject player;
 
     private GameManager m_Game;
     private TankController tankController;
+
+    private BodyManager m_bodyManager;
     private BodyController m_bodyController;
     
     public event EventHandler<TankEvent> OnPlayerDestroyed;
@@ -120,9 +122,15 @@ public class PlayerManager : MonoBehaviour
         TankCreate tankCreate = player.GetComponent<TankCreate>();
 
         tankDestroyed.Destroyed += PlayerDestroy;
-        tankCreate.Created += PlayerCreated;   
+        tankCreate.Created += PlayerCreated;
+
+        controllerList.ForEach(asset =>
+        {
+            Type abilityType = Type.GetType(asset.name);
+            player.AddComponent(abilityType);
+
+        } );
         
- 
        
         
         m_Game.Projectile.LoadPlayerShooter();
@@ -140,7 +148,8 @@ public class PlayerManager : MonoBehaviour
         {
             tankController = player.GetComponent<TankController>();
             tankController.BindTank(dataList);
-            m_bodyController = tankController.GetTankComponent<BodyController>();
+            m_bodyManager = tankController.GetTankManager<BodyManager>();
+            m_bodyController = m_bodyManager.bodyController;
 
         }
         else
@@ -173,7 +182,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (tankController)
         {
-            if (m_bodyController)
+            if (m_bodyController != null)
             {
                 m_Game.Ui.SetLifeUI(m_bodyController.GetMaxHealt(), m_bodyController.GetMaxHealt());
             }else
@@ -190,7 +199,7 @@ public class PlayerManager : MonoBehaviour
         
         if (tankController)
         {
-            if (m_bodyController)
+            if (m_bodyController != null)
             {
                 m_Game.Ui.SetLifeUI(m_bodyController.GetMaxHealt(), m_bodyController.GetHealt());
             }

@@ -12,6 +12,7 @@ public class PlayerAimer : PlayerController
 {
 
     
+    private TowerManager m_towerManager;
     private TowerController m_towerController;
     public Transform towerTransform;
 
@@ -27,9 +28,10 @@ public class PlayerAimer : PlayerController
         
         m_Game = GameManager.Instance;
         
-        m_towerController = m_tankController.GetTankComponent<TowerController>();
+        m_towerManager = m_tankController.GetTankManager<TowerManager>();
+        m_towerController = m_towerManager.towerController;
         
-        if(!m_towerController)
+        if(m_towerController == null)
             Debug.LogError("Player Aimer missing TowerController");
 
     }

@@ -3,33 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class GunController : MonoBehaviour, ITankComponent, IUpgradable
+public class GunController :  IUpgradable
 {
 
-
+    private Gun m_gun = new Gun();
+    
     public SpriteRenderer gunSprite;
     public GameObject gunObject;
     public GameObject bulletSpawn;
 
     
-    private Gun gun;
     private float bulletVelocity;
     private float reloadTimeSpeed;
 
 
-    private void Awake()
+    public void BindController(ScriptableObject data)
     {
-        gun = gameObject.AddComponent<Gun>();
+        BindData(data);
+        BindComponent();
+        BindStats();
     }
+    
 
-
-    void ITankComponent.BindData(ScriptableObject obj)
+   public void BindData(ScriptableObject obj)
     {
 
         if (obj.GetType() == typeof(GunData))
         {
             GunData gunData = (GunData)obj;
-            gun.LoadData(gunData);
+            m_gun.LoadData(gunData);
 
         }
         else
@@ -39,20 +41,20 @@ public class GunController : MonoBehaviour, ITankComponent, IUpgradable
 
     }
 
-    void ITankComponent.BindComponent()
+   public void BindComponent()
     {
 
-        if (gun.Data != null)
+        if (m_gun.Data != null)
         {
 
-            if (gunSprite != null && gun != null)
+            if (gunSprite != null && m_gun != null)
             {
-                gunSprite.sprite = gun.Data.spriteGun;
+                gunSprite.sprite = m_gun.Data.spriteGun;
 
 
-                gunObject.transform.localPosition = new Vector3(0, gun.Data.TowerGunOffset, 0);
+                gunObject.transform.localPosition = new Vector3(0, m_gun.Data.TowerGunOffset, 0);
                 bulletSpawn.transform.localPosition =
-                    new Vector3(0, gun.Data.GunSpawnOffset, 0);
+                    new Vector3(0, m_gun.Data.GunSpawnOffset, 0);
             }
 
         }
@@ -63,14 +65,14 @@ public class GunController : MonoBehaviour, ITankComponent, IUpgradable
 
     }
 
-    void ITankComponent.BindStats()
+   public void BindStats()
     {
 
 
-        if (gun.Data != null)
+        if (m_gun.Data != null)
         {
-            reloadTimeSpeed = gun.Data.reloadTimeSecond;
-            bulletVelocity = gun.Data.bulletVelocity;
+            reloadTimeSpeed = m_gun.Data.reloadTimeSecond;
+            bulletVelocity = m_gun.Data.bulletVelocity;
 
         }
         else
@@ -82,12 +84,12 @@ public class GunController : MonoBehaviour, ITankComponent, IUpgradable
     void IUpgradable.Upgrade()
     {
 
-        if (gun.Data != null)
+        if (m_gun.Data != null)
         {
 
-            SetBulletVelocity(GetBulletVelocity() +   (gun.Data.coefBulletVelocity * gun.Data.bulletVelocity));
+            SetBulletVelocity(GetBulletVelocity() +   (m_gun.Data.coefBulletVelocity * m_gun.Data.bulletVelocity));
 
-            SetReloadTimeSpeed(GetReloadTimeSpeed() - (gun.Data.coefReloadTimeSecond * gun.Data.reloadTimeSecond));
+            SetReloadTimeSpeed(GetReloadTimeSpeed() - (m_gun.Data.coefReloadTimeSecond * m_gun.Data.reloadTimeSecond));
 
 
         }
@@ -119,7 +121,7 @@ public class GunController : MonoBehaviour, ITankComponent, IUpgradable
 
     public GunData GetBaseData()
     {
-        return (GunData) gun.GetBaseData();
+        return (GunData) m_gun.GetBaseData();
     }
 
 

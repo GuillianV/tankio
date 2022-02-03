@@ -3,17 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBody : PlayerController
+[System.Serializable]
+public class PlayerBody : PlayerController, IPlayerController
 {
     private BodyController m_bodyController;
+    private BodyManager m_bodyManager;
     private GameManager m_Game;
 
   
     protected override void Awake()
     {
         base.Awake();
-        m_bodyController = m_tankController.GetTankComponent<BodyController>();
-        if (!m_bodyController)
+        m_bodyManager = m_tankController.GetTankManager<BodyManager>();
+        m_bodyController = m_bodyManager.bodyController;
+        if (m_bodyController == null)
             Debug.LogError("Player Body missing BodyController");
 
         m_Game = GameManager.Instance;

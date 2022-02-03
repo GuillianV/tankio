@@ -3,26 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TowerController : MonoBehaviour, ITankComponent, IUpgradable
+public class TowerController :  IUpgradable
 {
     public SpriteRenderer towerSprite;
 
-    private Tower tower;
+    private Tower m_tower = new Tower();
     private float towerRotationSpeed;
 
 
-    private void Awake()
+    public void BindController(ScriptableObject data)
     {
-        tower = gameObject.AddComponent<Tower>();
+        BindData(data);
+        BindComponent();
+        BindStats();
     }
 
-    void ITankComponent.BindData(ScriptableObject obj)
+    void BindData(ScriptableObject obj)
     {
 
         if (obj.GetType() == typeof(TowerData))
         {
             TowerData towerData = (TowerData)obj;
-            tower.LoadData(towerData);
+            m_tower.LoadData(towerData);
 
         }
         else
@@ -33,16 +35,16 @@ public class TowerController : MonoBehaviour, ITankComponent, IUpgradable
 
     }
 
-    void ITankComponent.BindComponent()
+    void BindComponent()
     {
-        if (tower.Data != null)
+        if (m_tower.Data != null)
         {
 
 
-            if (towerSprite != null && tower != null)
+            if (towerSprite != null && m_tower != null)
             {
-                towerSprite.color = tower.Data.color;
-                towerSprite.sprite = tower.Data.spriteTower;
+                towerSprite.color = m_tower.Data.color;
+                towerSprite.sprite = m_tower.Data.spriteTower;
             }
 
         }
@@ -52,12 +54,12 @@ public class TowerController : MonoBehaviour, ITankComponent, IUpgradable
         }
     }
 
-    void ITankComponent.BindStats()
+    void BindStats()
     {
-        if (tower.Data != null)
+        if (m_tower.Data != null)
         {
 
-            towerRotationSpeed = tower.Data.rotationSpeed;
+            towerRotationSpeed = m_tower.Data.rotationSpeed;
         }
         else
         {
@@ -69,10 +71,10 @@ public class TowerController : MonoBehaviour, ITankComponent, IUpgradable
 
     void IUpgradable.Upgrade()
     {
-        if (tower.Data != null)
+        if (m_tower.Data != null)
         {
 
-            SetTowerRotationSpeed(GetTowerRotationSpeed() +   (tower.Data.coefRotationSpeed *  tower.Data.rotationSpeed));
+            SetTowerRotationSpeed(GetTowerRotationSpeed() +   (m_tower.Data.coefRotationSpeed *  m_tower.Data.rotationSpeed));
 
         }
         else
@@ -96,7 +98,7 @@ public class TowerController : MonoBehaviour, ITankComponent, IUpgradable
 
     public TowerData GetBaseData()
     {
-        return (TowerData)tower.GetBaseData();
+        return (TowerData)m_tower.GetBaseData();
     }
 
 

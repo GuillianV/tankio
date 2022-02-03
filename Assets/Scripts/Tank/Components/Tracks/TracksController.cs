@@ -3,31 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TracksController : MonoBehaviour, ITankComponent, IUpgradable
+public class TracksController :  IUpgradable
 {
 
 
     public SpriteRenderer tracksSpriteLeft;
     public SpriteRenderer tracksSpriteRight;
 
-    private Tracks tracks;
+    private Tracks m_tracks = new Tracks();
     private float tracksSpeed;
     private float tracksRotationSpeed;
 
-
-    private void Awake()
+    public void BindController(ScriptableObject data)
     {
-        tracks = gameObject.AddComponent<Tracks>();
-        
+        BindData(data);
+        BindComponent();
+        BindStats();
     }
 
-    void ITankComponent.BindData(ScriptableObject obj)
+    void BindData(ScriptableObject obj)
     {
 
         if (obj.GetType() == typeof(TracksData))
         {
             TracksData tracksData = (TracksData)obj;
-            tracks.LoadData(tracksData);
+            m_tracks.LoadData(tracksData);
         }
         else
         {
@@ -37,19 +37,19 @@ public class TracksController : MonoBehaviour, ITankComponent, IUpgradable
 
     }
 
-    void ITankComponent.BindComponent()
+    void BindComponent()
     {
 
-        if (tracks.Data != null)
+        if (m_tracks.Data != null)
         {
 
             if (tracksSpriteLeft != null && tracksSpriteRight != null &&
-          tracks != null)
+                m_tracks != null)
             {
-                tracksSpriteLeft.color = tracks.Data.color;
-                tracksSpriteRight.color = tracks.Data.color;
-                tracksSpriteLeft.sprite = tracks.Data.spriteTrack;
-                tracksSpriteRight.sprite = tracks.Data.spriteTrack;
+                tracksSpriteLeft.color = m_tracks.Data.color;
+                tracksSpriteRight.color = m_tracks.Data.color;
+                tracksSpriteLeft.sprite = m_tracks.Data.spriteTrack;
+                tracksSpriteRight.sprite = m_tracks.Data.spriteTrack;
             }
         }
         else
@@ -58,13 +58,13 @@ public class TracksController : MonoBehaviour, ITankComponent, IUpgradable
         }
     }
 
-    void ITankComponent.BindStats()
+    void BindStats()
     {
 
-        if (tracks.Data != null)
+        if (m_tracks.Data != null)
         {
-            tracksSpeed = tracks.Data.speed;
-            tracksRotationSpeed = tracks.Data.rotationSpeed;
+            tracksSpeed = m_tracks.Data.speed;
+            tracksRotationSpeed = m_tracks.Data.rotationSpeed;
         }
         else
         {
@@ -75,13 +75,13 @@ public class TracksController : MonoBehaviour, ITankComponent, IUpgradable
 
     void IUpgradable.Upgrade()
     {
-        if (tracks.Data != null)
+        if (m_tracks.Data != null)
         {
 
-            SetTrackSpeed(GetTrackSpeed() + (tracks.Data.coefSpeed * tracks.Data.speed));
+            SetTrackSpeed(GetTrackSpeed() + (m_tracks.Data.coefSpeed * m_tracks.Data.speed));
 
 
-            SetTrackRotationSpeed(GetTrackRotationSpeed() +  (tracks.Data.coefRotationSpeed * tracks.Data.rotationSpeed));
+            SetTrackRotationSpeed(GetTrackRotationSpeed() +  (m_tracks.Data.coefRotationSpeed * m_tracks.Data.rotationSpeed));
 
         }
         else
@@ -115,6 +115,6 @@ public class TracksController : MonoBehaviour, ITankComponent, IUpgradable
 
     public TracksData GetBaseData()
     {
-        return (TracksData)tracks.GetBaseData();
+        return (TracksData)m_tracks.GetBaseData();
     }
 }

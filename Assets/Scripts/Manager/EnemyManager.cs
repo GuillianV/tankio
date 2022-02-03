@@ -38,7 +38,7 @@ public class EnemyManager : MonoBehaviour
         if (tankDestroyed.gameObject)
         {
             TankController tankController = tankDestroyed.GetComponent<TankController>();
-            BodyController bodyController = tankController.GetTankComponent<BodyController>();
+            BodyController bodyController = tankController.GetTankManager<BodyManager>().bodyController;
             if (!String.IsNullOrEmpty(args.Tag))
             {
                 m_Game.Shop.AddGolds(bodyController.GetGold());

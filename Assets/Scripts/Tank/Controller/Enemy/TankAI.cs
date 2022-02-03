@@ -11,11 +11,12 @@ public class TankAI : MonoBehaviour
     private AIDestinationSetter m_aiDestinationSetter;
     private TankController m_tankController;
     private TracksController TracksController;
+    private GunManager m_gunManager;
     private GunController GunController;
     private TowerController TowerController;
     private BodyController BodyController;
 
-    private GunAnimator m_gunAnimator;
+    private TankBaseAnimator m_gunAnimator;
     
     private TankDestroyed m_tankDestroyed;
     private bool isReloading;
@@ -45,14 +46,15 @@ public class TankAI : MonoBehaviour
     {
         m_aiPath = GetComponent<AIPath>();
         m_tankController = GetComponent<TankController>();
-        GunController = GetComponent<GunController>();
-        BodyController = GetComponent<BodyController>();
-        TowerController = GetComponent<TowerController>();
-        TracksController = GetComponent<TracksController>();
+        m_gunManager = m_tankController.GetTankManager<GunManager>();
+        GunController = m_tankController.GetTankManager<GunManager>().gunController;
+        BodyController =  m_tankController.GetTankManager<BodyManager>().bodyController;
+        TowerController = m_tankController.GetTankManager<TowerManager>().towerController;
+        TracksController = m_tankController.GetTankManager<TracksManager>().tracksController;
         m_aiDestinationSetter = GetComponent<AIDestinationSetter>();
         m_tankDestroyed = GetComponent<TankDestroyed>();
 
-        m_gunAnimator = m_tankController.GetTankAnimator<GunAnimator>();
+        m_gunAnimator = m_gunManager.gunAnimator;
 
         UpdateAstar();
 
@@ -128,7 +130,7 @@ public class TankAI : MonoBehaviour
                             BulletCreated bulletCreated = ammo.GetComponent<BulletCreated>();
                             bulletDestroyed.Destroyed += OnBulletDestroyed;
                             bulletCreated.Created += OnBulletCreated;
-                            m_gunAnimator.CallGunAnimator("BulletSpawn").SetTrigger("Fire");   
+                            m_gunAnimator.CallAnimator("BulletSpawn").SetTrigger("Fire");   
                             Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
                             ammoProjectile.BulletStats.velocity = GunController.GetBulletVelocity();
                             ammoProjectile.parentUp = spawnBullet.transform.up;

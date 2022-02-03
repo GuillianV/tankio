@@ -14,8 +14,9 @@ public class PlayerShoot : PlayerController
 
 #if UNITY_STANDALONE
     
+    private GunManager m_gunManager;
     private GunController m_gunController;
-    private GunAnimator m_gunAnimator;
+    private TankBaseAnimator m_gunAnimator;
    
     private bool isReloading = false;
     private bool isFireing = false;
@@ -31,13 +32,15 @@ public class PlayerShoot : PlayerController
         inputTank.Enable();
         m_Game = GameManager.Instance;
         inputTank.Tank.FireGameStick.canceled += ctx => Cancelled();
-        
-        m_gunController = m_tankController.GetTankComponent<GunController>();
-        if (!m_gunController)
+
+        m_gunManager = m_tankController.GetTankManager<GunManager>();
+
+        m_gunController = m_gunManager.gunController;
+        if (m_gunController == null)
             Debug.LogError("Player Shoot missing GunController");
-        
-        m_gunAnimator = m_tankController.GetTankAnimator<GunAnimator>();
-        if (!m_gunAnimator)
+
+        m_gunAnimator = m_gunManager.gunAnimator;
+        if ( m_gunAnimator == null)
             Debug.LogError("Player Shoot missing GunAnimator");
 
     }
@@ -99,7 +102,7 @@ public class PlayerShoot : PlayerController
     
             if (m_Game.TimeManager.timeScale > 0)
             {
-                if (m_gunController)
+                if (m_gunController != null)
                 {
 
                     GameObject ammo = Instantiate(projectile,
@@ -114,7 +117,7 @@ public class PlayerShoot : PlayerController
                     ammoProjectile.BulletStats.velocity = m_gunController.GetBulletVelocity();
                     ammoProjectile.parentUp = m_gunController.bulletSpawn.transform.up;
                     ammoProjectile.senderTag = gameObject.tag;
-                    m_gunAnimator.CallGunAnimator("BulletSpawn").SetTrigger("Fire");   
+                    m_gunAnimator.CallAnimator("BulletSpawn").SetTrigger("Fire");   
                     isReloading = true;
 
 

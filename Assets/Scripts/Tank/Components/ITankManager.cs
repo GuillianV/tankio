@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ITankAnimator
+public interface ITankManager
 {
-    
+    void Bind(ScriptableObject data);
 }

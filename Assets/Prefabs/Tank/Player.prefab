@@ -244,11 +244,10 @@ GameObject:
   - component: {fileID: 6502682650733985314}
   - component: {fileID: 6191811243265921237}
   - component: {fileID: 5340772204750690864}
-  - component: {fileID: 7929812355119181308}
-  - component: {fileID: 208905490624105484}
-  - component: {fileID: 8181006588471183015}
-  - component: {fileID: 1066004846364849043}
-  - component: {fileID: 6451138896023129193}
+  - component: {fileID: 2749187859556242682}
+  - component: {fileID: 2345691096328495441}
+  - component: {fileID: 623607331738098990}
+  - component: {fileID: 1411837025344251730}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -516,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4cccee6c0c22b24a814914e06f1c286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7929812355119181308
+--- !u!114 &2749187859556242682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -525,11 +524,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 6904654475131753461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ca855a1d05f863488aeecc56ea488f0, type: 3}
+  m_Script: {fileID: 11500000, guid: bbf01ba6f1e88d2479d8a5edc77625ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerSprite: {fileID: 6904654474953778847}
---- !u!114 &208905490624105484
+  gunAsset:
+    assetsList:
+    - _name: Tower
+      _gameObject: {fileID: 6904654474953778833}
+  gunAnimator:
+    AnimationsList:
+    - _name: BulletSpawn
+      _animator: {fileID: 8527329629314391094}
+      _SpriteRenderer: {fileID: 278113373180354772}
+  gunController:
+    gunSprite: {fileID: 6904654476088246408}
+    gunObject: {fileID: 6904654476088246410}
+    bulletSpawn: {fileID: 6904654476509691544}
+--- !u!114 &2345691096328495441
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -538,11 +549,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6904654475131753461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce635ed4ed368445b56fdd30f74754a, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b2f047ac99042a47ad8be44d4b93b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodySprite: {fileID: 6904654475775617703}
---- !u!114 &8181006588471183015
+  tracksAsset:
+    assetsList: []
+  tracksAnimator:
+    AnimationsList: []
+  tracksController:
+    tracksSpriteLeft: {fileID: 6904654475434279443}
+    tracksSpriteRight: {fileID: 6904654475405411909}
+--- !u!114 &623607331738098990
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -551,13 +568,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6904654475131753461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cddd63db2dc07584d872cf5d580a1486, type: 3}
+  m_Script: {fileID: 11500000, guid: 2769e6639dd2ba04d80c4dd8368ca3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunSprite: {fileID: 6904654476088246408}
-  gunObject: {fileID: 6904654476088246410}
-  bulletSpawn: {fileID: 6904654476509691544}
---- !u!114 &1066004846364849043
+  bodyAsset:
+    assetsList: []
+  bodyAnimator:
+    AnimationsList: []
+  bodyController:
+    bodySprite: {fileID: 6904654475775617703}
+--- !u!114 &1411837025344251730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -566,27 +586,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6904654475131753461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 184a4b2e74ca1ea4995a8915b4a5e20a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b5ffa07c7587dc438b9ff6ae2754d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GunAnimationsList:
-  - _name: BulletSpawn
-    _animator: {fileID: 8527329629314391094}
-    _SpriteRenderer: {fileID: 278113373180354772}
---- !u!114 &6451138896023129193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6904654475131753461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9586ea8248b5b3748b5e8f18fb3dc990, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tracksSpriteLeft: {fileID: 6904654475434279443}
-  tracksSpriteRight: {fileID: 6904654475405411909}
+  towerAsset:
+    assetsList: []
+  towerAnimator:
+    AnimationsList: []
+  towerController:
+    towerSprite: {fileID: 6904654474953778847}
 --- !u!1 &6904654475405411911
 GameObject:
   m_ObjectHideFlags: 0

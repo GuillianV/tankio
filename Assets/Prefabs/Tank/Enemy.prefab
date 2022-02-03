@@ -218,12 +218,11 @@ GameObject:
   - component: {fileID: 5775621088903631846}
   - component: {fileID: 6491005568243321693}
   - component: {fileID: 2993799763479950762}
-  - component: {fileID: 5910037593942206776}
-  - component: {fileID: 248512807545599025}
-  - component: {fileID: 6936577870733787158}
-  - component: {fileID: 2751336505434964185}
-  - component: {fileID: 7674596745458993920}
   - component: {fileID: 3202850398752466772}
+  - component: {fileID: 2906851822784664268}
+  - component: {fileID: 6889594064222276394}
+  - component: {fileID: 7046290070672351098}
+  - component: {fileID: 1323029023281631001}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -450,77 +449,6 @@ MonoBehaviour:
   arrowPrefab: {fileID: 9030039417795229542, guid: aefc1496620b0264088372059e50d529, type: 3}
   redrawRate: 5
   redrawSpeed: 2
---- !u!114 &5910037593942206776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375800877936983457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ca855a1d05f863488aeecc56ea488f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerSprite: {fileID: 6375800878556689659}
---- !u!114 &248512807545599025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375800877936983457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce635ed4ed368445b56fdd30f74754a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bodySprite: {fileID: 6375800878507703531}
---- !u!114 &6936577870733787158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375800877936983457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cddd63db2dc07584d872cf5d580a1486, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunSprite: {fileID: 6375800877262558559}
-  gunObject: {fileID: 6375800877262558546}
-  bulletSpawn: {fileID: 6375800878330181019}
---- !u!114 &2751336505434964185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375800877936983457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 184a4b2e74ca1ea4995a8915b4a5e20a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GunAnimationsList:
-  - _name: BulletSpawn
-    _animator: {fileID: 8533307463510442049}
-    _SpriteRenderer: {fileID: 3624001438789907401}
---- !u!114 &7674596745458993920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375800877936983457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9586ea8248b5b3748b5e8f18fb3dc990, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tracksSpriteLeft: {fileID: 6375800877745554250}
-  tracksSpriteRight: {fileID: 6375800878161469567}
 --- !u!212 &3202850398752466772
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -572,6 +500,86 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2906851822784664268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375800877936983457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbf01ba6f1e88d2479d8a5edc77625ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunAsset:
+    assetsList:
+    - _name: Tower
+      _gameObject: {fileID: 6375800878556689662}
+  gunAnimator:
+    AnimationsList:
+    - _name: BulletSpawn
+      _animator: {fileID: 8533307463510442049}
+      _SpriteRenderer: {fileID: 3624001438789907401}
+  gunController:
+    gunSprite: {fileID: 6375800877262558559}
+    gunObject: {fileID: 6375800877262558546}
+    bulletSpawn: {fileID: 6375800878330181019}
+--- !u!114 &6889594064222276394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375800877936983457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2f047ac99042a47ad8be44d4b93b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tracksAsset:
+    assetsList: []
+  tracksAnimator:
+    AnimationsList: []
+  tracksController:
+    tracksSpriteLeft: {fileID: 6375800877745554250}
+    tracksSpriteRight: {fileID: 6375800878161469567}
+--- !u!114 &7046290070672351098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375800877936983457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5ffa07c7587dc438b9ff6ae2754d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerAsset:
+    assetsList: []
+  towerAnimator:
+    AnimationsList: []
+  towerController:
+    towerSprite: {fileID: 6375800878556689659}
+--- !u!114 &1323029023281631001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375800877936983457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2769e6639dd2ba04d80c4dd8368ca3da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyAsset:
+    assetsList: []
+  bodyAnimator:
+    AnimationsList: []
+  bodyController:
+    bodySprite: {fileID: 6375800878507703531}
 --- !u!1 &6375800878161469553
 GameObject:
   m_ObjectHideFlags: 0

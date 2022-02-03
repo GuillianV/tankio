@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class Gun : TankBase
 {
     
     public GunData Data { get; private set; }
@@ -14,12 +14,12 @@ public class Gun : MonoBehaviour
         
     }
     //Load Base Data of scriptable object
-    public void LoadData(GunData _data)
+    public override void LoadData(ScriptableObject _data)
     {
-        Data = _data;
+        Data = (GunData) _data;
     }
 
-    public ScriptableObject GetBaseData()
+    public override ScriptableObject GetBaseData()
     {
         return Data;
     }
