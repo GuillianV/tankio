@@ -8,12 +8,12 @@ using Random = Unity.Mathematics.Random;
 
 
 
-public class PlayerShoot : MonoBehaviour
+public class PlayerShoot : PlayerController
 {
     public GameObject projectile;
 
 #if UNITY_STANDALONE
-    private TankController m_tankController;
+    
     private GunController m_gunController;
     private GunAnimator m_gunAnimator;
    
@@ -24,11 +24,11 @@ public class PlayerShoot : MonoBehaviour
     public event EventHandler<ProjectileEvent> BulletDestroyed;
     public event EventHandler<ProjectileEvent> BulletCreated;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         inputTank = new InputTank();
         inputTank.Enable();
-        m_tankController = GetComponent<TankController>();
         m_Game = GameManager.Instance;
         inputTank.Tank.FireGameStick.canceled += ctx => Cancelled();
         

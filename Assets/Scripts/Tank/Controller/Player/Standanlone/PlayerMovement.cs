@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : PlayerController
 {
 
 #if UNITY_STANDALONE
@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
 
     public Rigidbody2D m_playerRigidbody;
-    private TankController m_tankController;
     private TracksController TracksController;
     private GameManager m_Game;
    
@@ -29,13 +28,13 @@ public class PlayerMovement : MonoBehaviour
     private float m_yForce;
 
 
-    public void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         inputTank = new InputTank();
         inputTank.Enable();
         m_Game = GameManager.Instance;
         m_playerRigidbody = GetComponent<Rigidbody2D>();
-        m_tankController = GetComponent<TankController>();
         TracksController = GetComponent<TracksController>();
         inputTank.Tank.Move.canceled += ctx => Cancelled();
 

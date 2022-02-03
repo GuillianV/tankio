@@ -37,6 +37,12 @@ public class TankAI : MonoBehaviour
     private void Awake()
     {
         m_Game = GameManager.Instance;
+    
+    }
+
+
+    private void Start()
+    {
         m_aiPath = GetComponent<AIPath>();
         m_tankController = GetComponent<TankController>();
         GunController = GetComponent<GunController>();
@@ -48,11 +54,6 @@ public class TankAI : MonoBehaviour
 
         m_gunAnimator = m_tankController.GetTankAnimator<GunAnimator>();
 
-    }
-
-
-    private void Start()
-    {
         UpdateAstar();
 
     }

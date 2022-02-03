@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovementMobile : MonoBehaviour
+public class PlayerMovementMobile : PlayerController
 {
 
 
@@ -12,7 +12,6 @@ public class PlayerMovementMobile : MonoBehaviour
     [HideInInspector]
 
     public Rigidbody2D m_playerRigidbody;
-    private TankController m_tankController;
     private GameManager m_Game;
     private TracksController m_tracksController;
     [Range(0,5)]
@@ -24,13 +23,13 @@ public class PlayerMovementMobile : MonoBehaviour
     private float m_xForce;
     private float m_yForce;
 
-    public void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         inputTank = new InputTank();
         inputTank.Enable();
         m_Game = GameManager.Instance;
         m_playerRigidbody = GetComponent<Rigidbody2D>();
-        m_tankController = GetComponent<TankController>();
         m_tracksController = m_tankController.GetTankComponent<TracksController>();
 
         if (!m_tracksController)

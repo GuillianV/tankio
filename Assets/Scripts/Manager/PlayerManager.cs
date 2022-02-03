@@ -43,7 +43,6 @@ public class PlayerManager : MonoBehaviour
     [Header("Player Stats")]
     public List<ScriptableObject> dataList = new List<ScriptableObject>();
 
- 
 
 
     //Player instancié
@@ -122,11 +121,16 @@ public class PlayerManager : MonoBehaviour
 
         tankDestroyed.Destroyed += PlayerDestroy;
         tankCreate.Created += PlayerCreated;   
+        
+ 
+       
+        
         m_Game.Projectile.LoadPlayerShooter();
         ResetStats();
     }
 
-    
+ 
+
     
     
     //Reset all bonus stats and upgrade of tanks

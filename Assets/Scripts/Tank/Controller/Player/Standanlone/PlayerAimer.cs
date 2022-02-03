@@ -8,12 +8,10 @@ using UnityEngine.Tilemaps;
 
 
 
-public class PlayerAimer : MonoBehaviour
+public class PlayerAimer : PlayerController
 {
 
-
-
-    private TankController m_tankController;
+    
     private TowerController m_towerController;
     public Transform towerTransform;
 
@@ -21,10 +19,13 @@ public class PlayerAimer : MonoBehaviour
 #if UNITY_STANDALONE
 
     private GameManager m_Game;
-    private void Awake()
+    
+     
+    protected override void Awake()
     {
+        base.Awake();
+        
         m_Game = GameManager.Instance;
-        m_tankController = GetComponent<TankController>();
         
         m_towerController = m_tankController.GetTankComponent<TowerController>();
         

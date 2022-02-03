@@ -6,14 +6,13 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.InputSystem.OnScreen;
 
-public class PlayerAimerShooterMobile : MonoBehaviour 
+public class PlayerAimerShooterMobile : PlayerController 
 {
     public Transform towerTransform;
     public GameObject projectile;
 
  #if UNITY_ANDROID
 
-    private TankController m_tankController;
     private TowerController m_towerController;
     private GunController m_gunController;
     
@@ -27,11 +26,11 @@ public class PlayerAimerShooterMobile : MonoBehaviour
     private OnScreenStickHandler onScreenStickHandler;
 
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         inputTank = new InputTank();
         inputTank.Enable();
-        m_tankController = GetComponent<TankController>();
         
         m_gunController = m_tankController.GetTankComponent<GunController>();
         if (!m_gunController)

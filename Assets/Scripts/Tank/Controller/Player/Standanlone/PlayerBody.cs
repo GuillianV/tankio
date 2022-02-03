@@ -3,17 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBody : MonoBehaviour
+public class PlayerBody : PlayerController
 {
-    private TankController m_tankController;
     private BodyController m_bodyController;
     private GameManager m_Game;
 
   
-    private void Awake()
+    protected override void Awake()
     {
-        m_tankController = GetComponent<TankController>();
-        
+        base.Awake();
         m_bodyController = m_tankController.GetTankComponent<BodyController>();
         if (!m_bodyController)
             Debug.LogError("Player Body missing BodyController");
