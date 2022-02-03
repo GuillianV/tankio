@@ -106,11 +106,6 @@ public class BodyController :  IUpgradable
     {
         health = newValue;
         
-        if (GetHealt() <= 0)
-        {
-            // Destroy(gameObject);
-        }
-        
     }
 
     public float GetHealt()

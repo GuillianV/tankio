@@ -13,6 +13,7 @@ public class PlayerMovementMobile : PlayerController
 
     public Rigidbody2D m_playerRigidbody;
     private GameManager m_Game;
+    private TracksManager m_tracksManager;
     private TracksController m_tracksController;
     [Range(0,5)]
     public float power = 1;
@@ -30,9 +31,10 @@ public class PlayerMovementMobile : PlayerController
         inputTank.Enable();
         m_Game = GameManager.Instance;
         m_playerRigidbody = GetComponent<Rigidbody2D>();
-        m_tracksController = m_tankController.GetTankComponent<TracksController>();
+        m_tracksManager = m_tankController.GetTankManager<TracksManager>();
+        m_tracksController = m_tracksManager.tracksController;
 
-        if (!m_tracksController)
+        if (m_tracksController == null)
             Debug.LogError("Player Movement Mobile missing TracksController");
 
         inputTank.Tank.Move.canceled += ctx => Cancelled();

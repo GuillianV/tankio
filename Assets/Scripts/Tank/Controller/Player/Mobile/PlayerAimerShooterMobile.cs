@@ -13,7 +13,9 @@ public class PlayerAimerShooterMobile : PlayerController
 
  #if UNITY_ANDROID
 
+    private TowerManager m_towerManager;
     private TowerController m_towerController;
+    private GunManager m_gunManager;
     private GunController m_gunController;
     
     private GameManager m_Game;
@@ -31,13 +33,15 @@ public class PlayerAimerShooterMobile : PlayerController
         base.Awake();
         inputTank = new InputTank();
         inputTank.Enable();
-        
-        m_gunController = m_tankController.GetTankComponent<GunController>();
-        if (!m_gunController)
+
+        m_gunManager = m_tankController.GetTankManager<GunManager>();
+        m_gunController = m_gunManager.gunController;
+        if (m_gunController==null)
             Debug.LogError("Player Aimer Shooter Mobile missing GunController");
         
-        m_towerController = m_tankController.GetTankComponent<TowerController>();
-        if (!m_towerController)
+        m_towerManager = m_tankController.GetTankManager<TowerManager>();
+        m_towerController = m_towerManager.towerController;
+        if (m_towerController ==null)
             Debug.LogError("Player Aimer Shooter Mobile missing TowerController");
 
         m_Game = GameManager.Instance;
@@ -136,7 +140,7 @@ public class PlayerAimerShooterMobile : PlayerController
                     ammoProjectile.BulletStats.velocity = m_gunController.GetBulletVelocity();
                     ammoProjectile.parentUp = m_gunController.bulletSpawn.transform.up;
                     ammoProjectile.senderTag = gameObject.tag;
-                    m_tankController.TankAnimationController.FireProjectile();
+                    m_gunManager.gunAnimator.CallAnimator("BulletSpawn").SetTrigger("Fire");
                     isReloading = true;
     
                

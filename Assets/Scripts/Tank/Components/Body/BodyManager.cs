@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,5 +18,13 @@ public class BodyManager : MonoBehaviour, ITankManager
         bodyController.BindController(data);
         bodyAsset.BindAssets();
         bodyAnimator.BindAnimators();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (bodyController.GetHealt() <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

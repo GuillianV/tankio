@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerBody : PlayerController, IPlayerController
+public class PlayerBody : PlayerController
 {
     private BodyController m_bodyController;
     private BodyManager m_bodyManager;
