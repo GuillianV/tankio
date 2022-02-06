@@ -50,7 +50,8 @@ public class GunController :  IUpgradable
             if (gunSprite != null && m_gun != null)
             {
                 gunSprite.sprite = m_gun.Data.spriteGun;
-
+                gunSprite.color = m_gun.Data.color;
+                gunSprite.size = new Vector2(m_gun.Data.GunScaleX, m_gun.Data.GunScaleY);
 
                 gunObject.transform.localPosition = new Vector3(0, m_gun.Data.TowerGunOffset, 0);
                 bulletSpawn.transform.localPosition =

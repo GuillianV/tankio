@@ -238,8 +238,6 @@ GameObject:
   - component: {fileID: 6904654475131753459}
   - component: {fileID: 6491795171630890608}
   - component: {fileID: 6502682650733985314}
-  - component: {fileID: 6191811243265921237}
-  - component: {fileID: 5340772204750690864}
   - component: {fileID: 2749187859556242682}
   - component: {fileID: 2345691096328495441}
   - component: {fileID: 623607331738098990}
@@ -433,32 +431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c5b89bd21185847bc9e9427ad1afc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6191811243265921237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6904654475131753461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d52ee9c4b92213429b48d2c380fbf1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerTransform: {fileID: 6904654474953778846}
-  projectile: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
---- !u!114 &5340772204750690864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6904654475131753461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4cccee6c0c22b24a814914e06f1c286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2749187859556242682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,6 +452,9 @@ MonoBehaviour:
     - _name: BulletSpawn
       _animator: {fileID: 8527329629314391094}
       _SpriteRenderer: {fileID: 278113373180354772}
+    - _name: Gun
+      _animator: {fileID: 3870431589074801462}
+      _SpriteRenderer: {fileID: 6904654476088246408}
   gunController:
     gunSprite: {fileID: 6904654476088246408}
     gunObject: {fileID: 6904654476088246410}
@@ -797,6 +772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6904654476088246411}
   - component: {fileID: 6904654476088246408}
+  - component: {fileID: 3870431589074801462}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -812,7 +788,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6904654476088246410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.11, z: 0}
+  m_LocalPosition: {x: 0, y: 0.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6904654476509691545}
@@ -859,17 +835,36 @@ SpriteRenderer:
   m_SortingLayerID: -442727467
   m_SortingLayer: 2
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 64b0356f87144f346aee6f16541b3baf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 00f1fd874881cc8488fa2814b979472d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 2.56, y: 2.56}
+  m_DrawMode: 1
+  m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
+--- !u!95 &3870431589074801462
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6904654476088246410}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bcc23f57bfec07c47b75aa3cdcb994ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6904654476213840028
 GameObject:
   m_ObjectHideFlags: 0

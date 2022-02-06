@@ -19,5 +19,9 @@ public class GunData : ScriptableObject
     public float TowerGunOffset;
     [Range(-10,10)]
     public float GunSpawnOffset;
+    [Range(-3, 3)]
+    public float GunScaleX;
+    [Range(-3, 3)]
+    public float GunScaleY;
     public Color color;
 }

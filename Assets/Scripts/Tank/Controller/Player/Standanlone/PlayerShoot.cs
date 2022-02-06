@@ -15,7 +15,7 @@ public class PlayerShoot : PlayerController
 #if UNITY_STANDALONE
     
     
-    private GameObject projectile  = new GameObject();
+    private GameObject projectile ;
     private GunManager m_gunManager;
     private GunController m_gunController;
     private TankBaseAsset m_gunAsset;
@@ -129,7 +129,8 @@ public class PlayerShoot : PlayerController
                     ammoProjectile.BulletStats.velocity = m_gunController.GetBulletVelocity();
                     ammoProjectile.parentUp = m_gunController.bulletSpawn.transform.up;
                     ammoProjectile.senderTag = gameObject.tag;
-                    m_gunAnimator.CallAnimator("BulletSpawn").SetTrigger("Fire");   
+                    m_gunAnimator.CallAnimator("BulletSpawn").SetTrigger("Fire");
+                    m_gunAnimator.CallAnimator("Gun").SetTrigger("Fire");
                     isReloading = true;
 
 

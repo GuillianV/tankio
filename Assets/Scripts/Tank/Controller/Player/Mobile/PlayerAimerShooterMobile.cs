@@ -8,16 +8,20 @@ using UnityEngine.InputSystem.OnScreen;
 
 public class PlayerAimerShooterMobile : PlayerController 
 {
-    public Transform towerTransform;
-    public GameObject projectile;
 
- #if UNITY_ANDROID
+
+
+#if UNITY_ANDROID
+
+    private GameObject projectile;
+    private Transform towerTransform;
 
     private TowerManager m_towerManager;
     private TowerController m_towerController;
+    private TankBaseAsset m_towerAsset;
     private GunManager m_gunManager;
     private GunController m_gunController;
-    
+    private TankBaseAsset m_gunAsset;
     private GameManager m_Game;
     private Vector2 vectorToTarget = new Vector2(0,0);
     private bool isReloading = false;
@@ -36,11 +40,13 @@ public class PlayerAimerShooterMobile : PlayerController
 
         m_gunManager = m_tankController.GetTankManager<GunManager>();
         m_gunController = m_gunManager.gunController;
+        m_gunAsset = m_gunManager.gunAsset;
         if (m_gunController==null)
             Debug.LogError("Player Aimer Shooter Mobile missing GunController");
         
         m_towerManager = m_tankController.GetTankManager<TowerManager>();
         m_towerController = m_towerManager.towerController;
+        m_towerAsset = m_towerManager.towerAsset;
         if (m_towerController ==null)
             Debug.LogError("Player Aimer Shooter Mobile missing TowerController");
 
@@ -53,6 +59,8 @@ public class PlayerAimerShooterMobile : PlayerController
     {
         onScreenStickHandler = GameObject.FindGameObjectWithTag("FireUIMobile").GetComponent<OnScreenStickHandler>();
         onScreenStickHandler.OnTap += Taped;
+        towerTransform = m_towerAsset.CallAsset("Tower").transform;
+        projectile = m_gunAsset.CallAsset("Projectile");
     }
 
 
@@ -141,6 +149,7 @@ public class PlayerAimerShooterMobile : PlayerController
                     ammoProjectile.parentUp = m_gunController.bulletSpawn.transform.up;
                     ammoProjectile.senderTag = gameObject.tag;
                     m_gunManager.gunAnimator.CallAnimator("BulletSpawn").SetTrigger("Fire");
+                    m_gunManager.gunAnimator.CallAnimator("Gun").SetTrigger("Fire");
                     isReloading = true;
     
                

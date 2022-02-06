@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 280ab4806a9c2e14694f58701e30dc9c, type: 3}
   m_Name: Gun_Player
   m_EditorClassIdentifier: 
+  coefReloadTimeSecond: 0.1
   reloadTimeSecond: 0.4
+  coefBulletVelocity: 0.1
   bulletVelocity: 7
-  spriteGun: {fileID: 21300000, guid: 64b0356f87144f346aee6f16541b3baf, type: 3}
-  TowerGunOffset: 1.3
-  GunSpawnOffset: 1.3
-  color: {r: 1, g: 1, b: 1, a: 1}
+  spriteGun: {fileID: 21300000, guid: 00f1fd874881cc8488fa2814b979472d, type: 3}
+  TowerGunOffset: 0.45
+  GunSpawnOffset: 1.5
+  GunScaleX: 0.75
+  GunScaleY: 1.5
+  color: {r: 1, g: 0.5775497, b: 0.5518868, a: 1}
