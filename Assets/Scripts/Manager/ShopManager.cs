@@ -108,12 +108,8 @@ public class ShopManager : MonoBehaviour
                 return;
             }
 
-            var iupgradable = player.GetComponent(shopItem.objectScript.name).GetType().GetInterface("IUpgradable");
-         
 
-            if (iupgradable != null && iupgradable.FullName == "IUpgradable")
-            {
-                
+      
 
                 //Bind Item class clicked to player stats
                 foreach (IUpgradable component in player.GetComponents<IUpgradable>())
@@ -132,11 +128,7 @@ public class ShopManager : MonoBehaviour
                         shopItem.calledWhenComponentUpgraded.Invoke();
                     }
                 }
-            }
-            else
-            {
-                Debug.LogWarning(shopItem.objectScript.ToString() + "is not IUpgradable");
-            }
+      
         }
         else
         {

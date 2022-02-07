@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerManager : MonoBehaviour, ITankManager
+public class TowerManager : MonoBehaviour, ITankManager,IUpgradable
 {
    
     public TankBaseAsset towerAsset ;
@@ -17,5 +17,10 @@ public class TowerManager : MonoBehaviour, ITankManager
         towerController.BindController(data);
         towerAsset.BindAssets();
         towerAnimator.BindAnimators();
+    }
+
+    void IUpgradable.Upgrade()
+    {
+        towerController.Upgrade();
     }
 }

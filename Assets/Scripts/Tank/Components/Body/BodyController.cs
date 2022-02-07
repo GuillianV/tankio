@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class BodyController :  IUpgradable
+public class BodyController 
 {
 
 
@@ -74,7 +74,7 @@ public class BodyController :  IUpgradable
         }
     }
 
-    void IUpgradable.Upgrade()
+    public void Upgrade()
     {
         if (m_body.Data != null)
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class GunController :  IUpgradable
+public class GunController
 {
 
     private Gun m_gun = new Gun();
@@ -82,7 +82,7 @@ public class GunController :  IUpgradable
         }
     }
 
-    void IUpgradable.Upgrade()
+    public void Upgrade()
     {
 
         if (m_gun.Data != null)
