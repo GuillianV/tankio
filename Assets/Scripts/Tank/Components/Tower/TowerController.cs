@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TowerController :  IUpgradable
+public class TowerController 
 {
     public SpriteRenderer towerSprite;
 
@@ -69,7 +69,7 @@ public class TowerController :  IUpgradable
 
 
 
-    void IUpgradable.Upgrade()
+    public void Upgrade()
     {
         if (m_tower.Data != null)
         {

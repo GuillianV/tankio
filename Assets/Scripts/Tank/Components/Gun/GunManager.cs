@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunManager : MonoBehaviour, ITankManager
+public class GunManager : MonoBehaviour, ITankManager, IUpgradable
 {
     public TankBaseAsset gunAsset ;
     public TankBaseAnimator gunAnimator;
@@ -17,6 +17,11 @@ public class GunManager : MonoBehaviour, ITankManager
         gunController.BindController(data);
         gunAsset.BindAssets();
         gunAnimator.BindAnimators();
+    }
+
+    void IUpgradable.Upgrade()
+    {
+        gunController.Upgrade();
     }
     
 }

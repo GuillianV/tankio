@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BodyManager : MonoBehaviour, ITankManager
+public class BodyManager : MonoBehaviour, ITankManager,IUpgradable
 {
 
     public TankBaseAsset bodyAsset ;
@@ -18,6 +18,11 @@ public class BodyManager : MonoBehaviour, ITankManager
         bodyController.BindController(data);
         bodyAsset.BindAssets();
         bodyAnimator.BindAnimators();
+    }
+
+    void IUpgradable.Upgrade()
+    {
+        bodyController.Upgrade();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
