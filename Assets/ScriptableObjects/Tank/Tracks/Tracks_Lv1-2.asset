@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150a027a36e0982459804069bb3b7661, type: 3}
   m_Name: Tracks_Lv1-2
   m_EditorClassIdentifier: 
+  coefSpeed: 0.1
+  coefRotationSpeed: 0.1
   speed: 250
   rotationSpeed: 75
   spriteTrack: {fileID: 21300000, guid: 6e3675dd33e7b404b86496d5a7c4f3f9, type: 3}
+  TracksSpriteScaleX: 2.56
+  TracksSpriteScaleY: 2.56
   color: {r: 1, g: 0.7122642, b: 0.7122642, a: 1}

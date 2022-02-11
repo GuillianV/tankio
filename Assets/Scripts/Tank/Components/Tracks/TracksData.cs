@@ -15,5 +15,9 @@ public class TracksData : ScriptableObject
     public float speed;
     public float rotationSpeed;
     public Sprite spriteTrack;
+    [Range(-5, 5)]
+    public float TracksSpriteScaleX = 2;
+    [Range(-5, 5)]
+    public float TracksSpriteScaleY = 2;
     public Color color;
 }

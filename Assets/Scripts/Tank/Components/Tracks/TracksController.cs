@@ -6,7 +6,6 @@ using UnityEngine;
 public class TracksController :  IUpgradable
 {
 
-
     public SpriteRenderer tracksSpriteLeft;
     public SpriteRenderer tracksSpriteRight;
 
@@ -46,10 +45,18 @@ public class TracksController :  IUpgradable
             if (tracksSpriteLeft != null && tracksSpriteRight != null &&
                 m_tracks != null)
             {
-                tracksSpriteLeft.color = m_tracks.Data.color;
-                tracksSpriteRight.color = m_tracks.Data.color;
+
                 tracksSpriteLeft.sprite = m_tracks.Data.spriteTrack;
                 tracksSpriteRight.sprite = m_tracks.Data.spriteTrack;
+                tracksSpriteLeft.color = m_tracks.Data.color;
+                tracksSpriteRight.color = m_tracks.Data.color;
+                if(m_tracks.Data.TracksSpriteScaleX != 0 &&  m_tracks.Data.TracksSpriteScaleY != 0)
+                {
+                    tracksSpriteLeft.size = new Vector2(m_tracks.Data.TracksSpriteScaleX, m_tracks.Data.TracksSpriteScaleY);
+                    tracksSpriteRight.size = new Vector2(m_tracks.Data.TracksSpriteScaleX, m_tracks.Data.TracksSpriteScaleY);
+
+                }
+
             }
         }
         else
