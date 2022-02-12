@@ -46,8 +46,7 @@ public class TracksController :  IUpgradable
                 m_tracks != null)
             {
 
-                tracksSpriteLeft.sprite = m_tracks.Data.spriteTrack;
-                tracksSpriteRight.sprite = m_tracks.Data.spriteTrack;
+            
                 tracksSpriteLeft.color = m_tracks.Data.color;
                 tracksSpriteRight.color = m_tracks.Data.color;
                 if(m_tracks.Data.TracksSpriteScaleX != 0 &&  m_tracks.Data.TracksSpriteScaleY != 0)
@@ -56,6 +55,9 @@ public class TracksController :  IUpgradable
                     tracksSpriteRight.size = new Vector2(m_tracks.Data.TracksSpriteScaleX, m_tracks.Data.TracksSpriteScaleY);
 
                 }
+                
+                tracksSpriteLeft.sprite = m_tracks.Data.spriteTrack;
+                tracksSpriteRight.sprite = m_tracks.Data.spriteTrack;
 
             }
         }

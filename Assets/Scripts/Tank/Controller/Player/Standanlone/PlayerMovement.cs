@@ -18,7 +18,8 @@ public class PlayerMovement : PlayerController
     private Rigidbody2D m_playerRigidbody;
     private TracksController TracksController;
     private GameManager m_Game;
-   
+    private TankBaseAnimator m_TracksAnimator;
+    
     [Range(0,5)]
     public float power = 1;
     public InputTank inputTank;
@@ -36,6 +37,7 @@ public class PlayerMovement : PlayerController
         m_Game = GameManager.Instance;
         m_playerRigidbody = GetComponent<Rigidbody2D>();
         TracksController = m_tankController.GetTankManager<TracksManager>().tracksController;
+        m_TracksAnimator =  m_tankController.GetTankManager<TracksManager>().tracksAnimator;
         inputTank.Tank.Move.canceled += ctx => Cancelled();
 
     }
@@ -79,8 +81,14 @@ public class PlayerMovement : PlayerController
 
         if (inputVec.magnitude > 0)
         {
-
+            m_TracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving",true);
+            m_TracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving",true);
             movement = inputVec;
+        }
+        else
+        {
+            m_TracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving",false);
+            m_TracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving",false);
         }
         
         

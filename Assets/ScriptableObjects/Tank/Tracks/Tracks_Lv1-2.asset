@@ -16,7 +16,7 @@ MonoBehaviour:
   coefRotationSpeed: 0.1
   speed: 250
   rotationSpeed: 75
-  spriteTrack: {fileID: 21300000, guid: 6e3675dd33e7b404b86496d5a7c4f3f9, type: 3}
+  spriteTrack: {fileID: 21300000, guid: dbb6e3fbaab305d43b5605af51a8052a, type: 3}
   TracksSpriteScaleX: 2.56
   TracksSpriteScaleY: 2.56
   color: {r: 1, g: 0.7122642, b: 0.7122642, a: 1}
