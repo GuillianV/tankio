@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 016b13c144d608f45b2607e812ffa50e
+guid: c0398a7203a71574e8a97a5ba472d285
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9177469611430012077
-    second: tracks 1_0
+      213: -4330042234375938771
+    second: tracks 2-sheet_0
   - first:
-      213: 5690132206431318650
-    second: tracks 1_1
+      213: -703000131145026524
+    second: tracks 2-sheet_1
   - first:
-      213: -8598554222163477874
-    second: tracks 1_2
+      213: -2491474274025054707
+    second: tracks 2-sheet_2
   - first:
-      213: -7617485423744186914
-    second: tracks 1_3
+      213: 1559711118442201491
+    second: tracks 2-sheet_3
   - first:
-      213: 2403055616816188007
-    second: tracks 1_4
+      213: -1875306293912197276
+    second: tracks 2-sheet_4
   - first:
-      213: 4146555159984145367
-    second: tracks 1_5
+      213: -542649914939983979
+    second: tracks 2-sheet_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,23 +105,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tracks 1_0
+      name: tracks 2-sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -135,14 +123,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da46a3ebcfbec5f70800000000000000
-      internalID: 9177469611430012077
+      spriteID: d2d5595878998e3c0800000000000000
+      internalID: -4330042234375938771
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tracks 1_1
+      name: tracks 2-sheet_1
       rect:
         serializedVersion: 2
         x: 128
@@ -156,14 +144,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a723959181967fe40800000000000000
-      internalID: 5690132206431318650
+      spriteID: 4243c0afa117e36f0800000000000000
+      internalID: -703000131145026524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tracks 1_2
+      name: tracks 2-sheet_2
       rect:
         serializedVersion: 2
         x: 256
@@ -177,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8ab206fd7ccba880800000000000000
-      internalID: -8598554222163477874
+      spriteID: d0e56b129518c6dd0800000000000000
+      internalID: -2491474274025054707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tracks 1_3
+      name: tracks 2-sheet_3
       rect:
         serializedVersion: 2
         x: 384
@@ -198,14 +186,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed50304cd51494690800000000000000
-      internalID: -7617485423744186914
+      spriteID: 39189fe9ff435a510800000000000000
+      internalID: 1559711118442201491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tracks 1_4
+      name: tracks 2-sheet_4
       rect:
         serializedVersion: 2
         x: 512
@@ -219,14 +207,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76a06dff95e595120800000000000000
-      internalID: 2403055616816188007
+      spriteID: 4672f4a8cd299f5e0800000000000000
+      internalID: -1875306293912197276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tracks 1_5
+      name: tracks 2-sheet_5
       rect:
         serializedVersion: 2
         x: 640
@@ -240,8 +228,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d30b68d2f58b8930800000000000000
-      internalID: 4146555159984145367
+      spriteID: 5973b9607ce1878f0800000000000000
+      internalID: -542649914939983979
       vertices: []
       indices: 
       edges: []
