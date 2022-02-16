@@ -28,7 +28,29 @@ public class TankBaseAnimator
             AnimationsDico.Add(animation._name, animation);
         });
     }
-     
+
+    public void BindAnimators(List<TankBaseAnimatorOverride> overrideControllers)
+    {
+
+        AnimationsList.ForEach(animation =>
+        {
+            AnimationsDico.Add(animation._name, animation);
+        });
+
+        overrideControllers.ForEach(animator =>
+        {
+            SetAnimations(animator.name, animator.tracksOverrideController);
+
+        });
+
+    }
+
+
+
+    public void SetAnimations(string animatorName, AnimatorOverrideController overrideController)
+    {
+        AnimationsDico[animatorName]._animator.runtimeAnimatorController = overrideController;
+    }
 
     public Animator CallAnimator(string animatorName)
     {

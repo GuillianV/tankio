@@ -1606,7 +1606,7 @@ MonoBehaviour:
   parentContainer: {fileID: 1354766825}
   dataList:
   - {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
-  - {fileID: 11400000, guid: c9693e90d0727d349a5151f9a5917882, type: 2}
+  - {fileID: 11400000, guid: 6682277f8080c3844a47382503bef01e, type: 2}
   - {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}
   - {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
   controllerList:
@@ -3249,7 +3249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -35}
+  m_AnchoredPosition: {x: 0, y: -34.999985}
   m_SizeDelta: {x: -160, y: -90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138146665

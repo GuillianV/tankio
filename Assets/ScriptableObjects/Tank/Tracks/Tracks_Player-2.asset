@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 150a027a36e0982459804069bb3b7661, type: 3}
-  m_Name: Tracks_Player
+  m_Name: Tracks_Player-2
   m_EditorClassIdentifier: 
   coefSpeed: 0.1
   coefRotationSpeed: 0.1
-  speed: 400
-  rotationSpeed: 300
-  spriteTrack: {fileID: 21300000, guid: eb1901a4dd1676441a505df73e03038a, type: 3}
+  speed: 500
+  rotationSpeed: 200
+  spriteTrack: {fileID: 21300000, guid: 6e3675dd33e7b404b86496d5a7c4f3f9, type: 3}
   TracksSpriteScaleX: 3.45
   TracksSpriteScaleY: 3.45
-  color: {r: 1, g: 0.43867922, b: 0.44441354, a: 1}
+  color: {r: 0.33490568, g: 0.42439166, b: 1, a: 1}
   tracksAnimators:
   - name: Tracks-Left
-    tracksOverrideController: {fileID: 22100000, guid: bf2826e20532a7343b81d042655d11c3, type: 2}
+    tracksOverrideController: {fileID: 22100000, guid: 82d39624704e2254f847afa7eadf6089, type: 2}
   - name: Tracks-Right
-    tracksOverrideController: {fileID: 22100000, guid: bf2826e20532a7343b81d042655d11c3, type: 2}
+    tracksOverrideController: {fileID: 22100000, guid: 82d39624704e2254f847afa7eadf6089, type: 2}

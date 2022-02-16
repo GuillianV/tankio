@@ -20,4 +20,6 @@ public class TracksData : ScriptableObject
     [Range(-5, 5)]
     public float TracksSpriteScaleY = 2;
     public Color color;
+    public List<TankBaseAnimatorOverride> tracksAnimators;
+
 }

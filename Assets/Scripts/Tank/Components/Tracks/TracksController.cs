@@ -13,28 +13,13 @@ public class TracksController :  IUpgradable
     private float tracksSpeed;
     private float tracksRotationSpeed;
 
-    public void BindController(ScriptableObject data)
+    public void BindController(TracksData tracksData)
     {
-        BindData(data);
+        m_tracks.LoadData(tracksData);
         BindComponent();
         BindStats();
     }
 
-    void BindData(ScriptableObject obj)
-    {
-
-        if (obj.GetType() == typeof(TracksData))
-        {
-            TracksData tracksData = (TracksData)obj;
-            m_tracks.LoadData(tracksData);
-        }
-        else
-        {
-            Debug.LogError("tracksController cannot load tracksData");
-        }
-
-
-    }
 
     void BindComponent()
     {
