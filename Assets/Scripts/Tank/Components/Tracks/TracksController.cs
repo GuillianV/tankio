@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TracksController :  IUpgradable
+public class TracksController 
 {
 
     public SpriteRenderer tracksSpriteLeft;
@@ -67,7 +67,7 @@ public class TracksController :  IUpgradable
     }
 
 
-    void IUpgradable.Upgrade()
+    public void Upgrade()
     {
         if (m_tracks.Data != null)
         {
@@ -84,7 +84,6 @@ public class TracksController :  IUpgradable
         }
 
    
-
     }
 
     public void SetTrackRotationSpeed(float newValue)

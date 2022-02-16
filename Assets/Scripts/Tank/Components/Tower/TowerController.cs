@@ -11,29 +11,14 @@ public class TowerController
     private float towerRotationSpeed;
 
 
-    public void BindController(ScriptableObject data)
+    public void BindController(TowerData towerData)
     {
-        BindData(data);
+        m_tower.LoadData(towerData);
         BindComponent();
         BindStats();
     }
 
-    void BindData(ScriptableObject obj)
-    {
 
-        if (obj.GetType() == typeof(TowerData))
-        {
-            TowerData towerData = (TowerData)obj;
-            m_tower.LoadData(towerData);
-
-        }
-        else
-        {
-            Debug.LogError("TowerController cannot load TowerData");
-        }
-
-
-    }
 
     void BindComponent()
     {

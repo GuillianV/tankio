@@ -17,29 +17,14 @@ public class GunController
     private float reloadTimeSpeed;
 
 
-    public void BindController(ScriptableObject data)
+    public void BindController(GunData gunData)
     {
-        BindData(data);
+        m_gun.LoadData(gunData);
         BindComponent();
         BindStats();
     }
     
 
-   public void BindData(ScriptableObject obj)
-    {
-
-        if (obj.GetType() == typeof(GunData))
-        {
-            GunData gunData = (GunData)obj;
-            m_gun.LoadData(gunData);
-
-        }
-        else
-        {
-            Debug.LogError("GunController cannot load GunData");
-        }
-
-    }
 
    public void BindComponent()
     {
@@ -49,13 +34,23 @@ public class GunController
 
             if (gunSprite != null && m_gun != null)
             {
-                gunSprite.sprite = m_gun.Data.spriteGun;
+             
                 gunSprite.color = m_gun.Data.color;
                 gunSprite.size = new Vector2(m_gun.Data.GunScaleX, m_gun.Data.GunScaleY);
 
                 gunObject.transform.localPosition = new Vector3(0, m_gun.Data.TowerGunOffset, 0);
                 bulletSpawn.transform.localPosition =
                     new Vector3(0, m_gun.Data.GunSpawnOffset, 0);
+
+                if (m_gun.Data.GunScaleX != 0 && m_gun.Data.GunScaleY != 0)
+                {
+                    gunSprite.size = new Vector2(m_gun.Data.GunScaleX, m_gun.Data.GunScaleY);
+
+                }
+                gunSprite.sprite = m_gun.Data.spriteGun;
+
+
+
             }
 
         }

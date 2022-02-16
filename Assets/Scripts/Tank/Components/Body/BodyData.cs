@@ -12,4 +12,5 @@ public class BodyData : ScriptableObject
     public int golds;
     public Sprite sprite;
     public Color color;
+    public List<TankBaseAnimatorOverride> bodyAnimators;
 }

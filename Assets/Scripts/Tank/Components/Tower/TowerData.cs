@@ -12,5 +12,6 @@ public class TowerData : ScriptableObject
     public float rotationSpeed = 1;
     public Sprite spriteTower;
     public Color color;
+    public List<TankBaseAnimatorOverride> towerAnimators;
 
 }

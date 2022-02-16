@@ -16,9 +16,14 @@ MonoBehaviour:
   reloadTimeSecond: 0.4
   coefBulletVelocity: 0.1
   bulletVelocity: 7
-  spriteGun: {fileID: 21300000, guid: 00f1fd874881cc8488fa2814b979472d, type: 3}
+  spriteGun: {fileID: -356682658676209871, guid: 8e8d0a840ad4dca409fd248223fa983f, type: 3}
   TowerGunOffset: 0.45
   GunSpawnOffset: 1.5
   GunScaleX: 0.75
   GunScaleY: 1.5
-  color: {r: 1, g: 0.5775497, b: 0.5518868, a: 1}
+  color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  gunAnimators:
+  - name: BulletSpawn
+    tracksOverrideController: {fileID: 22100000, guid: 9d10c60f0c06fea4f8786f96dd4c80cb, type: 2}
+  - name: Gun
+    tracksOverrideController: {fileID: 22100000, guid: 01a48b665098ef647a2f01ca872c997c, type: 2}

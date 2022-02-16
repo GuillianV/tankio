@@ -24,4 +24,5 @@ public class GunData : ScriptableObject
     [Range(-3, 3)]
     public float GunScaleY;
     public Color color;
+    public List<TankBaseAnimatorOverride> gunAnimators;
 }

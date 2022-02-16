@@ -15,30 +15,14 @@ public class BodyController
     private int gold;
 
 
-    public void BindController(ScriptableObject data)
+    public void BindController(BodyData bodyData)
     {
-        BindData(data);
+        m_body.LoadData(bodyData);
         BindComponent();
         BindStats();
     }
 
-    void BindData(ScriptableObject obj)
-    {
-
-        if (obj.GetType() == typeof(BodyData))
-        {
-            BodyData bodyData = (BodyData)obj;
-            m_body.LoadData(bodyData);
-
-        }
-        else
-        {
-            Debug.LogError("BodyController cannot load bodyData");
-        }
-
-
-    }
-
+   
 
     void BindComponent()
     {
