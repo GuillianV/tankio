@@ -21,7 +21,7 @@ MonoBehaviour:
   GunSpawnOffset: 1.5
   GunScaleX: 0.75
   GunScaleY: 1.5
-  color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  color: {r: 1, g: 0.3443396, b: 0.3443396, a: 1}
   gunAnimators:
   - name: BulletSpawn
     tracksOverrideController: {fileID: 22100000, guid: 9d10c60f0c06fea4f8786f96dd4c80cb, type: 2}
