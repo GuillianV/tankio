@@ -23,18 +23,18 @@ public class PlayerBody : PlayerController
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
 
        
-            Projectile_Bullet bullet = collision.gameObject.GetComponent<Projectile_Bullet>();
-            if (bullet != null)
-            {
-                m_bodyController.SetHealt(m_bodyController.GetHealt() - bullet.BulletStats.damages);
-                m_Game.Ui.SetLifeUI(m_bodyController.GetMaxHealt(),m_bodyController.GetHealt());
-            }
+    //        Projectile_Bullet bullet = collision.gameObject.GetComponent<Projectile_Bullet>();
+    //        if (bullet != null)
+    //        {
+    //            m_bodyController.SetHealt(m_bodyController.GetHealt() - bullet.BulletStats.damages);
+    //            m_Game.Ui.SetLifeUI(m_bodyController.GetMaxHealt(),m_bodyController.GetHealt());
+    //        }
       
         
        
-    }
+    //}
 }

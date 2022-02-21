@@ -140,6 +140,8 @@ public class PlayerManager : MonoBehaviour
        
         
         m_Game.Projectile.LoadPlayerShooter();
+        EnableInputs();
+
         ResetStats();
     }
 

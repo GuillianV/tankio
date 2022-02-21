@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class BodyController 
@@ -8,6 +10,10 @@ public class BodyController
 
 
     public SpriteRenderer bodySprite;
+    public UnityEditorInternal.InternalEditorUtility tag;
+
+    public List<string> tags;
+
 
     private Body m_body = new Body();
     private float maxHealth;
@@ -73,6 +79,12 @@ public class BodyController
         {
             Debug.LogError("BodyController cannot load Data in Body");
         }
+    }
+
+    public void TakeDamage(string collisionTag,float damages)
+    {
+        if(tags.Contains(collisionTag))
+            SetHealt(GetHealt() - damages);
     }
 
     public void SetMaxHealt(float newValue)

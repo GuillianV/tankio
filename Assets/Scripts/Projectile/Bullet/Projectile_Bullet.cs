@@ -93,6 +93,10 @@ public class Projectile_Bullet : MonoBehaviour
     {
         if (BulletStats.bounces <= 0 || other.collider.gameObject.layer == LayerMask.NameToLayer("Destructible"))
         {
+            IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
+            if (damagable != null)
+                damagable.TakeDamage(gameObject, BulletStats.damages);
+
             StartDestroyAnim();
         }
         else

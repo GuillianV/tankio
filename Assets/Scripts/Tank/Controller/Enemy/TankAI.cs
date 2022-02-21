@@ -153,18 +153,6 @@ public class TankAI : MonoBehaviour
         isReloading = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        Projectile_Bullet bullet = col.gameObject.GetComponent<Projectile_Bullet>();
-        if (bullet != null)
-        {
-            BodyController.SetHealt( BodyController.GetHealt() - bullet.BulletStats.damages);
-
-            if (BodyController.GetHealt() <= 0)
-            {
-                m_tankDestroyed.OnDestroyed(bullet.senderTag);
-            }
-        }
-    }
+ 
 }
 

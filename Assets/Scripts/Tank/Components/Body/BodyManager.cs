@@ -3,18 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BodyManager : MonoBehaviour, ITankManager,IUpgradable
+public class BodyManager : MonoBehaviour, ITankManager,IUpgradable, IDamagable
 {
 
     public TankBaseAsset bodyAsset ;
     public TankBaseAnimator bodyAnimator;
     public BodyController bodyController;
     private BodyData bodyData;
-  
+    private TankDamage tankDamage;
 
     void ITankManager.Bind(ScriptableObject data)
     {
         BindData(data);
+        tankDamage = GetComponent<TankDamage>();
         bodyController.BindController(bodyData);
         bodyAsset.BindAssets();
         bodyAnimator.BindAnimators(bodyData.bodyAnimators);
@@ -40,12 +41,15 @@ public class BodyManager : MonoBehaviour, ITankManager,IUpgradable
 
     }
 
-
-    private void OnCollisionEnter2D(Collision2D other)
+    void IDamagable.TakeDamage(GameObject sender, float damages)
     {
+        bodyController.TakeDamage(sender.tag, damages);
+        tankDamage.OnDamageTaken(this.gameObject,sender,damages);
         if (bodyController.GetHealt() <= 0)
         {
             Destroy(gameObject);
         }
     }
+
+ 
 }

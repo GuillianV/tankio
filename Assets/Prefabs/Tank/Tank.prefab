@@ -621,6 +621,7 @@ GameObject:
   - component: {fileID: 8511177327817160508}
   - component: {fileID: 8347696059715934911}
   - component: {fileID: 8354651670058392301}
+  - component: {fileID: 2925594385618042757}
   - component: {fileID: 1146333007700226101}
   - component: {fileID: 667119442191746462}
   - component: {fileID: 2407450625520990689}
@@ -744,6 +745,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c5b89bd21185847bc9e9427ad1afc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2925594385618042757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8511177327817160506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a70a17897f0bb4290836dd9adffb13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1146333007700226101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +828,8 @@ MonoBehaviour:
     AnimationsList: []
   bodyController:
     bodySprite: {fileID: 8511177326099615336}
+    tags:
+    - Projectile
 --- !u!114 &4204213939163038621
 MonoBehaviour:
   m_ObjectHideFlags: 0
