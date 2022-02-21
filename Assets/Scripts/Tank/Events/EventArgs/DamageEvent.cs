@@ -6,12 +6,12 @@ using UnityEngine;
 public class DamageEvent : EventArgs
 {
     public GameObject TargetGameObject { get; private set; }
-    public GameObject SenderGameObject { get; private set; }
+    public string SenderTag { get; private set; }
     public float DamageTaken { get; private set; }
-    public DamageEvent(GameObject _targetGameObject, GameObject _senderGameObject, float _damageTaken)
+    public DamageEvent(GameObject _targetGameObject, string _senderTag, float _damageTaken)
     {
         TargetGameObject = _targetGameObject;
-        SenderGameObject = _senderGameObject;
+        SenderTag = _senderTag;
         DamageTaken = _damageTaken;
     }
 }

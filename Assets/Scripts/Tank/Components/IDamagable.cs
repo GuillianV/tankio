@@ -6,5 +6,5 @@ public interface IDamagable
 {
   
 
-    void TakeDamage(GameObject sender, float damages);
+    void TakeDamage(string senderTag, float damages);
 }

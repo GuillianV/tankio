@@ -95,7 +95,7 @@ public class Projectile_Bullet : MonoBehaviour
         {
             IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
             if (damagable != null)
-                damagable.TakeDamage(gameObject, BulletStats.damages);
+                damagable.TakeDamage(gameObject.tag, BulletStats.damages);
 
             StartDestroyAnim();
         }

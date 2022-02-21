@@ -103,10 +103,6 @@ public class TankAI : MonoBehaviour
        
 
 
-            if (BodyController.GetHealt() <= 0)
-            {
-                Destroy(gameObject);
-            }
 
             if (m_aiDestinationSetter.target != null)
             {

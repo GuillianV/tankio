@@ -8,12 +8,9 @@ public class TankCreate : MonoBehaviour
     // Start is called before the first frame update
     public event EventHandler<EventArgs> Created;
 
-    private void Start()
-    {
-        OnCreated();
-    }
+   
 
-    private void OnCreated()
+    public void OnCreated()
     {
         Created?.Invoke(this, EventArgs.Empty);
     }

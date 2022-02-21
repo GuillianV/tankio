@@ -61,7 +61,7 @@ public class PlayerManager : MonoBehaviour
     
     public event EventHandler<TankEvent> OnPlayerDestroyed;
     public event EventHandler<TankEvent> OnPlayerCreated;
-
+    public event EventHandler<DamageEvent> OnPlayerDamaged;
     private void Awake()
     {
         m_Game = GameManager.Instance;
@@ -103,7 +103,13 @@ public class PlayerManager : MonoBehaviour
         TankController currentTankController = tankCreate.GetComponent<TankController>();
         OnTankCreated(currentTankController);
     }
-    
+
+    public void PlayerDamagedHandler(object sender, DamageEvent args)
+    {
+        SetUiLifeOfPlayer();
+        OnTankDamaged(args);
+    }
+
     public void OnTankDestroyed(TankController currentTankController)
     {
         OnPlayerDestroyed?.Invoke(this,new TankEvent(currentTankController));
@@ -114,8 +120,13 @@ public class PlayerManager : MonoBehaviour
         OnPlayerCreated?.Invoke(this,new TankEvent(currentTankController));
     }
 
-    
-    
+    public void OnTankDamaged(DamageEvent damageEvent)
+    {
+        OnPlayerDamaged?.Invoke(this, new DamageEvent(damageEvent.TargetGameObject,damageEvent.SenderTag,damageEvent.DamageTaken));
+    }
+
+
+
     //Instancie le joueur
     public void InsatanciatePlayer()
     {
@@ -125,11 +136,14 @@ public class PlayerManager : MonoBehaviour
         //Création du player
         TankDestroyed tankDestroyed = player.GetComponentInChildren<TankDestroyed>();
         TankCreate tankCreate = player.GetComponentInChildren<TankCreate>();
+        TankDamage tankDamage = player.GetComponentInChildren<TankDamage>();
+
 
         tankDestroyed.Destroyed += PlayerDestroy;
         tankCreate.Created += PlayerCreated;
+        tankDamage.Damaged += PlayerDamagedHandler;
 
-     
+
         controllerList.ForEach(asset =>
         {
             Type abilityType = Type.GetType(asset.name);

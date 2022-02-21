@@ -8,10 +8,7 @@ public class TankDestroyed : MonoBehaviour
 
     public event EventHandler<TagEvent> Destroyed;
 
-    private void OnDestroy()
-    {
-        OnDestroyed("");
-    }
+  
 
     public void OnDestroyed(string tag)
     {

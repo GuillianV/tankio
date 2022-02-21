@@ -65,6 +65,13 @@ public class EnemyManager : MonoBehaviour
         OnTankCreated(tankController);
     }
 
+    public void GoldEarnedHandler(object sender, GoldEvent args)
+    {
+        m_Game.Shop.AddGolds((int) args.Golds);
+        m_Game.Ui.SetGoldUI(m_Game.Shop.golds);
+    }
+
+
     public void OnTankDestroyed(TankController tankController)
     {
         TankDestroyed?.Invoke(this,new TankEvent(tankController));

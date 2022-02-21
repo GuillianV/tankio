@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class TankDamage : MonoBehaviour
 {
-    public event EventHandler<DamageEvent> DamageTaken;
+    public event EventHandler<DamageEvent> Damaged;
         
 
-    public void OnDamageTaken(GameObject target, GameObject sender, float damages)
+    public void OnDamageTaken(GameObject target, string sender, float damages)
     {
-        DamageTaken?.Invoke(this, new DamageEvent(target,sender,damages));
+        Damaged?.Invoke(this, new DamageEvent(target,sender,damages));
     }
 }
