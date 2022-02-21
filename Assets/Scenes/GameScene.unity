@@ -1602,7 +1602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0abe243a6e60647b4e376ac7ce7418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 6904654475131753461, guid: 8e72d40f430734a82aaea096826ecd81, type: 3}
+  playerPrefab: {fileID: 8511177327817160506, guid: 7900bc2b7c9273a479366dc26516541d, type: 3}
   parentContainer: {fileID: 1354766825}
   dataList:
   - {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
@@ -1616,6 +1616,7 @@ MonoBehaviour:
   - {fileID: 11500000, guid: 6c42e4219d3e401418e4678fa410509e, type: 3}
   - {fileID: 11500000, guid: 9d52ee9c4b92213429b48d2c380fbf1d, type: 3}
   - {fileID: 11500000, guid: e4cccee6c0c22b24a814914e06f1c286, type: 3}
+  playerInput: {fileID: -944628639613478452, guid: 3f0dbd499027e4695920aef280ec577c, type: 3}
   player: {fileID: 0}
 --- !u!114 &755335487
 MonoBehaviour:

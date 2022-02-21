@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(PlayerManager))]
@@ -44,6 +45,10 @@ public class PlayerManager : MonoBehaviour
     public List<ScriptableObject> dataList = new List<ScriptableObject>();
 
     public List<TextAsset> controllerList = new List<TextAsset>();
+
+    [Header("Player Inputs")]
+    public InputActionAsset playerInput;
+    public PlayerNotifications notifications = PlayerNotifications.SendMessages;
 
     //Player instancié
     [HideInInspector] public GameObject player;
@@ -118,12 +123,13 @@ public class PlayerManager : MonoBehaviour
             new Vector3(parentContainer.transform.position.x, parentContainer.transform.position.y, 0),
             new Quaternion(0, 0, 0, 0), parentContainer) as GameObject;
         //Création du player
-        TankDestroyed tankDestroyed = player.GetComponent<TankDestroyed>();
-        TankCreate tankCreate = player.GetComponent<TankCreate>();
+        TankDestroyed tankDestroyed = player.GetComponentInChildren<TankDestroyed>();
+        TankCreate tankCreate = player.GetComponentInChildren<TankCreate>();
 
         tankDestroyed.Destroyed += PlayerDestroy;
         tankCreate.Created += PlayerCreated;
 
+     
         controllerList.ForEach(asset =>
         {
             Type abilityType = Type.GetType(asset.name);
@@ -138,9 +144,20 @@ public class PlayerManager : MonoBehaviour
     }
 
  
+    public void EnableInputs()
+    {
+        PlayerInput pi = player.AddComponent<PlayerInput>();
 
-    
-    
+        pi.actions = playerInput;
+        pi.notificationBehavior = notifications;
+        pi.defaultActionMap = "Tank";
+        pi.enabled = true;
+        pi.ActivateInput();
+
+
+    }
+
+
     //Reset all bonus stats and upgrade of tanks
     public void ResetStats()
     {
