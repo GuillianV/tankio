@@ -33,10 +33,7 @@ public class BodyManager : MonoBehaviour, ITankManager,IUpgradable, IDamagable
         tankCreated.OnCreated();
     }
 
-    void IUpgradable.Upgrade()
-    {
-        bodyController.Upgrade();
-    }
+  
 
     void BindData(ScriptableObject obj)
     {
@@ -52,6 +49,12 @@ public class BodyManager : MonoBehaviour, ITankManager,IUpgradable, IDamagable
 
 
     }
+
+    void IUpgradable.Upgrade()
+    {
+        bodyController.Upgrade();
+    }
+
 
     void IDamagable.TakeDamage(string senderTag, float damages)
     {

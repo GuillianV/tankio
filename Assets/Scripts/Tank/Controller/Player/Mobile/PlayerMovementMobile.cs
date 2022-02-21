@@ -15,6 +15,7 @@ public class PlayerMovementMobile : PlayerController
     private GameManager m_Game;
     private TracksManager m_tracksManager;
     private TracksController m_tracksController;
+    private TankBaseAnimator m_TracksAnimator;
     [Range(0,5)]
     public float power = 1;
     public InputTank inputTank;
@@ -32,6 +33,7 @@ public class PlayerMovementMobile : PlayerController
         m_Game = GameManager.Instance;
         m_playerRigidbody = GetComponent<Rigidbody2D>();
         m_tracksManager = m_tankController.GetTankManager<TracksManager>();
+        m_TracksAnimator = m_tracksManager.tracksAnimator;
         m_tracksController = m_tracksManager.tracksController;
 
         if (m_tracksController == null)
@@ -83,6 +85,13 @@ public class PlayerMovementMobile : PlayerController
 
             movement = inputVec;
             rotation = inputVec;
+            m_TracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving", true);
+            m_TracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving", true);
+        }
+        else
+        {
+            m_TracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving", false);
+            m_TracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving", false);
         }
         
         

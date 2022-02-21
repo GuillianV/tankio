@@ -10,7 +10,6 @@ public class BodyController
 
 
     public SpriteRenderer bodySprite;
-    public UnityEditorInternal.InternalEditorUtility tag;
 
     public List<string> tags;
 
