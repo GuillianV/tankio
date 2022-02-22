@@ -138,6 +138,7 @@ public class PlayerManager : MonoBehaviour
         TankCreate tankCreate = player.GetComponentInChildren<TankCreate>();
         TankDamage tankDamage = player.GetComponentInChildren<TankDamage>();
 
+        player.tag = "Player";
 
         tankDestroyed.Destroyed += PlayerDestroy;
         tankCreate.Created += PlayerCreated;

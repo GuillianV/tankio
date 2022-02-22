@@ -19,7 +19,7 @@ public class EnemyManager : MonoBehaviour
 
     public List<Enemy> enemyList;
 
-  
+    public GameObject uiArrow;
 
     public List<TankController> enemiesInGame = new List<TankController>();
     public List<GameObject> enemiesInGameGO = new List<GameObject>();
@@ -89,11 +89,36 @@ public class EnemyManager : MonoBehaviour
         return enemyList.Where(enemy => enemy.difficultyLevel == difficultyLevel).ToList();
     }
 
+
+    
+
     public GameObject InstanciateEnemy(Enemy enemyPatern ,Vector3 spawnerPosition)
     {
         GameObject enemy = Instantiate(enemyPatern.enemyPrefab, spawnerPosition, new Quaternion(0, 0, 0, 0), parentContainer.transform) as GameObject;
         TankController tankController = enemy.GetComponent<TankController>();
-        AIDestinationSetter aiDestinationSetter = enemy.GetComponent<AIDestinationSetter>();
+
+        Seeker seeker = enemy.AddComponent<Seeker>();
+        AIPath aIPath = enemy.AddComponent<AIPath>();
+        AIDestinationSetter aiDestinationSetter = enemy.AddComponent<AIDestinationSetter>();
+        SpriteRenderer spriteRenderer = enemy.AddComponent<SpriteRenderer>();
+        UIEnemyArrow uIEnemyArrow = enemy.AddComponent<UIEnemyArrow>();
+        TankAI tankAI = enemy.AddComponent<TankAI>();
+        Rigidbody2D rigidbody2D = enemy.GetComponent<Rigidbody2D>();
+
+        enemy.tag = "Enemy";
+
+        rigidbody2D.freezeRotation = false;
+
+        aIPath.radius = 2;
+        aIPath.orientation = OrientationMode.YAxisForward;
+     
+        uIEnemyArrow.arrowPrefab = uiArrow;
+
+        tankAI.repathRate = 0.4f;
+        tankAI.velocityRate = 0.4f;
+
+
+
         TankDestroyed tankDestroyed = enemy.GetComponent<TankDestroyed>();
         TankCreate tankCreate = enemy.GetComponent<TankCreate>();
         
@@ -105,6 +130,8 @@ public class EnemyManager : MonoBehaviour
             aiDestinationSetter.target = GameObject.FindWithTag("Player").transform;
 
         }
+
+
 
         List<ScriptableObject> enemyData = new List<ScriptableObject>();
         enemyData.Add(enemyPatern.bodyData);

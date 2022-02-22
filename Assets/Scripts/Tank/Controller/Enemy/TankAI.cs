@@ -15,7 +15,8 @@ public class TankAI : MonoBehaviour
     private GunController GunController;
     private TowerController TowerController;
     private BodyController BodyController;
-
+    private TankBaseAsset m_gunAssets;
+    private TankBaseAsset m_towerAssets;
     private TankBaseAnimator m_gunAnimator;
     
     private TankDestroyed m_tankDestroyed;
@@ -30,9 +31,9 @@ public class TankAI : MonoBehaviour
     public float velocityRate = 1;
 
     [Header("Aimer Setting")]
-    public Transform towerTransform;
-    public Transform spawnBullet;
-    public GameObject bullet;
+    private Transform towerTransform;
+    private Transform spawnBullet;
+    private GameObject bullet;
 
 
     private void Awake()
@@ -48,13 +49,19 @@ public class TankAI : MonoBehaviour
         m_tankController = GetComponent<TankController>();
         m_gunManager = m_tankController.GetTankManager<GunManager>();
         GunController = m_tankController.GetTankManager<GunManager>().gunController;
+        m_gunAssets = m_tankController.GetTankManager<GunManager>().gunAsset;
         BodyController =  m_tankController.GetTankManager<BodyManager>().bodyController;
         TowerController = m_tankController.GetTankManager<TowerManager>().towerController;
+        m_towerAssets = m_tankController.GetTankManager<TowerManager>().towerAsset;
         TracksController = m_tankController.GetTankManager<TracksManager>().tracksController;
         m_aiDestinationSetter = GetComponent<AIDestinationSetter>();
         m_tankDestroyed = GetComponent<TankDestroyed>();
 
         m_gunAnimator = m_gunManager.gunAnimator;
+
+        towerTransform = m_towerAssets.CallAsset("Tower").transform;
+        spawnBullet = m_gunAssets.CallAsset("BulletSpawn").transform;
+        bullet = m_gunAssets.CallAsset("Projectile");
 
         UpdateAstar();
 

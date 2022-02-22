@@ -234,12 +234,12 @@ GameObject:
   - component: {fileID: 982661015}
   - component: {fileID: 982661017}
   - component: {fileID: 3915136592356501300}
+  - component: {fileID: 2993799763479950762}
   - component: {fileID: 982661019}
   - component: {fileID: 5775621088903631846}
   - component: {fileID: 6491005568243321693}
   - component: {fileID: -6786683368917392061}
   - component: {fileID: -4787056186098849500}
-  - component: {fileID: 2993799763479950762}
   - component: {fileID: 3202850398752466772}
   - component: {fileID: 2906851822784664268}
   - component: {fileID: 6889594064222276394}
@@ -420,6 +420,21 @@ MonoBehaviour:
   towerTransform: {fileID: 6375800878556689661}
   spawnBullet: {fileID: 6375800878330181018}
   bullet: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
+--- !u!114 &2993799763479950762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375800877936983457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04441a9eb2e004c46abc3208ff42e8a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrowPrefab: {fileID: 9030039417795229542, guid: aefc1496620b0264088372059e50d529, type: 3}
+  redrawRate: 5
+  redrawSpeed: 2
 --- !u!114 &982661019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,21 +495,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80270ad98e1360441b4fa0fd1cd709bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2993799763479950762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6375800877936983457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04441a9eb2e004c46abc3208ff42e8a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 9030039417795229542, guid: aefc1496620b0264088372059e50d529, type: 3}
-  redrawRate: 5
-  redrawSpeed: 2
 --- !u!212 &3202850398752466772
 SpriteRenderer:
   m_ObjectHideFlags: 0

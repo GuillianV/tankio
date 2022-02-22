@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 4204213939163038621}
   m_Layer: 10
   m_Name: Tank
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -786,6 +786,8 @@ MonoBehaviour:
     assetsList:
     - _name: Projectile
       _gameObject: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
+    - _name: BulletSpawn
+      _gameObject: {fileID: 8511177326305204823}
   gunAnimator:
     AnimationsList:
     - _name: BulletSpawn
