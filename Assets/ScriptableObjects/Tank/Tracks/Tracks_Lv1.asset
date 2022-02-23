@@ -20,3 +20,8 @@ MonoBehaviour:
   TracksSpriteScaleX: 2.56
   TracksSpriteScaleY: 2.56
   color: {r: 1, g: 1, b: 1, a: 1}
+  tracksAnimators:
+  - name: Tracks-Left
+    tracksOverrideController: {fileID: 22100000, guid: 82d39624704e2254f847afa7eadf6089, type: 2}
+  - name: Tracks-Right
+    tracksOverrideController: {fileID: 22100000, guid: 82d39624704e2254f847afa7eadf6089, type: 2}
