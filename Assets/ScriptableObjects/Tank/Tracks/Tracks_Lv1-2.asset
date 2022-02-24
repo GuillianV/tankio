@@ -19,7 +19,7 @@ MonoBehaviour:
   spriteTrack: {fileID: 21300000, guid: dbb6e3fbaab305d43b5605af51a8052a, type: 3}
   TracksSpriteScaleX: 2.56
   TracksSpriteScaleY: 2.56
-  color: {r: 1, g: 0.7122642, b: 0.7122642, a: 1}
+  color: {r: 0.92548573, g: 1, b: 0.4575472, a: 1}
   tracksAnimators:
   - name: Tracks-Left
     tracksOverrideController: {fileID: 22100000, guid: bf2826e20532a7343b81d042655d11c3, type: 2}
