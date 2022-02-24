@@ -46,6 +46,8 @@ public class PlayerMovementMobile : PlayerController
     protected void Cancelled()
     {
         movement = Vector2.zero;
+        m_TracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving", false);
+        m_TracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving", false);
     }
 
     void FixedUpdate()
@@ -87,11 +89,6 @@ public class PlayerMovementMobile : PlayerController
             rotation = inputVec;
             m_TracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving", true);
             m_TracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving", true);
-        }
-        else
-        {
-            m_TracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving", false);
-            m_TracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving", false);
         }
         
         
