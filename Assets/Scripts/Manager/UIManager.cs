@@ -83,8 +83,6 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
 
     
-    public float updateInterval = 0.5F;
-    private double lastInterval;
     private int frames;
 
 
@@ -108,8 +106,6 @@ public class UIManager : MonoBehaviour
         listOfShopItemUI.ForEach(shopItemUIGet => { GenerateShopItemUI(shopItemUIGet); });
         shopParent.SetActive(false);
         HideParentPatern();
-        
-        lastInterval = Time.realtimeSinceStartup;
         frames = 0;
         
         
@@ -474,6 +470,13 @@ public class UIManager : MonoBehaviour
                 isNexting = true;
                 elementDisplayed++;
             }
+            else
+            {
+                value = m_wrapperRectTransform.localPosition.x;
+                valueToReach = m_wrapperRectTransform.localPosition.x + ( m_shopRectTransform.rect.width * (elementDisplayed-1));
+                isPreviousing = true;
+                elementDisplayed = 1;
+            }
         }
     }
 
@@ -482,12 +485,18 @@ public class UIManager : MonoBehaviour
     {
         if (isNexting == false && isPreviousing == false)
         {
+            value = m_wrapperRectTransform.localPosition.x;
             if (elementDisplayed > 1)
             {
-                value = m_wrapperRectTransform.localPosition.x;
+                
                 valueToReach = m_wrapperRectTransform.localPosition.x +  m_shopRectTransform.rect.width;
                 isPreviousing = true;
                 elementDisplayed--;
+            } else
+            {
+                valueToReach = m_wrapperRectTransform.localPosition.x - ( m_shopRectTransform.rect.width * (listOfShopItemUI.Count-1));
+                isNexting = true;
+                elementDisplayed = listOfShopItemUI.Count;
             }
         }
     }
@@ -495,7 +504,7 @@ public class UIManager : MonoBehaviour
     //Slide wrapper
     public void Slide()
     {
-        if (m_wrapperRectTransform.localPosition.x > valueToReach && isNexting == true)
+        if ( isNexting == true)
         {
             m_wrapperRectTransform.localPosition =
                 new Vector3(m_wrapperRectTransform.localPosition.x - slideSpeed  * 0.01f  *Time.deltaTime, 0, 0);
@@ -507,7 +516,7 @@ public class UIManager : MonoBehaviour
                 isPreviousing = false;
             }
         }
-        else if (m_wrapperRectTransform.localPosition.x < valueToReach && isPreviousing == true)
+        else if (isPreviousing == true)
         {
             m_wrapperRectTransform.localPosition =
                 new Vector3(m_wrapperRectTransform.localPosition.x + slideSpeed  * 0.01f  *Time.deltaTime, 0, 0);
