@@ -18,10 +18,10 @@ public class PlayerAimerShooterMobile : PlayerController
 
     private TowerManager m_towerManager;
     private TowerController m_towerController;
-    private TankBaseAsset m_towerAsset;
+    private BaseAsset m_towerAsset;
     private GunManager m_gunManager;
     private GunController m_gunController;
-    private TankBaseAsset m_gunAsset;
+    private BaseAsset m_gunAsset;
     private GameManager m_Game;
     private Vector2 vectorToTarget = new Vector2(0,0);
     private bool isReloading = false;
@@ -137,19 +137,12 @@ public class PlayerAimerShooterMobile : PlayerController
     
                 if (m_Game.TimeManager.timeScale > 0)
                 {
-                
-                    GameObject ammo = Instantiate(projectile, m_gunController.bulletSpawn.transform.position, m_gunController.bulletSpawn.transform.rotation) as  GameObject;
+                    GameObject ammo = m_gunManager.Shoot();
                     BulletDestroyed bulletDestroyed = ammo.GetComponent<BulletDestroyed>();
                     BulletCreated bulletCreated = ammo.GetComponent<BulletCreated>();
                     bulletDestroyed.Destroyed += OnBulletDestroyed;
                     bulletCreated.Created += OnBulletCreated;  
                 
-                    Projectile_Bullet ammoProjectile = ammo.GetComponent<Projectile_Bullet>();
-                    ammoProjectile.BulletStats.velocity = m_gunController.GetBulletVelocity();
-                    ammoProjectile.parentUp = m_gunController.bulletSpawn.transform.up;
-                    ammoProjectile.senderTag = gameObject.tag;
-                    m_gunManager.gunAnimator.CallAnimator("BulletSpawn").SetTrigger("Fire");
-                    m_gunManager.gunAnimator.CallAnimator("Gun").SetTrigger("Fire");
                     isReloading = true;
     
                

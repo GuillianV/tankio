@@ -15,7 +15,7 @@ public class PlayerMovementMobile : PlayerController
     private GameManager m_Game;
     private TracksManager m_tracksManager;
     private TracksController m_tracksController;
-    private TankBaseAnimator m_TracksAnimator;
+    private BaseAnimator m_TracksAnimator;
     [Range(0,5)]
     public float power = 1;
     public InputTank inputTank;
