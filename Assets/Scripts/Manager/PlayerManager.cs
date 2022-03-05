@@ -42,7 +42,7 @@ public class PlayerManager : MonoBehaviour
 
     //Scriptable objects pour les tanks
     [Header("Player Stats")]
-    public List<ScriptableObject> dataList = new List<ScriptableObject>();
+    public TankScriptable tankDatas;
 
     public List<TextAsset> controllerList = new List<TextAsset>();
 
@@ -181,7 +181,8 @@ public class PlayerManager : MonoBehaviour
         if (player != null)
         {
             tankController = player.GetComponent<TankController>();
-            tankController.BindTank(dataList);
+            tankController.tankScriptable = tankDatas;
+            tankController.BindTank(tankDatas.listTankScriptableObject);
             m_bodyManager = tankController.GetTankManager<BodyManager>();
             m_bodyController = m_bodyManager.bodyController;
 

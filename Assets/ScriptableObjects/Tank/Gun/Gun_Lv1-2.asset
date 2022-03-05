@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 280ab4806a9c2e14694f58701e30dc9c, type: 3}
   m_Name: Gun_Lv1-2
   m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 00f1fd874881cc8488fa2814b979472d, type: 3}
+  color: {r: 0.6624306, g: 1, b: 0.6367924, a: 1}
+  animators:
+  - name: Gun
+    tracksOverrideController: {fileID: 22100000, guid: 01a48b665098ef647a2f01ca872c997c, type: 2}
+  - name: BulletSpawn
+    tracksOverrideController: {fileID: 22100000, guid: 9d10c60f0c06fea4f8786f96dd4c80cb, type: 2}
   coefReloadTimeSecond: 0.1
   reloadTimeSecond: 3
   coefBulletVelocity: 0.1
   bulletVelocity: 2
-  spriteGun: {fileID: 21300000, guid: c6e5d078bcdd07746ace23393ca0db59, type: 3}
   TowerGunOffset: 1
   GunSpawnOffset: 1
   GunScaleX: 1.5
   GunScaleY: 2.25
-  color: {r: 0.6624306, g: 1, b: 0.6367924, a: 1}
-  gunAnimators:
-  - name: BulletSpawn
-    tracksOverrideController: {fileID: 22100000, guid: 9d10c60f0c06fea4f8786f96dd4c80cb, type: 2}
-  - name: Gun
-    tracksOverrideController: {fileID: 22100000, guid: 46834e4915479f747841b23c9831845e, type: 2}

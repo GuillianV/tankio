@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0530fd51013bc749be0b0dbd99f66d1, type: 3}
   m_Name: Tower_Lv2
   m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 019cec68250542c409ac994ff273dba0, type: 3}
+  color: {r: 0.76942796, g: 1, b: 0.6273585, a: 1}
+  animators: []
+  coefRotationSpeed: 0.1
   rotationSpeed: 2
-  spriteTower: {fileID: 21300000, guid: 63409559e2f661242b7771cf7d2728ac, type: 3}
-  color: {r: 1, g: 1, b: 1, a: 1}

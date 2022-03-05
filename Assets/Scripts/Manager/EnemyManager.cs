@@ -19,6 +19,8 @@ public class EnemyManager : MonoBehaviour
 
     public List<Enemy> enemyList;
 
+
+
     public GameObject uiArrow;
 
     public List<TankController> enemiesInGame = new List<TankController>();
@@ -133,13 +135,8 @@ public class EnemyManager : MonoBehaviour
 
 
 
-        List<ScriptableObject> enemyData = new List<ScriptableObject>();
-        enemyData.Add(enemyPatern.bodyData);
-        enemyData.Add(enemyPatern.gunData);
-        enemyData.Add(enemyPatern.towerData);
-        enemyData.Add(enemyPatern.tracksData);
-
-        tankController.BindTank(enemyData);
+        tankController.tankScriptable = enemyPatern.tankScriptable;
+        tankController.BindTank(enemyPatern.tankScriptable.listTankScriptableObject);
         
 
         return enemy;
