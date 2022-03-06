@@ -181,13 +181,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ede921ac02a0547a74fe9bc2b89304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyAsset:
+  bulletAsset:
     assetsList: []
-  bodyAnimator:
-    AnimationsList: []
+  bulletAnimator:
+    AnimationsList:
+    - _name: Bullet
+      _animator: {fileID: 2447466233490526561}
+      _SpriteRenderer: {fileID: 2447466233490526563}
   bulletController:
     bulletSprite: {fileID: 2447466233490526563}
-  bulletData: {fileID: 0}
 --- !u!1 &6527488704182022956
 GameObject:
   m_ObjectHideFlags: 0

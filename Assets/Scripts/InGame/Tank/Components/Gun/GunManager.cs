@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class GunManager : MonoBehaviour, IManager, IUpgradable
 {
-    public BaseAsset gunAsset ;
+    public BaseAsset gunAsset;
     public BaseAnimator gunAnimator;
     public GunController gunController;
     private TankController tankController;
     private GunData gunData;
-  
+
+    public event EventHandler<ProjectileEvent> BulletDestroyed;
+    public event EventHandler<ProjectileEvent> BulletCreated;
 
     void IManager.Bind(ScriptableObject data)
     {
@@ -49,23 +51,49 @@ public class GunManager : MonoBehaviour, IManager, IUpgradable
                    gunController.bulletSpawn.transform.position,
                    gunController.bulletSpawn.transform.rotation) as GameObject;
 
-        BulletManager ammoProjectile = ammo.GetComponent<BulletManager>();
-        IManager imanager = ammoProjectile.GetComponent<IManager>();
-        if (imanager != null)
+        BulletDestroyed bulletDestroyed = ammo.GetComponent<BulletDestroyed>();
+        BulletCreated bulletCreated = ammo.GetComponent<BulletCreated>();
+        bulletDestroyed.Destroyed += OnBulletDestroyed;
+        bulletCreated.Created += OnBulletCreated;
+
+        IBulletManager iBulletManager = ammo.GetComponent<IBulletManager>();
+        if (iBulletManager != null)
         {
+            iBulletManager.AdditionalBulletData(gunController.GetBulletVelocity(), gameObject.tag, gunController.bulletSpawn.transform.up,3);
             tankController.tankScriptable.listProjectileScriptableObject.ForEach(projectileData =>
             {
-                imanager.Bind(projectileData);
+                iBulletManager.Bind(projectileData);
             });
         }
-         
 
 
-
-        ammoProjectile.addParentData(gunController.bulletSpawn.transform.up, gameObject.tag, gunController.GetBulletVelocity());
         gunAnimator.CallAnimator("BulletSpawn").SetTrigger("Fire");
         gunAnimator.CallAnimator("Gun").SetTrigger("Fire");
         return ammo;
+    }
+
+
+    public void OnBulletDestroyed(object sender, EventArgs args)
+    {
+
+        BulletDestroyed bulletDestroyed = sender as BulletDestroyed;
+        BulletDestroyedHandler(bulletDestroyed.gameObject, bulletDestroyed.tag);
+    }
+
+    public void OnBulletCreated(object sender, EventArgs args)
+    {
+        BulletCreated bulletCreated = sender as BulletCreated;
+        BulletCreatedHandler(bulletCreated.gameObject, bulletCreated.tag);
+    }
+
+    public void BulletDestroyedHandler(GameObject bullet, string tag)
+    {
+        BulletDestroyed?.Invoke(this, new ProjectileEvent(bullet, tag));
+    }
+
+    public void BulletCreatedHandler(GameObject bullet, string tag)
+    {
+        BulletCreated?.Invoke(this, new ProjectileEvent(bullet, tag));
     }
 
 }

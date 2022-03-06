@@ -13,7 +13,7 @@ public class BulletController
 
     public SpriteRenderer bulletSprite;
     private Bullet m_bullet = new Bullet();
-    private int damage;
+    private float damage;
     private int maxBounce;
     private int bounce;
 
@@ -64,16 +64,30 @@ public class BulletController
     }
 
 
-    protected void Collided()
+    public void Upgrade()
     {
 
+        if (m_bullet.Data != null)
+        {
+
+            SetDamage(GetDamage() + (m_bullet.Data.coefDamage * m_bullet.Data.damage));
+
+        }
+        else
+        {
+            Debug.LogError("GunController cannot load Data in Gun");
+        }
+    }
+
+
+    public void SendDamage(IDamagable damagable, string tag)
+    {
+        damagable.TakeDamage(tag, GetDamage());
     }
 
 
 
-
-
-    public void SetMaxBounce(int newValue)
+        public void SetMaxBounce(int newValue)
     {
         maxBounce = newValue;
     }
@@ -97,12 +111,12 @@ public class BulletController
 
 
 
-    public void SetDamage(int newValue)
+    public void SetDamage(float newValue)
     {
         damage = newValue;
     }
 
-    public int GetDamage()
+    public float GetDamage()
     {
         return damage;
     }

@@ -23,8 +23,6 @@ public class TankAI : MonoBehaviour
     private TankDestroyed m_tankDestroyed;
     private bool isReloading;
     private GameManager m_Game;
-    public event EventHandler<ProjectileEvent> BulletDestroyed;
-    public event EventHandler<ProjectileEvent> BulletCreated;
 
     [Range(0.1f, 20f)]
     public float repathRate = 1;
@@ -80,29 +78,6 @@ public class TankAI : MonoBehaviour
     }
 
 
-    public void OnBulletDestroyed(object sender, EventArgs args)
-    {
-
-        BulletDestroyed bulletDestroyed = sender as BulletDestroyed;
-        BulletDestroyedHandler(bulletDestroyed.gameObject, bulletDestroyed.tag);
-    }
-
-    public void OnBulletCreated(object sender, EventArgs args)
-    {
-        BulletCreated bulletCreated = sender as BulletCreated;
-        BulletCreatedHandler(bulletCreated.gameObject, bulletCreated.tag);
-    }
-
-    public void BulletDestroyedHandler(GameObject bullet, string tag)
-    {
-        BulletDestroyed?.Invoke(this, new ProjectileEvent(bullet, tag));
-    }
-
-    public void BulletCreatedHandler(GameObject bullet, string tag)
-    {
-        BulletCreated?.Invoke(this, new ProjectileEvent(bullet, tag));
-    }
-
 
 
     private void FixedUpdate()
@@ -131,11 +106,6 @@ public class TankAI : MonoBehaviour
                         if (!isReloading)
                         {
                            GameObject ammo =  m_gunManager.Shoot();
-                            BulletDestroyed bulletDestroyed = ammo.GetComponent<BulletDestroyed>();
-                            BulletCreated bulletCreated = ammo.GetComponent<BulletCreated>();
-                            bulletDestroyed.Destroyed += OnBulletDestroyed;
-                            bulletCreated.Created += OnBulletCreated;
-                         
                             //IManager imanager = ammoProjectile.GetComponent<IManager>();
                             //if (imanager != null)
                             //    imanager.Bind();

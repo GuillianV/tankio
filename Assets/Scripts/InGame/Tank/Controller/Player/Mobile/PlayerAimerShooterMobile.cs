@@ -27,8 +27,6 @@ public class PlayerAimerShooterMobile : PlayerController
     private bool isReloading = false;
     private bool isFireing = false;
     public InputTank inputTank;
-    public event EventHandler<ProjectileEvent> BulletDestroyed;
-    public event EventHandler<ProjectileEvent> BulletCreated;
     private OnScreenStickHandler onScreenStickHandler;
 
 
@@ -105,28 +103,6 @@ public class PlayerAimerShooterMobile : PlayerController
     }
 
     
-    public void OnBulletDestroyed(object sender, EventArgs args)
-    {
-    
-        BulletDestroyed bulletDestroyed = sender as BulletDestroyed;
-        BulletDestroyedHandler(bulletDestroyed.gameObject,bulletDestroyed.tag);
-    }
-    
-    public void OnBulletCreated(object sender, EventArgs args)
-    {
-        BulletCreated bulletCreated = sender as BulletCreated;
-        BulletCreatedHandler(bulletCreated.gameObject,bulletCreated.tag);
-    }
-    
-    public void BulletDestroyedHandler(GameObject bullet, string tag)
-    {
-        BulletDestroyed?.Invoke(this,new ProjectileEvent(bullet,tag));
-    }
-    
-    public void BulletCreatedHandler(GameObject bullet, string tag)
-    {
-        BulletCreated?.Invoke(this,new ProjectileEvent(bullet,tag));
-    }
 
     
     public void Fire()
@@ -137,15 +113,10 @@ public class PlayerAimerShooterMobile : PlayerController
     
                 if (m_Game.TimeManager.timeScale > 0)
                 {
-                    GameObject ammo = m_gunManager.Shoot();
-                    BulletDestroyed bulletDestroyed = ammo.GetComponent<BulletDestroyed>();
-                    BulletCreated bulletCreated = ammo.GetComponent<BulletCreated>();
-                    bulletDestroyed.Destroyed += OnBulletDestroyed;
-                    bulletCreated.Created += OnBulletCreated;  
+                    m_gunManager.Shoot();
+                 
                 
                     isReloading = true;
-    
-               
                     m_Game.Audio.Play("tank-shoot-"+ UnityEngine.Random.Range(1, 3));
                 
                     StartCoroutine(Reload());

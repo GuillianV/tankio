@@ -1939,6 +1939,21 @@ MonoBehaviour:
     shopItemTitleGameObject: {fileID: 0}
     shopItemUpgradeGameObject: {fileID: 0}
     shopItemParentGameObject: {fileID: 0}
+  - identifier: 5
+    name: BULLET
+    imageSprite: {fileID: 21300000, guid: e43d6c186e4d13444b6b8f02a91d58f5, type: 3}
+    imageColor: {r: 1, g: 0.5424528, b: 0.5424528, a: 1}
+    shopItemCostUI: {fileID: 0}
+    shopItemLevelUI: {fileID: 0}
+    shopItemTitleUI: {fileID: 0}
+    shopItemUpgradeUI: {fileID: 0}
+    shopItemImageUI: {fileID: 0}
+    shopItemCostGameObject: {fileID: 0}
+    shopItemLevelGameObject: {fileID: 0}
+    shopItemImageGameObject: {fileID: 0}
+    shopItemTitleGameObject: {fileID: 0}
+    shopItemUpgradeGameObject: {fileID: 0}
+    shopItemParentGameObject: {fileID: 0}
 --- !u!114 &755335494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1998,6 +2013,15 @@ MonoBehaviour:
     itemCostMultiplyer: 1.56
     itemLvl: 0
     objectScript: {fileID: 11500000, guid: bbf01ba6f1e88d2479d8a5edc77625ac, type: 3}
+    calledWhenComponentUpgraded:
+      m_PersistentCalls:
+        m_Calls: []
+  - identifier: 5
+    itemBaseCost: 55
+    itemActualCost: 0
+    itemCostMultiplyer: 1.64
+    itemLvl: 0
+    objectScript: {fileID: 11500000, guid: d8ede921ac02a0547a74fe9bc2b89304, type: 3}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
         m_Calls: []

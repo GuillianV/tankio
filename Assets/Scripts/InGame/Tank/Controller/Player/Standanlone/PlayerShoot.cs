@@ -117,13 +117,8 @@ public class PlayerShoot : PlayerController
                 if (m_gunController != null)
                 {
 
-                    GameObject ammo =  m_gunManager.Shoot();
+                     m_gunManager.Shoot();
 
-                   
-                    BulletDestroyed bulletDestroyed = ammo.GetComponent<BulletDestroyed>();
-                    BulletCreated bulletCreated = ammo.GetComponent<BulletCreated>();
-                    bulletDestroyed.Destroyed += OnBulletDestroyed;
-                    bulletCreated.Created += OnBulletCreated;
 
                     isReloading = true;
 

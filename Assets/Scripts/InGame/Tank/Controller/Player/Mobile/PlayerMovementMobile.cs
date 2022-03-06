@@ -42,12 +42,17 @@ public class PlayerMovementMobile : PlayerController
         inputTank.Tank.Move.canceled += ctx => Cancelled();
     }
 
+    private void OnDestroy()
+    {
+        inputTank.Tank.Move.canceled -= ctx => Cancelled();
+    }
+
 
     protected void Cancelled()
     {
         movement = Vector2.zero;
-        m_TracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving", false);
-        m_TracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving", false);
+        m_TracksAnimator.CallAnimator("Tracks-Left")?.SetBool("Moving", false);
+        m_TracksAnimator.CallAnimator("Tracks-Right")?.SetBool("Moving", false);
     }
 
     void FixedUpdate()

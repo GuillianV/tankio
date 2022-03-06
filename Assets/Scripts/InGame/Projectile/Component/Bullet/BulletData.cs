@@ -5,7 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Projectile/Bullet")]
 public class BulletData : ProjectileScriptableObject
 {
-    public int damage;
+    [Range(0.01f, 1f)]
+    public float coefDamage = 0.1f;
+    public float damage;
     public int maxBounce;
 
 }
