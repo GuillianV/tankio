@@ -124,7 +124,7 @@ public class ShopManager : MonoBehaviour
                     Mathf.RoundToInt(shopItem.itemActualCost * shopItem.itemCostMultiplyer);
                 m_Game.Ui.SetShopItemCost(shopItem.identifier, shopItem.itemActualCost);
                 m_Game.Ui.SetShopItemLevel(shopItem.identifier, shopItem.itemLvl);
-                m_Game.Ui.SetShopItemImage(shopItem.identifier, objectData.listScriptableObjectUpgrade[objectData.upgradeLevel].sprite, objectData.listScriptableObjectUpgrade[objectData.upgradeLevel].color);
+                m_Game.Ui.SetShopItemImage(shopItem.identifier, objectData.dataList.scriptableDatas[objectData.upgradeLevel].sprite, objectData.dataList.scriptableDatas[objectData.upgradeLevel].color);
                 shopItem.calledWhenComponentUpgraded.Invoke();
             }
 

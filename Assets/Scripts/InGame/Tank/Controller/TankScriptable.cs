@@ -8,8 +8,7 @@ public class BaseScriptableObjectData
     [HideInInspector]
     public int upgradeLevel;
     [Header("Upgrades by order")]
-    public List<BaseScriptableObject> listScriptableObjectUpgrade; 
-
+    public BaseScriptableDataList dataList;
 }
 
 

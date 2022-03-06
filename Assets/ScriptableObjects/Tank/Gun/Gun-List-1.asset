@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec978949b252d7d47a388c7f003d31ab, type: 3}
+  m_Name: Gun-List-1
+  m_EditorClassIdentifier: 
+  scriptableDatas:
+  - {fileID: 11400000, guid: bbc8960a80cf3cd4bae994b28509f2bb, type: 2}
+  - {fileID: 11400000, guid: 7d35d47b81f2c664280041b8eeeb2575, type: 2}
+  - {fileID: 11400000, guid: 3fad621c4b0a6684b881d3f2aa60a07e, type: 2}
+  - {fileID: 11400000, guid: 996f9e8f24a75974182034b1b72ac5d1, type: 2}
+  - {fileID: 11400000, guid: ee42614b20dc16e479c4920832aa70f1, type: 2}

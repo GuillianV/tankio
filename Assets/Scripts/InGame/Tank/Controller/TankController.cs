@@ -59,14 +59,14 @@ public class TankController : MonoBehaviour
     public T GetData<T>() where T : BaseScriptableObject
     {
         BaseScriptableObjectData component = (BaseScriptableObjectData)tankScriptable.baseScriptableObjects.FirstOrDefault(component => {
-            if (component.listScriptableObjectUpgrade.FirstOrDefault().GetType() == typeof(T))
+            if (component.dataList.scriptableDatas.FirstOrDefault().GetType() == typeof(T))
                 return true;
             else
                 return false;
         } );
 
 
-        T scriptable = (T)component.listScriptableObjectUpgrade.TakeAtIndexOrLast(component.upgradeLevel);
+        T scriptable = (T)component.dataList.scriptableDatas.TakeAtIndexOrLast(component.upgradeLevel);
 
         if (component != null)
         {
@@ -119,12 +119,12 @@ public class TankController : MonoBehaviour
         BaseScriptableObjectData scriptableFound = new BaseScriptableObjectData();
         tankScriptable.baseScriptableObjects.ForEach(baseScriptableObject =>
         {
-            if (baseScriptableObject.listScriptableObjectUpgrade.First().name.Contains(managerName))
+            if (baseScriptableObject.dataList.scriptableDatas.First().name.Contains(managerName))
                 scriptableFound = baseScriptableObject;
         });
         if (scriptableFound != null)
         {
-            if (scriptableFound.listScriptableObjectUpgrade.IsIndexAfter(scriptableFound.upgradeLevel))
+            if (scriptableFound.dataList.scriptableDatas.IsIndexAfter(scriptableFound.upgradeLevel))
             {
                 scriptableFound.upgradeLevel = scriptableFound.upgradeLevel + 1;
                 BindTank(tankScriptable.baseScriptableObjects);

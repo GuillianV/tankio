@@ -1607,25 +1607,15 @@ MonoBehaviour:
   tankDatas:
     baseScriptableObjects:
     - upgradeLevel: 0
-      listScriptableObjectUpgrade:
-      - {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
+      dataList: {fileID: 11400000, guid: ba92528a3b6e2b04abb5deeafcdad0bc, type: 2}
     - upgradeLevel: 0
-      listScriptableObjectUpgrade:
-      - {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
+      dataList: {fileID: 11400000, guid: c7d6db9162e2d0b49b0e88d3f03f2800, type: 2}
     - upgradeLevel: 0
-      listScriptableObjectUpgrade:
-      - {fileID: 11400000, guid: c9693e90d0727d349a5151f9a5917882, type: 2}
-      - {fileID: 11400000, guid: 774a6ef86943dbf4fa60199661518707, type: 2}
+      dataList: {fileID: 11400000, guid: 10a182523ff795744954cd4ba921a679, type: 2}
     - upgradeLevel: 0
-      listScriptableObjectUpgrade:
-      - {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}
+      dataList: {fileID: 11400000, guid: d87b180facb14f54bb84db197f227ad0, type: 2}
     - upgradeLevel: 0
-      listScriptableObjectUpgrade:
-      - {fileID: 11400000, guid: e4a4032cd8c5d4078a553cb773e1b020, type: 2}
-      - {fileID: 11400000, guid: 44f96764c5a523f4e91a8c683dff9d44, type: 2}
-      - {fileID: 11400000, guid: a092829933865e644a9f529c672741ca, type: 2}
-      - {fileID: 11400000, guid: 1291cec8bc14c284d81358cc34dc4c99, type: 2}
-      - {fileID: 11400000, guid: 8f7e14419dfaa2749a566e91abb9b275, type: 2}
+      dataList: {fileID: 11400000, guid: 4e462c3fbd6e8ad49b7ecf1ecd0da7e5, type: 2}
   controllerList:
   - {fileID: 11500000, guid: 19c8a57c8af43c3499506507fea0cd64, type: 3}
   - {fileID: 11500000, guid: 7ed934ed1a3cda14c81ab2ef6a57b2d2, type: 3}
@@ -1773,44 +1763,30 @@ MonoBehaviour:
     tankScriptable:
       baseScriptableObjects:
       - upgradeLevel: 0
-        listScriptableObjectUpgrade:
-        - {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
+        dataList: {fileID: 11400000, guid: c5af313b8ecfea84cae4491cd24b6d02, type: 2}
       - upgradeLevel: 0
-        listScriptableObjectUpgrade:
-        - {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
+        dataList: {fileID: 11400000, guid: cafaf6f08bd561540b3e9fd050d8782b, type: 2}
       - upgradeLevel: 0
-        listScriptableObjectUpgrade:
-        - {fileID: 11400000, guid: c9693e90d0727d349a5151f9a5917882, type: 2}
+        dataList: {fileID: 11400000, guid: eed3503a24eabeb419a2f7fce25c2d6f, type: 2}
       - upgradeLevel: 0
-        listScriptableObjectUpgrade:
-        - {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}
+        dataList: {fileID: 11400000, guid: 42d6b5e110fe4f447905a1237033e397, type: 2}
       - upgradeLevel: 0
-        listScriptableObjectUpgrade:
-        - {fileID: 11400000, guid: e4a4032cd8c5d4078a553cb773e1b020, type: 2}
-        - {fileID: 11400000, guid: 44f96764c5a523f4e91a8c683dff9d44, type: 2}
-        - {fileID: 11400000, guid: a092829933865e644a9f529c672741ca, type: 2}
+        dataList: {fileID: 11400000, guid: 4e462c3fbd6e8ad49b7ecf1ecd0da7e5, type: 2}
   - enemyPrefab: {fileID: 8511177327817160506, guid: 7900bc2b7c9273a479366dc26516541d, type: 3}
     difficultyLevel: 2
     enemy: {fileID: 0}
     tankScriptable:
       baseScriptableObjects:
       - upgradeLevel: 0
-        listScriptableObjectUpgrade:
-        - {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
+        dataList: {fileID: 11400000, guid: c5af313b8ecfea84cae4491cd24b6d02, type: 2}
       - upgradeLevel: 0
-        listScriptableObjectUpgrade:
-        - {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
+        dataList: {fileID: 11400000, guid: cafaf6f08bd561540b3e9fd050d8782b, type: 2}
       - upgradeLevel: 0
-        listScriptableObjectUpgrade:
-        - {fileID: 11400000, guid: c9693e90d0727d349a5151f9a5917882, type: 2}
+        dataList: {fileID: 11400000, guid: eed3503a24eabeb419a2f7fce25c2d6f, type: 2}
       - upgradeLevel: 0
-        listScriptableObjectUpgrade:
-        - {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}
+        dataList: {fileID: 11400000, guid: 42d6b5e110fe4f447905a1237033e397, type: 2}
       - upgradeLevel: 0
-        listScriptableObjectUpgrade:
-        - {fileID: 11400000, guid: e4a4032cd8c5d4078a553cb773e1b020, type: 2}
-        - {fileID: 11400000, guid: 44f96764c5a523f4e91a8c683dff9d44, type: 2}
-        - {fileID: 11400000, guid: a092829933865e644a9f529c672741ca, type: 2}
+        dataList: {fileID: 11400000, guid: 4e462c3fbd6e8ad49b7ecf1ecd0da7e5, type: 2}
   uiArrow: {fileID: 9030039417795229542, guid: aefc1496620b0264088372059e50d529, type: 3}
   enemiesInGame: []
   enemiesInGameGO: []
@@ -2007,18 +1983,18 @@ MonoBehaviour:
   - identifier: 1
     itemBaseCost: 25
     itemActualCost: 0
-    itemCostMultiplyer: 1.96
+    itemCostMultiplyer: 2.5
     itemLvl: 0
-    objectScript: {fileID: 11400000, guid: 6682277f8080c3844a47382503bef01e, type: 2}
+    objectScript: {fileID: 11400000, guid: ddb3743dba783a34b8a9bce55308fb41, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
         m_Calls: []
   - identifier: 2
     itemBaseCost: 35
     itemActualCost: 0
-    itemCostMultiplyer: 1.38
+    itemCostMultiplyer: 2.5
     itemLvl: 0
-    objectScript: {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}
+    objectScript: {fileID: 11400000, guid: 6f4c276984507604cb652f1fc35ef79f, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
         m_Calls:
@@ -2037,18 +2013,18 @@ MonoBehaviour:
   - identifier: 3
     itemBaseCost: 15
     itemActualCost: 0
-    itemCostMultiplyer: 1.63
+    itemCostMultiplyer: 2.5
     itemLvl: 0
-    objectScript: {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
+    objectScript: {fileID: 11400000, guid: ae4378c3adc81d84fb799149d5ccb0c6, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
         m_Calls: []
   - identifier: 4
     itemBaseCost: 40
     itemActualCost: 0
-    itemCostMultiplyer: 1.56
+    itemCostMultiplyer: 2.5
     itemLvl: 0
-    objectScript: {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
+    objectScript: {fileID: 11400000, guid: bbc8960a80cf3cd4bae994b28509f2bb, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
         m_Calls: []
@@ -3220,7 +3196,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -34.999985}
+  m_AnchoredPosition: {x: 0, y: -35}
   m_SizeDelta: {x: -160, y: -90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138146665

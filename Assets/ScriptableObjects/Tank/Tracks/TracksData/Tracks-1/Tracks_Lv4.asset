@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150a027a36e0982459804069bb3b7661, type: 3}
+  m_Name: Tracks_Lv4
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -4330042234375938771, guid: c0398a7203a71574e8a97a5ba472d285, type: 3}
+  color: {r: 1, g: 0.34574473, b: 0.25, a: 1}
+  animators:
+  - name: Tracks-Left
+    tracksOverrideController: {fileID: 22100000, guid: bf2826e20532a7343b81d042655d11c3, type: 2}
+  - name: Tracks-Right
+    tracksOverrideController: {fileID: 22100000, guid: bf2826e20532a7343b81d042655d11c3, type: 2}
+  speed: 600
+  rotationSpeed: 400
+  TracksSpriteScaleX: 2.56
+  TracksSpriteScaleY: 2.56
