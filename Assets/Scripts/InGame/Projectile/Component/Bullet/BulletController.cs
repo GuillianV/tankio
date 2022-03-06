@@ -73,10 +73,6 @@ public class BulletController
             SetDamage(GetDamage() + (m_bullet.Data.coefDamage * m_bullet.Data.damage));
 
         }
-        else
-        {
-            Debug.LogError("GunController cannot load Data in Gun");
-        }
     }
 
 

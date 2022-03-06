@@ -47,7 +47,9 @@ public class GunManager : MonoBehaviour, IManager, IUpgradable
 
     public GameObject Shoot()
     {
-        GameObject ammo = Instantiate(gunAsset.CallAsset("Projectile"),
+        BulletData projectileScriptableObject = tankController.GetData<BulletData>();
+
+        GameObject ammo = Instantiate(projectileScriptableObject.projectileCloned,
                    gunController.bulletSpawn.transform.position,
                    gunController.bulletSpawn.transform.rotation) as GameObject;
 
@@ -59,11 +61,10 @@ public class GunManager : MonoBehaviour, IManager, IUpgradable
         IBulletManager iBulletManager = ammo.GetComponent<IBulletManager>();
         if (iBulletManager != null)
         {
-            iBulletManager.AdditionalBulletData(gunController.GetBulletVelocity(), gameObject.tag, gunController.bulletSpawn.transform.up,3);
-            tankController.tankScriptable.listProjectileScriptableObject.ForEach(projectileData =>
-            {
-                iBulletManager.Bind(projectileData);
-            });
+            iBulletManager.AdditionalBulletData(gunController.GetBulletVelocity(), gameObject.tag, gunController.bulletSpawn.transform.up);
+       
+            iBulletManager.Bind(projectileScriptableObject);
+         
         }
 
 

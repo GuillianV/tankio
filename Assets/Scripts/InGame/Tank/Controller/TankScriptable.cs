@@ -3,10 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct TankScriptable
+public class BaseScriptableObjectData
 {
-   public List<TankScriptableObject> listTankScriptableObject;
+    [HideInInspector]
+    public int upgradeLevel;
+    [Header("Upgrades by order")]
+    public List<BaseScriptableObject> listScriptableObjectUpgrade; 
 
-    public List<ProjectileScriptableObject> listProjectileScriptableObject;
+}
+
+
+
+[System.Serializable]
+public class TankScriptable
+{
+   //public List<TankScriptableObject> listTankScriptableObject;
+
+   // public List<ProjectileScriptableObject> listProjectileScriptableObject;
+
+    public List<BaseScriptableObjectData> baseScriptableObjects;
+
 
 }

@@ -37,16 +37,13 @@ public class BulletManager : MonoBehaviour, IUpgradable, IBulletManager
 
     }
 
-    void IBulletManager.AdditionalBulletData(float Velocity, string senderTag, Vector3 baseDirection, int upgradeLevel)
+    void IBulletManager.AdditionalBulletData(float Velocity, string senderTag, Vector3 baseDirection)
     {
         bulletController.SetDirection(baseDirection);
         bulletController.SetSenderTag(senderTag);
         bulletController.SetVelocity(Velocity);
 
-        for(int i = 0; i < upgradeLevel; i++)
-        {
-            bulletController.Upgrade();
-        }
+     
 
     }
 

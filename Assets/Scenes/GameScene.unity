@@ -1605,13 +1605,26 @@ MonoBehaviour:
   playerPrefab: {fileID: 8511177327817160506, guid: 7900bc2b7c9273a479366dc26516541d, type: 3}
   parentContainer: {fileID: 1354766825}
   tankDatas:
-    listTankScriptableObject:
-    - {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
-    - {fileID: 11400000, guid: c9693e90d0727d349a5151f9a5917882, type: 2}
-    - {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
-    - {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}
-    listProjectileScriptableObject:
-    - {fileID: 11400000, guid: 8f7e14419dfaa2749a566e91abb9b275, type: 2}
+    baseScriptableObjects:
+    - upgradeLevel: 0
+      listScriptableObjectUpgrade:
+      - {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
+    - upgradeLevel: 0
+      listScriptableObjectUpgrade:
+      - {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
+    - upgradeLevel: 0
+      listScriptableObjectUpgrade:
+      - {fileID: 11400000, guid: c9693e90d0727d349a5151f9a5917882, type: 2}
+    - upgradeLevel: 0
+      listScriptableObjectUpgrade:
+      - {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}
+    - upgradeLevel: 0
+      listScriptableObjectUpgrade:
+      - {fileID: 11400000, guid: e4a4032cd8c5d4078a553cb773e1b020, type: 2}
+      - {fileID: 11400000, guid: 44f96764c5a523f4e91a8c683dff9d44, type: 2}
+      - {fileID: 11400000, guid: a092829933865e644a9f529c672741ca, type: 2}
+      - {fileID: 11400000, guid: 1291cec8bc14c284d81358cc34dc4c99, type: 2}
+      - {fileID: 11400000, guid: 8f7e14419dfaa2749a566e91abb9b275, type: 2}
   controllerList:
   - {fileID: 11500000, guid: 19c8a57c8af43c3499506507fea0cd64, type: 3}
   - {fileID: 11500000, guid: 7ed934ed1a3cda14c81ab2ef6a57b2d2, type: 3}
@@ -1757,24 +1770,46 @@ MonoBehaviour:
     difficultyLevel: 1
     enemy: {fileID: 0}
     tankScriptable:
-      listTankScriptableObject:
-      - {fileID: 11400000, guid: 6f4c276984507604cb652f1fc35ef79f, type: 2}
-      - {fileID: 11400000, guid: ae4378c3adc81d84fb799149d5ccb0c6, type: 2}
-      - {fileID: 11400000, guid: bbc8960a80cf3cd4bae994b28509f2bb, type: 2}
-      - {fileID: 11400000, guid: ddb3743dba783a34b8a9bce55308fb41, type: 2}
-      listProjectileScriptableObject:
-      - {fileID: 11400000, guid: e4a4032cd8c5d4078a553cb773e1b020, type: 2}
+      baseScriptableObjects:
+      - upgradeLevel: 0
+        listScriptableObjectUpgrade:
+        - {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
+      - upgradeLevel: 0
+        listScriptableObjectUpgrade:
+        - {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
+      - upgradeLevel: 0
+        listScriptableObjectUpgrade:
+        - {fileID: 11400000, guid: c9693e90d0727d349a5151f9a5917882, type: 2}
+      - upgradeLevel: 0
+        listScriptableObjectUpgrade:
+        - {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}
+      - upgradeLevel: 0
+        listScriptableObjectUpgrade:
+        - {fileID: 11400000, guid: e4a4032cd8c5d4078a553cb773e1b020, type: 2}
+        - {fileID: 11400000, guid: 44f96764c5a523f4e91a8c683dff9d44, type: 2}
+        - {fileID: 11400000, guid: a092829933865e644a9f529c672741ca, type: 2}
   - enemyPrefab: {fileID: 8511177327817160506, guid: 7900bc2b7c9273a479366dc26516541d, type: 3}
     difficultyLevel: 2
     enemy: {fileID: 0}
     tankScriptable:
-      listTankScriptableObject:
-      - {fileID: 11400000, guid: 2de23a6feca28aa4386dcc82f9e8a79c, type: 2}
-      - {fileID: 11400000, guid: a676385d032644e22a9cf2e0daa326fb, type: 2}
-      - {fileID: 11400000, guid: 7d35d47b81f2c664280041b8eeeb2575, type: 2}
-      - {fileID: 11400000, guid: b3b3794fcbd4b3b4189be09c3c4b412a, type: 2}
-      listProjectileScriptableObject:
-      - {fileID: 11400000, guid: e4a4032cd8c5d4078a553cb773e1b020, type: 2}
+      baseScriptableObjects:
+      - upgradeLevel: 0
+        listScriptableObjectUpgrade:
+        - {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
+      - upgradeLevel: 0
+        listScriptableObjectUpgrade:
+        - {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
+      - upgradeLevel: 0
+        listScriptableObjectUpgrade:
+        - {fileID: 11400000, guid: c9693e90d0727d349a5151f9a5917882, type: 2}
+      - upgradeLevel: 0
+        listScriptableObjectUpgrade:
+        - {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}
+      - upgradeLevel: 0
+        listScriptableObjectUpgrade:
+        - {fileID: 11400000, guid: e4a4032cd8c5d4078a553cb773e1b020, type: 2}
+        - {fileID: 11400000, guid: 44f96764c5a523f4e91a8c683dff9d44, type: 2}
+        - {fileID: 11400000, guid: a092829933865e644a9f529c672741ca, type: 2}
   uiArrow: {fileID: 9030039417795229542, guid: aefc1496620b0264088372059e50d529, type: 3}
   enemiesInGame: []
   enemiesInGameGO: []
@@ -1973,7 +2008,7 @@ MonoBehaviour:
     itemActualCost: 0
     itemCostMultiplyer: 1.96
     itemLvl: 0
-    objectScript: {fileID: 11500000, guid: 7b2f047ac99042a47ad8be44d4b93b13, type: 3}
+    objectScript: {fileID: 11400000, guid: 6682277f8080c3844a47382503bef01e, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
         m_Calls: []
@@ -1982,7 +2017,7 @@ MonoBehaviour:
     itemActualCost: 0
     itemCostMultiplyer: 1.38
     itemLvl: 0
-    objectScript: {fileID: 11500000, guid: 2769e6639dd2ba04d80c4dd8368ca3da, type: 3}
+    objectScript: {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
         m_Calls:
@@ -2003,7 +2038,7 @@ MonoBehaviour:
     itemActualCost: 0
     itemCostMultiplyer: 1.63
     itemLvl: 0
-    objectScript: {fileID: 11500000, guid: 1b5ffa07c7587dc438b9ff6ae2754d1e, type: 3}
+    objectScript: {fileID: 11400000, guid: d97767e73bab6934598ccfac056e5241, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
         m_Calls: []
@@ -2012,7 +2047,7 @@ MonoBehaviour:
     itemActualCost: 0
     itemCostMultiplyer: 1.56
     itemLvl: 0
-    objectScript: {fileID: 11500000, guid: bbf01ba6f1e88d2479d8a5edc77625ac, type: 3}
+    objectScript: {fileID: 11400000, guid: 7152283e4cc989c45b2cc84967731700, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
         m_Calls: []
@@ -2021,7 +2056,7 @@ MonoBehaviour:
     itemActualCost: 0
     itemCostMultiplyer: 1.64
     itemLvl: 0
-    objectScript: {fileID: 11500000, guid: d8ede921ac02a0547a74fe9bc2b89304, type: 3}
+    objectScript: {fileID: 11400000, guid: e4a4032cd8c5d4078a553cb773e1b020, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
         m_Calls: []

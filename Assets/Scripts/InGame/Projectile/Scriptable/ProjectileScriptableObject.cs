@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class ProjectileScriptableObject : BaseScriptableObject
 {
-   
+    [Header("Base Projectile created")]
+    public GameObject projectileCloned;
 }

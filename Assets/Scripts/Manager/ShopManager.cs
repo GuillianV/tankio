@@ -38,7 +38,7 @@ public class ShopItem
     [Range(1, 3)] public float itemCostMultiplyer;
     [HideInInspector] public int itemLvl;
 
-    public TextAsset objectScript;
+    public BaseScriptableObject objectScript;
 
     public UnityEvent calledWhenComponentUpgraded;
 
@@ -108,27 +108,29 @@ public class ShopManager : MonoBehaviour
                 return;
             }
 
+            TankController tankController = player.GetComponent<TankController>();
+            string name =  shopItem.objectScript.name.Replace("Manager", "Data");
+            tankController.Upgrade(name);
+            //tankController.GetData<>()
 
-      
+            //Bind Item class clicked to player stats
+            //foreach (IUpgradable component in player.GetComponents<IUpgradable>())
+            //{
 
-                //Bind Item class clicked to player stats
-                foreach (IUpgradable component in player.GetComponents<IUpgradable>())
-                {
-                  
-                    if (shopItem.objectScript.name == component.GetType().FullName)
-                    {
-                        component.Upgrade();
-                        shopItem.itemLvl++;
-                        golds -= shopItem.itemActualCost;
-                        m_Game.Ui.SetGoldUI(golds);
-                        shopItem.itemActualCost =
-                            Mathf.RoundToInt(shopItem.itemActualCost * shopItem.itemCostMultiplyer);
-                        m_Game.Ui.SetShopItemCost(shopItem.identifier, shopItem.itemActualCost);
-                        m_Game.Ui.SetShopItemLevel(shopItem.identifier, shopItem.itemLvl);
-                        shopItem.calledWhenComponentUpgraded.Invoke();
-                    }
-                }
-      
+            //    if (shopItem.objectScript.name == component.GetType().FullName)
+            //    {
+            //        component.Upgrade();
+            //        shopItem.itemLvl++;
+            //        golds -= shopItem.itemActualCost;
+            //        m_Game.Ui.SetGoldUI(golds);
+            //        shopItem.itemActualCost =
+            //            Mathf.RoundToInt(shopItem.itemActualCost * shopItem.itemCostMultiplyer);
+            //        m_Game.Ui.SetShopItemCost(shopItem.identifier, shopItem.itemActualCost);
+            //        m_Game.Ui.SetShopItemLevel(shopItem.identifier, shopItem.itemLvl);
+            //        shopItem.calledWhenComponentUpgraded.Invoke();
+            //    }
+            //}
+
         }
         else
         {

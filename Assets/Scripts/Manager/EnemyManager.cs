@@ -136,7 +136,7 @@ public class EnemyManager : MonoBehaviour
 
 
         tankController.tankScriptable = enemyPatern.tankScriptable;
-        tankController.BindTank(enemyPatern.tankScriptable.listTankScriptableObject);
+        tankController.BindTank( enemyPatern.tankScriptable.baseScriptableObjects);
         
 
         return enemy;

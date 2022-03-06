@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20eac5432872b45ca857410672a2eab4, type: 3}
   m_Name: Bullet_Lv3
   m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: e43d6c186e4d13444b6b8f02a91d58f5, type: 3}
+  color: {r: 1, g: 0.95254624, b: 0.4198113, a: 1}
+  animators:
+  - name: Bullet
+    tracksOverrideController: {fileID: 22100000, guid: 0b17e5813ddfe0a409f8c82c51f31300, type: 2}
+  projectileCloned: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
+  coefDamage: 0.1
   damage: 150
   maxBounce: 2
-  color: {r: 1, g: 0.95254624, b: 0.4198113, a: 1}

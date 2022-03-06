@@ -61,21 +61,57 @@ public class TankController : MonoBehaviour
         }
         
     }
-    
-    
+
+
+    public T GetData<T>() where T : BaseScriptableObject
+    {
+        BaseScriptableObjectData component = (BaseScriptableObjectData)tankScriptable.baseScriptableObjects.FirstOrDefault(component => {
+            if (component.listScriptableObjectUpgrade.FirstOrDefault().GetType() == typeof(T))
+                return true;
+            else
+                return false;
+        } );
+
+
+        T scriptable = (T)component.listScriptableObjectUpgrade[component.upgradeLevel];
+
+        if (component != null)
+        {
+            return scriptable;
+        }
+        else
+        {
+            return default(T);
+        }
+
+    }
+
+
+
 
     //Bind tank data to their components (TowerData to TowerController stats and assets)
-    public void BindTank(List<TankScriptableObject> tankDatas)
+    public void BindTank(List<BaseScriptableObjectData> tankDatas)
     {
 
         if (tankDatas != null && tankDatas.Count > 0)
         {
             if (iTankManager.Count > 0)
             {
+
+                List<BaseScriptableObject> tankScriptableObjects = new List<BaseScriptableObject>();
+                tankDatas.ForEach(baseScriptableObject =>
+                {
+
+                        tankScriptableObjects.Add(baseScriptableObject.listScriptableObjectUpgrade[baseScriptableObject.upgradeLevel]);
+                    
+
+                });
+
                 iTankManager.ForEach(component =>
                 {
+
                     string componentName = component.GetType().FullName.Replace("Manager", String.Empty);
-                    ScriptableObject dataFound = tankDatas.FirstOrDefault(data => data.name.Contains(componentName));
+                    ScriptableObject dataFound = tankScriptableObjects.FirstOrDefault(data => data.name.Contains(componentName));
                     
                     
                     if (dataFound)
@@ -120,5 +156,18 @@ public class TankController : MonoBehaviour
      
     }
     
+    public void Upgrade(string managerName)
+    {
+        BaseScriptableObjectData scriptableFound = new BaseScriptableObjectData();
+        tankScriptable.baseScriptableObjects.ForEach(baseScriptableObject =>
+        {
+            if (baseScriptableObject.listScriptableObjectUpgrade.First().name.Contains(managerName))
+                scriptableFound = baseScriptableObject;
+        });
+        if(scriptableFound != null)
+            scriptableFound.upgradeLevel = scriptableFound.upgradeLevel+1;
+
+        BindTank(tankScriptable.baseScriptableObjects);
+    }
 
 }
