@@ -1615,6 +1615,7 @@ MonoBehaviour:
     - upgradeLevel: 0
       listScriptableObjectUpgrade:
       - {fileID: 11400000, guid: c9693e90d0727d349a5151f9a5917882, type: 2}
+      - {fileID: 11400000, guid: 774a6ef86943dbf4fa60199661518707, type: 2}
     - upgradeLevel: 0
       listScriptableObjectUpgrade:
       - {fileID: 11400000, guid: f517956ea62f448409b9b454a3fc6d82, type: 2}

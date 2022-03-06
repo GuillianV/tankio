@@ -15,8 +15,6 @@ using UnityEngine;
 public class TankController : MonoBehaviour
 {
   
-    public List<IUpgradable> iUpgradabletList { get ; private set;}  
-
     public List<IManager> iTankManager { get ; private set;}  
 
 
@@ -30,11 +28,6 @@ public class TankController : MonoBehaviour
         m_Game = GameManager.Instance;
         
 
-        iUpgradabletList = new List<IUpgradable>();
-        foreach(IUpgradable component in GetComponents<IUpgradable>())
-        {
-            iUpgradabletList.Add(component);
-        }
 
         
         iTankManager = new List<IManager>();
@@ -73,7 +66,7 @@ public class TankController : MonoBehaviour
         } );
 
 
-        T scriptable = (T)component.listScriptableObjectUpgrade[component.upgradeLevel];
+        T scriptable = (T)component.listScriptableObjectUpgrade.TakeAtIndexOrLast(component.upgradeLevel);
 
         if (component != null)
         {
@@ -98,46 +91,11 @@ public class TankController : MonoBehaviour
             if (iTankManager.Count > 0)
             {
 
-                List<BaseScriptableObject> tankScriptableObjects = new List<BaseScriptableObject>();
-                tankDatas.ForEach(baseScriptableObject =>
-                {
-
-                        tankScriptableObjects.Add(baseScriptableObject.listScriptableObjectUpgrade[baseScriptableObject.upgradeLevel]);
-                    
-
-                });
-
                 iTankManager.ForEach(component =>
                 {
 
-                    string componentName = component.GetType().FullName.Replace("Manager", String.Empty);
-                    ScriptableObject dataFound = tankScriptableObjects.FirstOrDefault(data => data.name.Contains(componentName));
-                    
-                    
-                    if (dataFound)
-                    {
-                        component.Bind(dataFound);
-                    }
-                    else
-                    {
-                        Debug.LogError("Tank Controller missing "+componentName+"Data in TankController");
-                    }
-                    
-                    
-                    // string componentName = component.GetType().FullName.Replace("Controller", String.Empty);
-                    // ScriptableObject dataFound = tankDatas.FirstOrDefault(data => data.name.Contains(componentName));
-                    //
-                    //
-                    // if (dataFound)
-                    // {
-                    //     component.BindData(dataFound);
-                    //     component.BindComponent();
-                    //     component.BindStats();
-                    // }
-                    // else
-                    // {
-                    //     Debug.LogError("Tank Controller missing "+componentName+"Data in TankController");
-                    // }
+                        component.Bind();
+                 
                     
                 });
             }
@@ -156,7 +114,7 @@ public class TankController : MonoBehaviour
      
     }
     
-    public void Upgrade(string managerName)
+    public BaseScriptableObjectData Upgrade(string managerName)
     {
         BaseScriptableObjectData scriptableFound = new BaseScriptableObjectData();
         tankScriptable.baseScriptableObjects.ForEach(baseScriptableObject =>
@@ -164,10 +122,21 @@ public class TankController : MonoBehaviour
             if (baseScriptableObject.listScriptableObjectUpgrade.First().name.Contains(managerName))
                 scriptableFound = baseScriptableObject;
         });
-        if(scriptableFound != null)
-            scriptableFound.upgradeLevel = scriptableFound.upgradeLevel+1;
+        if (scriptableFound != null)
+        {
+            if (scriptableFound.listScriptableObjectUpgrade.IsIndexAfter(scriptableFound.upgradeLevel))
+            {
+                scriptableFound.upgradeLevel = scriptableFound.upgradeLevel + 1;
+                BindTank(tankScriptable.baseScriptableObjects);
+            } 
 
-        BindTank(tankScriptable.baseScriptableObjects);
+            return scriptableFound;
+        }
+        else
+            return null;
+          
+
+      
     }
 
 }

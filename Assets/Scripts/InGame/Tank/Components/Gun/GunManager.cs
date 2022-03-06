@@ -3,29 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunManager : MonoBehaviour, IManager, IUpgradable
+public class GunManager : MonoBehaviour, IManager
 {
     public BaseAsset gunAsset;
     public BaseAnimator gunAnimator;
     public GunController gunController;
-    private TankController tankController;
     private GunData gunData;
+    private BulletData bulletData;
 
     public event EventHandler<ProjectileEvent> BulletDestroyed;
     public event EventHandler<ProjectileEvent> BulletCreated;
+    private TankController tankController;
 
-    void IManager.Bind(ScriptableObject data)
+
+    void IManager.Bind()
     {
-        BindData(data);
         tankController = GetComponent<TankController>();
+        BindData(tankController.GetData<GunData>());
+        BindProjectileData(tankController.GetData<BulletData>());
+        
         gunController.BindController(gunData);
         gunAsset.BindAssets();
         gunAnimator.BindAnimators(gunData.animators);
-    }
-
-    void IUpgradable.Upgrade()
-    {
-        gunController.Upgrade();
     }
 
 
@@ -36,20 +35,24 @@ public class GunManager : MonoBehaviour, IManager, IUpgradable
         {
             gunData = (GunData)obj;
         }
-        else
-        {
-            Debug.LogError("gunManager cannot load gunData");
-        }
 
 
     }
+    void BindProjectileData(ScriptableObject obj)
+    {
 
+        if (obj.GetType() == typeof(BulletData))
+        {
+            bulletData = (BulletData)obj;
+        }
+
+    }
+    
 
     public GameObject Shoot()
     {
-        BulletData projectileScriptableObject = tankController.GetData<BulletData>();
-
-        GameObject ammo = Instantiate(projectileScriptableObject.projectileCloned,
+      
+        GameObject ammo = Instantiate(bulletData.projectileCloned,
                    gunController.bulletSpawn.transform.position,
                    gunController.bulletSpawn.transform.rotation) as GameObject;
 
@@ -61,9 +64,9 @@ public class GunManager : MonoBehaviour, IManager, IUpgradable
         IBulletManager iBulletManager = ammo.GetComponent<IBulletManager>();
         if (iBulletManager != null)
         {
-            iBulletManager.AdditionalBulletData(gunController.GetBulletVelocity(), gameObject.tag, gunController.bulletSpawn.transform.up);
+            iBulletManager.AdditionalBulletData(bulletData, gunController.GetBulletVelocity(), gameObject.tag, gunController.bulletSpawn.transform.up);
        
-            iBulletManager.Bind(projectileScriptableObject);
+            iBulletManager.Bind();
          
         }
 

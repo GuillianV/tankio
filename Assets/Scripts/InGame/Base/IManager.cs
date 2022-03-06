@@ -4,6 +4,6 @@ using UnityEngine;
 
 public  interface IManager
 {
-    void Bind(ScriptableObject data);
+    void Bind();
 
 }

@@ -63,22 +63,6 @@ public class BodyController
         }
     }
 
-    public void Upgrade()
-    {
-        if (m_body.Data != null)
-        {
-
-
-            SetMaxHealt(GetMaxHealt() +(m_body.Data.coefLife * m_body.Data.life));
-
-            SetHealt(GetHealt() +(m_body.Data.coefLife * m_body.Data.life));
-
-        }
-        else
-        {
-            Debug.LogError("BodyController cannot load Data in Body");
-        }
-    }
 
     public void TakeDamage(string collisionTag,float damages)
     {

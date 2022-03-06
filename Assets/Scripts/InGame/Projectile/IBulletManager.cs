@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IBulletManager : IManager
 {
-    void AdditionalBulletData(float Velocity, string senderTag, Vector3 baseDirection);
+    void AdditionalBulletData(ScriptableObject data, float Velocity, string senderTag, Vector3 baseDirection);
 
 }

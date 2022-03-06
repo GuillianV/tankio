@@ -5,6 +5,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public static class ListExtensions
+{
+    public static T TakeAtIndexOrLast<T>(this List<T> list, int index)
+    {
+        if (list != null && index < list.Count   && index >= 0)
+        {
+            return list[index];
+        }
+        else
+        {
+            return list[list.Count - 1];
+        }
+    }
+
+    public static bool IsIndexAfter<T>(this List<T> list, int index)
+    {
+        if (list != null && index +1 < list.Count && index >= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+}
+
 public static class TMath 
 {
     public static Quaternion GetAngleFromVector2D(Vector2 direction, int offset)
@@ -12,6 +40,8 @@ public static class TMath
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         return Quaternion.AngleAxis(angle+ offset, Vector3.forward);
     }
+
+  
 
     public static bool IsValidJson(string strInput)
     {

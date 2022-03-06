@@ -109,27 +109,24 @@ public class ShopManager : MonoBehaviour
             }
 
             TankController tankController = player.GetComponent<TankController>();
-            string name =  shopItem.objectScript.name.Replace("Manager", "Data");
-            tankController.Upgrade(name);
-            //tankController.GetData<>()
+            string name = shopItem.objectScript.GetType().ToString().Replace("Data",String.Empty);
 
-            //Bind Item class clicked to player stats
-            //foreach (IUpgradable component in player.GetComponents<IUpgradable>())
-            //{
 
-            //    if (shopItem.objectScript.name == component.GetType().FullName)
-            //    {
-            //        component.Upgrade();
-            //        shopItem.itemLvl++;
-            //        golds -= shopItem.itemActualCost;
-            //        m_Game.Ui.SetGoldUI(golds);
-            //        shopItem.itemActualCost =
-            //            Mathf.RoundToInt(shopItem.itemActualCost * shopItem.itemCostMultiplyer);
-            //        m_Game.Ui.SetShopItemCost(shopItem.identifier, shopItem.itemActualCost);
-            //        m_Game.Ui.SetShopItemLevel(shopItem.identifier, shopItem.itemLvl);
-            //        shopItem.calledWhenComponentUpgraded.Invoke();
-            //    }
-            //}
+            BaseScriptableObjectData objectData = tankController.Upgrade(name);
+
+
+            if (shopItem.itemLvl < objectData.upgradeLevel)
+            {
+                shopItem.itemLvl++;
+                golds -= shopItem.itemActualCost;
+                m_Game.Ui.SetGoldUI(golds);
+                shopItem.itemActualCost =
+                    Mathf.RoundToInt(shopItem.itemActualCost * shopItem.itemCostMultiplyer);
+                m_Game.Ui.SetShopItemCost(shopItem.identifier, shopItem.itemActualCost);
+                m_Game.Ui.SetShopItemLevel(shopItem.identifier, shopItem.itemLvl);
+                m_Game.Ui.SetShopItemImage(shopItem.identifier, objectData.listScriptableObjectUpgrade[objectData.upgradeLevel].sprite, objectData.listScriptableObjectUpgrade[objectData.upgradeLevel].color);
+                shopItem.calledWhenComponentUpgraded.Invoke();
+            }
 
         }
         else

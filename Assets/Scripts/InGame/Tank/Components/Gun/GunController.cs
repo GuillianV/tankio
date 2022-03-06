@@ -77,24 +77,7 @@ public class GunController
         }
     }
 
-    public void Upgrade()
-    {
 
-        if (m_gun.Data != null)
-        {
-
-            SetBulletVelocity(GetBulletVelocity() +   (m_gun.Data.coefBulletVelocity * m_gun.Data.bulletVelocity));
-
-            SetReloadTimeSpeed(GetReloadTimeSpeed() - (m_gun.Data.coefReloadTimeSecond * m_gun.Data.reloadTimeSecond));
-
-
-        }
-        else
-        {
-            Debug.LogError("GunController cannot load Data in Gun");
-        }
-
-    }
     public void SetBulletVelocity(float newValue)
     {
         bulletVelocity = newValue;

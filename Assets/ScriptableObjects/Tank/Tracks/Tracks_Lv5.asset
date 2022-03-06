@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150a027a36e0982459804069bb3b7661, type: 3}
   m_Name: Tracks_Lv5
   m_EditorClassIdentifier: 
+  sprite: {fileID: -4330042234375938771, guid: c0398a7203a71574e8a97a5ba472d285, type: 3}
+  color: {r: 0.3915094, g: 1, b: 0.44088963, a: 1}
+  animators:
+  - name: Tracks-Left
+    tracksOverrideController: {fileID: 22100000, guid: bf2826e20532a7343b81d042655d11c3, type: 2}
+  - name: Tracks-Right
+    tracksOverrideController: {fileID: 22100000, guid: bf2826e20532a7343b81d042655d11c3, type: 2}
+  coefSpeed: 0.1
+  coefRotationSpeed: 0.1
   speed: 1000
   rotationSpeed: 300
-  spriteTrack: {fileID: 21300000, guid: 5d095de063c482c4a8b4d113bb0c38a0, type: 3}
-  color: {r: 0.3915094, g: 1, b: 0.44088963, a: 1}
+  TracksSpriteScaleX: 3.45
+  TracksSpriteScaleY: 3.45

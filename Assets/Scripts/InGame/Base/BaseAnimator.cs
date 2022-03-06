@@ -31,7 +31,7 @@ public class BaseAnimator
 
     public void BindAnimators(List<BaseAnimatorOverride> overrideControllers)
     {
-
+        AnimationsDico.Clear();
         AnimationsList.ForEach(animation =>
         {
             AnimationsDico.Add(animation._name, animation);

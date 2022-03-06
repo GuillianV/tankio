@@ -259,6 +259,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    
+
     public void SetWaveUI(int wave)
     {
         if (waveUI != null)
@@ -390,7 +392,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //Set Image to Item with new sprite and color
+    //Set the sprite of next item upgrade
+
     public void SetShopItemImage(int identifier, Sprite sprite, Color color)
     {
         ShopItemUI shopItemUI = listOfShopItemUI.FirstOrDefault(I => I.identifier == identifier);
@@ -404,7 +407,11 @@ public class UIManager : MonoBehaviour
         {
             Debug.LogWarning("Missing shopItemImageUI component" + identifier);
         }
+
+
     }
+
+
 
     //Rotate image item when shop is displayed
     public void RotateShopImage()

@@ -19,6 +19,7 @@ public class BaseAsset
 
     public void BindAssets()
     {
+        assetsDico.Clear();
         assetsList.ForEach(asset =>
         {
             assetsDico.Add(asset._name, asset);

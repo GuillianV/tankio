@@ -64,17 +64,6 @@ public class BulletController
     }
 
 
-    public void Upgrade()
-    {
-
-        if (m_bullet.Data != null)
-        {
-
-            SetDamage(GetDamage() + (m_bullet.Data.coefDamage * m_bullet.Data.damage));
-
-        }
-    }
-
 
     public void SendDamage(IDamagable damagable, string tag)
     {

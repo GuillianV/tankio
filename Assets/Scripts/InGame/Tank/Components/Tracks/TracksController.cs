@@ -67,25 +67,6 @@ public class TracksController
     }
 
 
-    public void Upgrade()
-    {
-        if (m_tracks.Data != null)
-        {
-
-            SetTrackSpeed(GetTrackSpeed() + (m_tracks.Data.coefSpeed * m_tracks.Data.speed));
-
-
-            SetTrackRotationSpeed(GetTrackRotationSpeed() +  (m_tracks.Data.coefRotationSpeed * m_tracks.Data.rotationSpeed));
-
-        }
-        else
-        {
-            Debug.LogError("tracksController cannot load Data in tracks");
-        }
-
-   
-    }
-
     public void SetTrackRotationSpeed(float newValue)
     {
         tracksRotationSpeed = newValue;

@@ -2,27 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerManager : MonoBehaviour, IManager,IUpgradable
+public class TowerManager : MonoBehaviour, IManager
 {
    
     public BaseAsset towerAsset ;
     public BaseAnimator towerAnimator;
     public TowerController towerController;
     private TowerData towerData;
+    private TankController tankController;
   
 
-    void IManager.Bind(ScriptableObject data)
+    void IManager.Bind()
     {
-        BindData(data);
+        tankController = GetComponent<TankController>();
+        BindData(tankController.GetData<TowerData>());
         towerController.BindController(towerData);
         towerAsset.BindAssets();
         towerAnimator.BindAnimators(towerData.animators);
     }
 
-    void IUpgradable.Upgrade()
-    {
-        towerController.Upgrade();
-    }
 
     void BindData(ScriptableObject obj)
     {

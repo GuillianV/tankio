@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BodyManager : MonoBehaviour, IManager,IUpgradable, IDamagable
+public class BodyManager : MonoBehaviour, IManager, IDamagable
 {
 
     public BaseAsset bodyAsset ;
@@ -15,11 +15,13 @@ public class BodyManager : MonoBehaviour, IManager,IUpgradable, IDamagable
     private TankGolds tankGolds;
     private TankCreate tankCreated;
     private TankDestroyed tankDestroyed;
- 
+    private TankController tankController;
 
-    void IManager.Bind(ScriptableObject data)
+
+    void IManager.Bind()
     {
-        BindData(data);
+        tankController = GetComponent<TankController>();
+        BindData(tankController.GetData<BodyData>());
 
         tankDamage = GetComponent<TankDamage>();
         tankGolds = GetComponent<TankGolds>();
@@ -50,10 +52,6 @@ public class BodyManager : MonoBehaviour, IManager,IUpgradable, IDamagable
 
     }
 
-    void IUpgradable.Upgrade()
-    {
-        bodyController.Upgrade();
-    }
 
 
     void IDamagable.TakeDamage(string senderTag, float damages)

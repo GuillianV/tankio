@@ -2,25 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TracksManager : MonoBehaviour, IManager , IUpgradable
+public class TracksManager : MonoBehaviour, IManager 
 {
     public BaseAsset tracksAsset ;
     public BaseAnimator tracksAnimator;
     public TracksController tracksController;
     private TracksData tracksData;
-  
+    private TankController tankController;
 
-    void IManager.Bind(ScriptableObject data)
+
+    void IManager.Bind()
     {
-        BindData(data);
+        tankController = GetComponent<TankController>();
+        BindData(tankController.GetData<TracksData>());
         tracksController.BindController(tracksData);
         tracksAsset.BindAssets();
         tracksAnimator.BindAnimators(tracksData.animators);
-    }
-
-    void IUpgradable.Upgrade()
-    {
-        tracksController.Upgrade();
     }
 
     void BindData(ScriptableObject obj)

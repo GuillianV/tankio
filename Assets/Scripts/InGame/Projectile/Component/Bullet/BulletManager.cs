@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletManager : MonoBehaviour, IUpgradable, IBulletManager
+public class BulletManager : MonoBehaviour, IBulletManager
 {
 
 
@@ -17,12 +17,12 @@ public class BulletManager : MonoBehaviour, IUpgradable, IBulletManager
     private Rigidbody2D m_projectileRigidbody2D;
     private CircleCollider2D m_projectileCircleCollider2D;
     private GameManager m_Game;
+    private TankController tankController;
 
 
-
-    void IManager.Bind(ScriptableObject data)
+    void IManager.Bind()
     {
-        BindData(data);
+       
         if (bulletData)
         {
             m_Game = GameManager.Instance;
@@ -37,8 +37,10 @@ public class BulletManager : MonoBehaviour, IUpgradable, IBulletManager
 
     }
 
-    void IBulletManager.AdditionalBulletData(float Velocity, string senderTag, Vector3 baseDirection)
+    void IBulletManager.AdditionalBulletData(ScriptableObject data, float Velocity, string senderTag, Vector3 baseDirection)
     {
+        BindData(data);
+
         bulletController.SetDirection(baseDirection);
         bulletController.SetSenderTag(senderTag);
         bulletController.SetVelocity(Velocity);
@@ -57,12 +59,6 @@ public class BulletManager : MonoBehaviour, IUpgradable, IBulletManager
         }
 
 
-    }
-
-
-    void IUpgradable.Upgrade()
-    {
-        bulletController.Upgrade();
     }
 
 

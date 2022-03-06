@@ -54,19 +54,6 @@ public class TowerController
 
 
 
-    public void Upgrade()
-    {
-        if (m_tower.Data != null)
-        {
-
-            SetTowerRotationSpeed(GetTowerRotationSpeed() +   (m_tower.Data.coefRotationSpeed *  m_tower.Data.rotationSpeed));
-
-        }
-        else
-        {
-            Debug.LogError("TowerController cannot load Data in Tower");
-        }
-    }
 
 
 
