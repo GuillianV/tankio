@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
         if (gameIsPaused)
         {
             Ui.ShowPausedMenu();
-            Ui.HideShopMenu();
+            Shop.HideShopMenu();
             TimeManager.timeScale = 0;
             shopIsOpen = false;
             gameIsPaused = true;
@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Ui.HidePausedMenu();
-            Ui.HideShopMenu();
+            Shop.HideShopMenu();
             TimeManager.timeScale = 1;
             shopIsOpen = false;
             gameIsPaused = false;
@@ -129,14 +129,14 @@ public class GameManager : MonoBehaviour
         if (shopIsOpen)
         {
             Ui.HidePausedMenu();
-            Ui.ShowShopMenu();
+            Shop.ShowShopMenu();
             TimeManager.timeScale = 0;
             shopIsOpen = true;
             gameIsPaused = false;
         }
         else
         {
-            Ui.HideShopMenu();
+            Shop.HideShopMenu();
             Ui.HidePausedMenu();
             TimeManager.timeScale = 1;
             shopIsOpen = false;
@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
         shopIsOpen = true;
         gameIsPaused = false;
         TimeManager.timeScale = 0;
-        Ui.ShowShopMenu();
+        Shop.ShowShopMenu();
         Ui.HideInGameMenu();
         Ui.HidePausedMenu();
     }
@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
         shopIsOpen = false;
         gameIsPaused = true;
         TimeManager.timeScale = 0;
-        Ui.HideShopMenu();
+        Shop.HideShopMenu();
         Ui.HideInGameMenu();
         Ui.ShowPausedMenu();
     }
@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
         shopIsOpen = false;
         gameIsPaused = false;
         TimeManager.timeScale = 1;
-        Ui.HideShopMenu();
+        Shop.HideShopMenu();
         Ui.ShowInGameMenu();
         Ui.HidePausedMenu();
     }

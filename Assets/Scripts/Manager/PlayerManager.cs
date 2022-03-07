@@ -259,7 +259,7 @@ public class PlayerManager : MonoBehaviour
         DestroyPlayer();
         CreatePlayer();
         m_Game.Shop.ResetShopManager();
-        m_Game.Ui.ResetShopUIManager();
+        m_Game.Shop.ResetShopUIManager();
         SetCameraFollowPlayer();
         SetUiLifeOfPlayer();
         m_Game.Ui.HideDeadMenu();
