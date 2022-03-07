@@ -169,11 +169,9 @@ public class ShopManager : MonoBehaviour
     #region Shop
 
     //Upgrade an item
-    public void UpgradeShopItem(int uniqueIdentifier)
+    public void UpgradeShopItem(ShopItem shopItem)
     {
-        //Search for item clicked with button generated in UIManager
-        ShopItem shopItem = listOfShopItems.FirstOrDefault(I => I.identifier == uniqueIdentifier);
-
+      
         //Check if we have more golds than the next upgrade cost of item found
         if (golds >= shopItem.itemActualCost)
         {
@@ -312,7 +310,7 @@ public class ShopManager : MonoBehaviour
             shopItemUIGet.shopItemUpgradeUI = shopItemUIGet.shopItemUpgradeGameObject.GetComponent<Button>();
             shopItemUIGet.shopItemUpgradeUI.onClick.AddListener(() =>
             {
-                m_Game.Shop.UpgradeShopItem(shopItemUIGet.identifier);
+                m_Game.Shop.UpgradeShopItem(shopItemUIGet);
             });
 
             //Positioning of Item in wrapper

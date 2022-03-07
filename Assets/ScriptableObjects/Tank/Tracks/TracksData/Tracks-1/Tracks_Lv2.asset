@@ -19,7 +19,7 @@ MonoBehaviour:
     tracksOverrideController: {fileID: 22100000, guid: bf2826e20532a7343b81d042655d11c3, type: 2}
   - name: Tracks-Right
     tracksOverrideController: {fileID: 22100000, guid: bf2826e20532a7343b81d042655d11c3, type: 2}
-  speed: 500
+  speed: 450
   rotationSpeed: 350
   TracksSpriteScaleX: 2.56
   TracksSpriteScaleY: 2.56
