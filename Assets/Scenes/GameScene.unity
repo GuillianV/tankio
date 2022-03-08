@@ -1808,7 +1808,7 @@ MonoBehaviour:
     noiseScale: 1.88
   baseMap:
     parent: {fileID: 350735929}
-    wallPrefab: {fileID: 3734512753183616629, guid: e35a6ca353c14a442b545161db1b44a7, type: 3}
+    wallPrefab: {fileID: 3734512753183616629, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
     groundPrefab: {fileID: 9151208767502791859, guid: fb7c720613a1a2946a2ceeacd5c228b4, type: 3}
   spawnOptions:
     radius: 5
@@ -1891,7 +1891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc4e7d32c8204a95a3b4121b45b08d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  golds: 9999
+  golds: 0
   shopParent: {fileID: 826207190}
   shopWrapperParent: {fileID: 530209878}
   slideSpeed: 418516
