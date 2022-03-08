@@ -15,5 +15,5 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 46aa54a30efeb644396235e9b3d92104, type: 3}
   color: {r: 1, g: 0.70980394, b: 0.6666667, a: 1}
   animators: []
-  life: 450
+  life: 500
   golds: 20

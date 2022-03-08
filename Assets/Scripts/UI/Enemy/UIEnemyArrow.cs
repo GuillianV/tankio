@@ -54,11 +54,16 @@ public class UIEnemyArrow : MonoBehaviour
 
     void SlowUpdate()
     {
-        if (!m_renderer.isVisible && !isVisible)
+        if(m_renderer != null)
         {
-            GetNewArrowPos();
-            GetArrowRotation();
+            if (!m_renderer.isVisible && !isVisible)
+            {
+                GetNewArrowPos();
+                GetArrowRotation();
+            }
         }
+
+       
 
     }
 

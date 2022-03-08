@@ -92,8 +92,13 @@ public class PlayerMovementMobile : PlayerController
 
             movement = inputVec;
             rotation = inputVec;
-            m_TracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving", true);
-            m_TracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving", true);
+
+            if(m_Game.TimeManager.timeScale > 0)
+            {
+                m_TracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving", true);
+                m_TracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving", true);
+            }
+        
         }
         
         

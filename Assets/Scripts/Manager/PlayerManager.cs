@@ -182,7 +182,7 @@ public class PlayerManager : MonoBehaviour
         {
             tankController = player.GetComponent<TankController>();
             tankController.tankScriptable = tankDatas;
-            tankController.BindTank(tankDatas.baseScriptableObjects);
+            tankController.BindTank();
             m_bodyManager = tankController.GetTankManager<BodyManager>();
             m_bodyController = m_bodyManager.bodyController;
 

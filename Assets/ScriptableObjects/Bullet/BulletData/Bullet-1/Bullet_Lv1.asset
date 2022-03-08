@@ -19,4 +19,4 @@ MonoBehaviour:
     tracksOverrideController: {fileID: 22100000, guid: 0b17e5813ddfe0a409f8c82c51f31300, type: 2}
   projectileCloned: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
   damage: 50
-  maxBounce: 1
+  maxBounce: 0

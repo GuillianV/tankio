@@ -193,7 +193,7 @@ public class WaveManager : MonoBehaviour
 
       
         
-        List<Enemy> enemys = m_game.Enemys.GetEnemies(difficultyLevel);
+        List<Enemy> enemys = m_game.Enemys.GetEnemies();
         
         GameObject[] listSpawners = GameObject.FindGameObjectsWithTag("Spawners");
         if (listSpawners.Length > 0)
@@ -208,7 +208,7 @@ public class WaveManager : MonoBehaviour
                     int index = random.Next(enemys.Count);
                     Enemy E = enemys[index];
 
-                    m_game.Enemys.InstanciateEnemy(E, spawner.transform.position);
+                    m_game.Enemys.InstanciateEnemy(E, spawner.transform.position, difficultyLevel);
 
 
                 }  else

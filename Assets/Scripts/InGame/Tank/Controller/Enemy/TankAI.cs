@@ -63,8 +63,11 @@ public class TankAI : MonoBehaviour
         spawnBullet = m_gunAssets.CallAsset("BulletSpawn").transform;
         bullet = m_gunAssets.CallAsset("Projectile");
 
+       
         TracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving", true);
         TracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving", true);
+
+
         UpdateAstar();
 
     }

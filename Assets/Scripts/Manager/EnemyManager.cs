@@ -86,15 +86,15 @@ public class EnemyManager : MonoBehaviour
 
 
     [CanBeNull]
-    public List<Enemy> GetEnemies(int difficultyLevel)
+    public List<Enemy> GetEnemies()
     {
-        return enemyList.Where(enemy => enemy.difficultyLevel == difficultyLevel).ToList();
+        return enemyList.ToList();
     }
 
 
     
 
-    public GameObject InstanciateEnemy(Enemy enemyPatern ,Vector3 spawnerPosition)
+    public GameObject InstanciateEnemy(Enemy enemyPatern ,Vector3 spawnerPosition, int difficulty)
     {
         GameObject enemy = Instantiate(enemyPatern.enemyPrefab, spawnerPosition, new Quaternion(0, 0, 0, 0), parentContainer.transform) as GameObject;
         TankController tankController = enemy.GetComponent<TankController>();
@@ -133,10 +133,23 @@ public class EnemyManager : MonoBehaviour
 
         }
 
+        if(difficulty > 0)
+        {
+           if(!enemyPatern.tankScriptable.baseScriptableObjects.IsIndexAfter(difficulty))
+            {
+                difficulty = enemyPatern.tankScriptable.baseScriptableObjects.Count - 1;
+            }
+
+            enemyPatern.tankScriptable.baseScriptableObjects.ForEach(scriptable =>
+            {
+                scriptable.upgradeLevel = difficulty;
+            });
+
+        }
 
 
         tankController.tankScriptable = enemyPatern.tankScriptable;
-        tankController.BindTank( enemyPatern.tankScriptable.baseScriptableObjects);
+        tankController.BindTank();
         
 
         return enemy;

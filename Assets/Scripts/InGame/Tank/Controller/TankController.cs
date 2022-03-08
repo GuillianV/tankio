@@ -83,11 +83,10 @@ public class TankController : MonoBehaviour
 
 
     //Bind tank data to their components (TowerData to TowerController stats and assets)
-    public void BindTank(List<BaseScriptableObjectData> tankDatas)
+    public void BindTank()
     {
 
-        if (tankDatas != null && tankDatas.Count > 0)
-        {
+        
             if (iTankManager.Count > 0)
             {
 
@@ -103,15 +102,7 @@ public class TankController : MonoBehaviour
             {
                 Debug.LogError("Tank Controller missing components");
             }
-        }
-        else
-        {
-            Debug.LogError("Tank Controller missing tankDatas");
-        }
-        
     
-        
-     
     }
 
 
@@ -130,7 +121,7 @@ public class TankController : MonoBehaviour
             if (scriptableFound.dataList.scriptableDatas.IsIndexAfter(scriptableFound.upgradeLevel))
             {
                 scriptableFound.upgradeLevel = scriptableFound.upgradeLevel + 1;
-                BindTank(tankScriptable.baseScriptableObjects);
+                BindTank();
             } 
 
             return scriptableFound;

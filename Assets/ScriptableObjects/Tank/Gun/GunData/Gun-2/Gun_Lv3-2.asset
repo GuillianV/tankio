@@ -20,7 +20,7 @@ MonoBehaviour:
   - name: BulletSpawn
     tracksOverrideController: {fileID: 22100000, guid: 9d10c60f0c06fea4f8786f96dd4c80cb, type: 2}
   reloadTimeSecond: 3
-  bulletVelocity: 10
+  bulletVelocity: 8
   TowerGunOffset: 0.5
   GunSpawnOffset: 1.65
   GunScaleX: 0.75
