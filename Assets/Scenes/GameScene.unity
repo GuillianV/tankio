@@ -1853,7 +1853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenWaves: 20
-  waveDifficulty: 1
+  waveDifficulty: 0
   timeBeforeNextWave: 0
   toggleSpawn: 0
 --- !u!114 &755335493
@@ -1894,7 +1894,7 @@ MonoBehaviour:
   golds: 0
   shopParent: {fileID: 826207190}
   shopWrapperParent: {fileID: 530209878}
-  slideSpeed: 418516
+  slideSpeed: 329231
   shopItemParentRow: {fileID: 1234971161}
   shopItemParent: {fileID: 1054563788}
   shopItemTitle: {fileID: 142246473}

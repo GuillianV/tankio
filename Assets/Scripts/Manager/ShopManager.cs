@@ -322,8 +322,6 @@ public class ShopManager : MonoBehaviour
                     rectTransform.localPosition.x + (m_shopRectTransform.rect.width * (shopItem.identifier - 1)), 0, 0);
             rectTransform.sizeDelta = new Vector2(rectTransform.rect.width, m_containerRectTransform.rect.height);
 
-            shopItem.itemActualCost =
-                   Mathf.RoundToInt(shopItem.itemActualCost * shopItem.itemCostMultiplyer);
             SetShopItemImage(shopItem);
             shopItem.shopItemImageGameObject.transform.localScale = new Vector3( shopItem.imageSize.x, shopItem.imageSize.y, 1);
             SetShopItemCost(shopItem, shopItem.itemActualCost);

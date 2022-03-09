@@ -55,8 +55,8 @@ public class WaveManager : MonoBehaviour
     public int timeBetweenWaves;
 
     private int initialTimeBetweenWaves;
-    [Range(1,20)]
-    public int waveDifficulty = 1;
+    [Range(0,20)]
+    public int waveDifficulty = 0;
 
     private int maxWaveDifficulty;
     
