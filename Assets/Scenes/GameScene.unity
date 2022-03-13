@@ -1819,18 +1819,30 @@ MonoBehaviour:
   layerToAvoid: Obstacle
   iterateOfSpawn: 1000
   obstacleListAll:
-  - obstaclePrefab: {fileID: 6217890378523052998, guid: 93e68a52c3f35b249bf1bb5eb8b090ba, type: 3}
+  - obstaclePrefab: {fileID: 8183038711651579584, guid: 6f83686837de7594cb0b39c1204bd157, type: 3}
     conditionOfSpawnMin: 0.903
     conditionOfSpawnMax: 1
-    dropRate: 40
+    dropRate: 26
     priority: 1
-    radius: 4
-  - obstaclePrefab: {fileID: 5592222405763435360, guid: a6eca4d4da3ad6e42a6f9a7c056e29bd, type: 3}
-    conditionOfSpawnMin: 0.704
-    conditionOfSpawnMax: 0.855
-    dropRate: 1
+    radius: 6
+  - obstaclePrefab: {fileID: 8183038711651579584, guid: 58c514185b1068845945ea161e0e8e61, type: 3}
+    conditionOfSpawnMin: 0.867
+    conditionOfSpawnMax: 1
+    dropRate: 26
     priority: 0
-    radius: 10
+    radius: 3
+  - obstaclePrefab: {fileID: 8183038711651579584, guid: 901867b81c400b14e8102c27adfd5bfc, type: 3}
+    conditionOfSpawnMin: 0.867
+    conditionOfSpawnMax: 1
+    dropRate: 10
+    priority: 0
+    radius: 3
+  - obstaclePrefab: {fileID: 8183038711651579584, guid: 6fd6b7ea3f3b2b149a5c3bfc5b79bc9d, type: 3}
+    conditionOfSpawnMin: 0.867
+    conditionOfSpawnMax: 1
+    dropRate: 59
+    priority: 2
+    radius: 3
   chunkListAll:
   - chunkPrefab: {fileID: 1386411307857276025, guid: ba67c09f54fb346a9ae18930cfb4925d, type: 3}
     dropRate: 100
