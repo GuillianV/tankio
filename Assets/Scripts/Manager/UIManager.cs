@@ -174,7 +174,7 @@ public class UIManager : MonoBehaviour
         {
             goldsUI.ForEach(ui =>
             {
-                ui.text = "GOLDS   " + golds;
+                ui.text =  golds.ToString();
             });
             
         }
