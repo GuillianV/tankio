@@ -1843,27 +1843,17 @@ MonoBehaviour:
     dropRate: 15
     priority: 2
     radius: 3
-  - obstaclePrefab: {fileID: 5592222405763435360, guid: a6eca4d4da3ad6e42a6f9a7c056e29bd, type: 3}
-    conditionOfSpawnMin: 0.911
-    conditionOfSpawnMax: 1
-    dropRate: 33
-    priority: 2
-    radius: 3
-  - obstaclePrefab: {fileID: 6217890378523052998, guid: 93e68a52c3f35b249bf1bb5eb8b090ba, type: 3}
-    conditionOfSpawnMin: 0.886
-    conditionOfSpawnMax: 1
-    dropRate: 15
-    priority: 2
-    radius: 3
+  - obstaclePrefab: {fileID: 3300432645074524126, guid: e62359bcb39812e498871c2fad4e1fa9, type: 3}
+    conditionOfSpawnMin: 0.696
+    conditionOfSpawnMax: 0.714
+    dropRate: 2
+    priority: 1
+    radius: 4
   chunkListAll:
   - chunkPrefab: {fileID: 1386411307857276025, guid: ba67c09f54fb346a9ae18930cfb4925d, type: 3}
     dropRate: 100
-    radiusOfChunk: 26
+    radiusOfChunk: 22
     chunkRotation: 116
-  - chunkPrefab: {fileID: 734723436234653514, guid: ab0c6a4a61b56493a9a2930845fe58ca, type: 3}
-    dropRate: 8
-    radiusOfChunk: 8
-    chunkRotation: 0
 --- !u!114 &755335492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3645,7 +3635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -27}
+  m_AnchoredPosition: {x: 175, y: -28}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1306664179
@@ -4447,7 +4437,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -27}
+  m_AnchoredPosition: {x: 175, y: -28}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1518125296

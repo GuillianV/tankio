@@ -64,8 +64,6 @@ public class PlayerAimerShooterMobile : PlayerController
 
     void FixedUpdate()
     {
-
-       
             Quaternion q = TMath.GetAngleFromVector2D(vectorToTarget, -90);
             towerTransform.rotation = Quaternion.Slerp(towerTransform.rotation, q, Time.deltaTime  * m_Game.TimeManager.timeScale* m_towerController.GetTowerRotationSpeed());
 

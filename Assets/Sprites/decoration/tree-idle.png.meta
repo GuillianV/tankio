@@ -1,0 +1,653 @@
+fileFormatVersion: 2
+guid: c4459204cd873be47aee72e6fd2f4a4b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 734472030060119348
+    second: tree-idle_0
+  - first:
+      213: 8231305956778011046
+    second: tree-idle_1
+  - first:
+      213: -8552897308440761517
+    second: tree-idle_2
+  - first:
+      213: -771707084013875896
+    second: tree-idle_3
+  - first:
+      213: 4491902182487304560
+    second: tree-idle_4
+  - first:
+      213: -4277780508990976927
+    second: tree-idle_5
+  - first:
+      213: 4310716275070908452
+    second: tree-idle_6
+  - first:
+      213: 2457861385486153869
+    second: tree-idle_7
+  - first:
+      213: 369063004913803099
+    second: tree-idle_8
+  - first:
+      213: 2674183067102276349
+    second: tree-idle_9
+  - first:
+      213: -4498706388623736988
+    second: tree-idle_10
+  - first:
+      213: -4289306796182591604
+    second: tree-idle_11
+  - first:
+      213: -714459759058306458
+    second: tree-idle_12
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 24
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tree-idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 36}
+        - {x: -35, y: 20}
+        - {x: -35, y: -31}
+        - {x: -27, y: -36}
+        - {x: 26, y: -36}
+        - {x: 36, y: -33}
+        - {x: 36, y: 5}
+        - {x: 27, y: 31}
+        - {x: 15, y: 36}
+      physicsShape:
+      - - {x: -2, y: -31}
+        - {x: -16, y: -22}
+        - {x: -30, y: -26}
+        - {x: -32, y: -23}
+        - {x: -13, y: -7}
+        - {x: 5, y: -7}
+        - {x: 27, y: -21}
+        - {x: 14, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43581318b6e513a00800000000000000
+      internalID: 734472030060119348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree-idle_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 36}
+        - {x: -35, y: 20}
+        - {x: -35, y: -31}
+        - {x: -27, y: -36}
+        - {x: 26, y: -36}
+        - {x: 36, y: -33}
+        - {x: 36, y: 5}
+        - {x: 27, y: 31}
+        - {x: 15, y: 36}
+      physicsShape:
+      - - {x: -2, y: -31}
+        - {x: -16, y: -22}
+        - {x: -30, y: -26}
+        - {x: -32, y: -23}
+        - {x: -13, y: -7}
+        - {x: 5, y: -7}
+        - {x: 27, y: -21}
+        - {x: 14, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a96f4708297b3270800000000000000
+      internalID: 8231305956778011046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree-idle_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 36}
+        - {x: -35, y: 20}
+        - {x: -35, y: -31}
+        - {x: -27, y: -36}
+        - {x: 26, y: -36}
+        - {x: 36, y: -33}
+        - {x: 36, y: 5}
+        - {x: 27, y: 31}
+        - {x: 15, y: 36}
+      physicsShape:
+      - - {x: -2, y: -31}
+        - {x: -16, y: -22}
+        - {x: -30, y: -26}
+        - {x: -32, y: -23}
+        - {x: -13, y: -7}
+        - {x: 5, y: -7}
+        - {x: 27, y: -21}
+        - {x: 14, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35b6ef196310e4980800000000000000
+      internalID: -8552897308440761517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree-idle_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 36}
+        - {x: -35, y: 20}
+        - {x: -35, y: -31}
+        - {x: -27, y: -36}
+        - {x: 26, y: -36}
+        - {x: 36, y: -33}
+        - {x: 36, y: 5}
+        - {x: 27, y: 31}
+        - {x: 15, y: 36}
+      physicsShape:
+      - - {x: -2, y: -31}
+        - {x: -16, y: -22}
+        - {x: -30, y: -26}
+        - {x: -32, y: -23}
+        - {x: -13, y: -7}
+        - {x: 5, y: -7}
+        - {x: 27, y: -21}
+        - {x: 14, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84d43baee785a45f0800000000000000
+      internalID: -771707084013875896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree-idle_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 36}
+        - {x: -35, y: 20}
+        - {x: -35, y: -31}
+        - {x: -27, y: -36}
+        - {x: 26, y: -36}
+        - {x: 36, y: -33}
+        - {x: 36, y: 5}
+        - {x: 27, y: 31}
+        - {x: 15, y: 36}
+      physicsShape:
+      - - {x: -2, y: -31}
+        - {x: -16, y: -22}
+        - {x: -30, y: -26}
+        - {x: -32, y: -23}
+        - {x: -13, y: -7}
+        - {x: 5, y: -7}
+        - {x: 27, y: -21}
+        - {x: 14, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07925f06c31765e30800000000000000
+      internalID: 4491902182487304560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree-idle_5
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 36}
+        - {x: -35, y: 20}
+        - {x: -35, y: -31}
+        - {x: -27, y: -36}
+        - {x: 26, y: -36}
+        - {x: 36, y: -33}
+        - {x: 36, y: 5}
+        - {x: 27, y: 31}
+        - {x: 15, y: 36}
+      physicsShape:
+      - - {x: -2, y: -31}
+        - {x: -16, y: -22}
+        - {x: -30, y: -26}
+        - {x: -32, y: -23}
+        - {x: -13, y: -7}
+        - {x: 5, y: -7}
+        - {x: 27, y: -21}
+        - {x: 14, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16cc08eaa4542a4c0800000000000000
+      internalID: -4277780508990976927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree-idle_6
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 36}
+        - {x: -35, y: 20}
+        - {x: -35, y: -31}
+        - {x: -27, y: -36}
+        - {x: 26, y: -36}
+        - {x: 36, y: -33}
+        - {x: 36, y: 5}
+        - {x: 27, y: 31}
+        - {x: 15, y: 36}
+      physicsShape:
+      - - {x: -2, y: -31}
+        - {x: -16, y: -22}
+        - {x: -30, y: -26}
+        - {x: -32, y: -23}
+        - {x: -13, y: -7}
+        - {x: 5, y: -7}
+        - {x: 27, y: -21}
+        - {x: 14, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 428b81fec9db2db30800000000000000
+      internalID: 4310716275070908452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree-idle_7
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 36}
+        - {x: -35, y: 20}
+        - {x: -35, y: -31}
+        - {x: -27, y: -36}
+        - {x: 26, y: -36}
+        - {x: 36, y: -33}
+        - {x: 36, y: 5}
+        - {x: 27, y: 31}
+        - {x: 15, y: 36}
+      physicsShape:
+      - - {x: -2, y: -31}
+        - {x: -16, y: -22}
+        - {x: -30, y: -26}
+        - {x: -32, y: -23}
+        - {x: -13, y: -7}
+        - {x: 5, y: -7}
+        - {x: 27, y: -21}
+        - {x: 14, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d883d0568e31c1220800000000000000
+      internalID: 2457861385486153869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree-idle_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 36}
+        - {x: -35, y: 20}
+        - {x: -35, y: -31}
+        - {x: -27, y: -36}
+        - {x: 26, y: -36}
+        - {x: 36, y: -33}
+        - {x: 36, y: 5}
+        - {x: 27, y: 31}
+        - {x: 15, y: 36}
+      physicsShape:
+      - - {x: -2, y: -31}
+        - {x: -16, y: -22}
+        - {x: -30, y: -26}
+        - {x: -32, y: -23}
+        - {x: -13, y: -7}
+        - {x: 5, y: -7}
+        - {x: 27, y: -21}
+        - {x: 14, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5f10abf8dc2f1500800000000000000
+      internalID: 369063004913803099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree-idle_9
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 36}
+        - {x: -35, y: 20}
+        - {x: -35, y: -31}
+        - {x: -27, y: -36}
+        - {x: 26, y: -36}
+        - {x: 36, y: -33}
+        - {x: 36, y: 5}
+        - {x: 27, y: 31}
+        - {x: 15, y: 36}
+      physicsShape:
+      - - {x: -2, y: -31}
+        - {x: -16, y: -22}
+        - {x: -30, y: -26}
+        - {x: -32, y: -23}
+        - {x: -13, y: -7}
+        - {x: 5, y: -7}
+        - {x: 27, y: -21}
+        - {x: 14, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfaeef2c45b9c1520800000000000000
+      internalID: 2674183067102276349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree-idle_10
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 36}
+        - {x: -35, y: 20}
+        - {x: -35, y: -31}
+        - {x: -27, y: -36}
+        - {x: 26, y: -36}
+        - {x: 36, y: -33}
+        - {x: 36, y: 5}
+        - {x: 27, y: 31}
+        - {x: 15, y: 36}
+      physicsShape:
+      - - {x: -2, y: -31}
+        - {x: -16, y: -22}
+        - {x: -30, y: -26}
+        - {x: -32, y: -23}
+        - {x: -13, y: -7}
+        - {x: 5, y: -7}
+        - {x: 27, y: -21}
+        - {x: 14, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46f3d4def526191c0800000000000000
+      internalID: -4498706388623736988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree-idle_11
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 36}
+        - {x: -35, y: 20}
+        - {x: -35, y: -31}
+        - {x: -27, y: -36}
+        - {x: 26, y: -36}
+        - {x: 36, y: -33}
+        - {x: 36, y: 5}
+        - {x: 27, y: 31}
+        - {x: 15, y: 36}
+      physicsShape:
+      - - {x: -2, y: -31}
+        - {x: -16, y: -22}
+        - {x: -30, y: -26}
+        - {x: -32, y: -23}
+        - {x: -13, y: -7}
+        - {x: 5, y: -7}
+        - {x: 27, y: -21}
+        - {x: 14, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c872ed0d1325974c0800000000000000
+      internalID: -4289306796182591604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tree-idle_12
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 36}
+        - {x: -35, y: 20}
+        - {x: -35, y: -31}
+        - {x: -27, y: -36}
+        - {x: 26, y: -36}
+        - {x: 36, y: -33}
+        - {x: 36, y: 5}
+        - {x: 27, y: 31}
+        - {x: 15, y: 36}
+      physicsShape:
+      - - {x: -2, y: -31}
+        - {x: -16, y: -22}
+        - {x: -30, y: -26}
+        - {x: -32, y: -23}
+        - {x: -13, y: -7}
+        - {x: 5, y: -7}
+        - {x: 27, y: -21}
+        - {x: 14, y: -22}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66ab40f62aab516f0800000000000000
+      internalID: -714459759058306458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
