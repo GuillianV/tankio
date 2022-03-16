@@ -224,8 +224,11 @@ public class ShopManager : MonoBehaviour
             shopItem.itemActualCost = shopItem.itemBaseCost;
             SetShopItemCost(shopItem, shopItem.itemActualCost);
             SetShopItemLevel(shopItem, shopItem.itemLvl);
+            SetShopItemImage(shopItem);
         });
+
     }
+
 
 
     //hide or show shop menu

@@ -1905,7 +1905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc4e7d32c8204a95a3b4121b45b08d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  golds: 0
+  golds: 9999
   shopParent: {fileID: 826207190}
   shopWrapperParent: {fileID: 530209878}
   slideSpeed: 329231

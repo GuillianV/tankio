@@ -193,6 +193,14 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void ResetUpgrades()
+    {
+        tankDatas.baseScriptableObjects.ForEach(baseScriptable =>
+        {
+            baseScriptable.upgradeLevel = 0;
+        });
+    }
+
     //Destroy player
     public void DestroyPlayer()
     {
@@ -257,6 +265,7 @@ public class PlayerManager : MonoBehaviour
     public void ResetPlayerManager()
     {
         DestroyPlayer();
+        ResetUpgrades();
         CreatePlayer();
         m_Game.Shop.ResetShopManager();
         m_Game.Shop.ResetShopUIManager();
