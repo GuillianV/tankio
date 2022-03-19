@@ -31,47 +31,53 @@ class ShopButtons : Editor
 
 
 
-[System.Serializable]
-public class ShopItem
-{
-    [Header("Shop Item Components")]
-    [SerializeField]
-    public int identifier;
-
-
-
-    public int itemBaseCost;
-
-    // [HideInInspector]
-    public int itemActualCost;
-    [Range(1, 3)] public float itemCostMultiplyer;
-    [HideInInspector] public int itemLvl;
-
-    public BaseScriptableObject objectScript;
-
-    public UnityEvent calledWhenComponentUpgraded;
-
-    public Vector2 imageSize = new Vector2(1, 1);
-
-
-    [SerializeField] public string name;
-    [HideInInspector] public TextMeshProUGUI shopItemCostUI;
-    [HideInInspector] public TextMeshProUGUI shopItemLevelUI;
-    [HideInInspector] public TextMeshProUGUI shopItemTitleUI;
-    [HideInInspector] public Button shopItemUpgradeUI;
-    [HideInInspector] public Image shopItemImageUI;
-    [HideInInspector] public GameObject shopItemCostGameObject;
-    [HideInInspector] public GameObject shopItemLevelGameObject;
-    [HideInInspector] public GameObject shopItemImageGameObject;
-    [HideInInspector] public GameObject shopItemTitleGameObject;
-    [HideInInspector] public GameObject shopItemUpgradeGameObject;
-    [HideInInspector] public GameObject shopItemParentGameObject;
-}
-
-
 
 public class ShopManager : MonoBehaviour
 {
+    
+    [System.Serializable]
+    public class ShopItem
+    {
+        [Header("Shop Item Components")]
+        public int identifier;
+        public int itemBaseCost;
+  
+        [Range(1, 3)] public float itemCostMultiplyer;
+        public BaseScriptableObject objectScript;
+        public UnityEvent calledWhenComponentUpgraded;
+        public Vector2 imageSize = new Vector2(1, 1);
+        public int imageRotationSpeed = 8;
+       
+        public string name;
+
+        [HideInInspector] public Vector3 rotationEuler;
+        [HideInInspector] public int itemActualCost;
+        [HideInInspector] public int itemLvl;
+        
+        [HideInInspector] public ShopItemPatern patern;
+        
+      
+    }
+
+    [System.Serializable]
+    public class ShopItemPatern
+    {
+        [Header("Shop Patern")] 
+        public GameObject shopItemParent;
+        public GameObject shopItemTitle;
+        public GameObject shopItemLevel;
+        public GameObject shopItemCost;
+        public GameObject shopItemUpgrade;
+        public GameObject shopItemImage;
+        
+        [HideInInspector] public TextMeshProUGUI shopItemCostUI;
+        [HideInInspector] public TextMeshProUGUI shopItemLevelUI;
+        [HideInInspector] public TextMeshProUGUI shopItemTitleUI;
+        [HideInInspector] public Button shopItemUpgradeUI;
+        [HideInInspector] public Image shopItemImageUI;
+
+    }
+    
     private GameManager m_Game;
     public int golds;
 
@@ -79,24 +85,16 @@ public class ShopManager : MonoBehaviour
 
 
     [Header("Shop Wrapper ")] public GameObject shopWrapperParent;
-    [Range(1, 1000000)] public int slideSpeed = 350;
+    [Range(1, 1000)] public int slideSpeed = 350;
+
+
+    public ShopItemPatern patern;
+    
+    
+    
     private RectTransform m_shopRectTransform;
     private RectTransform m_containerRectTransform;
     private RectTransform m_wrapperRectTransform;
-
-
-    [Header("Shop Patern Slide")] public GameObject shopItemParentRow;
-    private RectTransform m_shopItemParentRowRectTransform;
-    public GameObject shopItemParent;
-    public GameObject shopItemTitle;
-    public GameObject shopItemLevel;
-    public GameObject shopItemCost;
-    public GameObject shopItemUpgrade;
-    public GameObject shopItemImage;
-    public int itemRotationSpeed = 8;
-
-
-
 
     private int elementDisplayed = 1;
     private int maxItem;
@@ -105,7 +103,7 @@ public class ShopManager : MonoBehaviour
     private float value;
     private bool isPreviousing = false;
 
-    private Vector3 rotationEuler;
+   
 
     private int frames;
 
@@ -118,7 +116,6 @@ public class ShopManager : MonoBehaviour
         m_wrapperRectTransform = shopWrapperParent.GetComponent<RectTransform>();
         m_containerRectTransform = m_wrapperRectTransform.GetComponentInParent<RectTransform>();
         m_shopRectTransform = shopParent.GetComponent<RectTransform>();
-        m_shopItemParentRowRectTransform = shopItemParentRow.GetComponent<RectTransform>();
         maxItem = listOfShopItems.OrderByDescending(S => S.identifier).FirstOrDefault().identifier;
 
     }
@@ -281,52 +278,57 @@ public class ShopManager : MonoBehaviour
         if (shopWrapperParent != null)
         {
             //Create Parent Slide
-            shopItem.shopItemParentGameObject = Instantiate(shopItemParentRow.gameObject,
-                shopItemParentRow.transform.position, shopItemParentRow.transform.rotation,
+            shopItem.patern.shopItemParent = Instantiate(patern.shopItemParent.gameObject,
+                patern.shopItemParent.transform.position, patern.shopItemParent.transform.rotation,
                 shopWrapperParent.transform) as GameObject;
 
+            foreach (Transform child in shopItem.patern.shopItemParent.transform) {
+                Destroy(child.gameObject);
+            }
+            
+            
             //Create Title of slide and add name
-            shopItem.shopItemTitleGameObject = Instantiate(shopItemTitle.gameObject,
-                shopItemTitle.transform.position, shopItemTitle.transform.rotation,
-                shopItem.shopItemParentGameObject.transform);
-            shopItem.shopItemTitleUI = shopItem.shopItemTitleGameObject.GetComponent<TextMeshProUGUI>();
-            shopItem.shopItemTitleUI.text = shopItem.name;
+            shopItem.patern.shopItemTitle = Instantiate(patern.shopItemTitle.gameObject,
+                patern.shopItemTitle.transform.position, patern.shopItemTitle.transform.rotation,
+                shopItem.patern.shopItemParent.transform);
+            shopItem.patern.shopItemTitleUI = shopItem.patern.shopItemTitle.GetComponent<TextMeshProUGUI>();
+            shopItem.patern.shopItemTitleUI.text = shopItem.name;
             //Create Cost of slide
-            shopItem.shopItemCostGameObject = Instantiate(shopItemCost.gameObject, shopItemCost.transform.position,
-                shopItemCost.transform.rotation, shopItem.shopItemParentGameObject.transform);
-            shopItem.shopItemCostUI = shopItem.shopItemCostGameObject.GetComponent<TextMeshProUGUI>();
+            shopItem.patern.shopItemCost = Instantiate(patern.shopItemCost.gameObject, patern.shopItemCost.transform.position,
+                patern.shopItemCost.transform.rotation, shopItem.patern.shopItemParent.transform);
+            shopItem.patern.shopItemCostUI = shopItem.patern.shopItemCost.GetComponent<TextMeshProUGUI>();
 
             //Create Lvl of slide
-            shopItem.shopItemLevelGameObject = Instantiate(shopItemLevel.gameObject,
-                shopItemLevel.transform.position, shopItemLevel.transform.rotation,
-                shopItem.shopItemParentGameObject.transform);
-            shopItem.shopItemLevelUI = shopItem.shopItemLevelGameObject.GetComponent<TextMeshProUGUI>();
+            shopItem.patern.shopItemLevel = Instantiate(patern.shopItemLevel.gameObject,
+                patern.shopItemLevel.transform.position, patern.shopItemLevel.transform.rotation,
+                shopItem.patern.shopItemParent.transform);
+            shopItem.patern.shopItemLevelUI = shopItem.patern.shopItemLevel.GetComponent<TextMeshProUGUI>();
 
             //Create Img of slide
-            shopItem.shopItemImageGameObject = Instantiate(shopItemImage.gameObject,
-                shopItemImage.transform.position, shopItemImage.transform.rotation,
-                shopItem.shopItemParentGameObject.transform);
-            shopItem.shopItemImageUI = shopItem.shopItemImageGameObject.GetComponent<Image>();
+            shopItem.patern.shopItemImage = Instantiate(patern.shopItemImage.gameObject,
+                patern.shopItemImage.transform.position, patern.shopItemImage.transform.rotation,
+                shopItem.patern.shopItemParent.transform);
+            shopItem.patern.shopItemImageUI = shopItem.patern.shopItemImage.GetComponent<Image>();
             
             //Create Upgrade
-            shopItem.shopItemUpgradeGameObject = Instantiate(shopItemUpgrade.gameObject,
-                shopItemUpgrade.transform.position, shopItemUpgrade.transform.rotation,
-                shopItem.shopItemParentGameObject.transform);
-            shopItem.shopItemUpgradeUI = shopItem.shopItemUpgradeGameObject.GetComponent<Button>();
-            shopItem.shopItemUpgradeUI.onClick.AddListener(() =>
+            shopItem.patern.shopItemUpgrade = Instantiate(patern.shopItemUpgrade.gameObject,
+                patern.shopItemUpgrade.transform.position, patern.shopItemUpgrade.transform.rotation,
+                shopItem.patern.shopItemParent.transform);
+            shopItem.patern.shopItemUpgradeUI = shopItem.patern.shopItemUpgrade.GetComponent<Button>();
+            shopItem.patern.shopItemUpgradeUI.onClick.AddListener(() =>
             {
                 m_Game.Shop.UpgradeShopItem(shopItem);
             });
 
             //Positioning of Item in wrapper
-            RectTransform rectTransform = shopItem.shopItemParentGameObject.GetComponent<RectTransform>();
+            RectTransform rectTransform = shopItem.patern.shopItemParent.GetComponent<RectTransform>();
             rectTransform.localPosition =
                 new Vector3(
                     rectTransform.localPosition.x + (m_shopRectTransform.rect.width * (shopItem.identifier - 1)), 0, 0);
             rectTransform.sizeDelta = new Vector2(rectTransform.rect.width, m_containerRectTransform.rect.height);
 
             SetShopItemImage(shopItem);
-            shopItem.shopItemImageGameObject.transform.localScale = new Vector3( shopItem.imageSize.x, shopItem.imageSize.y, 1);
+            shopItem.patern.shopItemImage.transform.localScale = new Vector3( shopItem.imageSize.x, shopItem.imageSize.y, 1);
             SetShopItemCost(shopItem, shopItem.itemActualCost);
             SetShopItemLevel(shopItem, shopItem.itemLvl);
 
@@ -357,10 +359,10 @@ public class ShopManager : MonoBehaviour
         });
 
 
-        if (shopItem.shopItemImageUI != null)
+        if (shopItem.patern.shopItemImageUI != null)
         {
-            shopItem.shopItemImageUI.sprite = scriptableFound.dataList.scriptableDatas[scriptableFound.upgradeLevel].sprite ;
-            shopItem.shopItemImageUI.color = scriptableFound.dataList.scriptableDatas[scriptableFound.upgradeLevel].color;
+            shopItem.patern.shopItemImageUI.sprite = scriptableFound.dataList.scriptableDatas[scriptableFound.upgradeLevel].sprite ;
+            shopItem.patern.shopItemImageUI.color = scriptableFound.dataList.scriptableDatas[scriptableFound.upgradeLevel].color;
         }
     }
 
@@ -368,10 +370,10 @@ public class ShopManager : MonoBehaviour
 
     public void SetShopItemImage(ShopItem shopItem, Sprite sprite, Color color)
     {
-        if (shopItem.shopItemImageUI != null)
+        if (shopItem.patern.shopItemImageUI != null)
         {
-            shopItem.shopItemImageUI.sprite = sprite;
-            shopItem.shopItemImageUI.color = color;
+            shopItem.patern.shopItemImageUI.sprite = sprite;
+            shopItem.patern.shopItemImageUI.color = color;
         }
         else
         {
@@ -385,24 +387,31 @@ public class ShopManager : MonoBehaviour
     //Rotate image item when shop is displayed
     public void RotateShopImage()
     {
-        //Rotate Image
-        rotationEuler += Vector3.forward * itemRotationSpeed * 0.01f;
+    
         listOfShopItems.ForEach(shopItem =>
         {
-            if (shopItem.shopItemImageGameObject != null)
+            //Rotate Image
+            shopItem.rotationEuler += Vector3.forward * shopItem.imageRotationSpeed * 0.01f;
+            if (shopItem.patern.shopItemImage != null)
             {
-                shopItem.shopItemImageGameObject.transform.rotation = Quaternion.Euler(rotationEuler);
+                shopItem.patern.shopItemImage.transform.rotation = Quaternion.Euler(shopItem.rotationEuler);
             }
         });
     }
 
     //Set the cost of next item upgrade
-    public void SetShopItemCost(ShopItem shopItem, int cost)
+    public void SetShopItemCost(ShopItem shopItem, int cost, string prePhrase = null , string postPhrase = null)
     {
 
-        if (shopItem.shopItemCostUI != null)
+        if (shopItem.patern.shopItemCostUI != null)
         {
-            shopItem.shopItemCostUI.text = "COST   " + cost + " GOLDS";
+            
+            string text = "";
+            text += prePhrase == null ? "COST    " : prePhrase;
+            text += cost.ToString();
+            text += postPhrase  == null ? " GOLDS" : postPhrase;
+            
+            shopItem.patern.shopItemCostUI.text = text;
         }
         else
         {
@@ -411,24 +420,28 @@ public class ShopManager : MonoBehaviour
     }
 
     //Set the actual level of item
-    public void SetShopItemLevel(ShopItem shopItem, int lvl)
+    public void SetShopItemLevel(ShopItem shopItem, int lvl, string prePhrase = null , string postPhrase = null)
     {
 
-        if (shopItem.shopItemLevelUI != null)
+        if (shopItem.patern.shopItemLevelUI != null)
         {
-            shopItem.shopItemLevelUI.text = "Lv   " + (lvl+1);
+            string text = "";
+            text += prePhrase == null ? "Lv " : prePhrase;
+            text += (lvl + 1).ToString();
+            text += postPhrase  == null ? "" : postPhrase;
+            
+            shopItem.patern.shopItemLevelUI.text = text;
         }
         else
         {
-            Debug.LogWarning("Missing tracksLevelUI component " + shopItem.name);
+            Debug.LogWarning("Missing shopItemLevelUI component " + shopItem.name);
         }
     }
 
     //Hide patern game object used to create items
     public void HideParentPatern()
     {
-        shopItemParent.SetActive(false);
-        shopItemParentRow.SetActive(false);
+         patern.shopItemParent.SetActive(false);
     }
 
     //Slide to next item
@@ -481,7 +494,7 @@ public class ShopManager : MonoBehaviour
         if (isNexting == true)
         {
             m_wrapperRectTransform.localPosition =
-                new Vector3(m_wrapperRectTransform.localPosition.x - slideSpeed * 0.01f * Time.deltaTime, 0, 0);
+                new Vector3(m_wrapperRectTransform.localPosition.x - slideSpeed * 10 * Time.deltaTime, 0, 0);
 
             if (m_wrapperRectTransform.localPosition.x <= valueToReach)
             {
@@ -493,7 +506,7 @@ public class ShopManager : MonoBehaviour
         else if (isPreviousing == true)
         {
             m_wrapperRectTransform.localPosition =
-                new Vector3(m_wrapperRectTransform.localPosition.x + slideSpeed * 0.01f * Time.deltaTime, 0, 0);
+                new Vector3(m_wrapperRectTransform.localPosition.x + slideSpeed * 10 * Time.deltaTime, 0, 0);
 
             if (m_wrapperRectTransform.localPosition.x >= valueToReach)
             {

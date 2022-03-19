@@ -17,7 +17,7 @@ public class Enemy
     [HideInInspector] public GameObject enemy;
 
 
-    [Header("Player Stats")]
+    [Header("Enemy Stats")]
     public TankScriptable tankScriptable;
 
 }

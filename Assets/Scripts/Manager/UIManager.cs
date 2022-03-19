@@ -160,7 +160,7 @@ public class UIManager : MonoBehaviour
     {
         if (lifeUI != null)
         {
-            lifeUI.text = "LIFE   " + (life / maxLife * 100f).ToString("F0") ;
+            lifeUI.text =  (life / maxLife * 100f).ToString("F0") ;
         }
         else
         {
