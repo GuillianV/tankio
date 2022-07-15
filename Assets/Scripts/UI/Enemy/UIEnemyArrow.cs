@@ -70,7 +70,7 @@ public class UIEnemyArrow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!m_renderer.isVisible  && !isVisible)
+        if (m_renderer != null && !m_renderer.isVisible  && !isVisible)
         {
             GetArrowPosClamped();
             LerpArrowUI();

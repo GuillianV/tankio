@@ -105,10 +105,14 @@ public class TankController : MonoBehaviour
     
     }
 
+    public void BindComponent()
+    {
+
+    }
 
 
 
-    public BaseScriptableObjectData Upgrade(string managerName)
+    public BaseScriptableObjectData Upgrade(string managerName,string parentManagerName = "")
     {
         BaseScriptableObjectData scriptableFound = new BaseScriptableObjectData();
         tankScriptable.baseScriptableObjects.ForEach(baseScriptableObject =>
@@ -121,7 +125,26 @@ public class TankController : MonoBehaviour
             if (scriptableFound.dataList.scriptableDatas.IsIndexAfter(scriptableFound.upgradeLevel))
             {
                 scriptableFound.upgradeLevel = scriptableFound.upgradeLevel + 1;
-                BindTank();
+
+
+
+                string managerNameToBind = managerName;
+
+                if (!String.IsNullOrEmpty(parentManagerName))
+                {
+                    managerNameToBind = parentManagerName;
+                }
+
+                //Bind le manager corespondant à l'upgrade
+                iTankManager.ForEach(component =>
+                {
+                    if(component.GetType().Name.Contains(managerNameToBind))
+                        component.Bind();
+
+                });
+
+
+                //BindTank(); 
             } 
 
             return scriptableFound;

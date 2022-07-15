@@ -49,11 +49,13 @@ public class ShopManager : MonoBehaviour
         public int imageRotationSpeed = 8;
        
         public string name;
+        public string parentName;
+        public string description;
 
         [HideInInspector] public Vector3 rotationEuler;
         [HideInInspector] public int itemActualCost;
         [HideInInspector] public int itemLvl;
-        
+        [HideInInspector] public TankScriptable tankDatas;
         [HideInInspector] public ShopItemPatern patern;
         
       
@@ -69,12 +71,14 @@ public class ShopManager : MonoBehaviour
         public GameObject shopItemCost;
         public GameObject shopItemUpgrade;
         public GameObject shopItemImage;
-        
+        public GameObject shopItemHelper;
+
         [HideInInspector] public TextMeshProUGUI shopItemCostUI;
         [HideInInspector] public TextMeshProUGUI shopItemLevelUI;
         [HideInInspector] public TextMeshProUGUI shopItemTitleUI;
         [HideInInspector] public Button shopItemUpgradeUI;
         [HideInInspector] public Image shopItemImageUI;
+        [HideInInspector] public Button shopItemHelperButton;
 
     }
     
@@ -168,6 +172,14 @@ public class ShopManager : MonoBehaviour
 
     #region Shop
 
+
+
+    //Show Helper
+    public void ShowHelper(ShopItem shopItem)
+    {
+        m_Game.Helper.ShowPopup(shopItem.name + " upgrade");
+    }
+
     //Upgrade an item
     public void UpgradeShopItem(ShopItem shopItem)
     {
@@ -188,7 +200,7 @@ public class ShopManager : MonoBehaviour
             string name = shopItem.objectScript.GetType().ToString().Replace("Data",String.Empty);
 
 
-            BaseScriptableObjectData objectData = tankController.Upgrade(name);
+            BaseScriptableObjectData objectData = tankController.Upgrade(name, shopItem.parentName);
 
 
             if (shopItem.itemLvl < objectData.upgradeLevel)
@@ -317,8 +329,21 @@ public class ShopManager : MonoBehaviour
             shopItem.patern.shopItemUpgradeUI = shopItem.patern.shopItemUpgrade.GetComponent<Button>();
             shopItem.patern.shopItemUpgradeUI.onClick.AddListener(() =>
             {
-                m_Game.Shop.UpgradeShopItem(shopItem);
+                UpgradeShopItem(shopItem);
             });
+
+            //Create Helper
+            shopItem.patern.shopItemHelper = Instantiate(patern.shopItemHelper.gameObject,
+                patern.shopItemHelper.transform.position, patern.shopItemHelper.transform.rotation,
+                shopItem.patern.shopItemParent.transform);
+            shopItem.patern.shopItemHelperButton = shopItem.patern.shopItemHelper.GetComponent<Button>();
+            shopItem.patern.shopItemHelperButton.onClick.AddListener(() =>
+            {
+                ShowHelper(shopItem);
+            });
+            
+
+
 
             //Positioning of Item in wrapper
             RectTransform rectTransform = shopItem.patern.shopItemParent.GetComponent<RectTransform>();
@@ -520,7 +545,7 @@ public class ShopManager : MonoBehaviour
     //Reload all Shop Items UI
     public void ResetShopUIManager()
     {
-        m_Game.Shop.listOfShopItems.ForEach(shopItem =>
+        listOfShopItems.ForEach(shopItem =>
         {
             SetShopItemCost(shopItem, shopItem.itemActualCost);
             SetShopItemLevel(shopItem, shopItem.itemLvl);

@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public ShopManager Shop { get; private set; }
 
+    public HelperManager Helper { get; private set; }
+
     public AudioManager Audio { get; private set; }
 
     public TimeManager TimeManager { get; private set; }
@@ -51,7 +53,7 @@ public class GameManager : MonoBehaviour
         Shop = GetComponent<ShopManager>();
         Audio = GetComponent<AudioManager>();
         TimeManager = GetComponent<TimeManager>();
-        
+        Helper = GetComponent<HelperManager>();
         QualitySettings.SetQualityLevel(0, false);
         // QualitySettings.renderPipeline = QualitySettings.GetQualityLevel().
             
