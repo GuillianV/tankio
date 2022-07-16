@@ -13,12 +13,8 @@ public class GunManager : MonoBehaviour, IManager
     //private BulletData bulletData;
 
     private List<GunAmmo> gunAmmos = new List<GunAmmo>();
-
-
-    [TextArea(5, 10)]
-    public string description;
-
     private GunAmmo projectileEquiped;
+
     public event EventHandler<ProjectileEvent> BulletDestroyed;
     public event EventHandler<ProjectileEvent> BulletCreated;
     private TankController tankController;
@@ -37,13 +33,6 @@ public class GunManager : MonoBehaviour, IManager
 
     }
 
-    string IManager.GetDescription()
-    {
-
-        return String.Format(description, gunData.bulletVelocity, gunData.reloadTimeSecond);
-
-
-    }
 
     void BindData(ScriptableObject obj)
     {

@@ -8,8 +8,6 @@ public class TracksManager : MonoBehaviour, IManager
     public BaseAsset tracksAsset ;
     public BaseAnimator tracksAnimator;
     public TracksController tracksController;
-    [TextArea(5, 10)]
-    public string description;
     private TracksData tracksData;
     private TankController tankController;
    
@@ -23,13 +21,7 @@ public class TracksManager : MonoBehaviour, IManager
         tracksAnimator.BindAnimators(tracksData.animators);
     }
 
-    string IManager.GetDescription()
-    {
 
-        return String.Format(description, tracksData.speed, tracksData.rotationSpeed);
-
-
-    }
 
     void BindData(ScriptableObject obj)
     {

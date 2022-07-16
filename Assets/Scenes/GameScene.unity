@@ -1856,14 +1856,23 @@ MonoBehaviour:
     baseScriptableObjects:
     - upgradeLevel: 0
       dataList: {fileID: 11400000, guid: ba92528a3b6e2b04abb5deeafcdad0bc, type: 2}
+      description: Body improve your max life. <br> Body actual max life is {0}.
     - upgradeLevel: 0
       dataList: {fileID: 11400000, guid: c7d6db9162e2d0b49b0e88d3f03f2800, type: 2}
+      description: Tower improve your tank rotation speed. <br> Tower actual rotation
+        speed is {0}.
     - upgradeLevel: 0
       dataList: {fileID: 11400000, guid: 10a182523ff795744954cd4ba921a679, type: 2}
+      description: Gun improve reload time and projectile velocity. <br> Gun actual
+        reloading speed is {0}. <br> Gun projectile velocity is{1}
     - upgradeLevel: 0
       dataList: {fileID: 11400000, guid: d87b180facb14f54bb84db197f227ad0, type: 2}
+      description: Tracks  improve your rotation speed and your movement speed. <br>
+        Tracks actual speed is {0}. <br> Tracks rotation speed is {1}
     - upgradeLevel: 0
       dataList: {fileID: 11400000, guid: 4e462c3fbd6e8ad49b7ecf1ecd0da7e5, type: 2}
+      description: Bullet improve damage and max bounce on obstacles. <br> Bullet
+        actual damages is {0}. <br> Bullet max bounces are {1}
   controllerList:
   - {fileID: 11500000, guid: 19c8a57c8af43c3499506507fea0cd64, type: 3}
   - {fileID: 11500000, guid: 7ed934ed1a3cda14c81ab2ef6a57b2d2, type: 3}
@@ -2012,14 +2021,19 @@ MonoBehaviour:
       baseScriptableObjects:
       - upgradeLevel: 0
         dataList: {fileID: 11400000, guid: c5af313b8ecfea84cae4491cd24b6d02, type: 2}
+        description: 
       - upgradeLevel: 0
         dataList: {fileID: 11400000, guid: cafaf6f08bd561540b3e9fd050d8782b, type: 2}
+        description: 
       - upgradeLevel: 0
         dataList: {fileID: 11400000, guid: eed3503a24eabeb419a2f7fce25c2d6f, type: 2}
+        description: 
       - upgradeLevel: 0
         dataList: {fileID: 11400000, guid: 42d6b5e110fe4f447905a1237033e397, type: 2}
+        description: 
       - upgradeLevel: 0
         dataList: {fileID: 11400000, guid: 4e462c3fbd6e8ad49b7ecf1ecd0da7e5, type: 2}
+        description: 
   - enemyPrefab: {fileID: 8511177327817160506, guid: 7900bc2b7c9273a479366dc26516541d, type: 3}
     difficultyLevel: 2
     enemy: {fileID: 0}
@@ -2027,14 +2041,19 @@ MonoBehaviour:
       baseScriptableObjects:
       - upgradeLevel: 0
         dataList: {fileID: 11400000, guid: c5af313b8ecfea84cae4491cd24b6d02, type: 2}
+        description: 
       - upgradeLevel: 0
         dataList: {fileID: 11400000, guid: cafaf6f08bd561540b3e9fd050d8782b, type: 2}
+        description: 
       - upgradeLevel: 0
         dataList: {fileID: 11400000, guid: eed3503a24eabeb419a2f7fce25c2d6f, type: 2}
+        description: 
       - upgradeLevel: 0
         dataList: {fileID: 11400000, guid: 42d6b5e110fe4f447905a1237033e397, type: 2}
+        description: 
       - upgradeLevel: 0
         dataList: {fileID: 11400000, guid: 4e462c3fbd6e8ad49b7ecf1ecd0da7e5, type: 2}
+        description: 
   uiArrow: {fileID: 9030039417795229542, guid: aefc1496620b0264088372059e50d529, type: 3}
   enemiesInGame: []
   enemiesInGameGO: []
@@ -2153,7 +2172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc4e7d32c8204a95a3b4121b45b08d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  golds: 8000
+  golds: 0
   shopParent: {fileID: 826207190}
   shopWrapperParent: {fileID: 530209878}
   slideSpeed: 320
@@ -2183,8 +2202,6 @@ MonoBehaviour:
     imageRotationSpeed: 8
     name: Tracks
     parentName: 
-    description: Upgrading Tracks  improve your rotation speed and your movement
-      speed. <br> Tracks actual speed is {0}. <br> Tracks rotation speed is {1}
     rotationEuler: {x: 0, y: 0, z: 0}
     itemActualCost: 0
     itemLvl: 0
@@ -2227,7 +2244,6 @@ MonoBehaviour:
     imageRotationSpeed: 8
     name: Body
     parentName: 
-    description: 
     rotationEuler: {x: 0, y: 0, z: 0}
     itemActualCost: 0
     itemLvl: 0
@@ -2258,7 +2274,6 @@ MonoBehaviour:
     imageRotationSpeed: 8
     name: Tower
     parentName: 
-    description: 
     rotationEuler: {x: 0, y: 0, z: 0}
     itemActualCost: 0
     itemLvl: 0
@@ -2289,7 +2304,6 @@ MonoBehaviour:
     imageRotationSpeed: 8
     name: Gun
     parentName: 
-    description: 
     rotationEuler: {x: 0, y: 0, z: 0}
     itemActualCost: 0
     itemLvl: 0
@@ -2320,7 +2334,6 @@ MonoBehaviour:
     imageRotationSpeed: 8
     name: Bullet
     parentName: Gun
-    description: 
     rotationEuler: {x: 0, y: 0, z: 0}
     itemActualCost: 0
     itemLvl: 0

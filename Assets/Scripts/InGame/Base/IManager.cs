@@ -5,5 +5,4 @@ using UnityEngine;
 public  interface IManager
 {
     void Bind();
-    string GetDescription();
 }

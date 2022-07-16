@@ -11,8 +11,6 @@ public class BulletManager : MonoBehaviour, IBulletManager
     public BaseAsset bulletAsset;
     public BaseAnimator bulletAnimator;
     public BulletController bulletController;
-    [TextArea(5, 10)]
-    public string description;
 
     private BulletData bulletData;
 
@@ -39,14 +37,6 @@ public class BulletManager : MonoBehaviour, IBulletManager
 
     }
 
-    string IManager.GetDescription()
-    {
-
-
-        return String.Format(description, bulletData.damage,bulletData.maxBounce);
-
-
-    }
     void IBulletManager.AdditionalBulletData(ScriptableObject data, float Velocity, string senderTag, Vector3 baseDirection)
     {
         BindData(data);

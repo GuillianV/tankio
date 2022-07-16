@@ -15,4 +15,6 @@ public class TracksData : TankScriptableObject
     [Range(-5, 5)]
     public float TracksSpriteScaleY = 2;
 
+    
+
 }

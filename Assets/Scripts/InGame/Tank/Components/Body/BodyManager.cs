@@ -9,8 +9,6 @@ public class BodyManager : MonoBehaviour, IManager, IDamagable
     public BaseAsset bodyAsset ;
     public BaseAnimator bodyAnimator;
     public BodyController bodyController;
-    [TextArea(5, 10)]
-    public string description;
     private BodyData bodyData;
     private TankDamage tankDamage;
     private TankGolds tankGolds;
@@ -37,14 +35,7 @@ public class BodyManager : MonoBehaviour, IManager, IDamagable
     }
 
 
-    string IManager.GetDescription()
-    {
-
-        return String.Format(description, bodyData.life);
-
-
-
-    }
+    
     void BindData(ScriptableObject obj)
     {
 

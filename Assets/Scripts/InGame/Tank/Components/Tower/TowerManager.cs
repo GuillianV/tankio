@@ -9,8 +9,7 @@ public class TowerManager : MonoBehaviour, IManager
     public BaseAsset towerAsset ;
     public BaseAnimator towerAnimator;
     public TowerController towerController;
-    [TextArea(5, 10)]
-    public string description;
+    
     private TowerData towerData;
     private TankController tankController;
   
@@ -24,11 +23,7 @@ public class TowerManager : MonoBehaviour, IManager
         towerAnimator.BindAnimators(towerData.animators);
     }
 
-    string IManager.GetDescription()
-    {
-         return String.Format(description, towerData.rotationSpeed);
-
-    }
+ 
 
 
 

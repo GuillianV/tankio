@@ -50,8 +50,6 @@ public class ShopManager : MonoBehaviour
        
         public string name;
         public string parentName;
-        [TextArea(5, 10)]
-        public string description;
 
         [HideInInspector] public Vector3 rotationEuler;
         [HideInInspector] public int itemActualCost;
@@ -186,12 +184,16 @@ public class ShopManager : MonoBehaviour
         baseScriptableObjectDatas?.ForEach(od =>
         {
             BaseScriptableObject? baseScriptableObject = od.dataList.scriptableDatas.FirstOrDefault();
-            if (!baseScriptableObject)
-                Debug.LogError("Scriptable data of " + od.GetType().Name + " is empty list"); return;
+            if (baseScriptableObject == null)
+            {
+                Debug.LogError("Scriptable data of " + od.GetType().Name + " is empty list");
+                return;
+            }
+                
 
             if (baseScriptableObject.GetType().Name.Contains(shopItem.name))
             {
-
+                m_Game.Helper.ShowPopup(od.description, shopItem.name);
             }
             
 
