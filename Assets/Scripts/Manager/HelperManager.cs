@@ -8,10 +8,11 @@ public class HelperManager : MonoBehaviour
 
     public GameObject helper;
     public TextMeshProUGUI helperText;
+    public TextMeshProUGUI helperTitle;
 
     //public void Awake()
     //{
-       
+
     //}
 
     public void ClosePopup()
@@ -19,10 +20,11 @@ public class HelperManager : MonoBehaviour
         helper.SetActive(false);
     }
 
-    public void ShowPopup(string text)
+    public void ShowPopup(string desc, string title)
     {
         helper.SetActive(true);
-        helperText.text = text;
+        helperTitle.text = title;
+        helperText.text = desc;
     }
 
 

@@ -50,6 +50,7 @@ public class ShopManager : MonoBehaviour
        
         public string name;
         public string parentName;
+        [TextArea(5, 10)]
         public string description;
 
         [HideInInspector] public Vector3 rotationEuler;
@@ -107,6 +108,7 @@ public class ShopManager : MonoBehaviour
     private float value;
     private bool isPreviousing = false;
 
+    private List<BaseScriptableObjectData> baseScriptableObjectDatas;
    
 
     private int frames;
@@ -121,11 +123,14 @@ public class ShopManager : MonoBehaviour
         m_containerRectTransform = m_wrapperRectTransform.GetComponentInParent<RectTransform>();
         m_shopRectTransform = shopParent.GetComponent<RectTransform>();
         maxItem = listOfShopItems.OrderByDescending(S => S.identifier).FirstOrDefault().identifier;
-
+       
     }
 
     private void Start()
     {
+        //Alias of scriptable objects Players (List of tracks, towers, body..)
+        baseScriptableObjectDatas = m_Game.Player.tankDatas.baseScriptableObjects;
+
         listOfShopItems.ForEach(shopItem =>
         {
             shopItem.itemActualCost = shopItem.itemBaseCost;
@@ -177,7 +182,73 @@ public class ShopManager : MonoBehaviour
     //Show Helper
     public void ShowHelper(ShopItem shopItem)
     {
-        m_Game.Helper.ShowPopup(shopItem.name + " upgrade");
+
+        baseScriptableObjectDatas?.ForEach(od =>
+        {
+            BaseScriptableObject? baseScriptableObject = od.dataList.scriptableDatas.FirstOrDefault();
+            if (!baseScriptableObject)
+                Debug.LogError("Scriptable data of " + od.GetType().Name + " is empty list"); return;
+
+            if (baseScriptableObject.GetType().Name.Contains(shopItem.name))
+            {
+
+            }
+            
+
+            //switch (baseScriptableObject.GetType().Name)
+            //{
+            //    case "TowerData":
+
+            //        break;
+            //    case "BodyData":
+
+            //        BodyData bodyDataActual = (BodyData)od.dataList.scriptableDatas[od.upgradeLevel];
+            //        BodyData bodyDataOne = (BodyData)od.dataList.scriptableDatas.First();
+            //        float bodyMaxLifePercent = bodyDataActual.life * 100f / bodyDataOne.life;
+            //        m_Game.Helper.ShowPopup(String.Format(shopItem.description, od.upgradeLevel, shopItem.itemCostMultiplyer, bodyMaxLifePercent, bodyDataActual.life), shopItem.name);
+
+
+            //        break;
+            //    case "TracksData":
+
+            //        TracksData tracksDataActual = (TracksData)od.dataList.scriptableDatas[od.upgradeLevel];
+            //        TracksData tracksDataOne = (TracksData)od.dataList.scriptableDatas.First();
+            //        float tracksRotationSpeedPercent = tracksDataActual.rotationSpeed * 100f / tracksDataOne.rotationSpeed;
+            //        float tracksSpeedPercent = tracksDataActual.speed * 100f / tracksDataOne.speed;
+            //        m_Game.Helper.ShowPopup(String.Format(shopItem.description, od.upgradeLevel, shopItem.itemCostMultiplyer, tracksSpeedPercent, tracksRotationSpeedPercent), shopItem.name);
+
+
+            //        break;
+            //    case "GunData":
+
+            //        GunData gunDataActual = (GunData)od.dataList.scriptableDatas[od.upgradeLevel];
+            //        GunData gunDataOne = (GunData)od.dataList.scriptableDatas.First();
+            //        float gunBulletSpeed= gunDataActual.bulletVelocity * 100f / gunDataOne.bulletVelocity;
+            //        float gunReloadTime = gunDataActual.reloadTimeSecond * 100f / gunDataOne.reloadTimeSecond;
+            //        m_Game.Helper.ShowPopup(String.Format(shopItem.description, od.upgradeLevel, shopItem.itemCostMultiplyer, gunBulletSpeed, gunReloadTime), shopItem.name);
+
+            //        break;
+            //    case "BulletData":
+
+            //        BulletData bulletDataActual = (BulletData)od.dataList.scriptableDatas[od.upgradeLevel];
+            //        BulletData bulletDataOne = (BulletData)od.dataList.scriptableDatas.First();
+            //        float bulletDamage = bulletDataActual.damage;
+            //        float bulletBounce = bulletDataActual.maxBounce;
+            //        m_Game.Helper.ShowPopup(String.Format(shopItem.description, od.upgradeLevel, shopItem.itemCostMultiplyer, bulletDamage, bulletBounce), shopItem.name);
+
+            //        break;
+               
+            //    default:
+
+            //        break;
+            //}
+
+
+           
+
+        });
+
+       
     }
 
     //Upgrade an item

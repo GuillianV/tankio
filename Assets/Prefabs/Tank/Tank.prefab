@@ -722,6 +722,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ad3683582e14332af84882fce280f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tankScriptable:
+    baseScriptableObjects: []
 --- !u!114 &8347696059715934911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,6 +802,10 @@ MonoBehaviour:
     gunSprite: {fileID: 8511177326726308935}
     gunObject: {fileID: 8511177326726308933}
     bulletSpawn: {fileID: 8511177326305204823}
+  gunAmmos:
+  - objectInstancied: {fileID: 2447466233490526560, guid: 386d39d703e362d4a965864e7f9d4429, type: 3}
+    isEquiped: 1
+  description: 
 --- !u!114 &667119442191746462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,6 +831,8 @@ MonoBehaviour:
   tracksController:
     tracksSpriteLeft: {fileID: 8511177327382505180}
     tracksSpriteRight: {fileID: 8511177327545524874}
+  description: Tracks  improve your rotation speed and your movement speed. <br>
+    Tracks actual speed is {0}. <br> Tracks rotation speed is {1}
 --- !u!114 &2407450625520990689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,6 +853,7 @@ MonoBehaviour:
     bodySprite: {fileID: 8511177326099615336}
     tags:
     - Projectile
+  description: 
 --- !u!114 &4204213939163038621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,6 +874,7 @@ MonoBehaviour:
     AnimationsList: []
   towerController:
     towerSprite: {fileID: 8511177326921384528}
+  description: 
 --- !u!1 &8984833414691036926
 GameObject:
   m_ObjectHideFlags: 0

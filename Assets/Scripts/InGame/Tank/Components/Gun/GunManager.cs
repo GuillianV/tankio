@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GunManager : MonoBehaviour, IManager
@@ -9,8 +10,15 @@ public class GunManager : MonoBehaviour, IManager
     public BaseAnimator gunAnimator;
     public GunController gunController;
     private GunData gunData;
-    private BulletData bulletData;
+    //private BulletData bulletData;
 
+    private List<GunAmmo> gunAmmos = new List<GunAmmo>();
+
+
+    [TextArea(5, 10)]
+    public string description;
+
+    private GunAmmo projectileEquiped;
     public event EventHandler<ProjectileEvent> BulletDestroyed;
     public event EventHandler<ProjectileEvent> BulletCreated;
     private TankController tankController;
@@ -20,13 +28,22 @@ public class GunManager : MonoBehaviour, IManager
     {
         tankController = GetComponent<TankController>();
         BindData(tankController.GetData<GunData>());
-        BindProjectileData(tankController.GetData<BulletData>());
-        
         gunController.BindController(gunData);
         gunAsset.BindAssets();
         gunAnimator.BindAnimators(gunData.animators);
+
+        AddProjectileData("basicBullet", tankController.GetData<BulletData>(), "Projectile", true);
+
+
     }
 
+    string IManager.GetDescription()
+    {
+
+        return String.Format(description, gunData.bulletVelocity, gunData.reloadTimeSecond);
+
+
+    }
 
     void BindData(ScriptableObject obj)
     {
@@ -38,21 +55,66 @@ public class GunManager : MonoBehaviour, IManager
 
 
     }
-    void BindProjectileData(ScriptableObject obj)
+    public void AddProjectileData(string name, ProjectileScriptableObject obj,GameObject gameObjectInstancied, bool isEquiped = false)
     {
 
-        if (obj.GetType() == typeof(BulletData))
+        if (gameObjectInstancied.GetComponent(typeof(IBulletManager)) as IBulletManager != null)
         {
-            bulletData = (BulletData)obj;
+            GunAmmo gm = new GunAmmo(name, obj,gameObjectInstancied,isEquiped);
+            if(!gunAmmos.Any(gun => gm.name == gun.name))
+            {
+                gunAmmos.Add(gm);
+            }
         }
-
+        else
+        {
+            Debug.LogError("Projectile add in GunManager does not contain a component IBulletManager");
+        }
+        BindProjectile();
     }
-    
+
+    public void AddProjectileData(string name,  ProjectileScriptableObject obj, string assetName, bool isEquiped = false)
+    {
+
+        GameObject goInst = gunAsset.CallAsset(assetName);
+        if(goInst.GetComponent(typeof(IBulletManager)) as IBulletManager != null)
+        {
+            GunAmmo gm = new GunAmmo(name, obj, goInst, isEquiped);
+            if (  !gunAmmos.Any(gun => gm.name == gun.name))
+            {
+                gunAmmos.Add(gm);
+            }
+        }
+        else
+        {
+            Debug.LogError("Projectile add in GunManager does not contain a component IBulletManager");
+        }
+        BindProjectile();
+    }
+
+    public void BindProjectile()
+    {
+        if(gunAmmos.Count > 0)
+        {
+            gunAmmos?.ForEach(ga =>
+            {
+                if (ga.isEquiped)
+                    projectileEquiped = ga;
+            });
+        }
+        else
+        {
+            Debug.LogWarning("Missing gunAmmos in GunManager");
+        }
+        
+    }
+
+
 
     public GameObject Shoot()
     {
       
-        GameObject ammo = Instantiate(bulletData.projectileCloned,
+        GameObject ammo = Instantiate(projectileEquiped.objectInstancied,
                    gunController.bulletSpawn.transform.position,
                    gunController.bulletSpawn.transform.rotation) as GameObject;
 
@@ -64,7 +126,9 @@ public class GunManager : MonoBehaviour, IManager
         IBulletManager iBulletManager = ammo.GetComponent<IBulletManager>();
         if (iBulletManager != null)
         {
-            iBulletManager.AdditionalBulletData(bulletData, gunController.GetBulletVelocity(), gameObject.tag, gunController.bulletSpawn.transform.up);
+
+
+            iBulletManager.AdditionalBulletData(projectileEquiped.projectileData, gunController.GetBulletVelocity(), gameObject.tag, gunController.bulletSpawn.transform.up);
        
             iBulletManager.Bind();
          

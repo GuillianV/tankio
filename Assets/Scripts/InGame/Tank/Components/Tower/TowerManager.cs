@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class TowerManager : MonoBehaviour, IManager
     public BaseAsset towerAsset ;
     public BaseAnimator towerAnimator;
     public TowerController towerController;
+    [TextArea(5, 10)]
+    public string description;
     private TowerData towerData;
     private TankController tankController;
   
@@ -20,6 +23,13 @@ public class TowerManager : MonoBehaviour, IManager
         towerAsset.BindAssets();
         towerAnimator.BindAnimators(towerData.animators);
     }
+
+    string IManager.GetDescription()
+    {
+         return String.Format(description, towerData.rotationSpeed);
+
+    }
+
 
 
     void BindData(ScriptableObject obj)

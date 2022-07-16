@@ -105,10 +105,6 @@ public class TankController : MonoBehaviour
     
     }
 
-    public void BindComponent()
-    {
-
-    }
 
 
 
