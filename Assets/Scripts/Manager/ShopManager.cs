@@ -194,18 +194,20 @@ public class ShopManager : MonoBehaviour
 
             if (baseScriptableObject.GetType().Name.Contains(shopItem.name))
             {
+                BaseScriptableObject actualScriptableObject = od.dataList.scriptableDatas[od.upgradeLevel];
+                
                 List<string> plife = new List<string>();
                 od.descriptionAttributesName?.ForEach(attr =>
                 {
-                    FieldInfo? fi = baseScriptableObject.GetType().GetField(attr);
+                    FieldInfo? fi = actualScriptableObject.GetType().GetField(attr);
                     if (fi != null)
                     {
-                        plife.Add( fi.GetValue(baseScriptableObject).ToString());
+                        plife.Add(Convert.ToString(fi.GetValue(actualScriptableObject)));
                     }
                         
 
                 });
-                m_Game.Helper.ShowPopup(  string.Format(od.description,plife) , shopItem.name);
+                m_Game.Helper.ShowPopup(  String.Format(od.description,plife.ToArray()) , shopItem.name);
             }
             
 

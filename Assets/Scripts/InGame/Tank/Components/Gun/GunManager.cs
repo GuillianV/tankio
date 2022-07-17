@@ -53,6 +53,14 @@ public class GunManager : MonoBehaviour, IManager
             if(!gunAmmos.Any(gun => gm.name == gun.name))
             {
                 gunAmmos.Add(gm);
+            }else
+            {
+                GunAmmo? oldGm = gunAmmos.FirstOrDefault(gm => gm.name == name);
+                if (oldGm != null)
+                {
+                    gunAmmos.Remove(oldGm ?? new GunAmmo());
+                }
+                gunAmmos.Add(gm);
             }
         }
         else
@@ -71,6 +79,14 @@ public class GunManager : MonoBehaviour, IManager
             GunAmmo gm = new GunAmmo(name, obj, goInst, isEquiped);
             if (  !gunAmmos.Any(gun => gm.name == gun.name))
             {
+                gunAmmos.Add(gm);
+            }else
+            {
+                GunAmmo? oldGm = gunAmmos.FirstOrDefault(gm => gm.name == name);
+                if (oldGm != null)
+                {
+                    gunAmmos.Remove(oldGm ?? new GunAmmo());
+                }
                 gunAmmos.Add(gm);
             }
         }
