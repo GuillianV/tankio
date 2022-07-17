@@ -1856,34 +1856,37 @@ MonoBehaviour:
     baseScriptableObjects:
     - upgradeLevel: 0
       dataList: {fileID: 11400000, guid: ba92528a3b6e2b04abb5deeafcdad0bc, type: 2}
-      description: Body improve your max life. <br> Body actual max life are {0}.
+      description: Body improve your max life. <br><br><br>Stats  <br><br> Body actual
+        max life are {0}.
       descriptionAttributesName:
       - life
     - upgradeLevel: 0
       dataList: {fileID: 11400000, guid: c7d6db9162e2d0b49b0e88d3f03f2800, type: 2}
-      description: Tower improve your tank rotation speed. <br> Tower actual rotation
-        speed are {0}.
+      description: Tower improve your tank rotation speed.  <br><br><br>Stats  <br><br>Tower
+        actual rotation speed are {0}.
       descriptionAttributesName:
       - rotationSpeed
     - upgradeLevel: 0
       dataList: {fileID: 11400000, guid: 10a182523ff795744954cd4ba921a679, type: 2}
-      description: Gun decrease reloading time and improve projectile velocity. <br>
-        Gun actual reloading speed is {0} seconds. <br> Gun projectile velocity is
-        {1}
+      description: Gun decrease reloading time and improve projectile velocity. 
+        <br><br><br>Stats  <br><br> Gun actual reloading speed is {0} seconds. <br>
+        Gun projectile velocity is {1}
       descriptionAttributesName:
       - reloadTimeSecond
       - bulletVelocity
     - upgradeLevel: 0
       dataList: {fileID: 11400000, guid: d87b180facb14f54bb84db197f227ad0, type: 2}
-      description: Tracks  improve your rotation speed and your movement speed. <br>
-        Tracks actual speed are {0}. <br> Tracks rotation speed are {1}
+      description: Tracks  improve your rotation speed and your movement speed. 
+        <br><br><br>Stats  <br><br>Tracks actual speed are {0}. <br> Tracks rotation
+        speed are {1}
       descriptionAttributesName:
       - speed
       - rotationSpeed
     - upgradeLevel: 0
       dataList: {fileID: 11400000, guid: 4e462c3fbd6e8ad49b7ecf1ecd0da7e5, type: 2}
-      description: Bullet improve damage and max bounce on obstacles. <br> Bullet
-        actual damages are {0}. <br> Bullet will bounce {1} times before it explode
+      description: Bullet improve damage and max bounce on obstacles. <br><br><br>Stats 
+        <br><br>Bullet actual damages are {0}. <br> Bullet will bounce {1} times
+        before it explode
       descriptionAttributesName:
       - damage
       - maxBounce
@@ -6165,8 +6168,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -25}
+  m_SizeDelta: {x: -200, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1919320960
 MonoBehaviour:
@@ -6222,8 +6225,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

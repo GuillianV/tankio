@@ -518,6 +518,8 @@ public class ShopManager : MonoBehaviour
         if (shopItem.patern.shopItemCostUI != null)
         {
             
+            
+            
             string text = "";
             text += prePhrase == null ? "COST    " : prePhrase;
             text += cost.ToString();
