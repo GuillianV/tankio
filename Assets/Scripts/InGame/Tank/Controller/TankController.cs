@@ -79,7 +79,7 @@ public class TankController : MonoBehaviour
 
     }
 
-
+   
 
 
     //Bind tank data to their components (TowerData to TowerController stats and assets)
@@ -131,7 +131,7 @@ public class TankController : MonoBehaviour
                     managerNameToBind = parentManagerName;
                 }
 
-                //Bind le manager corespondant à l'upgrade
+                //Bind le manager corespondant ï¿½ l'upgrade
                 iTankManager.ForEach(component =>
                 {
                     if(component.GetType().Name.Contains(managerNameToBind))

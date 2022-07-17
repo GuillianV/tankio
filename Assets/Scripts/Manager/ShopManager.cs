@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -193,7 +194,18 @@ public class ShopManager : MonoBehaviour
 
             if (baseScriptableObject.GetType().Name.Contains(shopItem.name))
             {
-                m_Game.Helper.ShowPopup(od.description, shopItem.name);
+                List<string> plife = new List<string>();
+                od.descriptionAttributesName?.ForEach(attr =>
+                {
+                    FieldInfo? fi = baseScriptableObject.GetType().GetField(attr);
+                    if (fi != null)
+                    {
+                        plife.Add( fi.GetValue(baseScriptableObject).ToString());
+                    }
+                        
+
+                });
+                m_Game.Helper.ShowPopup(  string.Format(od.description,plife) , shopItem.name);
             }
             
 
