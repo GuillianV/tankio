@@ -26,6 +26,8 @@ public struct NoiseOptions
     public int mapHeight;
     [Range(0.1f,400)]
     public float noiseScale;
+
+    public long seed;
 }
 
 [System.Serializable]
@@ -87,7 +89,7 @@ public class MapGeneratorManager : MonoBehaviour
         
         st.Start();
         //Genere la noismap
-        noiseMap =  Noise.GenerateNoiseMap(noiseOptions.mapWidth, noiseOptions.mapHeight, noiseOptions.noiseScale);
+        noiseMap =  Noise.GenerateNoiseMap(noiseOptions.mapWidth, noiseOptions.mapHeight, noiseOptions.noiseScale, noiseOptions.seed);
         //Genere la map used
         m_mapUsed = new Boolean[noiseMap.GetLength(0), noiseMap.GetLength(1)];
         st.Stop();

@@ -5,10 +5,10 @@ using UnityEngine;
 public static class Noise 
 {
 
-    public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, float scale)
+    public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, float scale, long seed = 1)
     {
-        
-        float randModifier = Mathf.Clamp( Random.Range(0, 254),0,1);
+
+        float randModifier = seed; //Mathf.Clamp( Random.Range(0, 254),0,1);
         
         float[,] noiseMap = new float[mapWidth, mapHeight];
 

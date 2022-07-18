@@ -2100,6 +2100,7 @@ MonoBehaviour:
     mapWidth: 200
     mapHeight: 200
     noiseScale: 1.88
+    seed: 52
   baseMap:
     parent: {fileID: 350735929}
     wallPrefab: {fileID: 3734512753183616629, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
@@ -2199,7 +2200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc4e7d32c8204a95a3b4121b45b08d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  golds: 100
+  golds: 50000
   shopParent: {fileID: 826207190}
   shopWrapperParent: {fileID: 530209878}
   slideSpeed: 360
@@ -2220,7 +2221,7 @@ MonoBehaviour:
   listOfShopItems:
   - identifier: 1
     itemBaseCost: 25
-    itemCostMultiplyer: 2.5
+    itemCostMultiplyer: 1.8
     objectScript: {fileID: 11400000, guid: ddb3743dba783a34b8a9bce55308fb41, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
@@ -2249,8 +2250,8 @@ MonoBehaviour:
       shopItemImageUI: {fileID: 0}
       shopItemHelperButton: {fileID: 0}
   - identifier: 2
-    itemBaseCost: 35
-    itemCostMultiplyer: 2.5
+    itemBaseCost: 55
+    itemCostMultiplyer: 1.55
     objectScript: {fileID: 11400000, guid: 6f4c276984507604cb652f1fc35ef79f, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
@@ -2291,8 +2292,8 @@ MonoBehaviour:
       shopItemImageUI: {fileID: 0}
       shopItemHelperButton: {fileID: 0}
   - identifier: 3
-    itemBaseCost: 15
-    itemCostMultiplyer: 2.5
+    itemBaseCost: 35
+    itemCostMultiplyer: 1.6
     objectScript: {fileID: 11400000, guid: ae4378c3adc81d84fb799149d5ccb0c6, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
@@ -2322,7 +2323,7 @@ MonoBehaviour:
       shopItemHelperButton: {fileID: 0}
   - identifier: 4
     itemBaseCost: 40
-    itemCostMultiplyer: 2.5
+    itemCostMultiplyer: 1.7
     objectScript: {fileID: 11400000, guid: bbc8960a80cf3cd4bae994b28509f2bb, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
@@ -2352,7 +2353,7 @@ MonoBehaviour:
       shopItemHelperButton: {fileID: 0}
   - identifier: 5
     itemBaseCost: 55
-    itemCostMultiplyer: 1.64
+    itemCostMultiplyer: 1.65
     objectScript: {fileID: 11400000, guid: e4a4032cd8c5d4078a553cb773e1b020, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
