@@ -6599,7 +6599,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 1, g: 0.654902, b: 0.654902, a: 0.39215687}
     m_PressedColor: {r: 1, g: 0.3160377, b: 0.3160377, a: 0.39215687}
     m_SelectedColor: {r: 1, g: 0.6556604, b: 0.6556604, a: 0.19607843}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
+    m_DisabledColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -7088,7 +7088,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
+  m_TextStyleHashCode: 2427
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -122,7 +123,7 @@ public class ShopManager : MonoBehaviour
         m_containerRectTransform = m_wrapperRectTransform.GetComponentInParent<RectTransform>();
         m_shopRectTransform = shopParent.GetComponent<RectTransform>();
         maxItem = listOfShopItems.OrderByDescending(S => S.identifier).FirstOrDefault().identifier;
-       
+        m_Game.Ui.SetGoldUI(golds);
     }
 
     private void Start()
@@ -301,7 +302,14 @@ public class ShopManager : MonoBehaviour
                 SetShopItemLevel(shopItem, shopItem.itemLvl);
                 SetShopItemImage(shopItem, objectData.dataList.scriptableDatas[objectData.upgradeLevel].sprite, objectData.dataList.scriptableDatas[objectData.upgradeLevel].color);
                 shopItem.calledWhenComponentUpgraded.Invoke();
+
+                if (objectData.upgradeLevel >= objectData.dataList.scriptableDatas.Count -1)
+                {
+                    SetShopItemMaxLevel(shopItem);
+                }
+                
             }
+           
 
         }
         else
@@ -511,15 +519,28 @@ public class ShopManager : MonoBehaviour
         });
     }
 
+    [CanBeNull]
+    public BaseScriptableObjectData FindMatchingScriptableData(ShopItem shopItem)
+    {
+        BaseScriptableObjectData dataChoosen = null;
+        baseScriptableObjectDatas?.ForEach(od =>
+        {
+          BaseScriptableObject? bo =   od.dataList.scriptableDatas.FirstOrDefault();
+          if (bo != null && bo.GetType().Name.Contains(shopItem.name))
+          {
+              dataChoosen = od;
+          }
+          
+        });
+        return dataChoosen;
+    }
+
     //Set the cost of next item upgrade
     public void SetShopItemCost(ShopItem shopItem, int cost, string prePhrase = null , string postPhrase = null)
     {
 
         if (shopItem.patern.shopItemCostUI != null)
         {
-            
-            
-            
             string text = "";
             text += prePhrase == null ? "COST    " : prePhrase;
             text += cost.ToString();
@@ -533,6 +554,21 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    public void SetShopItemMaxLevel(ShopItem shopItem)
+    {
+
+        if (shopItem.patern.shopItemCostUI != null && shopItem.patern.shopItemUpgradeUI != null)
+        {
+            string text = "Max Level";
+            shopItem.patern.shopItemCostUI.text = text;
+            shopItem.patern.shopItemUpgrade.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("Missing component" + shopItem.name);
+        }
+    }
+    
     //Set the actual level of item
     public void SetShopItemLevel(ShopItem shopItem, int lvl, string prePhrase = null , string postPhrase = null)
     {
