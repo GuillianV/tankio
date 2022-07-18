@@ -29,7 +29,7 @@ public class BaseAsset
 
     public GameObject CallAsset(string assetName)
     {
-        Debug.Log(assetName);
+       // Debug.Log(assetName);
         return assetsDico[assetName]._gameObject;
     }
 

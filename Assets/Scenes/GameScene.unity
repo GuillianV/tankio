@@ -2057,7 +2057,7 @@ MonoBehaviour:
         description: 
         descriptionAttributesName: []
   - enemyPrefab: {fileID: 8511177327817160506, guid: 7900bc2b7c9273a479366dc26516541d, type: 3}
-    difficultyLevel: 2
+    difficultyLevel: 1
     enemy: {fileID: 0}
     tankScriptable:
       baseScriptableObjects:
@@ -2199,10 +2199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc4e7d32c8204a95a3b4121b45b08d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  golds: 5000
+  golds: 100
   shopParent: {fileID: 826207190}
   shopWrapperParent: {fileID: 530209878}
-  slideSpeed: 320
+  slideSpeed: 360
   patern:
     shopItemParent: {fileID: 1054563788}
     shopItemTitle: {fileID: 142246473}

@@ -131,14 +131,17 @@ public class ShopManager : MonoBehaviour
         //Alias of scriptable objects Players (List of tracks, towers, body..)
         baseScriptableObjectDatas = m_Game.Player.tankDatas.baseScriptableObjects;
 
+      
+        listOfShopItems.ForEach(shopItem => { GenerateshopItem(shopItem); });
+        
         listOfShopItems.ForEach(shopItem =>
         {
             shopItem.itemActualCost = shopItem.itemBaseCost;
-           SetShopItemCost(shopItem, shopItem.itemActualCost);
-           SetShopItemLevel(shopItem, shopItem.itemLvl);
+            SetShopItemCost(shopItem, shopItem.itemActualCost);
+            SetShopItemLevel(shopItem, shopItem.itemLvl);
         });
 
-        listOfShopItems.ForEach(shopItem => { GenerateshopItem(shopItem); });
+        
         shopParent.SetActive(false);
         HideParentPatern();
         frames = 0;
