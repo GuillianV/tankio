@@ -51,8 +51,8 @@ public class PlayerMovementMobile : PlayerController
     protected void Cancelled()
     {
         movement = Vector2.zero;
-        m_TracksAnimator.CallAnimator("Tracks-Left")?.SetBool("Moving", false);
-        m_TracksAnimator.CallAnimator("Tracks-Right")?.SetBool("Moving", false);
+        m_TracksAnimator?.CallAnimator("Tracks-Left")?.SetBool("Moving", false);
+        m_TracksAnimator?.CallAnimator("Tracks-Right")?.SetBool("Moving", false);
     }
 
     void FixedUpdate()

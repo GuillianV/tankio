@@ -158,6 +158,8 @@ public class WaveManager : MonoBehaviour
         actualWave = 0;
         waveDifficulty = 0;
         timeBetweenWaves = initialTimeBetweenWaves;
+        isSpawned = false;
+        isNextWave = false;
         m_game.Map.GenerateSpawners(3);
         StartCoroutine(TimerWave(timeBetweenWaves));
         m_game.Ui.SetWaveUI(actualWave);

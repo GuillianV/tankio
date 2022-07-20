@@ -138,7 +138,7 @@ public class PlayerAimerShooterMobile : PlayerController
             vectorToTarget = inputVec;
         }
         
-        if (inputVec.magnitude > 1)
+        if (inputVec.magnitude > 0.9)
         {
 
             isFireing = true;

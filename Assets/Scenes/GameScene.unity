@@ -2062,19 +2062,19 @@ MonoBehaviour:
     tankScriptable:
       baseScriptableObjects:
       - upgradeLevel: 0
-        dataList: {fileID: 11400000, guid: c5af313b8ecfea84cae4491cd24b6d02, type: 2}
+        dataList: {fileID: 11400000, guid: caf6f73fb14d37b4d9cf18465d78da0a, type: 2}
         description: 
         descriptionAttributesName: []
       - upgradeLevel: 0
-        dataList: {fileID: 11400000, guid: cafaf6f08bd561540b3e9fd050d8782b, type: 2}
+        dataList: {fileID: 11400000, guid: d7b2fcd19ac22ee45a8cca23d805e2f3, type: 2}
         description: 
         descriptionAttributesName: []
       - upgradeLevel: 0
-        dataList: {fileID: 11400000, guid: eed3503a24eabeb419a2f7fce25c2d6f, type: 2}
+        dataList: {fileID: 11400000, guid: 06ea836df1d01974cb4a1615ff4460c2, type: 2}
         description: 
         descriptionAttributesName: []
       - upgradeLevel: 0
-        dataList: {fileID: 11400000, guid: 42d6b5e110fe4f447905a1237033e397, type: 2}
+        dataList: {fileID: 11400000, guid: 3b68873fe4fe73d4ea64b8b3f2ecb7d6, type: 2}
         description: 
         descriptionAttributesName: []
       - upgradeLevel: 0
