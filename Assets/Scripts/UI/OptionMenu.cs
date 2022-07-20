@@ -104,12 +104,17 @@ public class OptionMenu : MonoBehaviour
 
         if(resolutions.Count == 0)
         {
+            int halfW = Display.main.systemWidth /2;
+            int halfH = Display.main.systemHeight /2;
+            
             
             for(int i = 8; i > 1; i--)
             {
                 Resolution newRes = new Resolution();
-                newRes.width = Display.main.systemWidth/i;
-                newRes.height = Display.main.systemHeight/i;
+                
+                
+                newRes.width = halfW + halfW/i;
+                newRes.height =halfH+ halfH/i;
                 newRes.refreshRate = Screen.currentResolution.refreshRate;
                 resolutions.Add(newRes);
             }

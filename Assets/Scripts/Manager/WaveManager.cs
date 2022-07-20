@@ -156,8 +156,9 @@ public class WaveManager : MonoBehaviour
         ClearSpawners();
         ClearEnemies();
         actualWave = 0;
-        waveDifficulty = 1;
+        waveDifficulty = 0;
         timeBetweenWaves = initialTimeBetweenWaves;
+        m_game.Map.GenerateSpawners(3);
         StartCoroutine(TimerWave(timeBetweenWaves));
         m_game.Ui.SetWaveUI(actualWave);
     }

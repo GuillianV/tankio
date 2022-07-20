@@ -248,11 +248,14 @@ public class MapGeneratorManager : MonoBehaviour
 
     public void GenerateChunks()
     {
+        System.Random rand = new System.Random(Convert.ToInt32(noiseOptions.seed));
+
         for (int i = 0; i < Math.Abs(iterateOfSpawn); i++)
         {
+          
             //Position choisi par l'ordi
-            int x = UnityEngine.Random.Range(0, noiseOptions.mapWidth);
-            int y = UnityEngine.Random.Range(0, noiseOptions.mapHeight);
+            int x = rand.Next(0, noiseOptions.mapWidth);
+            int y = rand.Next(0, noiseOptions.mapHeight);
 
             //Check si la position choisi ne rentre pas en conflit avec un autre gameobject
             //On lui passe le centre le centre du raycast qui va etre generé et son radius
@@ -315,6 +318,7 @@ public class MapGeneratorManager : MonoBehaviour
     
      public void GenerateSpawners(int nbOfSpawners)
     {
+        System.Random rand = new System.Random(Convert.ToInt32(noiseOptions.seed));
 
         int spawnerRestants = nbOfSpawners;
 
@@ -327,8 +331,8 @@ public class MapGeneratorManager : MonoBehaviour
             }
             
             //Position choisi par l'ordi
-            int x = UnityEngine.Random.Range(0, noiseOptions.mapWidth);
-            int y = UnityEngine.Random.Range(0, noiseOptions.mapHeight);
+            int x = rand.Next(0, noiseOptions.mapWidth);
+            int y = rand.Next(0, noiseOptions.mapHeight);
 
         
 
@@ -384,18 +388,9 @@ public class MapGeneratorManager : MonoBehaviour
             Obstacle? returnedObject = null;
 
             int maxDrop = obstacles.Sum(obstacle => obstacle.dropRate);
-            int maxCap = 100;
-
-            int numberChoosed = 0;
-
-            if (maxDrop > maxCap)
-            {
-                numberChoosed = UnityEngine.Random.Range(0, maxDrop);
-            }
-            else
-            {
-                numberChoosed = UnityEngine.Random.Range(0, maxCap);
-            }
+            System.Random rand = new System.Random(Convert.ToInt32(noiseOptions.seed));
+            int numberChoosed  =  rand.Next(0, maxDrop);
+           
 
             int dropsMin = 0;
             int dropsMax = 0;
@@ -403,7 +398,7 @@ public class MapGeneratorManager : MonoBehaviour
             {
                 dropsMin = dropsMax;
                 dropsMax = dropsMin + obstacle.dropRate;
-
+            
                 if (Enumerable.Range(dropsMin, dropsMax).Contains(numberChoosed))
                 {
                     returnedObject = obstacle;
@@ -418,6 +413,39 @@ public class MapGeneratorManager : MonoBehaviour
         }
     }
 
+    public void SpawnGameObject(GameObject gameObjectToInstanciante, int areaToSpawn , int iterate = 0)
+    {
+        System.Random rand = new System.Random(Convert.ToInt32(noiseOptions.seed + iterate));
+        int x = rand.Next(0, noiseOptions.mapWidth);
+        int y = rand.Next(0, noiseOptions.mapHeight);
+
+        if (m_mapUsed[x, y] == false)
+        {
+            //Si une collision n'a pas été detecté avec un obstacle, on instancie le prefab
+            if (!IsObstacleExist(new Vector2(x, y), areaToSpawn))
+            {
+                float posX = (x - (noiseMap.GetLength(0) / 2) + baseMap.parent.transform.position.x);
+                float posY = (y - (noiseMap.GetLength(1) / 2) + baseMap.parent.transform.position.y);
+
+
+                GameObject goInstancied = Instantiate(gameObjectToInstanciante,
+                    baseMap.parent.transform.position,
+                    new Quaternion(), baseMap.parent);
+
+                goInstancied.transform.localPosition =
+                    new Vector3(posX, posY, baseMap.parent.transform.position.z);
+                
+                Debug.Log("GameObject Instancied at : X = " +posX+" Y = "+posY);
+            }
+        }
+        else
+        {
+            int newIte = iterate += 1;
+            SpawnGameObject(gameObjectToInstanciante, areaToSpawn, newIte);
+        }
+
+
+    }
 
     //Choisi le chunk a spawner en fonction de leur drop rate, parmis la liste des obstacles.
     [CanBeNull]
@@ -429,17 +457,10 @@ public class MapGeneratorManager : MonoBehaviour
 
             int maxDrop = chunks.Sum(chunks => chunks.dropRate);
             int maxCap = 100;
+            
+            System.Random rand = new System.Random(Convert.ToInt32(noiseOptions.seed));
+            int numberChoosed  =  rand.Next(0, maxDrop);
 
-            int numberChoosed = 0;
-
-            if (maxDrop > maxCap)
-            {
-                numberChoosed = UnityEngine.Random.Range(0, maxDrop);
-            }
-            else
-            {
-                numberChoosed = UnityEngine.Random.Range(0, maxCap);
-            }
 
             int dropsMin = 0;
             int dropsMax = 0;

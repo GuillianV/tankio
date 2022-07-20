@@ -329,6 +329,7 @@ public class ShopManager : MonoBehaviour
         {
             shopItem.itemLvl = 0;
             shopItem.itemActualCost = shopItem.itemBaseCost;
+            shopItem.patern.shopItemUpgrade.SetActive(true);
             SetShopItemCost(shopItem, shopItem.itemActualCost);
             SetShopItemLevel(shopItem, shopItem.itemLvl);
             SetShopItemImage(shopItem);
@@ -557,6 +558,8 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+ 
+    
     public void SetShopItemMaxLevel(ShopItem shopItem)
     {
 

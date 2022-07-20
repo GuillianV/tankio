@@ -2100,13 +2100,13 @@ MonoBehaviour:
     mapWidth: 200
     mapHeight: 200
     noiseScale: 1.88
-    seed: 52
+    seed: 78
   baseMap:
     parent: {fileID: 350735929}
     wallPrefab: {fileID: 3734512753183616629, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
     groundPrefab: {fileID: 9151208767502791859, guid: fb7c720613a1a2946a2ceeacd5c228b4, type: 3}
   spawnOptions:
-    radius: 5
+    radius: 7
     parentContainer: {fileID: 726811725}
     spawnerPrefab: {fileID: 92090636529140435, guid: 6953b615eb6f7594492a9e6fac8ed590, type: 3}
     tag: Spawners
@@ -2115,39 +2115,39 @@ MonoBehaviour:
   iterateOfSpawn: 1000
   obstacleListAll:
   - obstaclePrefab: {fileID: 8183038711651579584, guid: 6f83686837de7594cb0b39c1204bd157, type: 3}
-    conditionOfSpawnMin: 0.93
+    conditionOfSpawnMin: 0.97
     conditionOfSpawnMax: 1
-    dropRate: 26
-    priority: 1
+    dropRate: 25
+    priority: 2
     radius: 6
   - obstaclePrefab: {fileID: 8183038711651579584, guid: 58c514185b1068845945ea161e0e8e61, type: 3}
     conditionOfSpawnMin: 0.924
     conditionOfSpawnMax: 1
-    dropRate: 26
-    priority: 0
+    dropRate: 17
+    priority: 3
     radius: 3
   - obstaclePrefab: {fileID: 8183038711651579584, guid: 901867b81c400b14e8102c27adfd5bfc, type: 3}
-    conditionOfSpawnMin: 0.867
-    conditionOfSpawnMax: 1
-    dropRate: 10
+    conditionOfSpawnMin: 0.97
+    conditionOfSpawnMax: 0.98
+    dropRate: 8
     priority: 0
     radius: 3
   - obstaclePrefab: {fileID: 8183038711651579584, guid: 6fd6b7ea3f3b2b149a5c3bfc5b79bc9d, type: 3}
-    conditionOfSpawnMin: 0.886
-    conditionOfSpawnMax: 1
-    dropRate: 15
+    conditionOfSpawnMin: 0.9
+    conditionOfSpawnMax: 0.92
+    dropRate: 12
     priority: 2
     radius: 3
   - obstaclePrefab: {fileID: 3300432645074524126, guid: e62359bcb39812e498871c2fad4e1fa9, type: 3}
-    conditionOfSpawnMin: 0.696
-    conditionOfSpawnMax: 0.714
+    conditionOfSpawnMin: 0.685
+    conditionOfSpawnMax: 0.687
     dropRate: 2
     priority: 1
-    radius: 4
+    radius: 6
   chunkListAll:
   - chunkPrefab: {fileID: 1386411307857276025, guid: ba67c09f54fb346a9ae18930cfb4925d, type: 3}
     dropRate: 100
-    radiusOfChunk: 22
+    radiusOfChunk: 25
     chunkRotation: 116
 --- !u!114 &755335492
 MonoBehaviour:
@@ -3651,7 +3651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Padding: {x: 0, y: 0, z: 0, w: -10}
   m_Softness: {x: 400, y: 0}
 --- !u!1 &1185017403
 GameObject:

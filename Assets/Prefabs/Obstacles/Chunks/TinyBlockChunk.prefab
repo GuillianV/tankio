@@ -144,7 +144,7 @@ MonoBehaviour:
   - {x: -2.077404, y: -6.9957027, z: 0}
   m_ShapePathHash: -1495147881
   m_Mesh: {fileID: 0}
-  m_InstanceId: 37226
+  m_InstanceId: 66640
 --- !u!1 &6105545199210052045
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +305,7 @@ MonoBehaviour:
   - {x: -2.717761, y: 7.9755745, z: 0}
   m_ShapePathHash: 1740444388
   m_Mesh: {fileID: 0}
-  m_InstanceId: -36154
+  m_InstanceId: 66656
 --- !u!1001 &360572142122381149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -316,6 +316,14 @@ PrefabInstance:
     - target: {fileID: 394286920018867051, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTiling
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -442727467
       objectReference: {fileID: 0}
     - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
       propertyPath: m_SpriteTileMode
@@ -392,6 +400,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -442727467
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
       propertyPath: m_SpriteTileMode
       value: 1
       objectReference: {fileID: 0}
@@ -466,6 +482,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -442727467
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
       propertyPath: m_SpriteTileMode
       value: 1
       objectReference: {fileID: 0}
@@ -538,6 +562,14 @@ PrefabInstance:
     - target: {fileID: 394286920018867051, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTiling
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -442727467
       objectReference: {fileID: 0}
     - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
       propertyPath: m_SpriteTileMode
@@ -706,6 +738,14 @@ PrefabInstance:
     - target: {fileID: 394286920018867051, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTiling
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -442727467
       objectReference: {fileID: 0}
     - target: {fileID: 2578468025664432531, guid: 82fe94179e8fe314eb07c680f82f8d16, type: 3}
       propertyPath: m_SpriteTileMode
