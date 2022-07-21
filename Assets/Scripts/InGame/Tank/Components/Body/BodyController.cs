@@ -83,7 +83,15 @@ public class BodyController
 
     public void SetHealt(float newValue)
     {
-        health = newValue;
+        if (newValue > GetMaxHealt())
+        {
+            health = GetMaxHealt();
+        }
+        else
+        {
+            health = newValue;
+        }
+        
         
     }
 

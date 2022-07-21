@@ -2165,6 +2165,13 @@ MonoBehaviour:
   waveDifficulty: 0
   timeBeforeNextWave: 0
   toggleSpawn: 0
+  listOfBonus:
+  - upgradeLevel: 0
+    dataList: {fileID: 11400000, guid: a217800ed9c6f9348a724560971a4241, type: 2}
+    description: Regen tank life by {0}.
+    descriptionAttributesName:
+    - lifeEarned
+    gameObjectToInstanciate: {fileID: 605830268701001615, guid: c4f21ef2806513247af59c95535ad669, type: 3}
 --- !u!114 &755335493
 MonoBehaviour:
   m_ObjectHideFlags: 0

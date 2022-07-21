@@ -12,6 +12,7 @@ TagManager:
   - UIMobile
   - FireUIMobile
   - Projectile
+  - Bonus
   layers:
   - Default
   - TransparentFX

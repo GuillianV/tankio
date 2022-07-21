@@ -62,7 +62,10 @@ public class WaveManager : MonoBehaviour
     
     public float timeBeforeNextWave =0;
     public bool toggleSpawn;
+
     
+    public List<BaseGameObjectData> listOfBonus = new List<BaseGameObjectData>();
+
     private GameManager m_game;
     private bool isSpawned = false;
     private bool isNextWave = false;
@@ -165,13 +168,25 @@ public class WaveManager : MonoBehaviour
         m_game.Ui.SetWaveUI(actualWave);
     }
 
-    
+    public void SpawnBonus()
+    {
+        BaseGameObjectData bonusChoosed = listOfBonus.First();
+        GameObject? goCreated =  m_game.Map.SpawnGameObject(bonusChoosed.gameObjectToInstanciate,4);
+        if (goCreated != null)
+        {
+            LifeManager lifeManager = goCreated.GetComponent<LifeManager>();
+            lifeManager.Bind(bonusChoosed.dataList.scriptableDatas.First());
+        }
+        
+    }
 
     public void SpawnWave(int difficultyLevel)
     {
 
         if (toggleSpawn)
             return;
+        
+        SpawnBonus();
         
         if ((actualWave + 1) % 5 == 0)
         {

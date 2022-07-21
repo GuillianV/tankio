@@ -413,9 +413,11 @@ public class MapGeneratorManager : MonoBehaviour
         }
     }
 
-    public void SpawnGameObject(GameObject gameObjectToInstanciante, int areaToSpawn , int iterate = 0)
+    [CanBeNull]
+    public GameObject SpawnGameObject(GameObject gameObjectToInstanciante, int areaToSpawn , int iterate = 0)
     {
-        System.Random rand = new System.Random(Convert.ToInt32(noiseOptions.seed + iterate));
+        GameObject goCreated = null;
+        System.Random rand = new System.Random(Convert.ToInt32(UnityEngine.Random.Range(0,100)+  noiseOptions.seed + iterate));
         int x = rand.Next(0, noiseOptions.mapWidth);
         int y = rand.Next(0, noiseOptions.mapHeight);
 
@@ -434,16 +436,24 @@ public class MapGeneratorManager : MonoBehaviour
 
                 goInstancied.transform.localPosition =
                     new Vector3(posX, posY, baseMap.parent.transform.position.z);
+
+                goCreated = goInstancied;
                 
                 Debug.Log("GameObject Instancied at : X = " +posX+" Y = "+posY);
+            }
+            else
+            {
+                int newIte = iterate += 1;
+                goCreated = SpawnGameObject(gameObjectToInstanciante, areaToSpawn, newIte);
             }
         }
         else
         {
             int newIte = iterate += 1;
-            SpawnGameObject(gameObjectToInstanciante, areaToSpawn, newIte);
+            goCreated = SpawnGameObject(gameObjectToInstanciante, areaToSpawn, newIte);
         }
 
+        return goCreated;
 
     }
 
