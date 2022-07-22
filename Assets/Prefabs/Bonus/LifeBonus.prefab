@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: -2887476609638344616}
   - component: {fileID: 5618887948597629291}
   - component: {fileID: 8309354951468468982}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LifeBonus
-  m_TagString: Untagged
+  m_TagString: Bonus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
