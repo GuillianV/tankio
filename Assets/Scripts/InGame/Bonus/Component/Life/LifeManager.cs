@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LifeManager : MonoBehaviour 
+public class LifeManager : MonoBehaviour ,IBonusManager
 {
     public BaseAsset lifeAsset ;
     public BaseAnimator lifeAnimator;

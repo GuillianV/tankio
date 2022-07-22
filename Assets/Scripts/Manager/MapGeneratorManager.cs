@@ -79,6 +79,7 @@ public class MapGeneratorManager : MonoBehaviour
     public List<Chunk> chunkListAll = new List<Chunk>();
 
 
+    private int randIterate = 0;
     private bool[,] m_mapUsed;
     private float[,] noiseMap;
 
@@ -414,10 +415,10 @@ public class MapGeneratorManager : MonoBehaviour
     }
 
     [CanBeNull]
-    public GameObject SpawnGameObject(GameObject gameObjectToInstanciante, int areaToSpawn , int iterate = 0)
+    public GameObject SpawnGameObject(GameObject gameObjectToInstanciante, int areaToSpawn)
     {
         GameObject goCreated = null;
-        System.Random rand = new System.Random(Convert.ToInt32(UnityEngine.Random.Range(0,100)+  noiseOptions.seed + iterate));
+        System.Random rand = new System.Random(Convert.ToInt32(UnityEngine.Random.Range(0,100)+  noiseOptions.seed + randIterate));
         int x = rand.Next(0, noiseOptions.mapWidth);
         int y = rand.Next(0, noiseOptions.mapHeight);
 
@@ -443,14 +444,14 @@ public class MapGeneratorManager : MonoBehaviour
             }
             else
             {
-                int newIte = iterate += 1;
-                goCreated = SpawnGameObject(gameObjectToInstanciante, areaToSpawn, newIte);
+                randIterate += 1;
+                goCreated = SpawnGameObject(gameObjectToInstanciante, areaToSpawn);
             }
         }
         else
         {
-            int newIte = iterate += 1;
-            goCreated = SpawnGameObject(gameObjectToInstanciante, areaToSpawn, newIte);
+            randIterate += 1;
+            goCreated = SpawnGameObject(gameObjectToInstanciante, areaToSpawn);
         }
 
         return goCreated;

@@ -65,7 +65,8 @@ public class WaveManager : MonoBehaviour
 
     
     public List<BaseGameObjectData> listOfBonus = new List<BaseGameObjectData>();
-
+    private int nextIte = 0;
+    
     private GameManager m_game;
     private bool isSpawned = false;
     private bool isNextWave = false;
@@ -170,12 +171,18 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnBonus()
     {
-        BaseGameObjectData bonusChoosed = listOfBonus.First();
+        System.Random rand = new System.Random(Convert.ToInt32(m_game.Map.noiseOptions.seed+nextIte));
+        nextIte++;
+        
+        BaseGameObjectData bonusChoosed = listOfBonus[rand.Next(0, listOfBonus.Count)];
         GameObject? goCreated =  m_game.Map.SpawnGameObject(bonusChoosed.gameObjectToInstanciate,4);
         if (goCreated != null)
         {
-            LifeManager lifeManager = goCreated.GetComponent<LifeManager>();
-            lifeManager.Bind(bonusChoosed.dataList.scriptableDatas.First());
+            IBonusManager iBonusManager = goCreated.GetComponent<IBonusManager>();
+            if (iBonusManager != null)
+            {
+                iBonusManager.Bind(bonusChoosed.dataList.scriptableDatas.First());
+            }
         }
         
     }
