@@ -181,7 +181,7 @@ public class WaveManager : MonoBehaviour
             IBonusManager iBonusManager = goCreated.GetComponent<IBonusManager>();
             if (iBonusManager != null)
             {
-                iBonusManager.Bind(bonusChoosed.dataList.scriptableDatas.First());
+                iBonusManager.Bind(bonusChoosed.dataList.scriptableDatas[rand.Next(0,  bonusChoosed.dataList.scriptableDatas.Count)]);
             }
         }
         
