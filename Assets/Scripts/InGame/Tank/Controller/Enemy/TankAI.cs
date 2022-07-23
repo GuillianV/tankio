@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Security.Cryptography;
 using Pathfinding;
 using UnityEngine;
@@ -60,14 +61,20 @@ public class TankAI : MonoBehaviour
 
     public void UpdateAstar()
     {
+        
         m_aiPath.maxSpeed = m_tracksManager.tracksController.GetTrackSpeed() * Time.deltaTime * m_Game.TimeManager.timeScale * velocityRate;
         m_aiPath.maxAcceleration = m_tracksManager.tracksController.GetTrackSpeed() * Time.deltaTime * m_Game.TimeManager.timeScale * velocityRate;
         m_aiPath.rotationSpeed = m_tracksManager.tracksController.GetTrackRotationSpeed() * Time.deltaTime * m_Game.TimeManager.timeScale * 100 * velocityRate;
         m_aiPath.repathRate = repathRate;
+       
     }
 
     private void FixedUpdate()
     {
+        
+        //350 ~ 1300t
+      
+       
         UpdateAstar();
 
         if (m_Game.TimeManager.timeScale > 0)
@@ -95,7 +102,8 @@ public class TankAI : MonoBehaviour
                 }
             }
         }
-
+       
+     
 
     }
 

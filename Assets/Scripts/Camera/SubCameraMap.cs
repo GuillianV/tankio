@@ -53,8 +53,5 @@ public class SubCameraMap : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-       
-    }
+ 
 }

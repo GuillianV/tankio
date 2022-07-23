@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -74,11 +75,14 @@ public class GameManager : MonoBehaviour
 
     }
 
-
-
+    
     
     private void Update()
     {
+    
+
+        //20 t
+        
         //Pause game
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -89,6 +93,9 @@ public class GameManager : MonoBehaviour
         {
             OpenShop();
         }
+        
+        
+  
     }
 
     #endregion

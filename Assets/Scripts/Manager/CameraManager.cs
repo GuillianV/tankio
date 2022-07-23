@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,9 +35,14 @@ public class CameraManager : MonoBehaviour
         objectToFollow = _objectToFollow;
     }
 
+
+    
     // Update is called once per frame
     void FixedUpdate()
     {
+     
+        // 220 t
+        
         if (followObject && objectToFollow != null)
         {
 
@@ -48,7 +54,6 @@ public class CameraManager : MonoBehaviour
 
             LerpCameraTo(objectToFollow.transform.position, speed,subCamera);
         } 
-        
         
 
     }

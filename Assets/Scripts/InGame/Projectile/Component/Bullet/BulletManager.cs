@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class BulletManager : MonoBehaviour, IBulletManager
@@ -62,9 +63,14 @@ public class BulletManager : MonoBehaviour, IBulletManager
     }
 
 
-
+  
     private void FixedUpdate()
     {
+        
+      
+      
+      
+        //41 t
         if (m_projectileRigidbody2D != null)
         {
             m_projectileRigidbody2D.velocity = new Vector2(bulletController.GetDirection().x * Time.deltaTime * m_Game.TimeManager.timeScale * bulletController.GetVelocity() * 100,
@@ -73,7 +79,11 @@ public class BulletManager : MonoBehaviour, IBulletManager
         }
 
 
+      
     }
+
+
+  
 
     private void OnCollisionEnter2D(Collision2D elementCollided)
     {
