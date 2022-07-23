@@ -111,13 +111,13 @@ public class EnemyManager : MonoBehaviour
 
         rigidbody2D.freezeRotation = false;
 
-        aIPath.radius = 2;
+        aIPath.radius = 2.5f;
         aIPath.orientation = OrientationMode.YAxisForward;
      
         uIEnemyArrow.arrowPrefab = uiArrow;
 
-        tankAI.repathRate = 0.4f;
-        tankAI.velocityRate = 0.4f;
+        tankAI.repathRate = 0.6f;
+        tankAI.velocityRate = 0.6f;
 
 
 
