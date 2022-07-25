@@ -20,7 +20,8 @@ public class BulletManager : MonoBehaviour, IBulletManager
     private GameManager m_Game;
     private TankController tankController;
 
-
+    private float _BulletVelocity;
+    private Vector3 _BulletDirection;
     void IManager.Bind()
     {
        
@@ -34,6 +35,9 @@ public class BulletManager : MonoBehaviour, IBulletManager
             bulletController.BindController(bulletData);
             bulletAsset.BindAssets();
             bulletAnimator.BindAnimators(bulletData.animators);
+
+            _BulletVelocity = bulletController.GetVelocity();
+            _BulletDirection = bulletController.GetDirection();
         }
 
     }
@@ -62,19 +66,17 @@ public class BulletManager : MonoBehaviour, IBulletManager
 
     }
 
-
+ 
   
     private void FixedUpdate()
     {
-        
-      
-      
-      
+       
         //41 t
+        //new 15 t
         if (m_projectileRigidbody2D != null)
         {
-            m_projectileRigidbody2D.velocity = new Vector2(bulletController.GetDirection().x * Time.deltaTime * m_Game.TimeManager.timeScale * bulletController.GetVelocity() * 100,
-               bulletController.GetDirection().y * Time.deltaTime * m_Game.TimeManager.timeScale * bulletController.GetVelocity() * 100);
+            m_projectileRigidbody2D.velocity = new Vector2(_BulletDirection.x * Time.deltaTime * m_Game.TimeManager.timeScale * _BulletVelocity * 100,
+               _BulletDirection.y * Time.deltaTime * m_Game.TimeManager.timeScale * _BulletVelocity * 100);
 
         }
 
@@ -101,6 +103,8 @@ public class BulletManager : MonoBehaviour, IBulletManager
         {
             Bounce(elementCollided.contacts[0].normal);
             bulletController.SetBounce(bulletController.GetBounce() - 1);
+            _BulletVelocity = bulletController.GetVelocity();
+            _BulletDirection = bulletController.GetDirection();
         }
 
 

@@ -40,7 +40,8 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-     
+        
+
         // 220 t
         
         if (followObject && objectToFollow != null)
@@ -54,6 +55,7 @@ public class CameraManager : MonoBehaviour
 
             LerpCameraTo(objectToFollow.transform.position, speed,subCamera);
         } 
+        
         
 
     }

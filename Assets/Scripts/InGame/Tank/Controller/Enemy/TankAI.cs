@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using Pathfinding;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class TankAI : MonoBehaviour
 {
@@ -30,7 +31,15 @@ public class TankAI : MonoBehaviour
     private Transform spawnBullet;
     private GameObject bullet;
 
-
+    
+    private int refreshTick = 10;
+    private Transform target;
+    private float TowerRotationSpeed;
+    private float TrackSpeed;
+    private float TrackRotationSpeed;
+    private Vector3 spawnBulletUp;
+    private Vector3 spawnBulletPos;
+    
     private void Awake()
     {
         m_Game = GameManager.Instance;
@@ -48,62 +57,74 @@ public class TankAI : MonoBehaviour
         m_towerManager = m_tankController.GetTankManager<TowerManager>();
         m_gunManager = m_tankController.GetTankManager<GunManager>();
         towerTransform = m_towerManager.towerAsset.CallAsset("Tower").transform;
+        TowerRotationSpeed = m_towerManager.towerController.GetTowerRotationSpeed();
+        TrackRotationSpeed = m_tracksManager.tracksController.GetTrackRotationSpeed();
+        TrackSpeed = m_tracksManager.tracksController.GetTrackSpeed();
         spawnBullet = m_gunManager.gunAsset.CallAsset("BulletSpawn").transform;
-   
-       
+      
       m_tracksManager.tracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving", true);
       m_tracksManager.tracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving", true);
 
+      
+      target =  m_aiDestinationSetter.target;
+      if (target == null)
+      {
+          Debug.LogError("TargetNotFound TankAI");
+      }
 
+      
         UpdateAstar();
+        
+        
 
     }
 
     public void UpdateAstar()
     {
         
-        m_aiPath.maxSpeed = m_tracksManager.tracksController.GetTrackSpeed() * Time.deltaTime * m_Game.TimeManager.timeScale * velocityRate;
-        m_aiPath.maxAcceleration = m_tracksManager.tracksController.GetTrackSpeed() * Time.deltaTime * m_Game.TimeManager.timeScale * velocityRate;
-        m_aiPath.rotationSpeed = m_tracksManager.tracksController.GetTrackRotationSpeed() * Time.deltaTime * m_Game.TimeManager.timeScale * 100 * velocityRate;
+        m_aiPath.maxSpeed = TrackSpeed * Time.deltaTime * velocityRate;
+        m_aiPath.maxAcceleration = TrackSpeed * Time.deltaTime  * velocityRate;
+        m_aiPath.rotationSpeed = TrackRotationSpeed * Time.deltaTime * 100 * velocityRate;
         m_aiPath.repathRate = repathRate;
        
     }
 
+
+    
     private void FixedUpdate()
     {
         
-        //350 ~ 1300t
-      
-       
-        UpdateAstar();
-
+        //Old 350 ~ 1300
+        //New 150
+        
+        
         if (m_Game.TimeManager.timeScale > 0)
         {
-       
-            if (m_aiDestinationSetter.target != null)
+            UpdateAstar();
+            Vector3 targetPos = target?.position ?? Vector3.zero;
+            towerTransform.transform.rotation = Quaternion.Slerp(towerTransform.transform.rotation, TMath.GetAngleFromVector2D( targetPos- towerTransform.transform.position, -90), Time.deltaTime * m_Game.TimeManager.timeScale * TowerRotationSpeed);
+            
+            if (refreshTick <= 0)
             {
-                Vector3 vectorToTarget = new Vector3(m_aiDestinationSetter.target.position.x, m_aiDestinationSetter.target.position.y, towerTransform.transform.position.z) - towerTransform.transform.position;
-                Quaternion q = TMath.GetAngleFromVector2D(vectorToTarget, -90);
-                towerTransform.transform.rotation = Quaternion.Slerp(towerTransform.transform.rotation, q, Time.deltaTime * m_Game.TimeManager.timeScale * m_towerManager.towerController.GetTowerRotationSpeed());
-
-                RaycastHit2D hit = Physics2D.Raycast(new Vector2(spawnBullet.position.x, spawnBullet.position.y), new Vector2(spawnBullet.transform.up.x, spawnBullet.transform.up.y));
-                if (hit != false)
+                spawnBulletUp = spawnBullet.up;
+                spawnBulletPos = spawnBullet.position;
+                TowerRotationSpeed = m_towerManager.towerController.GetTowerRotationSpeed();
+                TrackRotationSpeed = m_tracksManager.tracksController.GetTrackRotationSpeed();
+                
+                RaycastHit2D hit = Physics2D.Raycast(new Vector2(spawnBulletPos.x, spawnBulletPos.y), new Vector2(spawnBulletUp.x,spawnBulletUp.y));
+                if (hit != false && hit.collider.gameObject.CompareTag("Player") && !isReloading)
                 {
-                    if (hit.collider.gameObject.CompareTag("Player"))
-                    {
-                        if (!isReloading)
-                        {
-                           GameObject ammo =  m_gunManager.Shoot();
-                          
-                            isReloading = true;
-                            StartCoroutine(Reload());
-                        }
-                    }
+                    /*GameObject ammo =*/  m_gunManager.Shoot();
+                    isReloading = true;
+                    StartCoroutine(Reload());
+                  
                 }
+
+                refreshTick = 10;
             }
+
+            refreshTick--;
         }
-       
-     
 
     }
 
