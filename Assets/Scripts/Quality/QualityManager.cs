@@ -23,7 +23,7 @@ public class QualityManager : MonoBehaviour
         deviceHertz = PlayerPrefs.GetInt("Screen_pref_hz", Screen.currentResolution.refreshRate);
         deviceFullScreen = PlayerPrefs.GetInt("Screen_pref_full", 1);
         deviceQuality = PlayerPrefs.GetInt("Screen_pref_quality", 3);
-        QualitySettings.vSyncCount = 0;
+        QualitySettings.vSyncCount = 1;
         Screen.SetResolution(deviceWidth, deviceHeight, Convert.ToBoolean(deviceFullScreen), deviceHertz);
         Application.targetFrameRate = deviceHertz;
         QualitySettings.renderPipeline = URPQuality[deviceQuality];

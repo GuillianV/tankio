@@ -82,9 +82,9 @@ public class TankAI : MonoBehaviour
     public void UpdateAstar()
     {
         
-        m_aiPath.maxSpeed = TrackSpeed * Time.deltaTime * velocityRate;
-        m_aiPath.maxAcceleration = TrackSpeed * Time.deltaTime  * velocityRate;
-        m_aiPath.rotationSpeed = TrackRotationSpeed * Time.deltaTime * 100 * velocityRate;
+        m_aiPath.maxSpeed = TrackSpeed * Time.deltaTime  * m_Game.TimeManager.timeScale * velocityRate;
+        m_aiPath.maxAcceleration = TrackSpeed * Time.deltaTime   * m_Game.TimeManager.timeScale * velocityRate;
+        m_aiPath.rotationSpeed = TrackRotationSpeed * Time.deltaTime  * m_Game.TimeManager.timeScale * 100 * velocityRate;
         m_aiPath.repathRate = repathRate;
        
     }
