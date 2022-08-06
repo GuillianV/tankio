@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
         {
             Ui.ShowPausedMenu();
             Shop.HideShopMenu();
-            TimeManager.timeScale = 0;
+            TimeManager.DisableTime();
             shopIsOpen = false;
             gameIsPaused = true;
         }
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         {
             Ui.HidePausedMenu();
             Shop.HideShopMenu();
-            TimeManager.timeScale = 1;
+            TimeManager.EnableTime();
             shopIsOpen = false;
             gameIsPaused = false;
         }
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
         {
             Ui.HidePausedMenu();
             Shop.ShowShopMenu();
-            TimeManager.timeScale = 0;
+            TimeManager.DisableTime();
             shopIsOpen = true;
             gameIsPaused = false;
         }
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
         {
             Shop.HideShopMenu();
             Ui.HidePausedMenu();
-            TimeManager.timeScale = 1;
+            TimeManager.EnableTime();
             shopIsOpen = false;
             gameIsPaused = false;
         }
@@ -174,7 +174,7 @@ public class GameManager : MonoBehaviour
 
         shopIsOpen = true;
         gameIsPaused = false;
-        TimeManager.timeScale = 0;
+        TimeManager.DisableTime();
         Shop.ShowShopMenu();
         Ui.HideInGameMenu();
         Ui.HidePausedMenu();
@@ -186,8 +186,8 @@ public class GameManager : MonoBehaviour
             return;
 
         shopIsOpen = false;
-        gameIsPaused = true;
-        TimeManager.timeScale = 0;
+        gameIsPaused = true; 
+        TimeManager.DisableTime();
         Shop.HideShopMenu();
         Ui.HideInGameMenu();
         Ui.ShowPausedMenu();
@@ -200,7 +200,7 @@ public class GameManager : MonoBehaviour
 
         shopIsOpen = false;
         gameIsPaused = false;
-        TimeManager.timeScale = 1;
+        TimeManager.EnableTime();
         Shop.HideShopMenu();
         Ui.ShowInGameMenu();
         Ui.HidePausedMenu();

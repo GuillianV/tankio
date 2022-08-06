@@ -61,7 +61,8 @@ public class TankAI : MonoBehaviour
         TrackRotationSpeed = m_tracksManager.tracksController.GetTrackRotationSpeed();
         TrackSpeed = m_tracksManager.tracksController.GetTrackSpeed();
         spawnBullet = m_gunManager.gunAsset.CallAsset("BulletSpawn").transform;
-      
+        m_Game.TimeManager.OnTimeChanged += TimeChangedHandler;
+        
       m_tracksManager.tracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving", true);
       m_tracksManager.tracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving", true);
 
@@ -82,9 +83,9 @@ public class TankAI : MonoBehaviour
     public void UpdateAstar()
     {
         
-        m_aiPath.maxSpeed = TrackSpeed * Time.deltaTime  * m_Game.TimeManager.timeScale * velocityRate;
-        m_aiPath.maxAcceleration = TrackSpeed * Time.deltaTime   * m_Game.TimeManager.timeScale * velocityRate;
-        m_aiPath.rotationSpeed = TrackRotationSpeed * Time.deltaTime  * m_Game.TimeManager.timeScale * 100 * velocityRate;
+        m_aiPath.maxSpeed = TrackSpeed * Time.deltaTime   * velocityRate;
+        m_aiPath.maxAcceleration = TrackSpeed * Time.deltaTime   * velocityRate;
+        m_aiPath.rotationSpeed = TrackRotationSpeed * Time.deltaTime   * 100 * velocityRate;
         m_aiPath.repathRate = repathRate;
        
     }
@@ -100,7 +101,7 @@ public class TankAI : MonoBehaviour
         
         if (m_Game.TimeManager.timeScale > 0)
         {
-            UpdateAstar();
+            
             Vector3 targetPos = target?.position ?? Vector3.zero;
             towerTransform.transform.rotation = Quaternion.Slerp(towerTransform.transform.rotation, TMath.GetAngleFromVector2D( targetPos- towerTransform.transform.position, -90), Time.deltaTime * m_Game.TimeManager.timeScale * TowerRotationSpeed);
             
@@ -125,6 +126,7 @@ public class TankAI : MonoBehaviour
 
             refreshTick--;
         }
+       
 
     }
 
@@ -133,6 +135,17 @@ public class TankAI : MonoBehaviour
     {
         yield return new WaitForSeconds(m_gunManager.gunController.GetReloadTimeSpeed());
         isReloading = false;
+    }
+
+    public void TimeChangedHandler(object sender, BoolEventargs boolEventargs)
+    {
+        //Enable time
+        m_aiPath.canMove = boolEventargs.Value;
+        if (boolEventargs.Value)
+        {
+            UpdateAstar();
+        }
+        
     }
 
  
