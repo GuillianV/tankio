@@ -2406,6 +2406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d561e3e54b30f44a3cda393ae523ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playList: {fileID: 11400000, guid: 09c936874e40b9d4ea246e4f5707a627, type: 2}
   sounds:
   - name: BackgroundMusic
     clip: {fileID: 8300000, guid: 722c048c2af6e1949bc1bab85b8fa8e5, type: 3}
@@ -2447,7 +2448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdda46f974da8ce47a877ad1dee2866a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeScale: 0
 --- !u!114 &755335497
 MonoBehaviour:
   m_ObjectHideFlags: 0
