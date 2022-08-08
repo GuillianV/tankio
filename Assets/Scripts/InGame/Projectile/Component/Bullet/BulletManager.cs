@@ -38,6 +38,8 @@ public class BulletManager : MonoBehaviour, IBulletManager
 
             _BulletVelocity = bulletController.GetVelocity();
             _BulletDirection = bulletController.GetDirection();
+
+            m_Game.TimeManager.OnTimeChanged += TimeChangedHandler;
         }
 
     }
@@ -45,7 +47,7 @@ public class BulletManager : MonoBehaviour, IBulletManager
     void IBulletManager.AdditionalBulletData(ScriptableObject data, float Velocity, string senderTag, Vector3 baseDirection)
     {
         BindData(data);
-
+        
         bulletController.SetDirection(baseDirection);
         bulletController.SetSenderTag(senderTag);
         bulletController.SetVelocity(Velocity);
@@ -130,6 +132,11 @@ public class BulletManager : MonoBehaviour, IBulletManager
         Destroy(gameObject);
     }
 
+    public void TimeChangedHandler(object sender, BoolEventargs boolEventargs)
+    {
+        bulletAnimator.ToggleAllAnimators(boolEventargs.Value);
+
+    }
 
 
 

@@ -141,10 +141,12 @@ public class TankAI : MonoBehaviour
     {
         //Enable time
         m_aiPath.canMove = boolEventargs.Value;
+        m_tracksManager.tracksAnimator.ToggleAllAnimators(boolEventargs.Value);
         if (boolEventargs.Value)
         {
             UpdateAstar();
         }
+       
         
     }
 

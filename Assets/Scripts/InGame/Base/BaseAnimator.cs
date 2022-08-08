@@ -56,4 +56,30 @@ public class BaseAnimator
     {
         return AnimationsDico[animatorName]._animator;
     }
+
+    public void EnableAllAnimators()
+    {
+        AnimationsList?.ForEach(al =>
+        {  if (al._animator == null)return;
+            al._animator.enabled = true;
+        });
+    }
+    
+    public void DisableAllAnimators()
+    {
+        AnimationsList?.ForEach(al =>
+        {  if (al._animator == null)return;
+            al._animator.enabled = false;
+        });
+    }
+
+    public void ToggleAllAnimators(bool value)
+    {
+        AnimationsList?.ForEach(al =>
+        {
+            if (al._animator == null)return;
+            al._animator.enabled = value;
+        });
+    }
+    
 }
