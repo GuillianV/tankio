@@ -100,7 +100,13 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    #region Event
 
+    public event EventHandler<BoolEventargs> OnPause;
+    
+
+    #endregion
+    
     //Pause whole game
     public void PauseGame()
     {
@@ -109,6 +115,9 @@ public class GameManager : MonoBehaviour
 
         gameIsPaused = !gameIsPaused;
 
+        OnPause?.Invoke(this, new BoolEventargs(gameIsPaused));
+        
+        
         if (gameIsPaused)
         {
             Ui.ShowPausedMenu();
@@ -127,6 +136,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
 
     public void OpenShop()
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class SubCameraMap : MonoBehaviour
@@ -10,14 +11,19 @@ public class SubCameraMap : MonoBehaviour
     private GameObject m_player;
     public RectTransform canvaTransform;
     public Image subCameraBackground;
-
+    public int fps = 1;
 
     private Vector2 canvaSize;
     private Vector2 cameraSize;
+    private  float elapsed;
+    private GameManager m_Game;
     
     // Start is called before the first frame update
     void Start()
     {
+        
+        m_Game = GameManager.Instance;
+        m_Game.OnPause += GamePausedHandler;
         m_player = GameObject.FindGameObjectWithTag("Player");
         if (!subCamera)
         {
@@ -26,6 +32,8 @@ public class SubCameraMap : MonoBehaviour
         if (subCamera)
         {
 
+         
+           
             if (m_player)
             {
                      
@@ -49,9 +57,19 @@ public class SubCameraMap : MonoBehaviour
             {
                 Debug.LogWarning("Lack ui components");
             }
+
+           
           
         }
     }
 
+
+    private void GamePausedHandler(object sender, BoolEventargs boolEventargs)
+    {
+
+        subCamera.enabled = boolEventargs.Value;
+
+    }
+    
  
 }

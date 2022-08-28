@@ -46,7 +46,7 @@ public class ShadowUpdater2D : MonoBehaviour
         if (_animator)
         {
             _animator.enabled = value;
-        }
+        } 
     }
     
 }

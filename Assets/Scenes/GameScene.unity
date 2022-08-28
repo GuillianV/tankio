@@ -1281,7 +1281,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &350735929
 Transform:
@@ -2843,6 +2843,7 @@ MonoBehaviour:
   subCamera: {fileID: 824115854}
   canvaTransform: {fileID: 1876184615}
   subCameraBackground: {fileID: 1357939890}
+  fps: 1
 --- !u!114 &824115857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3907,7 +3908,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1248209664
 Transform:
