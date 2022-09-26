@@ -11,11 +11,17 @@ public class AudioManager : MonoBehaviour
 
     //Playlist part
     public PlayList playList;
+
+
+
     private AudioSource PlaylistSource;
-    private List<AudioClip> playlistClipsToPlay = new List<AudioClip>();
+    private List<MegaClip> playlistClipsToPlay = new List<MegaClip>();
     private int audioIndex = 0;
     private bool playlistStart = false;
+    private AudioSource audioSourceActual;
     public List<Sound> sounds;
+
+ 
 
     // Start is called before the first frame update
     private void Awake()
@@ -31,38 +37,36 @@ public class AudioManager : MonoBehaviour
             {
                 sound.source =  gameObject.AddComponent<AudioSource>();
             }
-            
-           sound.source.clip = sound.clip;
-           sound.source.volume = sound.volume;
-           sound.source.pitch = sound.pitch;
-           sound.source.loop = sound.loop;
+
+            sound.source.clip = sound.clip;
+            sound.source.volume = sound.volume;
+            sound.source.pitch = sound.pitch;
+            sound.source.loop = sound.loop;
         });
     }
 
     public void Play(string name)
     {
-       Sound sound =  sounds.FirstOrDefault(sound => sound.name == name);
-       if (sound.source != null)
-       {
-           sound.source.Play();
-       }
-       else
-       {
-           Debug.LogWarning("Sound : "+sound.name+" not found");
-       }
-      
+        Sound sound = sounds.FirstOrDefault(sound => sound.name == name);
+        if (sound.source != null)
+        {
+            sound.source.Play();
+        }
+        else
+        {
+            Debug.LogWarning("Sound : "+sound.name+" not found");
+        }
+
     }
 
 
 
     public void StartPlaylist()
     {
-        PlaylistSource = gameObject.AddComponent<AudioSource>();
-        PlaylistSource.volume = playList.volume;
-        PlaylistSource.pitch = (playList.pitch + 1);
+
         if (playList.isRandom)
         {
-            List<AudioClip> clipPartial = new List<AudioClip>();
+            List<MegaClip> clipPartial = new List<MegaClip>();
             playList.clips?.ForEach(c =>
             {
                 clipPartial.Add(c);
@@ -70,6 +74,28 @@ public class AudioManager : MonoBehaviour
             for (int i = playList.clips.Count; i > 0; i--)
             {
                 int rand = UnityEngine.Random.Range(0, clipPartial.Count);
+               
+
+                int minPriorite = 0;
+                int maxPriorite = 0;
+
+                clipPartial[rand].megaClips?.ForEach(megaClipsPart =>
+                {
+                    if (megaClipsPart.priority > maxPriorite)
+                        maxPriorite = megaClipsPart.priority;
+
+                    if (megaClipsPart.priority < minPriorite)
+                        minPriorite = megaClipsPart.priority;
+
+
+                    megaClipsPart.audioClip.source  = gameObject.AddComponent<AudioSource>();
+
+                });
+
+                clipPartial[rand].maxPriority = maxPriorite;
+                clipPartial[rand].minPriority = minPriorite;
+
+
                 playlistClipsToPlay.Add(clipPartial[rand]);
                 clipPartial.Remove(clipPartial[rand]);
             }
@@ -81,25 +107,48 @@ public class AudioManager : MonoBehaviour
 
         playlistStart = true;
     }
-    
-    
-    void Update () {
-        if (!PlaylistSource.isPlaying )
+
+
+
+
+    void Update()
+    {
+
+
+
+        if (playlistStart && playlistClipsToPlay.Count > 0)
         {
-            if (playlistStart && playlistClipsToPlay.Count > 0)
+
+            if (audioSourceActual == null)
+                audioSourceActual = playlistClipsToPlay[audioIndex]?.megaClips[0]?.audioClip.source;
+
+
+            if (!audioSourceActual.isPlaying)
             {
-                PlaylistSource.clip = playlistClipsToPlay[audioIndex];
-                PlaylistSource.Play();
+
+
+
+                playlistClipsToPlay[audioIndex].megaClips?.ForEach(megaClipPart =>
+                {
+                    megaClipPart.audioClip.source.clip = megaClipPart.audioClip.clip;
+                    megaClipPart.audioClip.source.volume = megaClipPart.audioClip.volume;
+                    megaClipPart.audioClip.source.pitch =   megaClipPart.audioClip.pitch;
+                    megaClipPart.audioClip.source.Play();
+
+                });
+                playlistClipsToPlay[audioIndex].playing = true;
+                audioSourceActual = playlistClipsToPlay[audioIndex]?.megaClips[0]?.audioClip.source;
+
+
                 audioIndex++;
-                if (audioIndex >= playlistClipsToPlay.Count )
+                if (audioIndex >= playlistClipsToPlay.Count)
                 {
                     audioIndex = 0;
                 }
             }
-            
-          
         }
-           
+
+
     }
-    
+
 }

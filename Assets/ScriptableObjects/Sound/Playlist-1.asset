@@ -13,10 +13,7 @@ MonoBehaviour:
   m_Name: Playlist-1
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: af2002f3928a03e4cae81db9e654862b, type: 3}
-  - {fileID: 8300000, guid: 18c5e7d5a3363f5428879e80e1b6377a, type: 3}
-  - {fileID: 8300000, guid: f0321215501292442a8d941b629555e5, type: 3}
-  - {fileID: 8300000, guid: 722c048c2af6e1949bc1bab85b8fa8e5, type: 3}
+  - {fileID: 11400000, guid: 09991b4ff0f5acd4b8ded5bfc5d4c4bb, type: 2}
   volume: 0.53
   pitch: 0
   source: {fileID: 0}
