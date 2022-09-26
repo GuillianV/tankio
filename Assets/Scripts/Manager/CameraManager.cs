@@ -1,3 +1,4 @@
+using EZCameraShake;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,8 +11,10 @@ using UnityEngine.UIElements;
 public class CameraManager : MonoBehaviour
 {
 
-    public Camera mainCamera;
+    public GameObject mainCamera;
     public Camera subCamera;
+
+  
 
     [HideInInspector]
     public bool followObject;
@@ -24,6 +27,8 @@ public class CameraManager : MonoBehaviour
 
     private GameManager m_Game; 
     
+
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -47,13 +52,13 @@ public class CameraManager : MonoBehaviour
         if (followObject && objectToFollow != null)
         {
 
-            LerpCameraTo(objectToFollow.transform.position, speed, mainCamera);
+            LerpCameraTo(objectToFollow.transform.position, speed, mainCamera.gameObject);
         }      
         
         if (followObject && objectToFollow != null && subCamera != null)
         {
 
-            LerpCameraTo(objectToFollow.transform.position, speed,subCamera);
+            LerpCameraTo(objectToFollow.transform.position, speed,subCamera.gameObject);
         } 
         
         
@@ -61,7 +66,7 @@ public class CameraManager : MonoBehaviour
     }
 
 
-    public void LerpCameraTo(Vector3 _objectToFollowPos, float _speed, Camera camera)
+    public void LerpCameraTo(Vector3 _objectToFollowPos, float _speed, GameObject camera)
     {
         camera.transform.position = Vector3.Lerp(camera.transform.position,new Vector3(_objectToFollowPos.x,_objectToFollowPos.y,camera.transform.position.z),_speed*Time.deltaTime * m_Game.TimeManager.timeScale);
     }

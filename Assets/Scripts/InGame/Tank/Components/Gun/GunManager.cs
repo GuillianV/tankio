@@ -1,3 +1,4 @@
+using EZCameraShake;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -128,10 +129,16 @@ public class GunManager : MonoBehaviour, IManager
         bulletDestroyed.Destroyed += OnBulletDestroyed;
         bulletCreated.Created += OnBulletCreated;
 
+        
         IBulletManager iBulletManager = ammo.GetComponent<IBulletManager>();
         if (iBulletManager != null)
         {
 
+
+            if (gameObject.tag == "Player")
+            {
+                CameraShaker.Instance.ShakeOnce(3, 6, .1f, .1f);
+            }
 
             iBulletManager.AdditionalBulletData(projectileEquiped.projectileData, gunController.GetBulletVelocity(), gameObject.tag, gunController.bulletSpawn.transform.up);
        

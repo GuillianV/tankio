@@ -273,4 +273,13 @@ public class PlayerManager : MonoBehaviour
         SetUiLifeOfPlayer();
         m_Game.Ui.HideDeadMenu();
     }
+
+    public void ReCreatePlayer()
+    {
+        DestroyPlayer();
+        CreatePlayer();
+        SetCameraFollowPlayer();
+        SetUiLifeOfPlayer();
+        m_Game.Ui.HideDeadMenu();
+    }
 }

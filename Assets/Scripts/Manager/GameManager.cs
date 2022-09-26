@@ -165,12 +165,28 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-
-
         Projectile.ResetProjectileManager();
         Waves.ResetWaveManager();
         Player.ResetPlayerManager();
+
+       
     }
+    
+    public void ContinueGame()
+    {
+
+        AdsManager.PlayRewardedAdd(() =>
+        {
+            Projectile.ResetProjectileManager();
+            Waves.ClearEnemies();
+            Player.ReCreatePlayer();
+        }, () =>
+        {
+            RestartGame();
+        });
+       
+    }
+    
 
     //GameManagerMobile
 
