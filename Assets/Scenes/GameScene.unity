@@ -2542,6 +2542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playList: {fileID: 11400000, guid: 09c936874e40b9d4ea246e4f5707a627, type: 2}
+  playListParent: {fileID: 755335483}
   sounds:
   - name: BackgroundMusic
     clip: {fileID: 8300000, guid: 722c048c2af6e1949bc1bab85b8fa8e5, type: 3}

@@ -20,4 +20,4 @@ MonoBehaviour:
     objectSource: {fileID: 0}
     loop: 0
     source: {fileID: 0}
-  priority: 1
+  priority: 3

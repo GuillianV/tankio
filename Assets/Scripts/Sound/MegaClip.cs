@@ -6,7 +6,8 @@ using UnityEngine;
 public class MegaClip : ScriptableObject
 {
     public List<MegaClipPart> megaClips;
-    public bool playing = false;
+
+    public string name;
 
     [HideInInspector]
     public int actualPriority { get;  set; }

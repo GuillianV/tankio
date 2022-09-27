@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
+
 
 
 public class AudioManager : MonoBehaviour
@@ -12,11 +14,12 @@ public class AudioManager : MonoBehaviour
     //Playlist part
     public PlayList playList;
 
+    public GameObject playListParent;
 
 
     private AudioSource PlaylistSource;
     private List<MegaClip> playlistClipsToPlay = new List<MegaClip>();
-    private int audioIndex = 0;
+    private int audioIndex;
     private bool playlistStart = false;
     private AudioSource audioSourceActual;
     public List<Sound> sounds;
@@ -61,7 +64,7 @@ public class AudioManager : MonoBehaviour
 
 
 
-    public void StartPlaylist()
+    public void InitPlaylist()
     {
 
         if (playList.isRandom)
@@ -73,14 +76,25 @@ public class AudioManager : MonoBehaviour
             });
             for (int i = playList.clips.Count; i > 0; i--)
             {
-                int rand = UnityEngine.Random.Range(0, clipPartial.Count);
-               
 
-                int minPriorite = 0;
-                int maxPriorite = 0;
+             
+                int rand = UnityEngine.Random.Range(0, clipPartial.Count);
+           
+                int minPriorite = -1;
+                int maxPriorite = -1;
+
+                GameObject Child = Instantiate(new GameObject(), Vector3.zero, Quaternion.identity, playListParent.transform);
+                Child.name =  clipPartial[rand].name;
+
 
                 clipPartial[rand].megaClips?.ForEach(megaClipsPart =>
                 {
+                    if (minPriorite == -1)
+                        minPriorite = megaClipsPart.priority;
+
+                    if (maxPriorite == -1)
+                        maxPriorite = megaClipsPart.priority;
+
                     if (megaClipsPart.priority > maxPriorite)
                         maxPriorite = megaClipsPart.priority;
 
@@ -88,13 +102,13 @@ public class AudioManager : MonoBehaviour
                         minPriorite = megaClipsPart.priority;
 
 
-                    megaClipsPart.audioClip.source  = gameObject.AddComponent<AudioSource>();
+                    megaClipsPart.audioClip.source  = Child.AddComponent<AudioSource>();
 
                 });
 
                 clipPartial[rand].maxPriority = maxPriorite;
                 clipPartial[rand].minPriority = minPriorite;
-
+                clipPartial[rand].actualPriority = minPriorite;
 
                 playlistClipsToPlay.Add(clipPartial[rand]);
                 clipPartial.Remove(clipPartial[rand]);
@@ -107,7 +121,6 @@ public class AudioManager : MonoBehaviour
 
         playlistStart = true;
     }
-
 
 
 
@@ -131,12 +144,17 @@ public class AudioManager : MonoBehaviour
                 playlistClipsToPlay[audioIndex].megaClips?.ForEach(megaClipPart =>
                 {
                     megaClipPart.audioClip.source.clip = megaClipPart.audioClip.clip;
-                    megaClipPart.audioClip.source.volume = megaClipPart.audioClip.volume;
                     megaClipPart.audioClip.source.pitch =   megaClipPart.audioClip.pitch;
+
+                    if (megaClipPart.priority <= playlistClipsToPlay[audioIndex].actualPriority)
+                        megaClipPart.audioClip.source.volume = megaClipPart.audioClip.volume;
+                    else
+                        megaClipPart.audioClip.source.volume = 0;
+
+
                     megaClipPart.audioClip.source.Play();
 
                 });
-                playlistClipsToPlay[audioIndex].playing = true;
                 audioSourceActual = playlistClipsToPlay[audioIndex]?.megaClips[0]?.audioClip.source;
 
 
@@ -148,6 +166,46 @@ public class AudioManager : MonoBehaviour
             }
         }
 
+
+    }
+
+
+    public void PriorityUp()
+    {
+        MegaClip megaClip = playlistClipsToPlay[audioIndex];
+
+        if (megaClip.actualPriority >= megaClip.maxPriority || megaClip.actualPriority < megaClip.minPriority)
+            return;
+
+        megaClip.actualPriority+=1;
+        megaClip.megaClips?.ForEach(megaClipPart =>
+        {
+            if (megaClipPart.priority <= megaClip.actualPriority)
+                megaClipPart.audioClip.source.volume = megaClipPart.audioClip.volume;
+            else
+                megaClipPart.audioClip.source.volume = 0;
+
+        });
+
+
+    }
+
+    public void PriorityDown()
+    {
+        MegaClip megaClip = playlistClipsToPlay[audioIndex];
+
+        if (megaClip.actualPriority > megaClip.maxPriority || megaClip.actualPriority <= megaClip.minPriority)
+            return;
+
+        megaClip.actualPriority -= 1;
+        megaClip.megaClips?.ForEach(megaClipPart =>
+        {
+            if (megaClipPart.priority <= megaClip.actualPriority)
+                megaClipPart.audioClip.source.volume = megaClipPart.audioClip.volume;
+            else
+                megaClipPart.audioClip.source.volume = 0;
+
+        });
 
     }
 

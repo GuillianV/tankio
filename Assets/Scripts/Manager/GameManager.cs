@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         //Permet a la camera de suivre le joueur
         Camera.SetGameObjectToFollow(Player.player);
 
-        Audio.StartPlaylist();
+        Audio.InitPlaylist();
 
 
     }
