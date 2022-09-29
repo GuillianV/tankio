@@ -58,6 +58,10 @@ public class PlayerManager : MonoBehaviour
 
     private BodyManager m_bodyManager;
     private BodyController m_bodyController;
+
+    
+    public int tankKilledMoy = 0;
+    private int tankKilledTotal = 0;
     
     public event EventHandler<TankEvent> OnPlayerDestroyed;
     public event EventHandler<TankEvent> OnPlayerCreated;
@@ -65,9 +69,29 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         m_Game = GameManager.Instance;
+        StartCoroutine(TankKilledMoyenne());
     }
 
 
+
+    IEnumerator TankKilledMoyenne()
+    {
+
+        tankKilledMoy = tankKilledTotal;
+        tankKilledTotal = 0;
+        Debug.Log("test");
+        if (tankKilledMoy > 2)
+        {
+            m_Game.Audio.PriorityUp();
+        }
+        else
+        {
+            m_Game.Audio.PriorityDown();
+        }
+        
+        yield return new WaitForSeconds(10);
+        StartCoroutine(TankKilledMoyenne());
+    }
 
     #region CreatePlayer
 
@@ -143,6 +167,7 @@ public class PlayerManager : MonoBehaviour
         tankDestroyed.Destroyed += PlayerDestroy;
         tankCreate.Created += PlayerCreated;
         tankDamage.Damaged += PlayerDamagedHandler;
+        m_Game.Enemys.TankDestroyed += PlayerKillTank;
 
 
         controllerList.ForEach(asset =>
@@ -256,11 +281,18 @@ public class PlayerManager : MonoBehaviour
           
     }
 
+    public void PlayerKillTank(object sender, TagEvent tagEvent)
+    {
+
+        tankKilledTotal+=1;
+
+    }
 
     #endregion
 
 
 
+    
 
     public void ResetPlayerManager()
     {

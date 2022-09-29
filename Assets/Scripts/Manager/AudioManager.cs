@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource audioSourceActual;
     public List<Sound> sounds;
 
- 
+    public int actualPriority;
 
     // Start is called before the first frame update
     private void Awake()
@@ -139,7 +139,7 @@ public class AudioManager : MonoBehaviour
             if (!audioSourceActual.isPlaying)
             {
 
-
+                actualPriority = playlistClipsToPlay[audioIndex].actualPriority;
 
                 playlistClipsToPlay[audioIndex].megaClips?.ForEach(megaClipPart =>
                 {
@@ -152,6 +152,7 @@ public class AudioManager : MonoBehaviour
                         megaClipPart.audioClip.source.volume = 0;
 
 
+                    
                     megaClipPart.audioClip.source.Play();
 
                 });
@@ -172,6 +173,10 @@ public class AudioManager : MonoBehaviour
 
     public void PriorityUp()
     {
+        
+        if (playlistClipsToPlay.Count <= 0)
+            return;
+        
         MegaClip megaClip = playlistClipsToPlay[audioIndex];
 
         if (megaClip.actualPriority >= megaClip.maxPriority || megaClip.actualPriority < megaClip.minPriority)
@@ -192,6 +197,10 @@ public class AudioManager : MonoBehaviour
 
     public void PriorityDown()
     {
+
+        if (playlistClipsToPlay.Count <= 0)
+            return;
+        
         MegaClip megaClip = playlistClipsToPlay[audioIndex];
 
         if (megaClip.actualPriority > megaClip.maxPriority || megaClip.actualPriority <= megaClip.minPriority)

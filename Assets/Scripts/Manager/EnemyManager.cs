@@ -14,7 +14,7 @@ public class EnemyManager : MonoBehaviour
 
     //Parent container of enemies
     public Transform parentContainer;
-    public event EventHandler<TankEvent> TankDestroyed;
+    public event EventHandler<TagEvent> TankDestroyed;
     public event EventHandler<TankEvent> TankCreated;
 
     public List<Enemy> enemyList;
@@ -48,7 +48,7 @@ public class EnemyManager : MonoBehaviour
             }
             enemiesInGame.Remove(tankController);
             enemiesInGameGO.Remove(tankDestroyed.gameObject);
-            OnTankDestroyed(tankController);
+            OnTankDestroyed(args.Tag);
         }
         
      
@@ -74,9 +74,9 @@ public class EnemyManager : MonoBehaviour
     }
 
 
-    public void OnTankDestroyed(TankController tankController)
+    public void OnTankDestroyed(string tag)
     {
-        TankDestroyed?.Invoke(this,new TankEvent(tankController));
+        TankDestroyed?.Invoke(this,new TagEvent(tag));
     }
     
     public void OnTankCreated(TankController tankController)
