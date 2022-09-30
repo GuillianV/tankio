@@ -15,15 +15,20 @@ public class AudioManager : MonoBehaviour
     public PlayList playList;
 
     public GameObject playListParent;
-
+    public List<Sound> sounds;
 
     private AudioSource PlaylistSource;
     private List<MegaClip> playlistClipsToPlay = new List<MegaClip>();
     private int audioIndex;
     private bool playlistStart = false;
     private AudioSource audioSourceActual;
-    public List<Sound> sounds;
 
+    private bool priorityUp;
+    private bool priorityDown;
+    private float actualVolumeUp = 0;
+    private float actualVolumeDown = 0.5f;
+    
+    
     public int actualPriority;
 
     // Start is called before the first frame update
@@ -122,11 +127,12 @@ public class AudioManager : MonoBehaviour
         playlistStart = true;
     }
 
+    
+    
 
-
+    
     void Update()
     {
-
 
 
         if (playlistStart && playlistClipsToPlay.Count > 0)
@@ -167,55 +173,95 @@ public class AudioManager : MonoBehaviour
             }
         }
 
+        
+        UpdatePriority();
+
 
     }
 
 
     public void PriorityUp()
     {
-        
+
+      
         if (playlistClipsToPlay.Count <= 0)
             return;
         
-        MegaClip megaClip = playlistClipsToPlay[audioIndex];
+        priorityUp = true;
+        priorityDown = false;
 
-        if (megaClip.actualPriority >= megaClip.maxPriority || megaClip.actualPriority < megaClip.minPriority)
-            return;
-
-        megaClip.actualPriority+=1;
-        megaClip.megaClips?.ForEach(megaClipPart =>
-        {
-            if (megaClipPart.priority <= megaClip.actualPriority)
-                megaClipPart.audioClip.source.volume = megaClipPart.audioClip.volume;
-            else
-                megaClipPart.audioClip.source.volume = 0;
-
-        });
+        
+        MegaClip megaClipUp = playlistClipsToPlay[audioIndex];
+        megaClipUp.actualPriority+=1;
+            
+        if (megaClipUp.actualPriority >= megaClipUp.maxPriority || megaClipUp.actualPriority < megaClipUp.minPriority)
+            megaClipUp.actualPriority = megaClipUp.maxPriority;
 
 
     }
 
     public void PriorityDown()
     {
-
+        
+      
         if (playlistClipsToPlay.Count <= 0)
             return;
         
-        MegaClip megaClip = playlistClipsToPlay[audioIndex];
+        priorityUp = false;
+        priorityDown = true ;
 
-        if (megaClip.actualPriority > megaClip.maxPriority || megaClip.actualPriority <= megaClip.minPriority)
+        
+        MegaClip megaClipDown = playlistClipsToPlay[audioIndex];
+
+        if (megaClipDown.actualPriority > megaClipDown.maxPriority || megaClipDown.actualPriority <= megaClipDown.minPriority)
             return;
-
-        megaClip.actualPriority -= 1;
-        megaClip.megaClips?.ForEach(megaClipPart =>
-        {
-            if (megaClipPart.priority <= megaClip.actualPriority)
-                megaClipPart.audioClip.source.volume = megaClipPart.audioClip.volume;
-            else
-                megaClipPart.audioClip.source.volume = 0;
-
-        });
+        megaClipDown.actualPriority -= 1;
 
     }
 
+    private void UpdatePriority()
+    {
+    
+
+        MegaClip megaClip = playlistClipsToPlay[audioIndex];
+        if (priorityUp)
+        {
+            
+            megaClip.megaClips?.ForEach(megaClipPart =>
+            {
+                if (megaClipPart.priority == megaClip.actualPriority)
+                {
+                    megaClipPart.audioClip.source.volume = Mathf.Lerp(megaClipPart.audioClip.source.volume, megaClipPart.audioClip.volume, 0.5f * Time.deltaTime);
+             
+                    if (megaClipPart.audioClip.source.volume == megaClipPart.audioClip.volume)
+                    {
+                        priorityUp = false;
+                    }
+                }
+                    
+               
+
+            });
+            
+        }else if (priorityDown)
+        {
+          
+            megaClip.megaClips?.ForEach(megaClipPart =>
+            {
+                if (megaClipPart.priority == megaClip.actualPriority + 1)
+                {
+                    megaClipPart.audioClip.source.volume  =  Mathf.Lerp(megaClipPart.audioClip.source.volume , 0f, 0.5f * Time.deltaTime);
+             
+                    if (megaClipPart.audioClip.source.volume == 0)
+                    {
+                        priorityUp = false;
+                    }
+                }
+                
+            });
+       
+
+        }
+    }
+    
 }

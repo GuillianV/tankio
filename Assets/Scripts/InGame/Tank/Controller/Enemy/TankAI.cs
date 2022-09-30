@@ -101,6 +101,11 @@ public class TankAI : MonoBehaviour
         
         if (m_Game.TimeManager.timeScale > 0)
         {
+            if (target == null)
+            {
+                Destroy(this);
+                return;
+            }
             
             Vector3 targetPos = target?.position ?? Vector3.zero;
             towerTransform.transform.rotation = Quaternion.Slerp(towerTransform.transform.rotation, TMath.GetAngleFromVector2D( targetPos- towerTransform.transform.position, -90), Time.deltaTime * m_Game.TimeManager.timeScale * TowerRotationSpeed);

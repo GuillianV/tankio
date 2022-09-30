@@ -2034,6 +2034,7 @@ MonoBehaviour:
   playerInput: {fileID: -944628639613478452, guid: 3f0dbd499027e4695920aef280ec577c, type: 3}
   notifications: 0
   player: {fileID: 0}
+  tankKilledMoy: 0
 --- !u!114 &755335487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2245,7 +2246,7 @@ MonoBehaviour:
     parentContainer: {fileID: 726811725}
     spawnerPrefab: {fileID: 92090636529140435, guid: 6953b615eb6f7594492a9e6fac8ed590, type: 3}
     tag: Spawners
-    numberSpawners: 1
+    numberSpawners: 4
   layerToAvoid: Obstacle
   iterateOfSpawn: 1000
   obstacleListAll:
@@ -2296,7 +2297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9bcc06c50fa604288f7ff4b6413664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenWaves: 20
+  timeBetweenWaves: 14
   waveDifficulty: 0
   timeBeforeNextWave: 0
   toggleSpawn: 0
@@ -2369,7 +2370,7 @@ MonoBehaviour:
   listOfShopItems:
   - identifier: 1
     itemBaseCost: 25
-    itemCostMultiplyer: 1.8
+    itemCostMultiplyer: 1.7
     objectScript: {fileID: 11400000, guid: ddb3743dba783a34b8a9bce55308fb41, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
@@ -2399,7 +2400,7 @@ MonoBehaviour:
       shopItemHelperButton: {fileID: 0}
   - identifier: 2
     itemBaseCost: 55
-    itemCostMultiplyer: 1.55
+    itemCostMultiplyer: 1.5
     objectScript: {fileID: 11400000, guid: 6f4c276984507604cb652f1fc35ef79f, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
@@ -2441,7 +2442,7 @@ MonoBehaviour:
       shopItemHelperButton: {fileID: 0}
   - identifier: 3
     itemBaseCost: 35
-    itemCostMultiplyer: 1.6
+    itemCostMultiplyer: 1.55
     objectScript: {fileID: 11400000, guid: ae4378c3adc81d84fb799149d5ccb0c6, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
@@ -2471,7 +2472,7 @@ MonoBehaviour:
       shopItemHelperButton: {fileID: 0}
   - identifier: 4
     itemBaseCost: 40
-    itemCostMultiplyer: 1.7
+    itemCostMultiplyer: 1.6
     objectScript: {fileID: 11400000, guid: bbc8960a80cf3cd4bae994b28509f2bb, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
@@ -2501,7 +2502,7 @@ MonoBehaviour:
       shopItemHelperButton: {fileID: 0}
   - identifier: 5
     itemBaseCost: 55
-    itemCostMultiplyer: 1.65
+    itemCostMultiplyer: 1.55
     objectScript: {fileID: 11400000, guid: e4a4032cd8c5d4078a553cb773e1b020, type: 2}
     calledWhenComponentUpgraded:
       m_PersistentCalls:
@@ -2572,6 +2573,7 @@ MonoBehaviour:
     objectSource: {fileID: 1124947877}
     loop: 0
     source: {fileID: 0}
+  actualPriority: 0
 --- !u!114 &755335496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3846,7 +3848,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -35}
+  m_AnchoredPosition: {x: 0, y: -34.999985}
   m_SizeDelta: {x: -160, y: -90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138146665

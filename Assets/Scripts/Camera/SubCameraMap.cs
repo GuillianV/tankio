@@ -31,12 +31,8 @@ public class SubCameraMap : MonoBehaviour
         }
         if (subCamera)
         {
-
-         
-           
             if (m_player)
             {
-                     
                 subCamera.transform.position = new Vector3(subCamera.transform.position.x, subCamera.transform.position.y,
                     m_player.transform.position.z - 10);
             }
@@ -45,11 +41,8 @@ public class SubCameraMap : MonoBehaviour
                 Debug.LogWarning("Lack player");
             }
 
-
-
             if (canvaTransform && subCameraBackground)
             {
-                  
                 subCameraBackground.rectTransform.sizeDelta =
                     new Vector2(canvaTransform.rect.width * subCamera.rect.width +5, canvaTransform.rect.height * subCamera.rect.height +5);
             }
@@ -57,9 +50,6 @@ public class SubCameraMap : MonoBehaviour
             {
                 Debug.LogWarning("Lack ui components");
             }
-
-           
-          
         }
     }
 

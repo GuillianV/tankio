@@ -115,7 +115,6 @@ public class MapGeneratorManager : MonoBehaviour
         //Genere les chunks
         GenerateChunks();
         yield return new WaitForSeconds(0.2f);
-        GenerateSpawners(spawnOptions.numberSpawners);
         AstarPath.active.data.gridGraph.SetDimensions(noiseOptions.mapWidth, noiseOptions.mapHeight, 1);
         AstarPath.active.Scan();
         st.Stop();

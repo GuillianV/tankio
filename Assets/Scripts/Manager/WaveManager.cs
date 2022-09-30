@@ -250,7 +250,7 @@ public class WaveManager : MonoBehaviour
         }
         else
         {
-            m_game.Map.GenerateSpawners(2);
+            m_game.Map.GenerateSpawners(m_game.Map.spawnOptions.numberSpawners);
             SpawnWave(waveDifficulty);
             Debug.LogWarning("Aucun Spawner trouvé");
         }

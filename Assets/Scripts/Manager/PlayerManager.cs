@@ -50,6 +50,11 @@ public class PlayerManager : MonoBehaviour
     public InputActionAsset playerInput;
     public PlayerNotifications notifications = PlayerNotifications.SendMessages;
 
+    [Header("Player Music")]
+    public int timeForResetStreak = 8;
+
+    public int tanksToKillForStepUp = 3;
+    
     //Player instancié
     [HideInInspector] public GameObject player;
 
@@ -59,9 +64,9 @@ public class PlayerManager : MonoBehaviour
     private BodyManager m_bodyManager;
     private BodyController m_bodyController;
 
+    private Coroutine _killStreakCoroutine;
     
-    public int tankKilledMoy = 0;
-    private int tankKilledTotal = 0;
+    
     
     public event EventHandler<TankEvent> OnPlayerDestroyed;
     public event EventHandler<TankEvent> OnPlayerCreated;
@@ -69,29 +74,11 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         m_Game = GameManager.Instance;
-        StartCoroutine(TankKilledMoyenne());
+        _killStreakCoroutine = StartCoroutine(TankKilledMoyenne());
     }
 
 
 
-    IEnumerator TankKilledMoyenne()
-    {
-
-        tankKilledMoy = tankKilledTotal;
-        tankKilledTotal = 0;
-        Debug.Log("test");
-        if (tankKilledMoy > 2)
-        {
-            m_Game.Audio.PriorityUp();
-        }
-        else
-        {
-            m_Game.Audio.PriorityDown();
-        }
-        
-        yield return new WaitForSeconds(10);
-        StartCoroutine(TankKilledMoyenne());
-    }
 
     #region CreatePlayer
 
@@ -281,12 +268,48 @@ public class PlayerManager : MonoBehaviour
           
     }
 
+
+
+    #endregion
+
+    #region Player Events
+
+    
     public void PlayerKillTank(object sender, TagEvent tagEvent)
     {
 
         tankKilledTotal+=1;
-
+        if (tankKilledTotal >= tanksToKillForStepUp)
+        {
+            
+            StopCoroutine(_killStreakCoroutine);
+            _killStreakCoroutine = StartCoroutine(TankKilledMoyenne());
+            m_Game.Audio.PriorityUp();
+        }
+        
     }
+    
+    #endregion
+
+    #region Player Music
+
+    private int tankKilledMoy = 0;
+    private int tankKilledTotal = 0;
+    
+    IEnumerator TankKilledMoyenne()
+    {
+
+        tankKilledMoy = tankKilledTotal;
+        tankKilledTotal = 0;
+        Debug.Log("test");
+        if (tankKilledMoy < tanksToKillForStepUp-1)
+        {
+            m_Game.Audio.PriorityDown();
+        }
+        yield return new WaitForSeconds(timeForResetStreak);
+        _killStreakCoroutine = StartCoroutine(TankKilledMoyenne());
+    }
+    
 
     #endregion
 
