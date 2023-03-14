@@ -413,10 +413,41 @@ public class MapGeneratorManager : MonoBehaviour
         }
     }
 
-    [CanBeNull]
-    public GameObject SpawnGameObject(GameObject gameObjectToInstanciante, int areaToSpawn)
+    public void SetMapUnused(int x, int y)
     {
-        GameObject goCreated = null;
+        m_mapUsed[x, y] = false;
+    }
+    
+    public void SetMapUnused(Vector2 position)
+    {
+        int posX = Convert.ToInt32(position.x);
+        int posY = Convert.ToInt32(position.y);
+        m_mapUsed[posX, posY] = false;
+    }
+
+    public void SetMapUsed(Vector2 position)
+    {
+        int posX = Convert.ToInt32(position.x);
+        int posY = Convert.ToInt32(position.y);
+        m_mapUsed[posX, posY] = true;
+    }
+
+
+    public Vector2 GetRelativeCoordonates(Vector2 mapUsedCoordonates)
+    {
+        
+           
+        float posX = (mapUsedCoordonates.x - (noiseMap.GetLength(0) / 2) + baseMap.parent.transform.position.x);
+        float posY = (mapUsedCoordonates.y - (noiseMap.GetLength(1) / 2) + baseMap.parent.transform.position.y);
+
+        return new Vector2(posX, posY);
+
+    }
+    
+    [CanBeNull]
+    public Vector2? SpawnGameObjectValid( int areaToSpawn)
+    {
+        Vector2? mapPos = null;
         System.Random rand = new System.Random(Convert.ToInt32(UnityEngine.Random.Range(0,100)+  noiseOptions.seed + randIterate));
         int x = rand.Next(0, noiseOptions.mapWidth);
         int y = rand.Next(0, noiseOptions.mapHeight);
@@ -426,34 +457,24 @@ public class MapGeneratorManager : MonoBehaviour
             //Si une collision n'a pas été detecté avec un obstacle, on instancie le prefab
             if (!IsObstacleExist(new Vector2(x, y), areaToSpawn))
             {
-                float posX = (x - (noiseMap.GetLength(0) / 2) + baseMap.parent.transform.position.x);
-                float posY = (y - (noiseMap.GetLength(1) / 2) + baseMap.parent.transform.position.y);
+             
+                mapPos = new  Vector2(x, y);
 
-
-                GameObject goInstancied = Instantiate(gameObjectToInstanciante,
-                    baseMap.parent.transform.position,
-                    new Quaternion(), baseMap.parent);
-
-                goInstancied.transform.localPosition =
-                    new Vector3(posX, posY, baseMap.parent.transform.position.z);
-
-                goCreated = goInstancied;
-                
-                Debug.Log("GameObject Instancied at : X = " +posX+" Y = "+posY);
+               
             }
             else
             {
                 randIterate += 1;
-                goCreated = SpawnGameObject(gameObjectToInstanciante, areaToSpawn);
+                mapPos = SpawnGameObjectValid( areaToSpawn);
             }
         }
         else
         {
             randIterate += 1;
-            goCreated = SpawnGameObject(gameObjectToInstanciante, areaToSpawn);
+            mapPos = SpawnGameObjectValid( areaToSpawn);
         }
 
-        return goCreated;
+        return mapPos;
 
     }
 

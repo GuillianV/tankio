@@ -22,6 +22,11 @@ class SpawnWave : Editor {
             waveManager.NextWave();
         }
         
+        if (GUILayout.Button("Spawn Bonus"))
+        {
+            waveManager.SpawnBonus();
+        }
+        
         if (GUILayout.Button("Add Spawner"))
         {
             m_game.Map.GenerateSpawners(1);
@@ -168,21 +173,47 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(TimerWave(timeBetweenWaves));
         m_game.Ui.SetWaveUI(actualWave);
     }
+    
+    
 
     public void SpawnBonus()
     {
+        
+  
         System.Random rand = new System.Random(Convert.ToInt32(m_game.Map.noiseOptions.seed+nextIte));
         nextIte++;
         
         BaseGameObjectData bonusChoosed = listOfBonus[rand.Next(0, listOfBonus.Count)];
-        GameObject? goCreated =  m_game.Map.SpawnGameObject(bonusChoosed.gameObjectToInstanciate,4);
-        if (goCreated != null)
+        Vector2? mapCoords =  m_game.Map.SpawnGameObjectValid(4);
+        if (mapCoords != null)
         {
-            IBonusManager iBonusManager = goCreated.GetComponent<IBonusManager>();
-            if (iBonusManager != null)
+
+            BaseMap baseMap = m_game.Map.baseMap;
+            GameObject goInstancied = Instantiate(bonusChoosed.gameObjectToInstanciate,
+                baseMap.parent.transform.position,
+                new Quaternion(), baseMap.parent);
+
+            if (goInstancied)
             {
-                iBonusManager.Bind(bonusChoosed.dataList.scriptableDatas[rand.Next(0,  bonusChoosed.dataList.scriptableDatas.Count)]);
+
+                Vector2 relativePos = m_game.Map.GetRelativeCoordonates(mapCoords.Value);
+             
+                m_game.Map.SetMapUsed(mapCoords.Value);
+                goInstancied.transform.localPosition =
+                    new Vector3(relativePos.x,relativePos.y, baseMap.parent.transform.position.z);
+            
+                Debug.Log("GameObject Instancied at : X = " +relativePos.x+" Y = "+relativePos.y);
+            
+                IBonusManager iBonusManager = goInstancied.GetComponent<IBonusManager>();
+                if (iBonusManager != null)
+                {
+                    iBonusManager.Bind(bonusChoosed.dataList.scriptableDatas[rand.Next(0,  bonusChoosed.dataList.scriptableDatas.Count)]);
+                    iBonusManager.BindMapPos(mapCoords.Value);
+                }
             }
+           
+
+     
         }
         
     }

@@ -8,6 +8,7 @@ public class GoldManager : MonoBehaviour ,IBonusManager
     public BaseAsset goldAsset ;
     public BaseAnimator goldAnimator;
     public GoldController goldController;
+    public Vector2 globalMapPosition = Vector2.zero;
     private GoldData goldData;
     private GameManager m_Game;
 
@@ -22,13 +23,21 @@ public class GoldManager : MonoBehaviour ,IBonusManager
         bonusCollected.Collided += BonusCollidedHandler;
     }
 
-    void BonusCollidedHandler(object sender, TagEvent tagEvent)
+    public void BindMapPos(Vector2 pos)
     {
-        if (tagEvent.Tag == "Player")
+
+        globalMapPosition = pos;
+
+    }
+
+    void BonusCollidedHandler(object sender,MapEvent mapEvent)
+    {
+        if (mapEvent.Tag == "Player")
         {
             GameObject player = GameObject.FindWithTag("Player");
             m_Game.Shop.golds += goldController.GetGoldEarned();
             m_Game.Ui.SetGoldUI(m_Game.Shop.golds);
+            m_Game.Map.SetMapUnused(globalMapPosition);
             Destroy(gameObject);
         }
     }

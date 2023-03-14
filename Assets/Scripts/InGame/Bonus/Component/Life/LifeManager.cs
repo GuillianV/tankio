@@ -8,6 +8,7 @@ public class LifeManager : MonoBehaviour ,IBonusManager
     public BaseAsset lifeAsset ;
     public BaseAnimator lifeAnimator;
     public LifeController lifeController;
+    public Vector2 globalMapPosition = Vector2.zero;
     private LifeData lifeData;
     private GameManager m_Game;
 
@@ -22,16 +23,27 @@ public class LifeManager : MonoBehaviour ,IBonusManager
         bonusCollected.Collided += BonusCollidedHandler;
     }
 
-    void BonusCollidedHandler(object sender, TagEvent tagEvent)
+    public void BindMapPos(Vector2 pos)
     {
-        if (tagEvent.Tag == "Player")
+
+        globalMapPosition = pos;
+
+    }
+    
+    void BonusCollidedHandler(object sender, MapEvent mapEvent)
+    {
+        if (mapEvent.Tag == "Player")
         {
             GameObject player = GameObject.FindWithTag("Player");
             BodyManager playerBodyManager = player.GetComponent<BodyManager>();
             playerBodyManager.bodyController.SetHealt(playerBodyManager.bodyController.GetHealt() + lifeController.GetLifeEarned());
             m_Game.Ui.SetLifeUI(playerBodyManager.bodyController.GetMaxHealt(),playerBodyManager.bodyController.GetHealt());
+            m_Game.Map.SetMapUnused(globalMapPosition);
             Destroy(gameObject);
+           
         }
+        
+        
     }
     
 

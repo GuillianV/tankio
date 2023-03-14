@@ -95,8 +95,8 @@ public class PlayerMovementMobile : PlayerController
 
             if(m_Game.TimeManager.timeScale > 0)
             {
-                m_TracksAnimator.CallAnimator("Tracks-Left").SetBool("Moving", true);
-                m_TracksAnimator.CallAnimator("Tracks-Right").SetBool("Moving", true);
+                m_TracksAnimator?.CallAnimator("Tracks-Left")?.SetBool("Moving", true);
+                m_TracksAnimator?.CallAnimator("Tracks-Right")?.SetBool("Moving", true);
             }
         
         }
