@@ -13,8 +13,9 @@ public class BonusCollected : MonoBehaviour
         Collided?.Invoke(this, new MapEvent(tagCollided, transform.position));
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         OnCollided(other.gameObject.tag);
     }
+
 }
